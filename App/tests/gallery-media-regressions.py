@@ -505,6 +505,8 @@ methods = [
 # confirmation method is executed verbatim; filesystem deletion is covered above.
 CONFIRM_HARNESS = r'''
 #import <Foundation/Foundation.h>
+// UIKit appearance is checked in native captures; this harness tests deletion semantics.
+static void IWStyleNativeAlert(id alert) { (void)alert; }
 static NSInteger checks, failures;
 static void check(BOOL value, NSString *message) {
     checks++;

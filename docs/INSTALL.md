@@ -1,6 +1,6 @@
 # 安装 Wizard
 
-当前版本是 [v0.2.0-preview.1](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.1) 预览版。提供 `.deb` 安装包、源码构建和 [Agent 安装提示词](AGENT-INSTALL.md)。安装包面向已经准备好的 **rootful 越狱 iPad**；不安装越狱，不修改证书、网络或系统信任，不自动安装电源插件。
+当前候选是 [v0.2.0-preview.2](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.2) 预览版。提供 `.deb` 安装包、源码构建和 [Agent 安装提示词](AGENT-INSTALL.md)。安装包面向已经准备好的 **rootful 越狱 iPad**；不安装越狱，不修改证书、网络或系统信任，不自动安装电源插件。
 
 ## 先核对设备
 
@@ -18,12 +18,12 @@
 
 ## 方式一：直接安装
 
-1. 在上述设备的现有环境中下载 [Wizard `.deb`](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.1/wizard_0.2.0-20261111.37_iphoneos-arm.deb) 和 [包清单](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.1/wizard_0.2.0-20261111.37_iphoneos-arm.deb.manifest.json)。
+1. 在上述设备的现有环境中下载 [Wizard `.deb`](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.2/wizard_0.2.0-20261112.38_iphoneos-arm.deb) 和 [包清单](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.2/wizard_0.2.0-20261112.38_iphoneos-arm.deb.manifest.json)。
 2. 核对 SHA-256 与清单中的 `artifact_sha256`。Mac 上可用 `shasum -a 256 文件名.deb`；不要混用其他版本的包和清单。
 3. 用设备上已经安装的 Filza，或 Cydia / Sileo / Zebra 支持的本地 `.deb` 流程打开并安装。已授权的设备 root 终端也可以使用：
 
    ```sh
-   dpkg -i ./wizard_0.2.0-20261111.37_iphoneos-arm.deb
+   dpkg -i ./wizard_0.2.0-20261112.38_iphoneos-arm.deb
    ```
 
 4. 安装器先检查环境，在设备上用现有 `ldid` 为 App 做 ad-hoc 签名，然后更新 App 注册。更新时只关闭 Wizard 一次，不重启设备或 SpringBoard，也不自动打开 App。安装完成后可由你手动打开 Wizard 验收。
@@ -46,7 +46,7 @@ cd wizard
 IOS_SDK="/path/to/iPhoneOS9.3.sdk" ./scripts/build-ipad.sh --out /tmp/WizardSystem-build
 python3 scripts/package-release.py \
   --app /tmp/WizardSystem-build/WizardSystem.app \
-  --out /tmp/wizard_0.2.0-20261111.37_iphoneos-arm.deb
+  --out /tmp/wizard_0.2.0-20261112.38_iphoneos-arm.deb
 ```
 
 输出目录/文件必须尚不存在。构建生成未签名的 `armv7 + arm64` App、三张图标、两张横版启动图和 `BUILD-METADATA.txt`；打包器核对架构、源指纹、bundle ID、资源字节与尺寸，并生成 `.deb` 及相邻 manifest。构建与打包都不会连接设备或执行安装。
@@ -55,7 +55,7 @@ python3 scripts/package-release.py \
 
 ## 安装可选 GTA VI 图库
 
-[App 图库包](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.1/wizard-gta6-gallery-20261112.zip) 包含230项目录、228张图片、2段视频与缩略图。校验值见 [素材清单](../assets/media/MANIFEST.json)。[原始素材包](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.1/gta6-original-materials-20261112.zip) 用于收藏和制作，不是设备图库安装目录。
+[App 图库包](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.2/wizard-gta6-gallery-20261112.zip) 包含230项目录、228张图片、2段视频与缩略图。校验值见 [素材清单](../assets/media/MANIFEST.json)。[原始素材包](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.2/gta6-original-materials-20261112.zip) 用于收藏和制作，不是设备图库安装目录。
 
 1. 先完整备份设备上的 `/var/mobile/Media/iPadWizard/app`。
 2. 将图库 ZIP 的 `app/` 内容**合并**到该目录，保留现有 `assets/user` 和偏好文件；不要删除或整目录替换旧 `app`。
@@ -69,7 +69,7 @@ GTA VI 图片、视频及衍生素材版权属于 Rockstar Games 及相应权利
 更新完成后记下安装器打印的精确回滚目录。在设备上已授权的 root 终端执行：
 
 ```sh
-/usr/lib/wizard-installer/install-wizard.sh rollback /Applications/WizardSystem.rollback-20261111.37-20261112T120000Z.app
+/usr/lib/wizard-installer/install-wizard.sh rollback /Applications/WizardSystem.rollback-20261112.38-20261112T120000Z.app
 ```
 
 示例时间戳需要替换为实际值。helper 会保留当前候选，恢复所选回滚目录并更新 App 注册；它不自动启动 App，也不重启 SpringBoard。失败时保留所有目录，不猜测删除或覆盖。
@@ -77,3 +77,5 @@ GTA VI 图片、视频及衍生素材版权属于 Rockstar Games 及相应权利
 通过包管理器卸载，或在设备 root 终端执行 `dpkg -r com.rex.wizardsystem`。卸载钩子只处理 bundle ID 和 build 与当前包一致的 Wizard：将 App 完整保留为 `WizardSystem.uninstalled-<build>-<UTC>.app`，取消其注册，保留媒体、偏好和既有回滚目录；普通升级不会触发卸载分支。
 
 卸载后如要恢复，先重新安装同一 `.deb` 取回 helper，再用上述 `rollback` 命令指向实际的 `WizardSystem.uninstalled-*` 目录。若设备状态或 App build 与包不一致，先报告状态，不强制删除未知 App。清除个人媒体/偏好属于另外的操作，不随普通卸载执行。
+
+App 内含一张已署名的 Vice City 默认壁纸；未安装外部图库时可直接显示。完整图库包可选，原有目录、导入照片及设置应在合并前备份。

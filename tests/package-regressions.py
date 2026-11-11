@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PACKAGER = ROOT / "scripts" / "package-release.py"
 INSTALLER = ROOT / "scripts" / "install-wizard.sh"
 APP_ID = "com.rex.wizardsystem"
-BUILD = "20261111.37"
+BUILD = "20261112.38"
 SHORT_VERSION = "0.2.0"
 FINGERPRINT = "a" * 64
 ICON_NAMES = ("Icon-76.png", "Icon-76@2x.png", "Icon-83.5@2x.png")
@@ -76,6 +76,7 @@ def make_app(path: Path, extra: bool = False) -> Path:
         shutil.copyfile(ROOT / "App" / "Resources" / icon_name, path / icon_name)
     for image_name in LAUNCH_IMAGE_SIZES:
         shutil.copyfile(ROOT / "App" / "Resources" / image_name, path / image_name)
+    shutil.copyfile(ROOT / "App" / "Resources" / "ViceCity.jpg", path / "ViceCity.jpg")
     if extra:
         (path / "user-import.jpg").write_bytes(b"must not be packaged")
     return path
@@ -124,12 +125,12 @@ def test_package_contents(temp: Path) -> None:
     manifest = json.loads(manifest_path.read_text())
     check("manifest artifact hash", manifest["artifact_sha256"] == hashlib.sha256(output.read_bytes()).hexdigest())
     check("manifest content counts", manifest["counts"] == {
-        "app_bundle_files": 7,
+        "app_bundle_files": 8,
         "reviewed_wizard_png_icons": 3,
         "reviewed_wizard_launch_images": 2,
         "installer_helpers": 1,
         "license_and_notice_files": 3,
-        "rockstar_media_files": 0,
+        "rockstar_media_files": 1,
         "user_media_files": 0,
         "sdk_files": 0,
         "power_tweak_files": 0,
@@ -151,7 +152,7 @@ def test_package_contents(temp: Path) -> None:
     check("prerm delegates exact build", f"install-wizard.sh remove {BUILD}".encode() in control["prerm"])
     check("helper unregisters only named app path", b'uicache -u "$TARGET"' in data["usr/lib/wizard-installer/install-wizard.sh"])
     check("staged app path", any(name.startswith(f"Applications/.wizard-package-payload-{BUILD}.app/") for name in data))
-    check("app file list", len([name for name in data if name.startswith(f"Applications/.wizard-package-payload-{BUILD}.app/")]) == 7)
+    check("app file list", len([name for name in data if name.startswith(f"Applications/.wizard-package-payload-{BUILD}.app/")]) == 8)
     check("installer helper", "usr/lib/wizard-installer/install-wizard.sh" in data)
     check("power tweak excluded", not any("WizardPower" in name or "Tweak" in name for name in data))
     check("license notices", all(name in data for name in (
@@ -163,7 +164,9 @@ def test_package_contents(temp: Path) -> None:
     forbidden_suffixes = (".jpg", ".jpeg", ".mp4", ".mkv", ".m4a", ".ttf", ".otf", ".sdk")
     allowed_pngs = set(ICON_NAMES) | set(LAUNCH_IMAGE_SIZES)
     unexpected_png = [name for name in content_names if name.lower().endswith(".png") and Path(name).name not in allowed_pngs]
-    check("no media payloads", not unexpected_png and not any(name.lower().endswith(forbidden_suffixes) for name in content_names))
+    artwork_path = f"Applications/.wizard-package-payload-{BUILD}.app/ViceCity.jpg"
+    check("only the reviewed bundled artwork", data.get(artwork_path) == (ROOT / "App/Resources/ViceCity.jpg").read_bytes())
+    check("no unreviewed media payloads", not unexpected_png and not any(name != artwork_path and name.lower().endswith(forbidden_suffixes) for name in content_names))
     check("package manifest in stdout", "artifact_sha256" in result.stdout)
 
 
@@ -189,6 +192,11 @@ def test_package_rejections(temp: Path) -> None:
     (changed_launch / "Default-Landscape.png").write_bytes(png_header(1024, 768))
     result = subprocess.run(fixture_pkg_args(changed_launch, output, good_lipo), text=True, capture_output=True)
     check("reject unbound launch image", result.returncode != 0 and "Default-Landscape.png" in result.stderr)
+
+    changed_artwork = make_app(temp / "changed-artwork.app")
+    (changed_artwork / "ViceCity.jpg").write_bytes(b"unreviewed image")
+    result = subprocess.run(fixture_pkg_args(changed_artwork, output, good_lipo), text=True, capture_output=True)
+    check("reject unbound artwork", result.returncode != 0 and "ViceCity.jpg" in result.stderr)
 
     no_fingerprint = make_app(temp / "no-fingerprint.app")
     plist_path = no_fingerprint / "Info.plist"

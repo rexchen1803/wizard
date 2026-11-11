@@ -6,7 +6,7 @@ This tree contains the complete Wizard app source, owned icon resources, public 
 
 ## Build
 
-The current local source candidate is **0.2.0 / 20261111.37**. Mini-games and their audio, menu, lifecycle and test integration have been removed. This candidate has not been installed on a device; the prior device records describe earlier builds.
+The current local source candidate is **0.2.0 / 20261112.38**. Mini-games and their audio, menu, lifecycle and test integration have been removed. This candidate has not been installed on a device; the prior device records describe earlier builds.
 
 Build on macOS with Xcode Command Line Tools and an iPhoneOS SDK you obtained through Apple’s development tools. The SDK is not bundled. From the repository root:
 
@@ -18,7 +18,7 @@ The verified SDK is iPhoneOS 9.3. Newer SDK compatibility is unverified, particu
 
 The script creates an unsigned `WizardSystem.app` for `armv7` and `arm64`, with a minimum deployment target of iOS 9.0. It records the compiler, SDK name, compile command template, warnings, source snapshot hashes, a combined fingerprint injected into the built plist, output hashes, and architectures in `BUILD-METADATA.txt`. The script fails if any allowlisted build input changes while compiling. It also uses `nm -u -j` to reject undefined app-owned `IW` functions and Objective-C classes, metaclasses and ivars in each architecture. `NM` may select a compatible executable supporting those flags and symbol-names-only output. Symbol inspection or matching errors stop the build. The legacy `dynamic_lookup` linker flag remains for private system symbols; a host build does not prove those symbols resolve on-device. The script does not sign or install the app.
 
-By default, output goes to a new private audit directory. To select a location, pass `--out PATH`; that path must not already exist. The script never clears an existing output directory. No proprietary font, launch image or media file is needed to compile. The reviewed Wizard icons and owned landscape launch images in `App/Resources` are bound into the source snapshot and copied into the App. Native screenshots and full media packs retain separate attribution.
+By default, output goes to a new private audit directory. To select a location, pass `--out PATH`; that path must not already exist. The script never clears an existing output directory. No proprietary font or external media pack is needed to compile. The reviewed Wizard icons, owned landscape launch images and attributed `ViceCity.jpg` in `App/Resources` are bound into the source snapshot and copied into the App. Native screenshots and full media packs retain separate attribution.
 
 The original private workspace has a local SDK fallback at `.local/toolchains/iPhoneOS9.3.sdk` for development only. An exported source candidate has no SDK fallback and requires `IOS_SDK`.
 
@@ -32,7 +32,7 @@ The source reflects a historical jailbroken or unsandboxed iPad deployment model
 
 The app dynamically opens Apple private `BackBoardServices`, `GraphicsServices`, and `SpringBoardServices` frameworks and resolves symbols used for display and lock operations. A successful host compile does not show that the symbols exist or work at runtime. The optional tweak also uses private SpringBoard APIs.
 
-`App/Info.plist` identifies an iPad-only app (`UIDeviceFamily` 2), sets a minimum OS of 9.0 and a development build channel, and sets `NSAllowsArbitraryLoads=true` for App Transport Security. This configuration does not demonstrate stock-device sideload compatibility. The public source candidate contains no installer or entitlement evidence for the external storage and private API access. **Stock iOS sideloading has not been validated.**
+`App/Info.plist` identifies an iPad-only app (`UIDeviceFamily` 2), sets a minimum OS of 9.0 and a development build channel, and sets `NSAllowsArbitraryLoads=true` for App Transport Security. This configuration does not demonstrate stock-device sideload compatibility. The guarded rootful installer does not establish entitlement or private-API behavior for stock devices. **Stock iOS sideloading has not been validated.**
 
 ## Regression check
 
@@ -78,3 +78,25 @@ The opt-in frame probe records main-run-loop display-link delivery, interval p95
 The power-edge harness uses a virtual scheduler and fake lock manager. It does not build/inject a SpringBoard tweak or establish private-API compatibility.
 
 The marker-gated local-video audit can use an owned fixture. Its optional `wizardsystem-local-video-fixture` file lives in `NSTemporaryDirectory()` and contains exactly 20 lowercase hexadecimal bytes, with UID 501 ownership and mode `0600`. It selects `/var/mobile/Media/iPadWizard/.wizard-local-video-audit-<nonce>/fixture.mp4`: the private root must have UID 501 ownership and mode `0700`, and the regular UID 501 file must be nonempty, at most 2 MiB, and on the parent's filesystem. The marker, private root and fixture file must not be symbolic links. Invalid inputs stop the diagnostic. Without the nonce marker, the diagnostic retains its original local-video input. The terminal report records actual monotonic sample intervals and read-only output-volume values. Remove the owned fixture and any markers created for the test after capture.
+
+## Native simulator preview
+
+Build a separate native iPad preview using the Simulator SDK already installed with Xcode:
+
+```sh
+python3 scripts/build-preview.py --out build-preview
+```
+
+This produces an ad-hoc-signed `WizardPreview.app` with the separate identifier `com.rex.wizard.preview`, target iOS 18 or later, and a source/resource fingerprint in `PREVIEW-METADATA.json`. It does not install or boot a simulator. The simulator-only media directory is `Documents/WizardMedia` inside this preview App's container. Actual device builds retain `/var/mobile/Media/iPadWizard/app`. With no catalog, the reviewed bundled Vice City image appears automatically. Optional catalog rows use the same relative-path format as device builds.
+
+Install and launch only on a dedicated simulator you have selected for this project; use `xcrun simctl io <UDID> screenshot <path.png>` to capture genuine UIKit output. Simulator rendering is useful for layout inspection and promotional captures; it does not establish iOS 9–12 runtime or physical-device acceptance.
+
+For repeatable scene captures, launch the preview with a Simulator-only argument after installing it on your selected test simulator:
+
+```sh
+xcrun simctl launch --terminate-running-process SIMULATOR_UDID com.rex.wizard.preview \
+  -WizardPreviewCommands "main,settingsmenu"
+xcrun simctl io SIMULATOR_UDID screenshot settings.png
+```
+
+Wait for the requested transition before taking the screenshot. `WizardPreviewCommands` accepts up to eight comma-separated, allowlisted scene commands. Examples include `main,menu`, `main,themesmenu`, `main,gallery,gallerycategories` and `main,clockedit`. This entry exists only in Simulator builds, avoids external URL confirmation dialogs, and calls the actual App actions. It does not change device builds or grant device installation authority.

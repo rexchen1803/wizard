@@ -1,0 +1,31 @@
+# Wizard
+
+<!-- impeccable:product-schema 1 -->
+
+## Platform
+
+ios
+
+## Users
+People using a prepared, rootful jailbroken legacy iPad as a desk or bedside display. Contributors use GitHub to inspect the source and choose an installation method.
+
+## Product Purpose
+A native Objective-C/UIKit display for a clock, calendar, wallpaper gallery and local video.
+
+## Capabilities and Constraints
+iOS 9 minimum; preserve armv7 and arm64 builds, stable media keys, favorites, user imports and layout preferences. Build, simulator rendering and physical-device acceptance are separate evidence. No physical-device work is requested for this redesign.
+
+## Brand Commitments
+Rex explicitly selected GTA VI / Rockstar / Miami visual language for both the App and GitHub presentation, with purple-pink sunset gradients and substantial supplied artwork. Use ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg for the new build and promotion; retain historical promotional captures.
+
+## Evidence on Hand
+App source, eight host regression suites, local iPhoneOS 9.3 SDK, source36 native iPad captures and owner-supplied GTA VI media. Old captures remain historical; current native screenshots require a new rendering run.
+
+## Product Principles
+- Preserve real capabilities and user data.
+- Keep the artwork prominent and controls readable.
+- Explain installation choices clearly.
+- Keep code licensing distinct from Rockstar material rights.
+
+## Publication
+Repository remains private and Releases remain drafts until Rex explicitly confirms publication.

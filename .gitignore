@@ -3,6 +3,8 @@
 !/.github/
 !/.gitignore
 !/AGENTS.md
+!/PRODUCT.md
+!/DESIGN.md
 !/App/
 !/CHANGELOG.md
 !/CONTRIBUTING.md
@@ -51,6 +53,7 @@
 
 /scripts/*
 !/scripts/build-ipad.sh
+!/scripts/build-preview.py
 !/scripts/build-power.sh
 !/scripts/check-repository.py
 !/scripts/install-wizard.sh
@@ -78,6 +81,7 @@
 !/App/Resources/Icon-83.5@2x.png
 !/App/Resources/Icon.svg
 !/App/Resources/Launch.svg
+!/App/Resources/ViceCity.jpg
 
 /App/WizardPowerTweak/*
 !/App/WizardPowerTweak/README.md
@@ -97,6 +101,15 @@
 
 /assets/demo/*
 !/assets/demo/README.md
+!/assets/demo/home-miami.jpg
+!/assets/demo/gallery-miami.jpg
+!/assets/demo/categories-miami.jpg
+!/assets/demo/menu-miami.jpg
+!/assets/demo/settings-miami.jpg
+!/assets/demo/themes-miami.jpg
+!/assets/demo/clock-edit-miami.jpg
+!/assets/demo/calendar-miami.jpg
+!/assets/demo/CAPTURE-METADATA.json
 !/assets/demo/categories-ipad2.png
 !/assets/demo/gallery-ipad2.png
 !/assets/demo/home-ipad2.png
@@ -107,6 +120,9 @@
 
 /assets/readme/*
 !/assets/readme/hero-dark.svg
+!/assets/readme/postcards-triptych.svg
+!/assets/readme/installation-routes.svg
+!/assets/readme/source-endmark.svg
 !/assets/readme/hero-mobile-dark.svg
 !/assets/readme/hero-mobile.svg
 !/assets/readme/hero.svg

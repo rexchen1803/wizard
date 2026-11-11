@@ -1,9 +1,26 @@
-# 实机演示来源
+# 演示截图来源
 
-三张图片均为 iPad2,4 / iOS9.3.5 上的原生 UIKit 截图，保持原始像素，不是浏览器模拟：
+## 当前 Miami 预览
 
-- `home-ipad2.png`：source36 主屏，2026-11-11 拍摄。
-- `gallery-ipad2.png`：source36 的完整图库。
-- `categories-ipad2.png`：source36 的分类弹窗。
+`*-miami.jpg` 来自 build **20261112.38** 在 **iPad（第 8 代）模拟器 / iOS 18.0** 中的原生 UIKit 渲染。原始截图为 2160 × 1620 PNG；网页版本保持同样像素尺寸，使用 JPEG quality 85 编码，未合成、添加或重绘任何 App 界面。原始 PNG 的 SHA256、网页图片校验值、场景命令和源码指纹在 [CAPTURE-METADATA.json](CAPTURE-METADATA.json)。
 
-当前 source37 预览构建移除了小游戏并增加导入照片删除确认；这三张历史截图不作为 source37 的新真机验收。GTA VI 图片及其中的第三方素材版权属于 Rockstar Games 及相应权利人，演示截图不适用 Wizard 的 MIT 源码许可。
+- [主屏](home-miami.jpg)：未安装外部目录时的内置 Vice City 默认图。
+- [图库](gallery-miami.jpg)、[分类](categories-miami.jpg)：演示目录由 230 项素材包加上所选默认图组成，共 231 项。未加入用户照片。
+- [主菜单](menu-miami.jpg)、[设置](settings-miami.jpg)、[主题](themes-miami.jpg)。
+- [时钟编辑](clock-edit-miami.jpg)、[日历](calendar-miami.jpg)。
+
+截图构建和 `armv7 + arm64` 设备构建绑定同一份源码与资源；模拟器使用独立 App 标识和沙盒媒体路径。构建入口及复现方式见[原生模拟器预览](../../docs/open-source/README.md#native-simulator-preview)。模拟器检查不替代旧款实体 iPad 的运行验收。
+
+## 保留的旧版实机宣传图
+
+以下 source36 原始 PNG 保持原像素，来自 iPad2,4 / iOS9.3.5，拍摄于 2026-11-11：
+
+- [旧版主屏](home-ipad2.png)
+- [旧版图库](gallery-ipad2.png)
+- [旧版分类](categories-ipad2.png)
+
+它们是旧版真实设备记录，不作为当前 Miami 构建的真机验收。
+
+## 署名
+
+GTA VI 图片和截图中的相应素材版权属于 Rockstar Games 与相关权利人；这些演示图片不适用 Wizard 的 MIT 源码许可。具体原图和权利范围见[素材署名](../media/ATTRIBUTION.md)。

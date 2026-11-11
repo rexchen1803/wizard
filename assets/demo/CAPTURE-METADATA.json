@@ -1,0 +1,129 @@
+{
+  "runtime": "iOS 18.0",
+  "device": "iPad (8th generation) Simulator",
+  "build": "20261112.38",
+  "source_fingerprint": "75d833bf0397119b2f061229dc0ce8ea1c0568738d021b690326d30f60fd0f00",
+  "physical_device": false,
+  "entry": "Simulator-only CLI commands; no external URLs",
+  "display_encoding": "JPEG quality 85, original pixel dimensions; no added UI or compositing",
+  "preview_preferences": {
+    "weatherVisible": false,
+    "calendarVisible": false,
+    "dateVisible": true
+  },
+  "gallery_fixture": "230-item verified gallery plus the supplied default image",
+  "captures": [
+    {
+      "file": "home-miami.jpg",
+      "scene": "home-miami",
+      "sha256": "ad70c7dfc37ab40b754b137168c2097de76a9d8ff8cf85297269591dea6fd1c4",
+      "original_png_sha256": "bc8801764482655c468849a9986da24f61b6c73938b7dce4d7906deeb9453c00",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main"
+      ]
+    },
+    {
+      "file": "menu-miami.jpg",
+      "scene": "menu-miami",
+      "sha256": "4464a5203eabe522d1727746c96411617287e62389fc3d71f3c73336c25b9147",
+      "original_png_sha256": "a2d494489cfed898163db71c605dcfd6f1cd7f330c872dba1361fea8471531c0",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "menu"
+      ]
+    },
+    {
+      "file": "settings-miami.jpg",
+      "scene": "settings-miami",
+      "sha256": "ddaf5034591edf33bb36040750756fe47fe18f70cd5ba974ac4ab51c4ef7a0e8",
+      "original_png_sha256": "8ff1b7db4ad1464a12e8ee7540c9723ae887d1c05508acac779ff55e3d66821b",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "settingsmenu"
+      ]
+    },
+    {
+      "file": "themes-miami.jpg",
+      "scene": "themes-miami",
+      "sha256": "2255c8eab5b0d5869fc351766fd9c518572bdc3ebbd6409e456338b10dbaea5b",
+      "original_png_sha256": "04f40c23ec11c1cda6e27fcb6f2ac40b8f4111184b7bff6afc2f777b4caeb972",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "themesmenu"
+      ]
+    },
+    {
+      "file": "gallery-miami.jpg",
+      "scene": "gallery-miami",
+      "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+      "original_png_sha256": "2fcc37f1e54ad1d8b2c52a87c371072f8be4161d07ed4f3827fab0c7ec5cdf0b",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "gallery"
+      ]
+    },
+    {
+      "file": "categories-miami.jpg",
+      "scene": "categories-miami",
+      "sha256": "7ea704cf2c93e794c89051e2c6dfe155e32a9f288ac67bd7d3cd19e6a3de336b",
+      "original_png_sha256": "b2ab94671ee2da26c78e7f865ee447d49277444b95c4e959944496556c61d259",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "gallery",
+        "gallerycategories"
+      ]
+    },
+    {
+      "file": "clock-edit-miami.jpg",
+      "scene": "clock-edit-miami",
+      "sha256": "6e78b68f9982c1410f11cf28f4cb72d6da69ed018473827725e3fce892a2ffef",
+      "original_png_sha256": "f33a7041b6bffa97543347498fe0b3e6c5366f60a6f50af3cae1b9feed626512",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "clockedit"
+      ]
+    },
+    {
+      "file": "calendar-miami.jpg",
+      "scene": "calendar-miami",
+      "sha256": "d546b6a483ae2a321cc321f65caccb27a6b39460fb21f645126d60eaa28b4763",
+      "original_png_sha256": "388918452e05d8c5a7612b0898ea93cccaa34a3313fa5ccb9eb0be713980d608",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "calendar"
+      ]
+    }
+  ]
+}

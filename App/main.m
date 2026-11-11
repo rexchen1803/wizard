@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import <TargetConditionals.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <CoreMotion/CoreMotion.h>
@@ -166,7 +167,16 @@ static IWLocalVideoFixtureStatus IWResolveLocalVideoFixture(NSString *nonceMarke
     return fixturePath && *fixturePath ? IWLocalVideoFixtureStatusValid : IWLocalVideoFixtureStatusInvalid;
 }
 
+#if TARGET_OS_SIMULATOR
+static NSString *IWSimulatorAppPath(void) {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths count] ? [paths objectAtIndex:0] : NSTemporaryDirectory();
+    return [documentsPath stringByAppendingPathComponent:@"WizardMedia"];
+}
+#define IWAppPath IWSimulatorAppPath()
+#else
 static NSString * const IWAppPath = @"/var/mobile/Media/iPadWizard/app";
+#endif
 
 static NSString *IWCastDeviceModelName(void) {
     size_t size = 0;
@@ -239,8 +249,27 @@ static CGFloat IWControlSize(void) { return 46.0; }
 static CGFloat IWControlRadius(void) { return IWControlSize() / 2.0; }
 static CGFloat IWControlGap(void) { return 8.0; }
 static CGFloat IWControlRightMargin(void) { return 22.0; }
-static CGFloat IWControlBorderWidth(void) { return 1.65; }
-static UIColor *IWThemePink(CGFloat alpha) { return [UIColor colorWithRed:1.0 green:73.0/255.0 blue:158.0/255.0 alpha:alpha]; }
+static CGFloat IWControlBorderWidth(void) { return 1.5; }
+static UIColor *IWThemeMidnight(CGFloat alpha) { return [UIColor colorWithRed:12.0/255.0 green:13.0/255.0 blue:27.0/255.0 alpha:alpha]; }
+static UIColor *IWThemePlum(CGFloat alpha) { return [UIColor colorWithRed:33.0/255.0 green:21.0/255.0 blue:45.0/255.0 alpha:alpha]; }
+static UIColor *IWThemeCream(CGFloat alpha) { return [UIColor colorWithRed:1.0 green:249.0/255.0 blue:203.0/255.0 alpha:alpha]; }
+static UIColor *IWThemePink(CGFloat alpha) { return [UIColor colorWithRed:247.0/255.0 green:166.0/255.0 blue:190.0/255.0 alpha:alpha]; }
+static void IWStyleNativeAlert(UIAlertController *alert) {
+    // Public iOS 13 API, resolved dynamically so the iOS 9 SDK stays supported.
+    SEL appearanceSelector = NSSelectorFromString(@"setOverrideUserInterfaceStyle:");
+    BOOL darkAppearance = [alert respondsToSelector:appearanceSelector];
+    if (darkAppearance) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[alert methodSignatureForSelector:appearanceSelector]];
+        NSInteger darkStyle = 2; // UIUserInterfaceStyleDark
+        invocation.target = alert;
+        invocation.selector = appearanceSelector;
+        [invocation setArgument:&darkStyle atIndex:2];
+        [invocation invoke];
+    }
+    alert.view.tintColor = darkAppearance ? IWThemePink(1.0) : IWThemePlum(1.0);
+}
+static UIColor *IWThemeOrchid(CGFloat alpha) { return [UIColor colorWithRed:214.0/255.0 green:90.0/255.0 blue:152.0/255.0 alpha:alpha]; }
+static UIColor *IWThemePeach(CGFloat alpha) { return [UIColor colorWithRed:248.0/255.0 green:179.0/255.0 blue:142.0/255.0 alpha:alpha]; }
 static UIImage *IWDecodedThumbnail(NSDictionary *item) {
     UIImage *image = [UIImage imageWithContentsOfFile:[item objectForKey:@"thumbPath"]];
     if (!image) image = [UIImage imageWithContentsOfFile:[item objectForKey:@"imagePath"]];
@@ -343,9 +372,9 @@ static BOOL IWColorIsThemePink(UIColor *color) {
     return color &&
         [color getRed:&r green:&g blue:&b alpha:&a] &&
         a > 0.55 &&
-        fabs(r - 1.0) < 0.08 &&
-        fabs(g - 73.0/255.0) < 0.08 &&
-        fabs(b - 158.0/255.0) < 0.10;
+        fabs(r - 247.0/255.0) < 0.08 &&
+        fabs(g - 166.0/255.0) < 0.08 &&
+        fabs(b - 190.0/255.0) < 0.10;
 }
 static char IWButtonPulseActiveKey;
 static void IWFlashButtonPulse(UIButton *button) {
@@ -357,27 +386,27 @@ static void IWFlashButtonPulse(UIButton *button) {
     CGAffineTransform originalTransform = button.transform;
     BOOL activePink = IWColorIsThemePink(button.backgroundColor);
     UIColor *pulseColor = activePink ? [UIColor whiteColor] : IWThemePink(1.0);
-    CGRect pulseFrame = CGRectInset(button.frame, -6.0, -6.0);
+    CGRect pulseFrame = CGRectInset(button.frame, -3.0, -3.0);
     UIView *pulse = [[UIView alloc] initWithFrame:pulseFrame];
     pulse.userInteractionEnabled = NO;
-    pulse.backgroundColor = [pulseColor colorWithAlphaComponent:(activePink ? 0.38 : 0.48)];
+    pulse.backgroundColor = [pulseColor colorWithAlphaComponent:0.10];
     pulse.layer.cornerRadius = pulseFrame.size.width / 2.0;
-    pulse.layer.borderWidth = 2.8;
-    pulse.layer.borderColor = [[pulseColor colorWithAlphaComponent:(activePink ? 0.96 : 1.0)] CGColor];
-    pulse.layer.shadowColor = [pulseColor CGColor];
-    pulse.layer.shadowOpacity = activePink ? 0.92 : 1.0;
-    pulse.layer.shadowRadius = activePink ? 10.0 : 12.0;
-    pulse.layer.shadowOffset = CGSizeZero;
+    pulse.layer.borderWidth = 1.0;
+    pulse.layer.borderColor = [[pulseColor colorWithAlphaComponent:0.48] CGColor];
+    pulse.layer.shadowColor = [IWThemeMidnight(0.75) CGColor];
+    pulse.layer.shadowOpacity = 0.30;
+    pulse.layer.shadowRadius = 4.0;
+    pulse.layer.shadowOffset = CGSizeMake(0, 2.0);
     [button.superview insertSubview:pulse belowSubview:button];
 
     UIView *halo = [[UIView alloc] initWithFrame:CGRectInset(button.frame, -2.0, -2.0)];
     halo.userInteractionEnabled = NO;
-    halo.backgroundColor = [pulseColor colorWithAlphaComponent:(activePink ? 0.34 : 0.42)];
+    halo.backgroundColor = [UIColor clearColor];
     halo.layer.cornerRadius = halo.bounds.size.width / 2.0;
     halo.alpha = 0.0;
     [button.superview insertSubview:halo belowSubview:button];
 
-    pulse.transform = CGAffineTransformMakeScale(0.72, 0.72);
+    pulse.transform = CGAffineTransformMakeScale(0.88, 0.88);
     pulse.alpha = 0.0;
     button.transform = CGAffineTransformScale(originalTransform, 0.95, 0.95);
     [UIView animateKeyframesWithDuration:0.42 delay:0.0 options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
@@ -389,7 +418,7 @@ static void IWFlashButtonPulse(UIButton *button) {
         [UIView addKeyframeWithRelativeStartTime:0.14 relativeDuration:0.86 animations:^{
             pulse.alpha = 0.0;
             halo.alpha = 0.0;
-            pulse.transform = CGAffineTransformMakeScale(1.16, 1.16);
+            pulse.transform = CGAffineTransformMakeScale(1.04, 1.04);
             halo.transform = CGAffineTransformMakeScale(1.04, 1.04);
             button.transform = originalTransform;
         }];
@@ -469,7 +498,7 @@ static CGFloat IWClockDefaultScale(void) { return 1.0; }
 static CGFloat IWDateDefaultOffsetX(void) { return 0.0; }
 static CGFloat IWDateDefaultOffsetY(void) { return 0.0; }
 static CGFloat IWDateDefaultScale(void) { return 1.0; }
-static CGFloat IWDigitCardDefaultOpacity(void) { return 0.50; }
+static CGFloat IWDigitCardDefaultOpacity(void) { return 0.86; }
 static CGFloat IWEditDragGain(void) { return 1.25; }
 static CGFloat IWDigitCardClampOpacity(CGFloat opacity) {
     opacity = MAX(0.20, MIN(0.90, opacity));
@@ -493,17 +522,7 @@ static UIFont *IWGTAFont(CGFloat size) {
 }
 
 static UIFont *IWGTATextFont(CGFloat size) {
-    NSArray *names = @[
-        @"AvenirNextCondensed-DemiBold",
-        @"DINCondensed-Bold",
-        @"HelveticaNeue-CondensedBold",
-        @"AvenirNextCondensed-Heavy"
-    ];
-    for (NSString *name in names) {
-        UIFont *font = [UIFont fontWithName:name size:size];
-        if (font) return font;
-    }
-    return [UIFont boldSystemFontOfSize:size];
+    return [UIFont systemFontOfSize:size weight:UIFontWeightSemibold];
 }
 
 static NSString *IWLocalWiFiAddress(void) {
@@ -1656,7 +1675,7 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
 - (void)drawRect:(CGRect)rect {
     CGContextRef c = UIGraphicsGetCurrentContext();
     if (!c) return;
-    UIColor *iconColor = self.iconColor ?: [UIColor whiteColor];
+    UIColor *iconColor = self.iconColor ?: IWThemeCream(1.0);
     CGContextSetStrokeColorWithColor(c, [iconColor CGColor]);
     CGContextSetFillColorWithColor(c, [iconColor CGColor]);
     CGContextSetLineWidth(c, 2.4);
@@ -1667,8 +1686,8 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
         CGFloat y = CGRectGetMidY(rect);
         NSArray *colors = @[
             IWThemePink(1.0),
-            [UIColor colorWithRed:1.0 green:0.70 blue:0.42 alpha:1.0],
-            [UIColor colorWithRed:0.30 green:0.89 blue:0.89 alpha:1.0]
+            IWThemePeach(1.0),
+            IWThemeOrchid(1.0)
         ];
         CGFloat barW = 7.4;
         CGFloat barH = 25.0;
@@ -1751,9 +1770,9 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
         CGContextStrokePath(c); return;
     }
     if (self.kind == IWButtonKindTheme) {
-        UIColor *a = IWThemePink(1.0);
-        UIColor *b = [UIColor colorWithRed:1.0 green:0.70 blue:0.42 alpha:1.0];
-        UIColor *d = [UIColor colorWithRed:0.30 green:0.89 blue:0.89 alpha:1.0];
+        UIColor *a = self.selected ? IWThemeMidnight(1.0) : IWThemePink(1.0);
+        UIColor *b = self.selected ? IWThemeMidnight(1.0) : IWThemePeach(1.0);
+        UIColor *d = self.selected ? IWThemeMidnight(1.0) : IWThemeOrchid(1.0);
         [a setFill]; [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(x - 12.5, y - 12.0, 8.0, 24.0) cornerRadius:4.0] fill];
         [b setFill]; [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(x - 4.0, y - 12.0, 8.0, 24.0) cornerRadius:4.0] fill];
         [d setFill]; [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(x + 4.5, y - 12.0, 8.0, 24.0) cornerRadius:4.0] fill];
@@ -1844,33 +1863,11 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
         NSParagraphStyleAttributeName: style,
         NSKernAttributeName: @(1.44)
     };
-    NSDictionary *strokeAttrs = @{
-        NSFontAttributeName: self.font ?: IWGTATextFont(18.0),
-        NSForegroundColorAttributeName: [UIColor colorWithRed:5.0/255.0 green:11.0/255.0 blue:18.0/255.0 alpha:0.86],
-        NSParagraphStyleAttributeName: style,
-        NSKernAttributeName: @(1.44)
-    };
-    NSAttributedString *strokeString = [[NSAttributedString alloc] initWithString:self.text attributes:strokeAttrs];
     NSAttributedString *fillString = [[NSAttributedString alloc] initWithString:self.text attributes:baseAttrs];
     CGRect textRect = CGRectInset(rect, -4.0, 0);
-    CGPoint offsets[] = {
-        CGPointMake(-2.0, -1.0),
-        CGPointMake(2.0, -1.0),
-        CGPointMake(-2.0, 1.0),
-        CGPointMake(2.0, 1.0)
-    };
-    NSInteger i;
-    for (i = 0; i < 4; i += 1) {
-        CGRect r = CGRectOffset(textRect, offsets[i].x, offsets[i].y);
-        [strokeString drawInRect:r];
-    }
     CGContextRef c = UIGraphicsGetCurrentContext();
     CGContextSaveGState(c);
-    CGContextSetShadowWithColor(c, CGSizeMake(0, 4.0), 7.0, [[UIColor colorWithWhite:0 alpha:0.76] CGColor]);
-    [fillString drawInRect:textRect];
-    CGContextRestoreGState(c);
-    CGContextSaveGState(c);
-    CGContextSetShadowWithColor(c, CGSizeZero, 18.0, [[UIColor colorWithWhite:1.0 alpha:0.26] CGColor]);
+    CGContextSetShadowWithColor(c, CGSizeMake(0, 2.0), 4.0, [IWThemeMidnight(0.86) CGColor]);
     [fillString drawInRect:textRect];
     CGContextRestoreGState(c);
 }
@@ -1908,18 +1905,13 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     CGContextRef c = UIGraphicsGetCurrentContext();
     if (!c) return;
     CGRect dot = CGRectInset(self.bounds, 4.0, 4.0);
-    CGContextSetShadowWithColor(c, CGSizeZero, 26.0, [[UIColor colorWithRed:61.0/255.0 green:222.0/255.0 blue:230.0/255.0 alpha:0.34] CGColor]);
+    CGContextSetShadowWithColor(c, CGSizeMake(0, 2.0), 3.0, [IWThemeMidnight(0.72) CGColor]);
     CGContextSetFillColorWithColor(c, [self.dotColor CGColor]);
     CGContextFillEllipseInRect(c, dot);
-    CGContextSetShadowWithColor(c, CGSizeZero, 16.0, [[self.dotColor colorWithAlphaComponent:0.62] CGColor]);
-    CGContextFillEllipseInRect(c, dot);
     CGContextSetShadowWithColor(c, CGSizeZero, 0, NULL);
-    CGContextSetStrokeColorWithColor(c, [[UIColor colorWithRed:1.0 green:249.0/255.0 blue:238.0/255.0 alpha:0.90] CGColor]);
-    CGContextSetLineWidth(c, 2.0);
+    CGContextSetStrokeColorWithColor(c, [IWThemeCream(0.88) CGColor]);
+    CGContextSetLineWidth(c, 1.2);
     CGContextStrokeEllipseInRect(c, CGRectInset(dot, 1.0, 1.0));
-    CGContextSetStrokeColorWithColor(c, [[self.dotColor colorWithAlphaComponent:0.38] CGColor]);
-    CGContextSetLineWidth(c, 1.0);
-    CGContextStrokeEllipseInRect(c, CGRectInset(dot, -1.0, -1.0));
 }
 
 @end
@@ -1937,7 +1929,7 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     if (!self) return nil;
     _fillAlpha = IWDigitCardDefaultOpacity();
     _borderColor = IWThemePink(0.82);
-    _borderWidth = 3.4;
+    _borderWidth = 1.5;
     self.backgroundColor = [UIColor clearColor];
     self.opaque = NO;
     self.userInteractionEnabled = NO;
@@ -1972,7 +1964,7 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     CGContextSaveGState(c);
     [rounded addClip];
 
-    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:1.0 green:243.0/255.0 blue:243.0/255.0 alpha:baseAlpha] CGColor]);
+    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:33.0/255.0 green:21.0/255.0 blue:45.0/255.0 alpha:baseAlpha] CGColor]);
     CGContextFillRect(c, b);
 
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
@@ -1983,8 +1975,8 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     CGContextSaveGState(c);
     CGContextClipToRect(c, topRect);
     CGGradientRef topGradient = CGGradientCreateWithColors(space, (CFArrayRef)@[
-        (id)[[UIColor colorWithRed:1.0 green:253.0/255.0 blue:247.0/255.0 alpha:topAlphaA] CGColor],
-        (id)[[UIColor colorWithRed:245.0/255.0 green:224.0/255.0 blue:231.0/255.0 alpha:topAlphaB] CGColor]
+        (id)[[UIColor colorWithRed:54.0/255.0 green:34.0/255.0 blue:67.0/255.0 alpha:topAlphaA] CGColor],
+        (id)[[UIColor colorWithRed:33.0/255.0 green:21.0/255.0 blue:45.0/255.0 alpha:topAlphaB] CGColor]
     ], locations);
     CGContextDrawLinearGradient(c, topGradient, CGPointMake(0, 0), CGPointMake(0, CGRectGetMaxY(topRect)), 0);
     CGGradientRelease(topGradient);
@@ -1993,23 +1985,23 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     CGContextSaveGState(c);
     CGContextClipToRect(c, bottomRect);
     CGGradientRef bottomGradient = CGGradientCreateWithColors(space, (CFArrayRef)@[
-        (id)[[UIColor colorWithRed:237.0/255.0 green:214.0/255.0 blue:224.0/255.0 alpha:bottomAlphaA] CGColor],
-        (id)[[UIColor colorWithRed:1.0 green:244.0/255.0 blue:239.0/255.0 alpha:bottomAlphaB] CGColor]
+        (id)[[UIColor colorWithRed:25.0/255.0 green:18.0/255.0 blue:38.0/255.0 alpha:bottomAlphaA] CGColor],
+        (id)[[UIColor colorWithRed:40.0/255.0 green:25.0/255.0 blue:52.0/255.0 alpha:bottomAlphaB] CGColor]
     ], locations);
     CGContextDrawLinearGradient(c, bottomGradient, CGPointMake(0, CGRectGetMinY(bottomRect)), CGPointMake(0, CGRectGetMaxY(bottomRect)), 0);
     CGGradientRelease(bottomGradient);
     CGContextRestoreGState(c);
     CGColorSpaceRelease(space);
 
-    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:1.0 green:194.0/255.0 blue:225.0/255.0 alpha:0.18] CGColor]);
+    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:214.0/255.0 green:90.0/255.0 blue:152.0/255.0 alpha:0.08] CGColor]);
     CGContextFillRect(c, CGRectMake(0, b.size.height - 18.0, b.size.width, 18.0));
 
     CGFloat half = floor(b.size.height / 2.0);
-    CGContextSetFillColorWithColor(c, [[UIColor colorWithWhite:1.0 alpha:0.74] CGColor]);
+    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:1.0 green:249.0/255.0 blue:203.0/255.0 alpha:0.30] CGColor]);
     CGContextFillRect(c, CGRectMake(0, half - 2.0, b.size.width, 1.0));
-    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:31.0/255.0 green:19.0/255.0 blue:42.0/255.0 alpha:0.26] CGColor]);
+    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:12.0/255.0 green:13.0/255.0 blue:27.0/255.0 alpha:0.48] CGColor]);
     CGContextFillRect(c, CGRectMake(0, half - 1.0, b.size.width, 2.0));
-    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:236.0/255.0 green:58.0/255.0 blue:145.0/255.0 alpha:0.18] CGColor]);
+    CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:214.0/255.0 green:90.0/255.0 blue:152.0/255.0 alpha:0.18] CGColor]);
     CGContextFillRect(c, CGRectMake(0, half + 1.0, b.size.width, 1.0));
 
     CGContextSetStrokeColorWithColor(c, [_borderColor CGColor]);
@@ -2101,7 +2093,7 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     _top = top;
     _text = @"";
     _font = IWGTAFont(118.0);
-    _textColor = [UIColor colorWithRed:17.0/255.0 green:17.0/255.0 blue:26.0/255.0 alpha:1.0];
+    _textColor = IWThemeCream(1.0);
     _strokeColor = IWThemePink(0.58);
     _cardOpacity = IWDigitCardDefaultOpacity();
     _flipCardOpacity = 0.98;
@@ -2148,23 +2140,21 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
         CGContextSaveGState(c);
         [clipPath addClip];
         CGFloat fillAlpha = _flipStyle ? _flipCardOpacity : _cardOpacity;
-        CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:1.0 green:243.0/255.0 blue:243.0/255.0 alpha:fillAlpha] CGColor]);
+        CGContextSetFillColorWithColor(c, [[UIColor colorWithRed:33.0/255.0 green:21.0/255.0 blue:45.0/255.0 alpha:fillAlpha] CGColor]);
         CGContextFillRect(c, b);
         CGContextRestoreGState(c);
     }
     if (![_text length]) return;
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.alignment = NSTextAlignmentCenter;
-    UIColor *fillColor = _flipStyle ? [UIColor colorWithRed:7.0/255.0 green:21.0/255.0 blue:33.0/255.0 alpha:1.0] : _textColor;
+    UIColor *fillColor = _flipStyle ? IWThemeCream(1.0) : _textColor;
     NSMutableDictionary *attrs = [@{
         NSFontAttributeName: _font,
         NSForegroundColorAttributeName: fillColor,
         NSParagraphStyleAttributeName: style
     } mutableCopy];
     if (!_flipStyle) {
-        [attrs setObject:_strokeColor forKey:NSStrokeColorAttributeName];
-        [attrs setObject:@(-2.15) forKey:NSStrokeWidthAttributeName];
-        CGContextSetShadowWithColor(UIGraphicsGetCurrentContext(), CGSizeZero, 1.2, [[_strokeColor colorWithAlphaComponent:0.48] CGColor]);
+        CGContextSetShadowWithColor(UIGraphicsGetCurrentContext(), CGSizeMake(0, 2.0), 3.0, [IWThemeMidnight(0.58) CGColor]);
     }
     CGFloat fullHeight = b.size.height * 2.0;
     CGFloat fontHeight = _font.lineHeight;
@@ -2286,19 +2276,19 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     _edgeAccentColor = IWThemePink(1.0);
     self.clipsToBounds = NO;
     self.layer.masksToBounds = NO;
-    self.layer.borderWidth = 1.6;
+    self.layer.borderWidth = 0.0;
     self.layer.borderColor = [IWThemePink(0.54) CGColor];
     self.layer.cornerRadius = 12.0;
     self.layer.shadowColor = [[UIColor colorWithRed:52.0/255.0 green:18.0/255.0 blue:58.0/255.0 alpha:0.26] CGColor];
-    self.layer.shadowOffset = CGSizeZero;
-    self.layer.shadowRadius = 0;
-    self.layer.shadowOpacity = 0.0;
+    self.layer.shadowOffset = CGSizeMake(0, 5.0);
+    self.layer.shadowRadius = 8.0;
+    self.layer.shadowOpacity = 0.38;
     self.layer.sublayerTransform = CATransform3DIdentity;
     self.layer.allowsEdgeAntialiasing = YES;
 
     _externalBottomShadow = [[UIView alloc] initWithFrame:CGRectZero];
     _externalBottomShadow.userInteractionEnabled = NO;
-    _externalBottomShadow.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:79.0/255.0 blue:160.0/255.0 alpha:0.28];
+    _externalBottomShadow.backgroundColor = [UIColor colorWithRed:12.0/255.0 green:13.0/255.0 blue:27.0/255.0 alpha:0.22];
     _externalBottomShadow.layer.cornerRadius = 4.0;
     _externalBottomShadow.layer.masksToBounds = YES;
     _externalBottomShadow.layer.allowsEdgeAntialiasing = YES;
@@ -2317,8 +2307,8 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
     _cardBorderOverlay = [[UIView alloc] initWithFrame:CGRectZero];
     _cardBorderOverlay.userInteractionEnabled = NO;
     _cardBorderOverlay.backgroundColor = [UIColor clearColor];
-    _cardBorderOverlay.layer.borderWidth = 3.2;
-    _cardBorderOverlay.layer.borderColor = [[_edgeAccentColor colorWithAlphaComponent:0.88] CGColor];
+    _cardBorderOverlay.layer.borderWidth = 0.0;
+    _cardBorderOverlay.layer.borderColor = [[_edgeAccentColor colorWithAlphaComponent:0.78] CGColor];
     _cardBorderOverlay.layer.cornerRadius = 11.0;
     _cardBorderOverlay.layer.allowsEdgeAntialiasing = YES;
     _cardBorderOverlay.layer.zPosition = 18.0;
@@ -2347,13 +2337,13 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
 
     _topInsetHighlight = [[UIView alloc] initWithFrame:CGRectZero];
     _topInsetHighlight.userInteractionEnabled = NO;
-    _topInsetHighlight.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.84];
+    _topInsetHighlight.backgroundColor = IWThemeCream(0.24);
     _topInsetHighlight.hidden = YES;
     [_contentView addSubview:_topInsetHighlight];
 
     _bottomInsetGlow = [[UIView alloc] initWithFrame:CGRectZero];
     _bottomInsetGlow.userInteractionEnabled = NO;
-    _bottomInsetGlow.backgroundColor = [UIColor colorWithRed:1.0 green:194.0/255.0 blue:225.0/255.0 alpha:0.18];
+    _bottomInsetGlow.backgroundColor = [IWThemeOrchid(0.14) colorWithAlphaComponent:0.14];
     _bottomInsetGlow.hidden = YES;
     [_contentView addSubview:_bottomInsetGlow];
 
@@ -2364,13 +2354,13 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
 
     _seamTopHighlight = [[UIView alloc] initWithFrame:CGRectZero];
     _seamTopHighlight.userInteractionEnabled = NO;
-    _seamTopHighlight.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.74];
+    _seamTopHighlight.backgroundColor = IWThemeCream(0.28);
     _seamTopHighlight.hidden = YES;
     [_contentView addSubview:_seamTopHighlight];
 
     _seamBottomGlow = [[UIView alloc] initWithFrame:CGRectZero];
     _seamBottomGlow.userInteractionEnabled = NO;
-    _seamBottomGlow.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:58.0/255.0 blue:145.0/255.0 alpha:0.18];
+    _seamBottomGlow.backgroundColor = IWThemeOrchid(0.16);
     _seamBottomGlow.hidden = YES;
     [_contentView addSubview:_seamBottomGlow];
     self.cardOpacity = IWDigitCardDefaultOpacity();
@@ -2464,9 +2454,9 @@ static void IWDrawMaterialIcon(CGContextRef c, IWButtonKind kind, BOOL selected,
 
 - (void)setBorderWidth:(CGFloat)borderWidth {
     CGFloat width = MAX(1.0, MIN(6.0, borderWidth));
-    self.layer.borderWidth = MAX(0.6, width * 0.48);
+    self.layer.borderWidth = 0.0;
     _cardBackground.borderWidth = width;
-    _cardBorderOverlay.layer.borderWidth = width;
+    _cardBorderOverlay.layer.borderWidth = 0.0;
     [self setNeedsLayout];
 }
 
@@ -3023,9 +3013,9 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (!self) return nil;
-    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.18];
-    self.layer.borderWidth = 2.0;
-    self.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.34] CGColor];
+    self.backgroundColor = IWThemePlum(0.82);
+    self.layer.borderWidth = 1.2;
+    self.layer.borderColor = [IWThemeCream(0.42) CGColor];
     self.layer.cornerRadius = 8.0;
     self.clipsToBounds = YES;
     _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -3033,8 +3023,8 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
     _imageView.clipsToBounds = YES;
     [self.contentView addSubview:_imageView];
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
-    _label.backgroundColor = [UIColor colorWithRed:12.0/255.0 green:10.0/255.0 blue:28.0/255.0 alpha:0.78];
-    _label.textColor = [UIColor whiteColor];
+    _label.backgroundColor = IWThemePlum(0.97);
+    _label.textColor = IWThemeCream(1.0);
     _label.font = IWGTATextFont(12.0);
     _label.textAlignment = NSTextAlignmentCenter;
     _label.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -3042,21 +3032,21 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
     _favoriteMark = [IWIconButton buttonWithType:UIButtonTypeCustom];
     _favoriteMark.kind = IWButtonKindHeart;
     _favoriteMark.iconColor = IWThemePink(1.0);
-    _favoriteMark.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.68];
+    _favoriteMark.backgroundColor = IWThemePlum(0.96);
     _favoriteMark.layer.cornerRadius = 15.0;
     _favoriteMark.layer.borderWidth = 1.4;
-    _favoriteMark.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.72] CGColor];
+    _favoriteMark.layer.borderColor = [IWThemeCream(0.55) CGColor];
     _favoriteMark.clipsToBounds = YES;
     _favoriteMark.hidden = YES;
     _favoriteMark.userInteractionEnabled = NO;
     [self.contentView addSubview:_favoriteMark];
     _playMark = [IWIconButton buttonWithType:UIButtonTypeCustom];
     _playMark.kind = IWButtonKindPlay;
-    _playMark.iconColor = [UIColor whiteColor];
-    _playMark.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.74];
+    _playMark.iconColor = IWThemeCream(1.0);
+    _playMark.backgroundColor = IWThemePlum(0.96);
     _playMark.layer.cornerRadius = 18.0;
     _playMark.layer.borderWidth = 1.4;
-    _playMark.layer.borderColor = [[UIColor colorWithRed:1.0 green:249.0/255.0 blue:238.0/255.0 alpha:0.78] CGColor];
+    _playMark.layer.borderColor = [IWThemeCream(0.64) CGColor];
     _playMark.clipsToBounds = YES;
     _playMark.hidden = YES;
     _playMark.userInteractionEnabled = NO;
@@ -3069,12 +3059,12 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
     _deleteMark = [[UILabel alloc] initWithFrame:CGRectZero];
     _deleteMark.text = @"✓";
     _deleteMark.textAlignment = NSTextAlignmentCenter;
-    _deleteMark.textColor = [UIColor whiteColor];
+    _deleteMark.textColor = IWThemeMidnight(1.0);
     _deleteMark.font = IWGTATextFont(21.0);
     _deleteMark.backgroundColor = IWThemePink(0.92);
     _deleteMark.layer.cornerRadius = 15.0;
     _deleteMark.layer.borderWidth = 1.6;
-    _deleteMark.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.85] CGColor];
+    _deleteMark.layer.borderColor = [IWThemeCream(0.86) CGColor];
     _deleteMark.clipsToBounds = YES;
     _deleteMark.hidden = YES;
     _deleteMark.userInteractionEnabled = NO;
@@ -3123,7 +3113,7 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
     if (deleteMode && deleteSelected) {
         self.layer.borderColor = [IWThemePink(1.0) CGColor];
     } else {
-        self.layer.borderColor = selected ? [[UIColor whiteColor] CGColor] : [[UIColor colorWithWhite:1 alpha:0.34] CGColor];
+        self.layer.borderColor = selected ? [IWThemePink(1.0) CGColor] : [IWThemeCream(0.42) CGColor];
     }
 }
 
@@ -3165,14 +3155,15 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
     _blur.userInteractionEnabled = NO;
     [self addSubview:_blur];
     _rim = [CAGradientLayer layer];
-    _rim.colors = @[(id)[UIColor colorWithWhite:1 alpha:0.66].CGColor, (id)[UIColor colorWithWhite:1 alpha:0.06].CGColor, (id)[UIColor colorWithWhite:1 alpha:0.30].CGColor];
+    _rim.colors = @[(id)[IWThemeCream(0.18) CGColor], (id)[IWThemeOrchid(0.08) CGColor], (id)[IWThemeCream(0.12) CGColor]];
+    _rim.opacity = 0.45;
     _rim.locations = @[@0, @0.48, @1];
     _rim.startPoint = CGPointMake(0, 0);
     _rim.endPoint = CGPointMake(1, 1);
     _rimMask = [CAShapeLayer layer];
     _rimMask.fillColor = [UIColor clearColor].CGColor;
-    _rimMask.strokeColor = [UIColor whiteColor].CGColor;
-    _rimMask.lineWidth = 1.0;
+    _rimMask.strokeColor = [IWThemeCream(0.20) CGColor];
+    _rimMask.lineWidth = 0.8;
     _rim.mask = _rimMask;
     [self.layer addSublayer:_rim];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transparencyChanged:) name:UIAccessibilityReduceTransparencyStatusDidChangeNotification object:nil];
@@ -3182,8 +3173,8 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
 - (void)transparencyChanged:(NSNotification *)notification {
     (void)notification;
     BOOL reduced = UIAccessibilityIsReduceTransparencyEnabled();
-    _blur.hidden = reduced;
-    self.backgroundColor = reduced ? [UIColor colorWithRed:0.05 green:0.05 blue:0.09 alpha:1] : [UIColor clearColor];
+    _blur.hidden = YES;
+    self.backgroundColor = reduced ? IWThemeMidnight(1.0) : IWThemePlum(0.98);
 }
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -3416,7 +3407,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:9.0/255.0 green:8.0/255.0 blue:24.0/255.0 alpha:1.0];
+    self.view.backgroundColor = IWThemeMidnight(1.0);
     self.view.opaque = YES;
     // Reuse the decoded wallpaper without carrying clock/calendar overlays.
     UIImageView *backdrop = [[UIImageView alloc] initWithImage:self.backdropImage];
@@ -3425,7 +3416,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     backdrop.contentMode = UIViewContentModeScaleAspectFill;
     backdrop.clipsToBounds = YES;
     backdrop.userInteractionEnabled = NO;
-    backdrop.alpha = 0.20;
+    backdrop.alpha = 0.16;
     [self.view addSubview:backdrop];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(84, 28, 24, 28);
@@ -3433,13 +3424,13 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     layout.minimumLineSpacing = 16;
     _collection = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     _collection.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _collection.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.42];
+    _collection.backgroundColor = IWThemeMidnight(0.92);
     _collection.dataSource = self;
     _collection.delegate = self;
     [_collection registerClass:[IWGalleryCell class] forCellWithReuseIdentifier:@"cell"];
     [self.view addSubview:_collection];
     _refreshControl = [[UIRefreshControl alloc] init];
-    _refreshControl.tintColor = [UIColor whiteColor];
+    _refreshControl.tintColor = IWThemeCream(1.0);
     [_refreshControl addTarget:self action:@selector(refreshPulled) forControlEvents:UIControlEventValueChanged];
     [_collection addSubview:_refreshControl];
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
@@ -3450,7 +3441,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
     _bar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 70)];
     _bar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _bar.backgroundColor = [UIColor colorWithRed:9.0/255.0 green:8.0/255.0 blue:24.0/255.0 alpha:1.0];
+    _bar.backgroundColor = IWThemeMidnight(0.98);
     [self.view addSubview:_bar];
     _addButton = [self button:IWButtonKindAdd];
     _addButton.frame = CGRectMake(28.0, 18, IWControlSize(), IWControlSize());
@@ -3499,7 +3490,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _categoryButton.titleLabel.font = IWGTATextFont(15.0);
     _categoryButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     _categoryButton.titleLabel.minimumScaleFactor = 0.75;
-    [_categoryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_categoryButton setTitleColor:IWThemeCream(1.0) forState:UIControlStateNormal];
+    _categoryButton.backgroundColor = IWThemePlum(0.96);
+    _categoryButton.layer.borderColor = [IWThemeCream(0.48) CGColor];
     _categoryButton.accessibilityLabel = @"图库分类";
     [_categoryButton addTarget:self action:@selector(categoryTapped) forControlEvents:UIControlEventTouchUpInside];
     [_bar addSubview:_categoryButton];
@@ -3532,28 +3525,28 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _deleteTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(140.0, 18.0, self.view.bounds.size.width - 280.0, IWControlSize())];
     _deleteTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _deleteTitleLabel.textAlignment = NSTextAlignmentCenter;
-    _deleteTitleLabel.textColor = [UIColor whiteColor];
+    _deleteTitleLabel.textColor = IWThemeCream(1.0);
     _deleteTitleLabel.font = IWGTATextFont(19.0);
     [_bar addSubview:_deleteTitleLabel];
 
     _loadingPanel = [[UIView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 184) / 2, self.view.bounds.size.height - 66, 184, 42)];
     _loadingPanel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    _loadingPanel.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.68];
+    _loadingPanel.backgroundColor = IWThemePlum(0.98);
     _loadingPanel.layer.cornerRadius = 21.0;
     _loadingPanel.layer.borderWidth = IWControlBorderWidth();
-    _loadingPanel.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.46] CGColor];
+    _loadingPanel.layer.borderColor = [IWThemeCream(0.36) CGColor];
     _loadingPanel.clipsToBounds = YES;
     [self.view addSubview:_loadingPanel];
 
     _loading = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, 152, 16)];
     _loading.text = @"0%";
-    _loading.textColor = [UIColor whiteColor];
+    _loading.textColor = IWThemeCream(1.0);
     _loading.font = IWGTATextFont(12.0);
     _loading.textAlignment = NSTextAlignmentCenter;
     [_loadingPanel addSubview:_loading];
 
     _loadingTrack = [[UIView alloc] initWithFrame:CGRectMake(18, 25, 148, 5)];
-    _loadingTrack.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.24];
+    _loadingTrack.backgroundColor = IWThemeCream(0.24);
     _loadingTrack.layer.cornerRadius = 2.5;
     _loadingTrack.clipsToBounds = YES;
     [_loadingPanel addSubview:_loadingTrack];
@@ -3566,11 +3559,11 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _emptyLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _emptyLabel.text = @"Empty";
     _emptyLabel.textAlignment = NSTextAlignmentCenter;
-    _emptyLabel.textColor = IWThemePink(0.96);
+    _emptyLabel.textColor = IWThemeCream(1.0);
     _emptyLabel.font = IWGTAFont(46.0);
     _emptyLabel.layer.shadowColor = [[UIColor colorWithRed:52.0/255.0 green:18.0/255.0 blue:58.0/255.0 alpha:0.42] CGColor];
     _emptyLabel.layer.shadowOffset = CGSizeMake(0, 5.0);
-    _emptyLabel.layer.shadowRadius = 12.0;
+    _emptyLabel.layer.shadowRadius = 7.0;
     _emptyLabel.layer.shadowOpacity = 1.0;
     _emptyLabel.userInteractionEnabled = NO;
     _emptyLabel.hidden = YES;
@@ -3590,9 +3583,10 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (IWIconButton *)button:(IWButtonKind)kind {
     IWIconButton *b = [IWIconButton buttonWithType:UIButtonTypeCustom];
     b.kind = kind;
-    b.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.58];
+    b.backgroundColor = IWThemePlum(0.96);
     b.layer.borderWidth = IWControlBorderWidth();
-    b.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.68] CGColor];
+    b.layer.borderColor = [IWThemeCream(0.46) CGColor];
+    b.iconColor = IWThemeCream(1.0);
     b.layer.cornerRadius = IWControlRadius();
     b.clipsToBounds = YES;
     return b;
@@ -3793,8 +3787,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _categoryButton.accessibilityValue = title;
     BOOL active = [_categoryFilter length] > 0;
     _categoryButton.accessibilityTraits = UIAccessibilityTraitButton | (active ? UIAccessibilityTraitSelected : 0);
-    _categoryButton.backgroundColor = active ? IWThemePink(0.72) : [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.58];
-    _categoryButton.layer.borderColor = [[UIColor colorWithWhite:1 alpha:active ? 0.86 : 0.68] CGColor];
+    _categoryButton.backgroundColor = active ? IWThemePink(0.96) : IWThemePlum(0.96);
+    _categoryButton.layer.borderColor = [(active ? IWThemeCream(0.92) : IWThemeCream(0.46)) CGColor];
+    [_categoryButton setTitleColor:(active ? IWThemeMidnight(1.0) : IWThemeCream(1.0)) forState:UIControlStateNormal];
     _categoryButton.enabled = _loadingComplete;
     _categoryButton.alpha = _loadingComplete ? 1.0 : 0.42;
 }
@@ -3819,6 +3814,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (void)categoryTapped {
     if (_deleteMode || _favoriteConfirmMode || !_loadingComplete || self.presentedViewController) return;
     UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"分类" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    IWStyleNativeAlert(sheet);
     NSArray *all = [_owner allGalleryItems];
     for (NSDictionary *definition in IWGalleryCategoryDefinitions()) {
         NSString *category = [definition objectForKey:@"id"];
@@ -3852,13 +3848,14 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
 - (void)updateFavoriteFilterUI {
     [self updateCategoryUI];
-    UIColor *pink = IWThemePink(0.72);
-    UIColor *border = _favoriteFilterOnly ? [UIColor colorWithRed:1.0 green:249.0/255.0 blue:238.0/255.0 alpha:0.86] : [UIColor colorWithWhite:1 alpha:0.68];
+    UIColor *pink = IWThemePink(0.96);
+    UIColor *border = _favoriteFilterOnly ? IWThemeCream(0.92) : IWThemeCream(0.46);
     if (_favoriteConfirmMode) {
         _favoriteButton.hidden = YES;
         return;
     }
-    _favoriteButton.backgroundColor = _favoriteFilterOnly ? pink : [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.58];
+    _favoriteButton.backgroundColor = _favoriteFilterOnly ? pink : IWThemePlum(0.96);
+    _favoriteButton.iconColor = _favoriteFilterOnly ? IWThemeMidnight(1.0) : IWThemePink(1.0);
     _favoriteButton.layer.borderColor = [border CGColor];
     _favoriteButton.enabled = _loadingComplete;
     _favoriteButton.alpha = _loadingComplete ? 1.0 : 0.42;
@@ -3971,6 +3968,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                  message:@"将删除 Wizard 中的副本，系统相册中的原照片会保留。"
                                                           preferredStyle:UIAlertControllerStyleAlert];
+    IWStyleNativeAlert(alert);
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     __weak IWGalleryController *weakSelf = self;
     [alert addAction:[UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
@@ -4668,7 +4666,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _calendarScale = [d objectForKey:@"calendarScale"] ? [d floatForKey:@"calendarScale"] : 1.0;
     _calendarOffsetX = [d floatForKey:@"calendarOffsetX"];
     _calendarOffsetY = [d floatForKey:@"calendarOffsetY"];
-    _calendarOpacity = [d objectForKey:@"calendarOpacity"] ? [d floatForKey:@"calendarOpacity"] : 0.54;
+    _calendarOpacity = [d objectForKey:@"calendarOpacity"] ? [d floatForKey:@"calendarOpacity"] : 0.88;
     _calendarOpacity = IWDigitCardClampOpacity(_calendarOpacity);
     if (_calendarScale < IWCalendarScaleMin() || _calendarScale > IWCalendarScaleMax()) _calendarScale = 1.0;
     _gta6CountdownMode = [d boolForKey:@"gta6CountdownMode"];
@@ -4695,12 +4693,12 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _favorites = [[d dictionaryForKey:@"favorites"] mutableCopy] ?: [[NSMutableDictionary alloc] init];
     _backgroundAdjustments = [[d dictionaryForKey:@"backgroundAdjustments"] mutableCopy] ?: [[NSMutableDictionary alloc] init];
     [self loadClockLayoutForCurrentMode];
-    _digitCardOpacity = IWDigitCardClampOpacity([d floatForKey:@"digitCardOpacity"]);
-    _digitCardBorderWidth = [d objectForKey:@"digitCardBorderWidth"] ? [d floatForKey:@"digitCardBorderWidth"] : 3.4;
+    _digitCardOpacity = [d objectForKey:@"digitCardOpacity"] ? IWDigitCardClampOpacity([d floatForKey:@"digitCardOpacity"]) : IWDigitCardDefaultOpacity();
+    _digitCardBorderWidth = [d objectForKey:@"digitCardBorderWidth"] ? [d floatForKey:@"digitCardBorderWidth"] : 1.5;
     _digitCardBorderWidth = MAX(1.0, MIN(6.0, _digitCardBorderWidth));
-    CGFloat borderR = [d objectForKey:@"digitCardBorderRed"] ? [d floatForKey:@"digitCardBorderRed"] : 1.0;
-    CGFloat borderG = [d objectForKey:@"digitCardBorderGreen"] ? [d floatForKey:@"digitCardBorderGreen"] : 73.0/255.0;
-    CGFloat borderB = [d objectForKey:@"digitCardBorderBlue"] ? [d floatForKey:@"digitCardBorderBlue"] : 158.0/255.0;
+    CGFloat borderR = [d objectForKey:@"digitCardBorderRed"] ? [d floatForKey:@"digitCardBorderRed"] : 247.0/255.0;
+    CGFloat borderG = [d objectForKey:@"digitCardBorderGreen"] ? [d floatForKey:@"digitCardBorderGreen"] : 166.0/255.0;
+    CGFloat borderB = [d objectForKey:@"digitCardBorderBlue"] ? [d floatForKey:@"digitCardBorderBlue"] : 190.0/255.0;
     _digitCardBorderColor = [UIColor colorWithRed:MAX(0, MIN(1, borderR)) green:MAX(0, MIN(1, borderG)) blue:MAX(0, MIN(1, borderB)) alpha:1.0];
     _editControlsOffsetX = [d floatForKey:@"editControlsOffsetX"];
     _editControlsOffsetY = [d floatForKey:@"editControlsOffsetY"];
@@ -4940,6 +4938,27 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSInteger legacySelection = _wallpaperIndex;
     // User imports remain available without the optional bundled catalog.
     [self appendUserWallpapersToItems:items];
+    if (bundledCount == 0) {
+        NSString *viceCityPath = [[NSBundle mainBundle] pathForResource:@"ViceCity" ofType:@"jpg"];
+        if ([viceCityPath length]) {
+            NSInteger fallbackIndex = [items count];
+            [items addObject:@{
+                @"type": @"image",
+                @"index": [NSNumber numberWithInteger:fallbackIndex],
+                @"legacyIndex": [NSNumber numberWithInteger:([items count] == 0 ? 0 : -1)],
+                @"key": @"wizard-vice-city-style-01",
+                @"fileName": @"ViceCity.jpg",
+                @"label": @"Vice City",
+                @"imagePath": viceCityPath,
+                @"thumbPath": viceCityPath,
+                @"width": @3840,
+                @"height": @2160,
+                @"themeClass": @"theme-vice-city",
+                @"category": @"artwork",
+                @"themeName": @"Vice City"
+            }];
+        }
+    }
     _wallpapers = [items copy];
     _wallpaperIndex = 0;
     if ([_savedWallpaperKey length]) {
@@ -5319,7 +5338,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
 - (void)applyCalendarOpacity {
     _calendarOpacity = IWDigitCardClampOpacity(_calendarOpacity);
-    _calendarPanel.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:_calendarOpacity];
+    _calendarPanel.backgroundColor = IWThemePlum(_calendarOpacity);
     if (_opacitySlider) _opacitySlider.value = _calendarOpacity;
 }
 
@@ -5637,7 +5656,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _calendarPanel = [[UIControl alloc] initWithFrame:CGRectZero];
     _calendarPanel.hidden = !_calendarVisible;
     _calendarPanel.userInteractionEnabled = YES;
-    _calendarPanel.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:_calendarOpacity];
+    _calendarPanel.backgroundColor = IWThemePlum(_calendarOpacity);
     _calendarPanel.layer.cornerRadius = 12.0;
     _calendarPanel.layer.borderWidth = IWControlBorderWidth();
     _calendarPanel.clipsToBounds = YES;
@@ -5937,8 +5956,8 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (void)updateWeatherEditAppearance {
     UIColor *accent = _digitCardBorderColor ?: [self themedAccent];
     BOOL selected = _editMode && _editTarget == IWEditTargetWeather;
-    _weatherPanel.layer.borderWidth = selected ? 3.0 : IWControlBorderWidth();
-    _weatherPanel.layer.borderColor = [[accent colorWithAlphaComponent:(selected ? 0.98 : 0.62)] CGColor];
+    _weatherPanel.layer.borderWidth = selected ? 1.8 : IWControlBorderWidth();
+    _weatherPanel.layer.borderColor = [(selected ? accent : IWThemeCream(0.34)) CGColor];
 }
 
 - (CGFloat)calendarPanelHeightForYear:(NSInteger)year month:(NSInteger)month {
@@ -5984,11 +6003,11 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSDictionary *holidays = shownYear == 2026 ? IWHolidaysForLanguage2026(_dateLanguage) : @{};
     NSArray *months = @[@"JANUARY", @"FEBRUARY", @"MARCH", @"APRIL", @"MAY", @"JUNE", @"JULY", @"AUGUST", @"SEPTEMBER", @"OCTOBER", @"NOVEMBER", @"DECEMBER"];
     _calendarMonthLabel.text = _dateLanguage == 0 ? [NSString stringWithFormat:@"%@ %ld", [months objectAtIndex:MAX(0, MIN(11, shownMonth - 1))], (long)shownYear] : [NSString stringWithFormat:@"%ld年%ld月", (long)shownYear, (long)shownMonth];
-    UIColor *dayText = [UIColor colorWithWhite:1.0 alpha:0.90];
-    UIColor *muted = [UIColor colorWithWhite:1.0 alpha:0.54];
-    _calendarPanel.layer.borderColor = [[accent colorWithAlphaComponent:0.82] CGColor];
-    _calendarPanel.layer.shadowColor = [[accent colorWithAlphaComponent:0.48] CGColor];
-    _calendarMonthLabel.textColor = accent;
+    UIColor *dayText = IWThemeCream(0.96);
+    UIColor *muted = IWThemeCream(0.68);
+    _calendarPanel.layer.borderColor = [IWThemeCream(0.34) CGColor];
+    _calendarPanel.layer.shadowColor = [IWThemeMidnight(0.42) CGColor];
+    _calendarMonthLabel.textColor = IWThemePeach(1.0);
     NSInteger i;
     NSArray *weekdayTitles = IWCalendarWeekdayTitlesForLanguage(_dateLanguage);
     for (i = 0; i < [_calendarWeekdayLabels count]; i += 1) {
@@ -6007,10 +6026,10 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         BOOL selected = valid && day == _calendarSelectedDay;
         // Today is the quiet outline reference; the actively selected date is
         // the strong filled state.  If both are the same date, selection wins.
-        label.textColor = selected ? [UIColor whiteColor] : (today ? accent : dayText);
+        label.textColor = selected ? IWThemeMidnight(1.0) : (today ? IWThemePeach(1.0) : dayText);
         label.backgroundColor = selected ? accent : [UIColor clearColor];
         label.layer.borderWidth = (today || selected) ? 1.25 : 0.0;
-        label.layer.borderColor = [(today || selected ? [UIColor whiteColor] : accent) CGColor];
+        label.layer.borderColor = [(today || selected ? IWThemeCream(0.84) : IWThemePink(0.68)) CGColor];
         NSString *holiday = valid ? [holidays objectForKey:[NSString stringWithFormat:@"%ld-%ld", (long)shownMonth, (long)day]] : nil;
         holidayDot.hidden = ![holiday length];
         if ([holiday length]) {
@@ -6048,6 +6067,10 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (void)buildEditToolbar {
     _editToolbar = [[UIView alloc] initWithFrame:CGRectZero];
     _editToolbar.hidden = YES;
+    _editToolbar.backgroundColor = IWThemePlum(0.96);
+    _editToolbar.layer.cornerRadius = 12.0;
+    _editToolbar.layer.borderWidth = IWControlBorderWidth();
+    _editToolbar.layer.borderColor = [IWThemeCream(0.34) CGColor];
     _editToolbar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:_editToolbar];
 
@@ -6060,14 +6083,18 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     [_editToolbar addSubview:_editCancelButton];
 
     _editDoneButton = [self circleIconButton:IWButtonKindCheck];
-    _editDoneButton.backgroundColor = IWThemePink(0.72);
+    _editDoneButton.backgroundColor = IWThemePink(0.96);
+    ((IWIconButton *)_editDoneButton).iconColor = IWThemeMidnight(1.0);
     [_editDoneButton addTarget:self action:@selector(finishEditMode) forControlEvents:UIControlEventTouchUpInside];
     [_editToolbar addSubview:_editDoneButton];
 
     _opacityControl = [[UIView alloc] initWithFrame:CGRectZero];
     _opacityControl.hidden = YES;
     _opacityControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    _opacityControl.backgroundColor = [UIColor clearColor];
+    _opacityControl.backgroundColor = IWThemePlum(0.96);
+    _opacityControl.layer.cornerRadius = 10.0;
+    _opacityControl.layer.borderWidth = IWControlBorderWidth();
+    _opacityControl.layer.borderColor = [IWThemeCream(0.30) CGColor];
     [self.view addSubview:_opacityControl];
 
     _opacitySlider = [[IWOpacitySlider alloc] initWithFrame:CGRectZero];
@@ -6099,23 +6126,26 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
     _borderControl = [[UIView alloc] initWithFrame:CGRectZero];
     _borderControl.hidden = YES;
-    _borderControl.backgroundColor = [UIColor clearColor];
+    _borderControl.backgroundColor = IWThemePlum(0.96);
+    _borderControl.layer.cornerRadius = 10.0;
+    _borderControl.layer.borderWidth = IWControlBorderWidth();
+    _borderControl.layer.borderColor = [IWThemeCream(0.30) CGColor];
     [self.view addSubview:_borderControl];
     _borderThemeButtons = [NSMutableArray array];
     NSArray *themeColors = @[
         IWThemePink(1.0),
-        [UIColor colorWithRed:1.0 green:0.70 blue:0.42 alpha:1.0],
-        [UIColor colorWithRed:0.30 green:0.89 blue:0.89 alpha:1.0],
-        [UIColor colorWithRed:0.08 green:0.07 blue:0.12 alpha:1.0],
-        [UIColor colorWithWhite:0.96 alpha:1.0]
+        IWThemePeach(1.0),
+        IWThemeOrchid(1.0),
+        IWThemeMidnight(1.0),
+        IWThemeCream(1.0)
     ];
-    NSArray *themeAccessibilityLabels = @[@"粉色边框", @"橙色边框", @"青色边框", @"深色边框", @"浅色边框"];
+    NSArray *themeAccessibilityLabels = @[@"粉色边框", @"桃色边框", @"紫色边框", @"深色边框", @"奶油色边框"];
     for (i = 0; i < [themeColors count]; i += 1) {
         UIButton *themeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         themeButton.tag = 8100 + i;
         themeButton.accessibilityLabel = [themeAccessibilityLabels objectAtIndex:i];
         [themeButton setTitle:@"✓" forState:UIControlStateSelected];
-        [themeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [themeButton setTitleColor:(i == 3 ? IWThemeCream(1.0) : IWThemeMidnight(1.0)) forState:UIControlStateSelected];
         themeButton.titleLabel.font = [UIFont boldSystemFontOfSize:25.0];
         themeButton.backgroundColor = [themeColors objectAtIndex:i];
         themeButton.layer.cornerRadius = IWControlRadius();
@@ -6320,7 +6350,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (UIButton *)circleIconButton:(IWButtonKind)kind {
     IWIconButton *button = [IWIconButton buttonWithType:UIButtonTypeCustom];
     button.kind = kind;
-    button.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.68];
+    button.backgroundColor = IWThemePlum(0.96);
     button.layer.borderWidth = IWControlBorderWidth();
     button.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.68] CGColor];
     button.layer.cornerRadius = IWControlRadius();
@@ -6334,7 +6364,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _weatherPanel.hidden = !_weatherVisible || _cleanMode;
     _weatherPanel.backgroundColor = [self themedButtonBackground];
     _weatherPanel.layer.borderWidth = IWControlBorderWidth();
-    _weatherPanel.layer.borderColor = [[accent colorWithAlphaComponent:0.62] CGColor];
+    _weatherPanel.layer.borderColor = [IWThemeCream(0.34) CGColor];
     _weatherPanel.layer.cornerRadius = 12.0;
     _weatherPanel.layer.shadowOpacity = 0.0;
     _weatherPanel.clipsToBounds = YES;
@@ -6368,7 +6398,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
     _weatherTemperatureLabel = [[UILabel alloc] initWithFrame:CGRectMake(72.0, 28.0, 88.0, 46.0)];
     _weatherTemperatureLabel.text = @"--°";
-    _weatherTemperatureLabel.textColor = [UIColor whiteColor];
+    _weatherTemperatureLabel.textColor = IWThemeCream(1.0);
     _weatherTemperatureLabel.font = IWGTAFont(40.0);
     _weatherTemperatureLabel.adjustsFontSizeToFitWidth = YES;
     _weatherTemperatureLabel.minimumScaleFactor = 0.82;
@@ -6376,7 +6406,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
     _weatherConditionLabel = [[UILabel alloc] initWithFrame:CGRectMake(164.0, 34.0, 140.0, 24.0)];
     _weatherConditionLabel.text = [self weatherTextEnglish:@"Waiting for weather" simplified:@"等待天气" traditional:@"等待天氣" japanese:@"天気を待機中"];
-    _weatherConditionLabel.textColor = [UIColor whiteColor];
+    _weatherConditionLabel.textColor = IWThemeCream(0.96);
     _weatherConditionLabel.font = IWGTATextFont(16.0);
     _weatherConditionLabel.textAlignment = NSTextAlignmentRight;
     _weatherConditionLabel.adjustsFontSizeToFitWidth = YES;
@@ -6407,7 +6437,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _weatherProviderButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 10.0, 0);
     _weatherProviderButton.titleLabel.font = IWGTATextFont(12.0);
     [_weatherProviderButton setTitle:@"Open-Meteo" forState:UIControlStateNormal];
-    [_weatherProviderButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Open-Meteo" attributes:@{NSFontAttributeName: IWGTATextFont(12.0), NSForegroundColorAttributeName: [UIColor colorWithWhite:1 alpha:0.98], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}] forState:UIControlStateNormal];
+    [_weatherProviderButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Open-Meteo" attributes:@{NSFontAttributeName: IWGTATextFont(12.0), NSForegroundColorAttributeName: IWThemeCream(0.96), NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}] forState:UIControlStateNormal];
     [_weatherProviderButton addTarget:self action:@selector(showWeatherAttribution) forControlEvents:UIControlEventTouchUpInside];
     _weatherProviderButton.hidden = YES;
     [_weatherPanel addSubview:_weatherProviderButton];
@@ -6554,6 +6584,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSString *title = [self weatherTextEnglish:@"Weather data" simplified:@"天气数据" traditional:@"天氣資料" japanese:@"天気データ"];
     NSString *message = [self weatherTextEnglish:@"Weather data by Open-Meteo, licensed under CC BY 4.0. Forecast display localized and condensed by Wizard." simplified:@"天气数据由 Open-Meteo 提供，按 CC BY 4.0 许可使用。Wizard 对预报进行了本地化和简化显示。" traditional:@"天氣資料由 Open-Meteo 提供，依 CC BY 4.0 授權使用。Wizard 將預報本地化並精簡顯示。" japanese:@"天気データは Open-Meteo 提供、CC BY 4.0 ライセンス。Wizard が予報を翻訳し、表示を要約しています。"];
     UIAlertController *detail = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    IWStyleNativeAlert(detail);
     [detail addAction:[UIAlertAction actionWithTitle:@"Open-Meteo.com" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://open-meteo.com/"]];
     }]];
@@ -6832,9 +6863,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSInteger i;
     for (i = 0; i < [labels count]; i += 1) {
         UIView *card = [[UIView alloc] initWithFrame:CGRectZero];
-        card.backgroundColor = [UIColor colorWithRed:18.0/255.0 green:13.0/255.0 blue:38.0/255.0 alpha:0.5];
+        card.backgroundColor = IWThemePlum(0.94);
         card.layer.borderWidth = 1.0;
-        card.layer.borderColor = [[UIColor colorWithRed:78.0/255.0 green:232.0/255.0 blue:232.0/255.0 alpha:0.34] CGColor];
+        card.layer.borderColor = [IWThemeCream(0.30) CGColor];
         card.layer.cornerRadius = 8.0;
         UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, 120, 20)];
         name.tag = 1;
@@ -6851,7 +6882,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         UILabel *meta = [[UILabel alloc] initWithFrame:CGRectMake(110, 37, 80, 22)];
         meta.tag = 3;
         meta.text = i == 2 ? @"PM2.5" : @"--%";
-        meta.textColor = [UIColor colorWithRed:1.0 green:145.0/255.0 blue:198.0/255.0 alpha:0.9];
+        meta.textColor = IWThemePeach(1.0);
         meta.font = IWGTATextFont(16.0);
         [card addSubview:meta];
         [_homePanel addSubview:card];
@@ -6891,19 +6922,19 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     [_videoOverlay addSubview:minimize];
 
     _videoControls = [[UIView alloc] initWithFrame:CGRectZero];
-    _videoControls.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.42];
+    _videoControls.backgroundColor = IWThemePlum(0.96);
     _videoControls.layer.borderWidth = IWControlBorderWidth();
-    _videoControls.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.22] CGColor];
+    _videoControls.layer.borderColor = [IWThemeCream(0.32) CGColor];
     _videoControls.layer.cornerRadius = 8.0;
     [_videoOverlay addSubview:_videoControls];
 
     _airPlayView = [[MPVolumeView alloc] initWithFrame:CGRectZero];
     _airPlayView.showsVolumeSlider = NO;
     _airPlayView.showsRouteButton = YES;
-    _airPlayView.tintColor = [UIColor whiteColor];
-    _airPlayView.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.46];
+    _airPlayView.tintColor = IWThemeCream(1.0);
+    _airPlayView.backgroundColor = IWThemePlum(0.98);
     _airPlayView.layer.borderWidth = IWControlBorderWidth();
-    _airPlayView.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.62] CGColor];
+    _airPlayView.layer.borderColor = [IWThemeCream(0.50) CGColor];
     _airPlayView.layer.cornerRadius = IWControlRadius();
     _airPlayView.clipsToBounds = YES;
     [_videoControls addSubview:_airPlayView];
@@ -6922,10 +6953,10 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _volumePanel = [[UIView alloc] initWithFrame:CGRectZero];
     _volumePanel.hidden = YES;
     _volumePanel.alpha = 0.0;
-    _volumePanel.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.76];
+    _volumePanel.backgroundColor = IWThemePlum(0.98);
     _volumePanel.layer.cornerRadius = 8.0;
     _volumePanel.layer.borderWidth = IWControlBorderWidth();
-    _volumePanel.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.28] CGColor];
+    _volumePanel.layer.borderColor = [IWThemeCream(0.34) CGColor];
     _volumePanel.clipsToBounds = YES;
     [_videoOverlay addSubview:_volumePanel];
 
@@ -6969,14 +7000,14 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
     _videoCurrentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _videoCurrentLabel.text = @"0:00";
-    _videoCurrentLabel.textColor = [UIColor colorWithWhite:1 alpha:0.78];
+    _videoCurrentLabel.textColor = IWThemeCream(0.94);
     _videoCurrentLabel.font = IWGTATextFont(12.0);
     _videoCurrentLabel.textAlignment = NSTextAlignmentCenter;
     [_videoControls addSubview:_videoCurrentLabel];
 
     _videoDurationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _videoDurationLabel.text = @"0:00";
-    _videoDurationLabel.textColor = [UIColor colorWithWhite:1 alpha:0.78];
+    _videoDurationLabel.textColor = IWThemeCream(0.94);
     _videoDurationLabel.font = IWGTATextFont(12.0);
     _videoDurationLabel.textAlignment = NSTextAlignmentCenter;
     [_videoControls addSubview:_videoDurationLabel];
@@ -7016,9 +7047,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (IWIconButton *)actionButton:(IWButtonKind)kind {
     IWIconButton *b = [IWIconButton buttonWithType:UIButtonTypeCustom];
     b.kind = kind;
-    b.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.46];
+    b.backgroundColor = IWThemePlum(0.98);
     b.layer.borderWidth = IWControlBorderWidth();
-    b.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.62] CGColor];
+    b.layer.borderColor = [IWThemeCream(0.50) CGColor];
     b.layer.cornerRadius = IWControlRadius();
     b.clipsToBounds = YES;
     return b;
@@ -7032,6 +7063,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
 - (BOOL)isDriveTheme { return [[self currentThemeClass] isEqualToString:@"theme-drive"]; }
 - (BOOL)isMarinaTheme { return [[self currentThemeClass] isEqualToString:@"theme-marina"]; }
+- (BOOL)isViceCityTheme { return [[self currentThemeClass] isEqualToString:@"theme-vice-city"]; }
 
 - (UIColor *)dominantAccentColorForImage:(UIImage *)image {
     if (!image) return nil;
@@ -7081,38 +7113,31 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 }
 
 - (UIColor *)themedDigitBackground {
-    if ([self isMarinaTheme]) return [UIColor colorWithRed:233.0/255.0 green:251.0/255.0 blue:246.0/255.0 alpha:0.56];
-    if ([self isDriveTheme]) return [UIColor colorWithRed:1.0 green:240.0/255.0 blue:221.0/255.0 alpha:0.56];
-    return [UIColor colorWithRed:1.0 green:243.0/255.0 blue:243.0/255.0 alpha:0.56];
+    return IWThemePlum(0.94);
 }
 
 - (UIColor *)themedDigitText {
-    if ([self isMarinaTheme]) return [UIColor colorWithRed:14.0/255.0 green:35.0/255.0 blue:53.0/255.0 alpha:1.0];
-    if ([self isDriveTheme]) return [UIColor colorWithRed:23.0/255.0 green:17.0/255.0 blue:27.0/255.0 alpha:1.0];
-    return [UIColor colorWithRed:20.0/255.0 green:18.0/255.0 blue:31.0/255.0 alpha:1.0];
+    return IWThemeCream(1.0);
 }
 
 - (UIColor *)themedDigitBorder {
-    return IWThemePink(0.88);
+    return IWThemePink(0.92);
 }
 
 - (UIColor *)themedAccent {
+    if ([self isViceCityTheme]) return IWThemePink(1.0);
+    if ([self isMarinaTheme]) return IWThemeOrchid(1.0);
+    if ([self isDriveTheme]) return IWThemePeach(1.0);
     if (_wallpaperAccentColor) return [_wallpaperAccentColor colorWithAlphaComponent:0.95];
-    if ([self isMarinaTheme]) return [UIColor colorWithRed:42.0/255.0 green:191.0/255.0 blue:198.0/255.0 alpha:0.9];
-    if ([self isDriveTheme]) return [UIColor colorWithRed:1.0 green:126.0/255.0 blue:80.0/255.0 alpha:0.9];
-    return IWThemePink(0.9);
+    return IWThemeOrchid(0.94);
 }
 
 - (UIColor *)themedButtonBackground {
-    if ([self isMarinaTheme]) return [UIColor colorWithRed:8.0/255.0 green:30.0/255.0 blue:47.0/255.0 alpha:0.50];
-    if ([self isDriveTheme]) return [UIColor colorWithRed:45.0/255.0 green:18.0/255.0 blue:41.0/255.0 alpha:0.50];
-    return [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.46];
+    return IWThemePlum(0.94);
 }
 
 - (UIColor *)themedButtonBorder {
-    if ([self isMarinaTheme]) return [UIColor colorWithRed:209.0/255.0 green:1.0 blue:249.0/255.0 alpha:0.68];
-    if ([self isDriveTheme]) return [UIColor colorWithRed:1.0 green:218.0/255.0 blue:179.0/255.0 alpha:0.68];
-    return [UIColor colorWithWhite:1 alpha:0.62];
+    return IWThemeCream(0.58);
 }
 
 - (void)updateThemeColors {
@@ -7121,16 +7146,16 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     UIColor *digitBorder = [self themedDigitBorder];
     UIColor *accent = [self themedAccent];
     UIColor *activeAccent = _digitCardBorderColor ?: accent;
-    _dateLabel.textColor = [UIColor colorWithRed:1.0 green:248.0/255.0 blue:232.0/255.0 alpha:1.0];
-    if ([self isMarinaTheme]) _dateLabel.textColor = [UIColor colorWithRed:244.0/255.0 green:1.0 blue:248.0/255.0 alpha:1.0];
+    _dateLabel.textColor = IWThemeCream(1.0);
     for (UILabel *digit in _digitLabels) {
-        if ([self isMarinaTheme] || [self isDriveTheme]) digit.backgroundColor = digitBackground;
-        else digit.backgroundColor = [UIColor colorWithRed:1.0 green:243.0/255.0 blue:243.0/255.0 alpha:0.50];
+        digit.backgroundColor = digitBackground;
         digit.textColor = digitText;
         digit.layer.borderColor = [digitBorder CGColor];
         if ([digit respondsToSelector:@selector(setAccentColor:)]) [(IWFlipDigitLabel *)digit setAccentColor:(_digitCardBorderColor ?: IWThemePink(1.0))];
-        if ([self isMarinaTheme] || [self isDriveTheme]) digit.layer.shadowColor = [[accent colorWithAlphaComponent:0.36] CGColor];
-        else digit.layer.shadowColor = [[UIColor colorWithRed:52.0/255.0 green:18.0/255.0 blue:58.0/255.0 alpha:0.26] CGColor];
+        digit.layer.shadowColor = [IWThemeMidnight(0.62) CGColor];
+        digit.layer.shadowOffset = CGSizeMake(0, 4.0);
+        digit.layer.shadowRadius = 8.0;
+        digit.layer.shadowOpacity = 0.85;
     }
     [self applyDigitCardOpacity];
     for (UIView *colon in _colonViews) {
@@ -7143,9 +7168,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
             [dot setNeedsDisplay];
         }
     }
-    _menu.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.30];
-    if ([self isMarinaTheme]) _menu.backgroundColor = [UIColor colorWithRed:8.0/255.0 green:24.0/255.0 blue:40.0/255.0 alpha:0.30];
-    if ([self isDriveTheme]) _menu.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:15.0/255.0 blue:34.0/255.0 alpha:0.30];
+    _menu.backgroundColor = IWThemePlum(0.96);
     for (UIView *card in _homeCards) {
         card.backgroundColor = [self themedButtonBackground];
         card.layer.borderColor = [[accent colorWithAlphaComponent:0.40] CGColor];
@@ -7196,9 +7219,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (void)buildMenu {
     _menu = [[UIView alloc] initWithFrame:CGRectZero];
     _menu.hidden = YES;
-    _menu.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.30];
+    _menu.backgroundColor = IWThemePlum(0.96);
     _menu.layer.borderWidth = IWControlBorderWidth();
-    _menu.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.18] CGColor];
+    _menu.layer.borderColor = [IWThemeCream(0.32) CGColor];
     _menu.layer.cornerRadius = 8.0;
     _menu.layer.shadowColor = [[UIColor colorWithRed:5.0/255.0 green:7.0/255.0 blue:18.0/255.0 alpha:0.20] CGColor];
     _menu.layer.shadowOffset = CGSizeMake(0, 14.0);
@@ -7247,9 +7270,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
     _settingsMenu = [[UIView alloc] initWithFrame:CGRectZero];
     _settingsMenu.hidden = YES;
-    _settingsMenu.backgroundColor = [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.36];
+    _settingsMenu.backgroundColor = IWThemePlum(0.98);
     _settingsMenu.layer.borderWidth = IWControlBorderWidth();
-    _settingsMenu.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.18] CGColor];
+    _settingsMenu.layer.borderColor = [IWThemeCream(0.32) CGColor];
     _settingsMenu.layer.cornerRadius = 8.0;
     _settingsMenu.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.30] CGColor];
     _settingsMenu.layer.shadowOffset = CGSizeMake(0, 10.0);
@@ -7283,7 +7306,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     b.clipsToBounds = YES;
     b.titleLabel.font = IWGTATextFont(15.0);
     [b setTitle:title forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [b setTitleColor:IWThemeCream(1.0) forState:UIControlStateNormal];
     [b addTarget:self action:@selector(buttonTouchDown:) forControlEvents:UIControlEventTouchDown];
     [b addTarget:self action:@selector(menuAction:) forControlEvents:UIControlEventTouchUpInside];
     return b;
@@ -7676,8 +7699,8 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (void)updateMenuButtons {
     UIColor *inactiveBackground = [self themedButtonBackground];
     UIColor *inactiveBorder = [self themedButtonBorder];
-    UIColor *activeBackground = IWThemePink(0.72);
-    UIColor *activeBorder = [UIColor colorWithRed:1.0 green:249.0/255.0 blue:238.0/255.0 alpha:0.86];
+    UIColor *activeBackground = IWThemePink(0.96);
+    UIColor *activeBorder = IWThemeCream(0.92);
     NSArray *buttonContainers = @[_menu, _settingsMenu ?: [[UIView alloc] init]];
     for (UIView *container in buttonContainers) for (UIView *view in [container subviews]) {
         if (![view isKindOfClass:[UIButton class]]) continue;
@@ -7712,6 +7735,14 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
                      (button.tag == IWButtonKindCast && _castError) ||
                      (button.tag == IWButtonKindWeather && _weatherError);
         button.layer.borderWidth = IWControlBorderWidth();
+        UIColor *foreground = error ? IWThemeCream(1.0) : (active ? IWThemeMidnight(1.0) : IWThemeCream(1.0));
+        [button setTitleColor:foreground forState:UIControlStateNormal];
+        if ([button isKindOfClass:[IWIconButton class]]) {
+            IWIconButton *iconButton = (IWIconButton *)button;
+            iconButton.iconColor = foreground;
+            iconButton.selected = active;
+            [iconButton setNeedsDisplay];
+        }
         if (error) {
             button.backgroundColor = [UIColor colorWithRed:180.0/255.0 green:58.0/255.0 blue:42.0/255.0 alpha:0.62];
             button.layer.borderColor = [[UIColor colorWithRed:1.0 green:184.0/255.0 blue:108.0/255.0 alpha:0.9] CGColor];
@@ -7725,7 +7756,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     }
     _settingsMenu.hidden = !(_menuOpen && _settingsOpen);
     _menuButton.selected = _menuOpen;
-    _menuButton.backgroundColor = _menuOpen ? [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.66] : [UIColor clearColor];
+    _menuButton.backgroundColor = _menuOpen ? IWThemePlum(0.96) : [UIColor clearColor];
     _menuButton.layer.borderWidth = IWControlBorderWidth();
     _menuButton.layer.borderColor = [[self themedButtonBorder] CGColor];
     [_menuButton setNeedsDisplay];
@@ -8115,9 +8146,28 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 
 - (void)loadBackgroundAdjustment {
     NSDictionary *value = [_backgroundAdjustments objectForKey:[self wallpaperKey]];
-    _backgroundX = [[value objectForKey:@"x"] floatValue];
-    _backgroundY = [[value objectForKey:@"y"] floatValue];
-    _backgroundZoom = [[value objectForKey:@"zoom"] floatValue];
+    if ([value isKindOfClass:[NSDictionary class]]) {
+        _backgroundX = [[value objectForKey:@"x"] floatValue];
+        _backgroundY = [[value objectForKey:@"y"] floatValue];
+        _backgroundZoom = [[value objectForKey:@"zoom"] floatValue];
+    } else {
+        _backgroundX = 0.0;
+        _backgroundY = 0.0;
+        _backgroundZoom = 1.0;
+        if ([self isViceCityTheme] && _wallpaperIndex >= 0 && _wallpaperIndex < [_wallpapers count]) {
+            NSDictionary *item = [_wallpapers objectAtIndex:_wallpaperIndex];
+            CGFloat imageWidth = [[item objectForKey:@"width"] floatValue];
+            CGFloat imageHeight = [[item objectForKey:@"height"] floatValue];
+            CGFloat stageWidth = _backgroundClip.bounds.size.width;
+            CGFloat stageHeight = _backgroundClip.bounds.size.height;
+            if (imageWidth > 0.0 && imageHeight > 0.0 && stageWidth > 0.0 && stageHeight > 0.0) {
+                CGFloat coverScale = MAX(stageWidth / imageWidth, stageHeight / imageHeight) * 1.04;
+                CGFloat displayWidth = ceil(imageWidth * coverScale);
+                CGFloat maxX = MAX(0.0, round((displayWidth - stageWidth) / 2.0) - 3.0);
+                _backgroundX = round(maxX * 0.80);
+            }
+        }
+    }
     if (_backgroundZoom < 1.0) _backgroundZoom = 1.0;
     if (_backgroundZoom > 3.0) _backgroundZoom = 3.0;
 }
@@ -8348,7 +8398,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         _calendarScale = 1.0;
         _calendarOffsetX = 0.0;
         _calendarOffsetY = 0.0;
-        _calendarOpacity = 0.54;
+        _calendarOpacity = 0.88;
         [self applyCalendarTransform];
         [self applyCalendarOpacity];
     } else if (_editTarget == IWEditTargetClock) {
@@ -8360,7 +8410,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         _dateScale = IWDateDefaultScale();
         _digitCardOpacity = IWDigitCardDefaultOpacity();
         _digitCardBorderColor = IWThemePink(1.0);
-        _digitCardBorderWidth = 3.4;
+        _digitCardBorderWidth = 1.5;
         [self applyClockTransforms];
         [self applyDigitCardOpacity];
         [self applyDigitCardBorderStyle];
@@ -9424,6 +9474,21 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSString *value = [command lowercaseString] ?: @"";
     BOOL shouldWriteCommandState = YES;
     [self appendTouchDebug:[NSString stringWithFormat:@"cmd %@", value]];
+#if TARGET_OS_SIMULATOR
+    if ([value isEqualToString:@"weatherfixture"]) {
+        _weatherVisible = YES;
+        _weatherCity = @"Preview";
+        _weatherPanel.hidden = _cleanMode;
+        [self applyWeatherSnapshot:@{@"temperature": @21, @"high": @24, @"low": @18, @"precipitationProbability": @20, @"code": @1, @"isDay": @YES, @"provider": @"Open-Meteo"} stale:NO];
+        [self.view setNeedsLayout];
+    } else if ([value isEqualToString:@"settingsmenu"]) {
+        if (!_menuOpen) [self toggleMenu];
+        if (!_settingsOpen || _secondaryMenuMode != 1) [self toggleSettingsMenu];
+    } else if ([value isEqualToString:@"themesmenu"]) {
+        if (!_menuOpen) [self toggleMenu];
+        if (!_settingsOpen || _secondaryMenuMode != 2) [self toggleThemeMenu];
+    } else
+#endif
     if ([value isEqualToString:@"perf"] || [value isEqualToString:@"perfmenu"] || [value isEqualToString:@"perfgallery"]) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/wizardsystem-performance-debug"] || [[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/wizardsystem-debug"]) {
             if (!_frameProbe) _frameProbe = [[IWFrameProbe alloc] init];
@@ -10102,7 +10167,10 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _videoPlayButton.kind = _videoUserPaused ? IWButtonKindPlay : IWButtonKindPause;
     [_videoPlayButton setNeedsDisplay];
     BOOL airPlayActive = [self isAirPlayActive];
-    _airPlayView.backgroundColor = airPlayActive ? IWThemePink(0.72) : [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.46];
+    BOOL airPlayAvailable = airPlayActive || _airPlayView.wirelessRoutesAvailable;
+    _airPlayView.layer.borderWidth = airPlayAvailable ? IWControlBorderWidth() : 0.0;
+    _airPlayView.backgroundColor = airPlayAvailable ? (airPlayActive ? IWThemePink(0.96) : IWThemePlum(0.98)) : [UIColor clearColor];
+    _airPlayView.tintColor = airPlayActive ? IWThemeMidnight(1.0) : IWThemeCream(1.0);
 }
 
 - (void)videoPlayTapped {
@@ -10223,7 +10291,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (void)videoVolumeTapped {
     _videoVolumeVisible = !_videoVolumeVisible;
     [self styleVideoVolumeViews];
-    _videoVolumeButton.backgroundColor = _videoVolumeVisible ? IWThemePink(0.72) : [UIColor colorWithRed:13.0/255.0 green:11.0/255.0 blue:34.0/255.0 alpha:0.46];
+    _videoVolumeButton.backgroundColor = _videoVolumeVisible ? IWThemePink(0.96) : IWThemePlum(0.98);
+    _videoVolumeButton.iconColor = _videoVolumeVisible ? IWThemeMidnight(1.0) : IWThemeCream(1.0);
+    [_videoVolumeButton setNeedsDisplay];
     _videoVolumeButton.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.62] CGColor];
     _volumePanel.hidden = !_videoVolumeVisible;
     _volumePanel.alpha = _videoVolumeVisible ? 1.0 : 0.0;
@@ -10770,6 +10840,24 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSURL *pendingURL = self.pendingLaunchURL;
     self.pendingLaunchURL = nil;
     if (pendingURL) [self handleOpenURL:pendingURL];
+#if TARGET_OS_SIMULATOR
+    // Reproducible UI captures without opening external URL confirmation UI.
+    NSString *previewSequence = [[NSUserDefaults standardUserDefaults] stringForKey:@"WizardPreviewCommands"];
+    NSArray *previewCommands = [previewSequence length] ? [previewSequence componentsSeparatedByString:@","] : @[];
+    NSSet *allowedPreviewCommands = [NSSet setWithArray:@[@"main", @"menu", @"settingsmenu", @"themesmenu", @"gallery", @"gallerycategories", @"gallerycategoryuser", @"clockedit", @"dateedit", @"cancel", @"done", @"calendar", @"calendaredit", @"weatherfixture", @"weatheredit", @"video", @"videovolume", @"videominimize"]];
+    BOOL previewValid = [previewCommands count] <= 8;
+    for (NSString *command in previewCommands) {
+        if (![allowedPreviewCommands containsObject:command]) previewValid = NO;
+    }
+    if (previewValid) {
+        [previewCommands enumerateObjectsUsingBlock:^(NSString *command, NSUInteger index, BOOL *stop) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((0.60 + index * 0.65) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                IWRootViewController *root = (IWRootViewController *)self.window.rootViewController;
+                if ([root isKindOfClass:[IWRootViewController class]]) [root handleDebugCommand:command];
+            });
+        }];
+    }
+#endif
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

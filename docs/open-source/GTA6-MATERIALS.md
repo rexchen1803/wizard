@@ -4,7 +4,7 @@ GTA VI 图片、视频及其缩略图、转码和裁切的版权属于 **Rocksta
 
 ## 下载与内容
 
-素材随 [v0.2.0-preview.1 Release](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.1) 提供：
+素材随 [v0.2.0-preview.2 Release](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.2) 提供：
 
 | 素材包 | 内容 | 用途 |
 | --- | --- | --- |
@@ -31,3 +31,7 @@ GTA VI 图片、视频及其缩略图、转码和裁切的版权属于 **Rocksta
 仓库的 [assets/demo](../../assets/demo/README.md) 包含运行中的 Wizard 原生截图，其中的 GTA VI 画面保留同样的 Rockstar 及相应权利人版权。完整原图、视频与 App 图库以 Release 附件提供；这些素材和截图不适用 Wizard 的 MIT 代码许可。
 
 素材包不包含用户照片、个人偏好、设备备份、连接信息、F1 视频、历史游戏音频、字体或 Apple SDK。安装方法见 [安装指南](../INSTALL.md)，统一署名见 [ATTRIBUTION.md](../../assets/media/ATTRIBUTION.md)。
+
+## 构建默认图与演示
+
+当前构建还包含 `App/Resources/ViceCity.jpg`，来自 `ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg`。原始字节校验与署名见 [素材声明](../../assets/media/ATTRIBUTION.md)。该图只在未安装外部图库时作为默认画面；README 的宣传编排与原生截图也包含已提供素材。所有这些图片及衍生画面保留 Rockstar Games 与相关权利人的版权，不属于 MIT 源码许可。

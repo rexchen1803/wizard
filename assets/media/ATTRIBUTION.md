@@ -11,3 +11,7 @@ Official sources:
 - https://www.rockstargames.com/legal/
 
 Artwork matches the official filename inventory, including the rooftop compositions. Byte-level matching limits are described in the project documentation. User photos, preferences, F1 clips, fonts, local music and device records are excluded.
+
+## Selected build and promotional artwork
+
+`App/Resources/ViceCity.jpg` preserves the supplied `GTAVI_Ultimate_Edition_Benefits/ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg` byte for byte: 3840 × 2160 pixels; SHA256 `c255874fee509eae0baa6f546861e483ec0b32efbfe8d013ec36888013d923c9`. The App uses it as a first-run fallback when an external catalog is absent. README visual artwork and native screenshots also include selected supplied images. These images and derivatives remain copyright Rockstar Games and applicable rights holders, separate from the MIT license. System typefaces are used for rendering; no Rockstar font files are distributed.

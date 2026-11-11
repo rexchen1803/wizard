@@ -30,6 +30,7 @@ LAUNCH_IMAGE_SIZES = {
     "Default-Landscape.png": (1024, 768),
     "Default-Landscape@2x.png": (2048, 1536),
 }
+ARTWORK_FILES = ("ViceCity.jpg",)
 APP_ID = "com.rex.wizardsystem"
 APP_EXECUTABLE = "WizardSystem"
 PACKAGE = "com.rex.wizardsystem"
@@ -112,7 +113,7 @@ def validate_build(app_path: Path, lipo: str) -> tuple[dict[str, object], dict[s
             or not any(isinstance(item, dict) and item.get("UILaunchImageName") == "Default-Landscape" for item in launch_names)):
         raise PackageError("Info.plist must reference the reviewed Default-Landscape launch images")
 
-    expected_names = {"Info.plist", APP_EXECUTABLE, *ICON_SIZES, *LAUNCH_IMAGE_SIZES}
+    expected_names = {"Info.plist", APP_EXECUTABLE, *ICON_SIZES, *LAUNCH_IMAGE_SIZES, *ARTWORK_FILES}
     actual_names = set()
     for entry in entries:
         if entry.is_symlink() or not entry.is_file():
@@ -138,6 +139,15 @@ def validate_build(app_path: Path, lipo: str) -> tuple[dict[str, object], dict[s
         if app_data != resource_data:
             raise PackageError(f"built app resource differs from reviewed App/Resources/{name}")
         validate_png_dimensions(app_data, name, expected_size)
+        app_files[name] = app_data
+
+    for name in ARTWORK_FILES:
+        resource_data = read_regular(resource_root / name)
+        app_data = read_regular(app_path / name)
+        if app_data != resource_data:
+            raise PackageError(f"built app artwork differs from reviewed App/Resources/{name}")
+        if not app_data.startswith(b"\xff\xd8\xff") or not app_data.endswith(b"\xff\xd9"):
+            raise PackageError(f"{name} must contain the reviewed JPEG artwork")
         app_files[name] = app_data
 
     binary = read_regular(app_path / APP_EXECUTABLE)
@@ -308,7 +318,7 @@ esac
             "reviewed_wizard_launch_images": len(LAUNCH_IMAGE_SIZES),
             "installer_helpers": 1,
             "license_and_notice_files": len(license_files),
-            "rockstar_media_files": 0,
+            "rockstar_media_files": len(ARTWORK_FILES),
             "user_media_files": 0,
             "sdk_files": 0,
             "power_tweak_files": 0,

@@ -122,7 +122,7 @@ sha256_file() {
 }
 
 INPUTS=(main.m Info.plist IWMediaCatalog.h IWHTTPTransport.h IWWeatherService.h IWWeatherService.m IWFrameProbe.h)
-RESOURCE_FILES=(Icon-76.png Icon-76@2x.png Icon-83.5@2x.png Default-Landscape.png Default-Landscape@2x.png)
+RESOURCE_FILES=(Icon-76.png Icon-76@2x.png Icon-83.5@2x.png Default-Landscape.png Default-Landscape@2x.png ViceCity.jpg)
 if [[ -d "$SOURCE_DIR/Resources" ]]; then
   for RESOURCE in "${RESOURCE_FILES[@]}"; do INPUTS+=("Resources/$RESOURCE"); done
 fi
