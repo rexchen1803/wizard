@@ -1,0 +1,11 @@
+Google Material Icons
+
+This source distribution contains embedded vector path data from Google Material Icons, pinned to repository revision 10ecc14790612ca8fd164e3f4ffe9c16fc50d5b7. The 35 Wizard icon variants map to 33 upstream SVG files listed in docs/open-source/MATERIAL-ICONS.md. All retained variants use the pinned path data; the former game-only Pet and Leaderboard paths are no longer included.
+
+The upstream project makes these icons available under Apache License 2.0. A copy of that license accompanies this source at licenses/Material-Icons-Apache-2.0.txt. Wizard renders the paths with local Core Graphics code; upstream SVG files, fonts, and image binaries are not included. The application license is separate.
+
+The retained mapping was checked on 2026-11-12 against the previously verified 2026-11-10 inventory; retained path data is unchanged.
+
+GTA VI artwork, videos, and derived media
+
+Copyright in GTA VI-labelled images, videos, crops, transcodes, cutouts, and other derived media remains with Rockstar Games and the other applicable rights holders. This attribution is based on the project owner's provenance statement that the materials came from Rockstar's official website public downloads. Rockstar's official media and downloads pages are linked in docs/open-source/GTA6-MATERIALS.md. The attribution is not a per-file verification or license grant. Full media packs are separate Release attachments. Attributed native demonstration captures are included in the repository. These third-party media and captures are not covered by the Wizard MIT License. Public download availability is not permission to redistribute them.

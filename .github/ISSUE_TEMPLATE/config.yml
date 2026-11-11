@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Compatibility and setup guide
+    url: https://github.com/rexchen1803/wizard/blob/main/docs/COMPATIBILITY.md
+    about: Review the tested scope and current limitations before reporting installation issues.
+  - name: Security reporting
+    url: https://github.com/rexchen1803/wizard/security/advisories/new
+    about: Report a security issue privately when GitHub private vulnerability reporting is available.

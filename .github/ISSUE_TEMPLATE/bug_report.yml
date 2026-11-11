@@ -1,0 +1,61 @@
+name: Bug report
+description: Report a reproducible problem in Wizard.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Check the compatibility guide first. Do not attach device identifiers,
+        personal photos, credentials, private filesystem dumps, or unredacted logs.
+  - type: input
+    id: version
+    attributes:
+      label: Wizard version and build
+      placeholder: "0.2.0 / 20261111.37"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: iPad model and iOS version
+      description: Use the model number shown in Settings. Do not include a serial number or UDID.
+      placeholder: "iPad3,4 / iOS 10.3.3"
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Installation environment
+      options:
+        - Existing prepared installation
+        - Fresh installation
+        - Stock iOS
+        - Other or unknown
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the shortest sequence that reproduces the issue.
+      placeholder: |
+        1. Open …
+        2. Select …
+        3. Observe …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual result
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted evidence
+      description: Remove usernames, home paths, network addresses, tokens, serials, UDIDs, imported media, and private installation details before posting.
+      render: text
+    validations:
+      required: false

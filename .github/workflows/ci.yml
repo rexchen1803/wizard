@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  host-regressions:
+    name: macOS host regressions
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Record toolchain
+        run: |
+          sw_vers
+          xcode-select -p
+          clang --version
+          python3 --version
+
+      - name: Check tracked repository contents
+        run: python3 scripts/check-repository.py
+
+      - name: Check repository checker regressions
+        run: python3 tests/repository-regressions.py
+
+      - name: Check package and installer fixtures
+        run: |
+          python3 tests/package-regressions.py
+          /bin/sh -n scripts/install-wizard.sh
+          bash -n scripts/build-ipad.sh scripts/build-power.sh
+
+      - name: Run host regression suites
+        run: |
+          python3 tests/native-regressions.py
+          ./App/tests/run-http-transport-regressions.sh
+          ./App/tests/run-weather-service-regressions.sh
+          python3 App/tests/cast-lifecycle-regressions.py
+          python3 App/tests/media-lifecycle-regressions.py
+          python3 App/tests/gallery-media-regressions.py
+          python3 App/tests/menu-layout-regressions.py
+          python3 App/tests/power-edge-regressions.py

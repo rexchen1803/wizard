@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
+  <key>CFBundleDisplayName</key>
+  <string>Wizard</string>
+  <key>CFBundleIconFiles</key>
+  <array>
+    <string>Icon-76.png</string>
+    <string>Icon-76@2x.png</string>
+    <string>Icon-83.5@2x.png</string>
+  </array>
+  <key>CFBundleExecutable</key>
+  <string>WizardSystem</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.rex.wizardsystem</string>
+  <key>CFBundleInfoDictionaryVersion</key>
+  <string>6.0</string>
+  <key>CFBundleName</key>
+  <string>Wizard</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleShortVersionString</key>
+  <string>0.2.0</string>
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLName</key>
+      <string>Wizard System</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>wizardsystem</string>
+      </array>
+    </dict>
+  </array>
+  <key>CFBundleVersion</key>
+	<string>20261111.37</string>
+  <key>WizardBuildChannel</key>
+  <string>development</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchImageFile</key>
+	<string>Default-Landscape</string>
+	<key>MinimumOSVersion</key>
+  <string>9.0</string>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+  </dict>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>用于从系统相册添加图片到 Wizard 图库。</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>用于在主页显示当前位置的天气；位置只用于天气查询。</string>
+  <key>UIDeviceFamily</key>
+  <array>
+    <integer>2</integer>
+  </array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIInterfaceOrientation</key>
+	<string>UIInterfaceOrientationLandscapeLeft</string>
+	<key>UIInterfaceOrientation~ipad</key>
+	<string>UIInterfaceOrientationLandscapeLeft</string>
+	<key>UILaunchImages</key>
+	<array>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>Default-Landscape</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Landscape</string>
+			<key>UILaunchImageSize</key>
+			<string>{768, 1024}</string>
+		</dict>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIStatusBarHidden</key>
+  <true/>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <true/>
+</dict>
+</plist>

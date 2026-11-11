@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a focused improvement to Wizard.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: Describe the user task and the result you need. Requests do not imply that a feature is planned or supported on every iPad.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: Explain the task or obstacle in your own words.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the smallest useful change.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Relevant iPad and iOS version
+      description: Share the model and OS only when they affect the request. Do not post device identifiers or personal media.
+    validations:
+      required: false
