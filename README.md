@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.2"><strong>下载预览版</strong></a> &nbsp;·&nbsp;
-  <a href="docs/AGENT-INSTALL.md">Agent 安装</a> &nbsp;·&nbsp;
+  <a href="docs/AGENT-INSTALL.md">Agent 安装</a><br>
   <a href="docs/INSTALL.md">安装指南</a> &nbsp;·&nbsp;
   <a href="docs/COMPATIBILITY.md">兼容性</a>
 </p>
