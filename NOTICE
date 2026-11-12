@@ -10,6 +10,10 @@ GTA VI artwork, videos, and derived media
 
 Copyright in GTA VI-labelled images, videos, crops, transcodes, cutouts, and other derived media remains with Rockstar Games and the other applicable rights holders. This attribution is based on the project owner's provenance statement that the materials came from Rockstar's official website public downloads. Rockstar's official media and downloads pages are linked in docs/open-source/GTA6-MATERIALS.md. The attribution is not a per-file verification or license grant. Full media packs are separate Release attachments. Attributed native demonstration captures are included in the repository. These third-party media and captures are not covered by the Wizard MIT License. Public download availability is not permission to redistribute them.
 
+Anton display font
+
+App/Resources/Anton-Regular.ttf is Copyright 2020 The Anton Project Authors (https://github.com/googlefonts/AntonFont.git), licensed under SIL Open Font License 1.1. The unmodified font and its license, App/Resources/Anton-OFL.txt, are included in the App bundle. This font is separate from the Wizard MIT license.
+
 Selected display artwork
 
 App/Resources/ViceCity.jpg is the owner-supplied ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg (3840 x 2160), SHA256 c255874fee509eae0baa6f546861e483ec0b32efbfe8d013ec36888013d923c9. It provides the fallback wallpaper when no external catalog is installed. This image, the supplied artwork incorporated into README banners, and native captures retain Rockstar Games and applicable rights-holder copyright. They are not MIT-licensed Wizard code. The package carries this notice.

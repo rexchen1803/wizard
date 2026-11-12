@@ -36,7 +36,11 @@
     </dict>
   </array>
   <key>CFBundleVersion</key>
-	<string>20261112.38</string>
+	<string>20261112.39</string>
+  <key>UIAppFonts</key>
+  <array>
+    <string>Anton-Regular.ttf</string>
+  </array>
   <key>WizardBuildChannel</key>
   <string>development</string>
 	<key>LSRequiresIPhoneOS</key>

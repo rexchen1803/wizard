@@ -7,6 +7,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <CoreMedia/CoreMedia.h>
 #import <QuartzCore/QuartzCore.h>
+#import <CoreText/CoreText.h>
 #import "IWMediaCatalog.h"
 #import "IWHTTPTransport.h"
 #import "IWFrameProbe.h"
@@ -507,6 +508,13 @@ static CGFloat IWDigitCardClampOpacity(CGFloat opacity) {
 }
 
 static UIFont *IWGTAFont(CGFloat size) {
+    static dispatch_once_t fontRegistration;
+    dispatch_once(&fontRegistration, ^{
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"Anton-Regular" withExtension:@"ttf"];
+        if (url) CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeProcess, NULL);
+    });
+    UIFont *bundledFont = [UIFont fontWithName:@"Anton-Regular" size:size];
+    if (bundledFont) return bundledFont;
     NSArray *names = @[
         @"AvenirNextCondensed-Heavy",
         @"AvenirNextCondensed-DemiBold",
@@ -9308,12 +9316,20 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         videoCurrentTime = IWSecondsSafe(_moviePlayer.currentPlaybackTime);
         videoDuration = IWSecondsSafe(_moviePlayer.duration);
     }
+    UIFont *displayFont = ([_digitLabels count] ? ((UILabel *)[_digitLabels objectAtIndex:0]).font : nil) ?: IWGTAFont(24.0);
+    CTFontRef displayCTFont = CTFontCreateWithName((__bridge CFStringRef)displayFont.fontName, 24.0, NULL);
+    NSURL *displayFontURL = CFBridgingRelease(CTFontCopyAttribute(displayCTFont, kCTFontURLAttribute));
+    CFRelease(displayCTFont);
+    NSString *bundledFontPath = [[[NSBundle mainBundle] pathForResource:@"Anton-Regular" ofType:@"ttf"] stringByStandardizingPath];
     NSDictionary *state = @{
         @"context": context ?: @"",
         @"buildVersion": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"",
         @"buildNumber": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] ?: @"",
         @"buildChannel": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"WizardBuildChannel"] ?: @"",
         @"sourceFingerprint": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"WizardSourceFingerprint"] ?: @"unbound",
+        @"displayFontName": displayFont.fontName ?: @"",
+        @"displayFontFileName": displayFontURL.lastPathComponent ?: @"",
+        @"displayFontBundled": @([displayFontURL.path.stringByStandardizingPath isEqualToString:bundledFontPath]),
         @"processID": @(getpid()),
         @"physicalMemoryBytes": @([NSProcessInfo processInfo].physicalMemory),
         @"applicationState": @([UIApplication sharedApplication].applicationState),

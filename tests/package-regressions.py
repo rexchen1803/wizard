@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PACKAGER = ROOT / "scripts" / "package-release.py"
 INSTALLER = ROOT / "scripts" / "install-wizard.sh"
 APP_ID = "com.rex.wizardsystem"
-BUILD = "20261112.38"
+BUILD = "20261112.39"
 SHORT_VERSION = "0.2.0"
 FINGERPRINT = "a" * 64
 ICON_NAMES = ("Icon-76.png", "Icon-76@2x.png", "Icon-83.5@2x.png")
@@ -63,6 +63,7 @@ def make_app(path: Path, extra: bool = False) -> Path:
         "CFBundleShortVersionString": SHORT_VERSION,
         "CFBundleVersion": BUILD,
         "CFBundleIconFiles": list(ICON_NAMES),
+        "UIAppFonts": ["Anton-Regular.ttf"],
         "UILaunchImageFile": "Default-Landscape",
         "UILaunchImages": [{"UILaunchImageName": "Default-Landscape"}],
         "WizardBuildChannel": "development",
@@ -77,6 +78,8 @@ def make_app(path: Path, extra: bool = False) -> Path:
     for image_name in LAUNCH_IMAGE_SIZES:
         shutil.copyfile(ROOT / "App" / "Resources" / image_name, path / image_name)
     shutil.copyfile(ROOT / "App" / "Resources" / "ViceCity.jpg", path / "ViceCity.jpg")
+    shutil.copyfile(ROOT / "App" / "Resources" / "Anton-Regular.ttf", path / "Anton-Regular.ttf")
+    shutil.copyfile(ROOT / "App" / "Resources" / "Anton-OFL.txt", path / "Anton-OFL.txt")
     if extra:
         (path / "user-import.jpg").write_bytes(b"must not be packaged")
     return path
@@ -125,9 +128,11 @@ def test_package_contents(temp: Path) -> None:
     manifest = json.loads(manifest_path.read_text())
     check("manifest artifact hash", manifest["artifact_sha256"] == hashlib.sha256(output.read_bytes()).hexdigest())
     check("manifest content counts", manifest["counts"] == {
-        "app_bundle_files": 8,
+        "app_bundle_files": 10,
         "reviewed_wizard_png_icons": 3,
         "reviewed_wizard_launch_images": 2,
+        "reviewed_display_font_files": 1,
+        "bundled_font_license_files": 1,
         "installer_helpers": 1,
         "license_and_notice_files": 3,
         "rockstar_media_files": 1,
@@ -152,7 +157,17 @@ def test_package_contents(temp: Path) -> None:
     check("prerm delegates exact build", f"install-wizard.sh remove {BUILD}".encode() in control["prerm"])
     check("helper unregisters only named app path", b'uicache -u "$TARGET"' in data["usr/lib/wizard-installer/install-wizard.sh"])
     check("staged app path", any(name.startswith(f"Applications/.wizard-package-payload-{BUILD}.app/") for name in data))
-    check("app file list", len([name for name in data if name.startswith(f"Applications/.wizard-package-payload-{BUILD}.app/")]) == 8)
+    app_payload_prefix = f"Applications/.wizard-package-payload-{BUILD}.app/"
+    check("app file list", len([name for name in data if name.startswith(app_payload_prefix)]) == 10)
+    font_path = app_payload_prefix + "Anton-Regular.ttf"
+    font_license_path = app_payload_prefix + "Anton-OFL.txt"
+    reviewed_font = (ROOT / "App" / "Resources" / "Anton-Regular.ttf").read_bytes()
+    reviewed_font_license = (ROOT / "App" / "Resources" / "Anton-OFL.txt").read_bytes()
+    check("only reviewed bundled display font", data.get(font_path) == reviewed_font and
+          [name for name in data if name.lower().endswith((".ttf", ".otf"))] == [font_path])
+    check("bundled font license", data.get(font_license_path) == reviewed_font_license)
+    check("font manifest hash", manifest["sha256"].get(font_path) == hashlib.sha256(reviewed_font).hexdigest())
+    check("font license manifest hash", manifest["sha256"].get(font_license_path) == hashlib.sha256(reviewed_font_license).hexdigest())
     check("installer helper", "usr/lib/wizard-installer/install-wizard.sh" in data)
     check("power tweak excluded", not any("WizardPower" in name or "Tweak" in name for name in data))
     check("license notices", all(name in data for name in (
@@ -161,7 +176,7 @@ def test_package_contents(temp: Path) -> None:
         "usr/share/doc/wizard-system/Material-Icons-Apache-2.0.txt",
     )))
     content_names = tuple(data)
-    forbidden_suffixes = (".jpg", ".jpeg", ".mp4", ".mkv", ".m4a", ".ttf", ".otf", ".sdk")
+    forbidden_suffixes = (".jpg", ".jpeg", ".mp4", ".mkv", ".m4a", ".sdk")
     allowed_pngs = set(ICON_NAMES) | set(LAUNCH_IMAGE_SIZES)
     unexpected_png = [name for name in content_names if name.lower().endswith(".png") and Path(name).name not in allowed_pngs]
     artwork_path = f"Applications/.wizard-package-payload-{BUILD}.app/ViceCity.jpg"
@@ -197,6 +212,34 @@ def test_package_rejections(temp: Path) -> None:
     (changed_artwork / "ViceCity.jpg").write_bytes(b"unreviewed image")
     result = subprocess.run(fixture_pkg_args(changed_artwork, output, good_lipo), text=True, capture_output=True)
     check("reject unbound artwork", result.returncode != 0 and "ViceCity.jpg" in result.stderr)
+
+    changed_font = make_app(temp / "changed-font.app")
+    (changed_font / "Anton-Regular.ttf").write_bytes(b"changed font bytes")
+    result = subprocess.run(fixture_pkg_args(changed_font, output, good_lipo), text=True, capture_output=True)
+    check("reject changed display font", result.returncode != 0 and "Anton-Regular.ttf" in result.stderr)
+
+    changed_font_license = make_app(temp / "changed-font-license.app")
+    (changed_font_license / "Anton-OFL.txt").write_text("changed license bytes")
+    result = subprocess.run(fixture_pkg_args(changed_font_license, output, good_lipo), text=True, capture_output=True)
+    check("reject changed font license", result.returncode != 0 and "Anton-OFL.txt" in result.stderr)
+
+    missing_font = make_app(temp / "missing-font.app")
+    (missing_font / "Anton-Regular.ttf").unlink()
+    result = subprocess.run(fixture_pkg_args(missing_font, output, good_lipo), text=True, capture_output=True)
+    check("reject missing display font", result.returncode != 0 and "Anton-Regular.ttf" in result.stderr)
+
+    unregistered_font = make_app(temp / "unregistered-font.app")
+    plist_path = unregistered_font / "Info.plist"
+    info = plistlib.loads(plist_path.read_bytes())
+    info.pop("UIAppFonts")
+    plist_path.write_bytes(plistlib.dumps(info, fmt=plistlib.FMT_XML))
+    result = subprocess.run(fixture_pkg_args(unregistered_font, output, good_lipo), text=True, capture_output=True)
+    check("reject unregistered display font", result.returncode != 0 and "UIAppFonts" in result.stderr)
+
+    extra_font = make_app(temp / "extra-font.app")
+    (extra_font / "Unreviewed.otf").write_bytes(b"not an allowed font")
+    result = subprocess.run(fixture_pkg_args(extra_font, output, good_lipo), text=True, capture_output=True)
+    check("reject unreviewed font", result.returncode != 0 and "allowlist" in result.stderr)
 
     no_fingerprint = make_app(temp / "no-fingerprint.app")
     plist_path = no_fingerprint / "Info.plist"

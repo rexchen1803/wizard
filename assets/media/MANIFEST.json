@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release_tag": "v0.2.0-preview.2",
+  "release_tag": "v0.2.0-preview.3",
   "copyright": {
     "owner": "Rockstar Games and applicable rights holders",
     "scope": "GTA VI images, videos and derived media; not covered by the Wizard MIT license"
@@ -9,7 +9,7 @@
     {
       "id": "gallery",
       "name": "wizard-gta6-gallery-20261112.zip",
-      "download_url": "https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.2/wizard-gta6-gallery-20261112.zip",
+      "download_url": "https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/wizard-gta6-gallery-20261112.zip",
       "bytes": 258253713,
       "sha256": "b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba",
       "files": 464,
@@ -24,7 +24,7 @@
     {
       "id": "originals",
       "name": "gta6-original-materials-20261112.zip",
-      "download_url": "https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.2/gta6-original-materials-20261112.zip",
+      "download_url": "https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/gta6-original-materials-20261112.zip",
       "bytes": 755809316,
       "sha256": "182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b",
       "files": 350,

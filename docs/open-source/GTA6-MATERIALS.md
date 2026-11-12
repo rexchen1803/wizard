@@ -4,7 +4,7 @@ GTA VI 图片、视频及其缩略图、转码和裁切的版权属于 **Rocksta
 
 ## 下载与内容
 
-素材随 [v0.2.0-preview.2 Release](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.2) 提供：
+素材随 [v0.2.0-preview.3 Release](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.3) 提供：
 
 | 素材包 | 内容 | 用途 |
 | --- | --- | --- |

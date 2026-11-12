@@ -1,8 +1,8 @@
 {
   "runtime": "iOS 18.0",
   "device": "iPad (8th generation) Simulator",
-  "build": "20261112.38",
-  "source_fingerprint": "75d833bf0397119b2f061229dc0ce8ea1c0568738d021b690326d30f60fd0f00",
+  "build": "20261112.39",
+  "source_fingerprint": "3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f",
   "physical_device": false,
   "entry": "Simulator-only CLI commands; no external URLs",
   "display_encoding": "JPEG quality 85, original pixel dimensions; no added UI or compositing",
@@ -12,25 +12,34 @@
     "dateVisible": true
   },
   "gallery_fixture": "230-item verified gallery plus the supplied default image",
+  "font": {
+    "postscript_name": "Anton-Regular",
+    "resource": "Anton-Regular.ttf",
+    "sha256": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+    "license": "SIL OFL 1.1",
+    "resolved_bundled_origin_verified": true
+  },
   "captures": [
     {
       "file": "home-miami.jpg",
       "scene": "home-miami",
-      "sha256": "ad70c7dfc37ab40b754b137168c2097de76a9d8ff8cf85297269591dea6fd1c4",
-      "original_png_sha256": "bc8801764482655c468849a9986da24f61b6c73938b7dce4d7906deeb9453c00",
+      "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+      "original_png_sha256": "c5439b1a3afeee1553f8c845b59023d2e7494f48869b3f0a778e05a883f87a3d",
       "pixels": [
         2160,
         1620
       ],
       "commands": [
         "main"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     },
     {
       "file": "menu-miami.jpg",
       "scene": "menu-miami",
-      "sha256": "4464a5203eabe522d1727746c96411617287e62389fc3d71f3c73336c25b9147",
-      "original_png_sha256": "a2d494489cfed898163db71c605dcfd6f1cd7f330c872dba1361fea8471531c0",
+      "sha256": "c774c1c477eda89cdc95bd39feaee8c9d8e743a710feae8037d7c55797e61943",
+      "original_png_sha256": "79e8d952843dc9d9d95d1f700482ec8cc3e785904abf14346700146e13b8a73a",
       "pixels": [
         2160,
         1620
@@ -38,13 +47,15 @@
       "commands": [
         "main",
         "menu"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     },
     {
       "file": "settings-miami.jpg",
       "scene": "settings-miami",
-      "sha256": "ddaf5034591edf33bb36040750756fe47fe18f70cd5ba974ac4ab51c4ef7a0e8",
-      "original_png_sha256": "8ff1b7db4ad1464a12e8ee7540c9723ae887d1c05508acac779ff55e3d66821b",
+      "sha256": "fca07eced127a99c7bbb996331593016a60261e73ed41b67b4241053133f695e",
+      "original_png_sha256": "5d515372441395af30d9c57923a083a8162f5dd76d30ee1388e8ccb0923050b7",
       "pixels": [
         2160,
         1620
@@ -52,13 +63,15 @@
       "commands": [
         "main",
         "settingsmenu"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     },
     {
       "file": "themes-miami.jpg",
       "scene": "themes-miami",
-      "sha256": "2255c8eab5b0d5869fc351766fd9c518572bdc3ebbd6409e456338b10dbaea5b",
-      "original_png_sha256": "04f40c23ec11c1cda6e27fcb6f2ac40b8f4111184b7bff6afc2f777b4caeb972",
+      "sha256": "b839413997fa6b571d047a30fee319668918add07f14b308564d348527090ea7",
+      "original_png_sha256": "4704fa75931831a09d33a0ce42afce9f3dee8c996749a0b84aceaffa6d0a04a4",
       "pixels": [
         2160,
         1620
@@ -66,7 +79,9 @@
       "commands": [
         "main",
         "themesmenu"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     },
     {
       "file": "gallery-miami.jpg",
@@ -80,7 +95,9 @@
       "commands": [
         "main",
         "gallery"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     },
     {
       "file": "categories-miami.jpg",
@@ -95,13 +112,15 @@
         "main",
         "gallery",
         "gallerycategories"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     },
     {
       "file": "clock-edit-miami.jpg",
       "scene": "clock-edit-miami",
-      "sha256": "6e78b68f9982c1410f11cf28f4cb72d6da69ed018473827725e3fce892a2ffef",
-      "original_png_sha256": "f33a7041b6bffa97543347498fe0b3e6c5366f60a6f50af3cae1b9feed626512",
+      "sha256": "2190d7f5b05a1fe562a2c363406c225b3bbf717d4182c3a30f4d475119cbba7d",
+      "original_png_sha256": "76dd6bdade9b3b6887cfe72865839a1b3bcd96e4591c5eaf59aae00b6d808a25",
       "pixels": [
         2160,
         1620
@@ -109,13 +128,15 @@
       "commands": [
         "main",
         "clockedit"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     },
     {
       "file": "calendar-miami.jpg",
       "scene": "calendar-miami",
-      "sha256": "d546b6a483ae2a321cc321f65caccb27a6b39460fb21f645126d60eaa28b4763",
-      "original_png_sha256": "388918452e05d8c5a7612b0898ea93cccaa34a3313fa5ccb9eb0be713980d608",
+      "sha256": "1f6de21ade99559f37b0ca8a3a37fb6e4916a29e69bfd9d340061168f984c829",
+      "original_png_sha256": "04d8f99a30c09e613deedb1f71aca667da702ec661f738414a7ab56332c26d7b",
       "pixels": [
         2160,
         1620
@@ -123,7 +144,9 @@
       "commands": [
         "main",
         "calendar"
-      ]
+      ],
+      "display_font": "Anton-Regular",
+      "display_font_bundled": true
     }
   ]
 }

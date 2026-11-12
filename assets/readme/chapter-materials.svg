@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="225" viewBox="0 0 1600 225" role="img" aria-labelledby="chapter-title chapter-desc">
+  <title id="chapter-title">图库与素材</title>
+  <desc id="chapter-desc">A Wizard chapter title in cream and sunset pink on a midnight plum ground.</desc>
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0C0D1B"/><stop offset="0.72" stop-color="#21152D"/><stop offset="1" stop-color="#351A3C"/>
+    </linearGradient>
+    <linearGradient id="sunline" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#F8B38E"/><stop offset="0.52" stop-color="#F7A6BE"/><stop offset="1" stop-color="#D65A98"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0 80)">
+  <rect width="1600" height="145" fill="url(#ground)"/>
+  <circle cx="1525" cy="70" r="70" fill="#D65A98" fill-opacity="0.08" stroke="url(#sunline)" stroke-opacity="0.65" stroke-width="2"/>
+  <path d="M1441 84h168 M1441 103h168 M1441 122h168" fill="none" stroke="url(#sunline)" stroke-opacity="0.42" stroke-width="1.5"/>
+  <g transform="translate(92.000 34.000) scale(0.01171875 -0.01171875)" fill="#F8B38E"><path d="M240 0 23 1761H358L487 563L602 1761H937L720 0Z" transform="translate(0.000 0)"/><path d="M62 0V1760H402V0Z" transform="translate(1174.333 0)"/><path d="M488 -16Q297 -16 180.5 103.0Q64 222 64 436V1248Q64 1504 165.5 1640.0Q267 1776 496 1776Q621 1776 718.5 1730.0Q816 1684 872.0 1592.5Q928 1501 928 1362V1058H578V1318Q578 1397 558.0 1424.5Q538 1452 496 1452Q447 1452 430.0 1416.5Q413 1381 413 1322V441Q413 368 434.5 338.0Q456 308 496 308Q541 308 559.5 345.0Q578 382 578 441V758H932V425Q932 193 815.0 88.5Q698 -16 488 -16Z" transform="translate(1851.667 0)"/><path d="M78 0V1760H782V1420H436V1077H768V746H436V343H805V0Z" transform="translate(3036.000 0)"/><path d="M488 -16Q297 -16 180.5 103.0Q64 222 64 436V1248Q64 1504 165.5 1640.0Q267 1776 496 1776Q621 1776 718.5 1730.0Q816 1684 872.0 1592.5Q928 1501 928 1362V1058H578V1318Q578 1397 558.0 1424.5Q538 1452 496 1452Q447 1452 430.0 1416.5Q413 1381 413 1322V441Q413 368 434.5 338.0Q456 308 496 308Q541 308 559.5 345.0Q578 382 578 441V758H932V425Q932 193 815.0 88.5Q698 -16 488 -16Z" transform="translate(4785.667 0)"/><path d="M62 0V1760H402V0Z" transform="translate(5970.000 0)"/><path d="M229 0V1422H20V1760H790V1422H581V0Z" transform="translate(6647.333 0)"/><path d="M291 0V579L10 1760H359L457 1164L555 1760H903L623 579V0Z" transform="translate(7670.667 0)"/><path d="M29 0 439 1767H803L392 0Z" transform="translate(9491.333 0)"/><path d="M441 -16Q64 -16 64 524V1283Q64 1776 496 1776Q674 1776 769.0 1704.5Q864 1633 900.0 1496.0Q936 1359 936 1162H592V1318Q592 1375 576.5 1413.5Q561 1452 512 1452Q451 1452 431.5 1411.0Q412 1370 412 1321V468Q412 397 430.5 352.5Q449 308 503 308Q559 308 577.5 352.5Q596 397 596 470V721H502V1025H932V0H791L731 148Q639 -16 441 -16Z" transform="translate(11228.000 0)"/><path d="M30 0 200 1760H797L964 0H631L606 284H394L372 0ZM419 565H579L502 1460H486Z" transform="translate(12434.333 0)"/><path d="M78 0V1760H430V300H792V0Z" transform="translate(13641.667 0)"/><path d="M78 0V1760H430V300H792V0Z" transform="translate(14669.000 0)"/><path d="M78 0V1760H782V1420H436V1077H768V746H436V343H805V0Z" transform="translate(15696.333 0)"/><path d="M78 0V1760H618Q753 1760 822.0 1698.5Q891 1637 914.5 1526.5Q938 1416 938 1267Q938 1123 901.5 1037.0Q865 951 764 918Q847 901 880.5 835.5Q914 770 914 666V0H567V689Q567 766 535.5 784.5Q504 803 434 803V0ZM436 1108H521Q594 1108 594 1267Q594 1370 578.0 1402.0Q562 1434 518 1434H436Z" transform="translate(16752.667 0)"/><path d="M291 0V579L10 1760H359L457 1164L555 1760H903L623 579V0Z" transform="translate(17942.000 0)"/></g>
+  <text x="92" y="102" fill="#FFF9CB" font-family="-apple-system, BlinkMacSystemFont, &quot;PingFang SC&quot;, &quot;Noto Sans CJK SC&quot;, &quot;Microsoft YaHei&quot;, sans-serif" font-size="76" font-weight="700" letter-spacing="0">图库与素材</text>
+  <path d="M92 122h96" stroke="url(#sunline)" stroke-width="3"/>
+  <circle cx="203" cy="122" r="3.5" fill="#F7A6BE"/>
+  </g>
+</svg>

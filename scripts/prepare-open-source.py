@@ -38,6 +38,8 @@ APP_ALLOWLIST = (
     "Resources/Default-Landscape.png",
     "Resources/Default-Landscape@2x.png",
     "Resources/ViceCity.jpg",
+    "Resources/Anton-Regular.ttf",
+    "Resources/Anton-OFL.txt",
 )
 
 ROOT_ALLOWLIST = (
@@ -77,10 +79,18 @@ ROOT_ALLOWLIST = (
     ("docs/AGENT-INSTALL.md", "docs/AGENT-INSTALL.md"),
     ("docs/COMPATIBILITY.md", "docs/COMPATIBILITY.md"),
     ("assets/readme/hero.svg", "assets/readme/hero.svg"),
+    ("assets/readme/install-agent.svg", "assets/readme/install-agent.svg"),
+    ("assets/readme/install-direct.svg", "assets/readme/install-direct.svg"),
+    ("assets/readme/chapter-display.svg", "assets/readme/chapter-display.svg"),
+    ("assets/readme/chapter-display-mobile.svg", "assets/readme/chapter-display-mobile.svg"),
+    ("assets/readme/chapter-install.svg", "assets/readme/chapter-install.svg"),
+    ("assets/readme/chapter-install-mobile.svg", "assets/readme/chapter-install-mobile.svg"),
+    ("assets/readme/chapter-materials.svg", "assets/readme/chapter-materials.svg"),
+    ("assets/readme/chapter-materials-mobile.svg", "assets/readme/chapter-materials-mobile.svg"),
+    ("assets/readme/chapter-source.svg", "assets/readme/chapter-source.svg"),
+    ("assets/readme/chapter-source-mobile.svg", "assets/readme/chapter-source-mobile.svg"),
     ("assets/readme/hero-dark.svg", "assets/readme/hero-dark.svg"),
     ("assets/readme/postcards-triptych.svg", "assets/readme/postcards-triptych.svg"),
-    ("assets/readme/installation-routes.svg", "assets/readme/installation-routes.svg"),
-    ("assets/readme/source-endmark.svg", "assets/readme/source-endmark.svg"),
     ("assets/readme/hero-mobile.svg", "assets/readme/hero-mobile.svg"),
     ("assets/readme/hero-mobile-dark.svg", "assets/readme/hero-mobile-dark.svg"),
     ("assets/demo/home-ipad2.png", "assets/demo/home-ipad2.png"),
@@ -338,7 +348,7 @@ def main() -> int:
                 "installers, SSH material, connection logs, known-host data and device state",
                 "compiled historical apps and prior release archives",
                 "Full GTA VI original/app-ready media packs are separate Release attachments; selected attributed native demo captures are included",
-                "unverified third-party fonts and unrelated artwork files",
+                "unreviewed fonts and unrelated artwork files; the pinned OFL Anton face and license are explicitly included",
                 "license drafts and other files outside the explicit allowlist",
             ],
             "sensitive_scan": {

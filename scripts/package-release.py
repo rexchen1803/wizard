@@ -31,6 +31,9 @@ LAUNCH_IMAGE_SIZES = {
     "Default-Landscape@2x.png": (2048, 1536),
 }
 ARTWORK_FILES = ("ViceCity.jpg",)
+DISPLAY_FONT_FILES = ("Anton-Regular.ttf",)
+DISPLAY_FONT_LICENSE_FILES = ("Anton-OFL.txt",)
+UI_APP_FONT_FILES = ["Anton-Regular.ttf"]
 APP_ID = "com.rex.wizardsystem"
 APP_EXECUTABLE = "WizardSystem"
 PACKAGE = "com.rex.wizardsystem"
@@ -108,12 +111,17 @@ def validate_build(app_path: Path, lipo: str) -> tuple[dict[str, object], dict[s
     icon_list = info.get("CFBundleIconFiles")
     if not isinstance(icon_list, list) or len(icon_list) != len(ICON_SIZES) or set(icon_list) != set(ICON_SIZES):
         raise PackageError("Info.plist must reference exactly the three reviewed Wizard PNG icons")
+    if info.get("UIAppFonts") != UI_APP_FONT_FILES:
+        raise PackageError("Info.plist UIAppFonts must register exactly the reviewed Anton-Regular.ttf display font")
     launch_names = info.get("UILaunchImages")
     if (info.get("UILaunchImageFile") != "Default-Landscape" or not isinstance(launch_names, list)
             or not any(isinstance(item, dict) and item.get("UILaunchImageName") == "Default-Landscape" for item in launch_names)):
         raise PackageError("Info.plist must reference the reviewed Default-Landscape launch images")
 
-    expected_names = {"Info.plist", APP_EXECUTABLE, *ICON_SIZES, *LAUNCH_IMAGE_SIZES, *ARTWORK_FILES}
+    expected_names = {
+        "Info.plist", APP_EXECUTABLE, *ICON_SIZES, *LAUNCH_IMAGE_SIZES,
+        *ARTWORK_FILES, *DISPLAY_FONT_FILES, *DISPLAY_FONT_LICENSE_FILES,
+    }
     actual_names = set()
     for entry in entries:
         if entry.is_symlink() or not entry.is_file():
@@ -148,6 +156,15 @@ def validate_build(app_path: Path, lipo: str) -> tuple[dict[str, object], dict[s
             raise PackageError(f"built app artwork differs from reviewed App/Resources/{name}")
         if not app_data.startswith(b"\xff\xd8\xff") or not app_data.endswith(b"\xff\xd9"):
             raise PackageError(f"{name} must contain the reviewed JPEG artwork")
+        app_files[name] = app_data
+
+    for name in (*DISPLAY_FONT_FILES, *DISPLAY_FONT_LICENSE_FILES):
+        resource_data = read_regular(resource_root / name)
+        app_data = read_regular(app_path / name)
+        if app_data != resource_data:
+            raise PackageError(f"built app resource differs from reviewed App/Resources/{name}")
+        if not app_data:
+            raise PackageError(f"{name} must not be empty")
         app_files[name] = app_data
 
     binary = read_regular(app_path / APP_EXECUTABLE)
@@ -316,12 +333,16 @@ esac
             "app_bundle_files": len(app_files),
             "reviewed_wizard_png_icons": len(ICON_SIZES),
             "reviewed_wizard_launch_images": len(LAUNCH_IMAGE_SIZES),
+            "reviewed_display_font_files": len(DISPLAY_FONT_FILES),
+            "bundled_font_license_files": len(DISPLAY_FONT_LICENSE_FILES),
             "installer_helpers": 1,
             "license_and_notice_files": len(license_files),
             "rockstar_media_files": len(ARTWORK_FILES),
             "user_media_files": 0,
             "sdk_files": 0,
             "power_tweak_files": 0,
+            # Reserved for excluded game-origin assets; the reviewed OFL display
+            # font and its license are counted separately above.
             "old_game_audio_or_font_files": 0,
         },
         "device_install_verified": False,

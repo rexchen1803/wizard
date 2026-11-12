@@ -23,7 +23,7 @@
   <rect x="0" y="506.25" width="900" height="353.75" fill="url(#night)"/>
   <rect x="0" y="506.25" width="900" height="353.75" fill="url(#sunset)"/>
   <path d="M0 508H900" stroke="url(#accent)" stroke-width="4"/>
-  <text x="60" y="712" textLength="780" lengthAdjust="spacingAndGlyphs" fill="#FFF9CB" font-family="Impact, 'Arial Narrow', Arial, sans-serif" font-size="164" font-weight="900" letter-spacing="1">WIZARD</text>
+  <g id="wizard-wordmark" transform="translate(60.000 712.000) scale(0.13437991 -0.08007812)" fill="#FFF9CB"><path d="M216 0 27 1760H371L468 649L567 1760H895L989 649L1083 1760H1431L1239 0H817L729 847L645 0Z" transform="translate(0.000 0)"/><path d="M62 0V1760H402V0Z" transform="translate(1470.488 0)"/><path d="M32 0V320L435 1436H71V1760H806V1452L396 324H789V0Z" transform="translate(1946.976 0)"/><path d="M30 0 200 1760H797L964 0H631L606 284H394L372 0ZM419 565H579L502 1460H486Z" transform="translate(2799.463 0)"/><path d="M78 0V1760H618Q753 1760 822.0 1698.5Q891 1637 914.5 1526.5Q938 1416 938 1267Q938 1123 901.5 1037.0Q865 951 764 918Q847 901 880.5 835.5Q914 770 914 666V0H567V689Q567 766 535.5 784.5Q504 803 434 803V0ZM436 1108H521Q594 1108 594 1267Q594 1370 578.0 1402.0Q562 1434 518 1434H436Z" transform="translate(3805.951 0)"/><path d="M78 0V1760H562Q752 1760 848.0 1654.5Q944 1549 944 1346V522Q944 272 856.5 136.0Q769 0 550 0ZM432 311H493Q590 311 590 405V1313Q590 1401 566.5 1426.5Q543 1452 471 1452H432Z" transform="translate(4794.439 0)"/></g>
   <path d="M62 756h72" stroke="url(#accent)" stroke-width="5"/>
   <text x="154" y="771" fill="#F7A6BE" font-family="Arial, 'PingFang SC', sans-serif" font-size="40" font-weight="600">让闲置的 iPad，再次发光。</text>
   <path d="M0 857H900" stroke="url(#accent)" stroke-width="4"/>

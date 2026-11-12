@@ -21,10 +21,11 @@ INPUTS = (
     "Resources/Icon-76.png", "Resources/Icon-76@2x.png", "Resources/Icon-83.5@2x.png",
     "Resources/Default-Landscape.png", "Resources/Default-Landscape@2x.png",
     "Resources/ViceCity.jpg",
+    "Resources/Anton-Regular.ttf", "Resources/Anton-OFL.txt",
 )
 FRAMEWORKS = (
     "UIKit", "Foundation", "AVFoundation", "MediaPlayer", "CoreMotion", "CoreMedia",
-    "QuartzCore", "CoreGraphics", "CoreLocation", "CoreFoundation",
+    "QuartzCore", "CoreGraphics", "CoreLocation", "CoreFoundation", "CoreText",
 )
 
 

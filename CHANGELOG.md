@@ -7,6 +7,13 @@ Notable changes to Wizard are listed here. Build and device evidence are describ
 - Add a macOS host CI workflow and repository-content checks.
 - Add contributor, security, and compatibility guidance.
 
+## 0.2.0 preview 3 — 20261112.39
+
+- Bundle the static OFL-licensed Anton display face and license in the App, device/Simulator builds and package; capture the actual resolved clock font and bundled file origin.
+- Reject missing, changed or unregistered display fonts during packaging.
+- Rework the GitHub showcase with image chapter titles, generous section spacing and readable installation paths; recapture native screenshots from this build.
+- Repository and Releases remain private/draft pending explicit publication confirmation. Physical-device rendering remains a separate acceptance step.
+
 ## 0.2.0-preview.1 — candidate
 
 - Remove unfinished mini-games and their audio, menu, lifecycle, and test integration.

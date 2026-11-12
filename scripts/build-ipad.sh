@@ -122,7 +122,7 @@ sha256_file() {
 }
 
 INPUTS=(main.m Info.plist IWMediaCatalog.h IWHTTPTransport.h IWWeatherService.h IWWeatherService.m IWFrameProbe.h)
-RESOURCE_FILES=(Icon-76.png Icon-76@2x.png Icon-83.5@2x.png Default-Landscape.png Default-Landscape@2x.png ViceCity.jpg)
+RESOURCE_FILES=(Icon-76.png Icon-76@2x.png Icon-83.5@2x.png Default-Landscape.png Default-Landscape@2x.png ViceCity.jpg Anton-Regular.ttf Anton-OFL.txt)
 if [[ -d "$SOURCE_DIR/Resources" ]]; then
   for RESOURCE in "${RESOURCE_FILES[@]}"; do INPUTS+=("Resources/$RESOURCE"); done
 fi
@@ -145,7 +145,7 @@ done > "$WORK_DIR/INPUTS.sha256"
 SOURCE_FINGERPRINT="$(sha256_file "$WORK_DIR/INPUTS.sha256")"
 /usr/libexec/PlistBuddy -c "Add :WizardSourceFingerprint string $SOURCE_FINGERPRINT" "$APP_DIR/Info.plist"
 
-FRAMEWORKS=(UIKit Foundation AVFoundation MediaPlayer CoreMotion CoreMedia QuartzCore CoreGraphics CoreLocation CoreFoundation)
+FRAMEWORKS=(UIKit Foundation AVFoundation MediaPlayer CoreMotion CoreMedia QuartzCore CoreGraphics CoreLocation CoreFoundation CoreText)
 FRAMEWORK_FLAGS=()
 for FRAMEWORK in "${FRAMEWORKS[@]}"; do
   FRAMEWORK_FLAGS+=(-framework "$FRAMEWORK")

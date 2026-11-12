@@ -6,7 +6,7 @@ This tree contains the complete Wizard app source, owned icon resources, public 
 
 ## Build
 
-The current local source candidate is **0.2.0 / 20261112.38**. Mini-games and their audio, menu, lifecycle and test integration have been removed. This candidate has not been installed on a device; the prior device records describe earlier builds.
+The current local source candidate is **0.2.0 / 20261112.39**. Mini-games and their audio, menu, lifecycle and test integration have been removed. This candidate has not been installed on a device; the prior device records describe earlier builds.
 
 Build on macOS with Xcode Command Line Tools and an iPhoneOS SDK you obtained through Apple’s development tools. The SDK is not bundled. From the repository root:
 
@@ -18,7 +18,7 @@ The verified SDK is iPhoneOS 9.3. Newer SDK compatibility is unverified, particu
 
 The script creates an unsigned `WizardSystem.app` for `armv7` and `arm64`, with a minimum deployment target of iOS 9.0. It records the compiler, SDK name, compile command template, warnings, source snapshot hashes, a combined fingerprint injected into the built plist, output hashes, and architectures in `BUILD-METADATA.txt`. The script fails if any allowlisted build input changes while compiling. It also uses `nm -u -j` to reject undefined app-owned `IW` functions and Objective-C classes, metaclasses and ivars in each architecture. `NM` may select a compatible executable supporting those flags and symbol-names-only output. Symbol inspection or matching errors stop the build. The legacy `dynamic_lookup` linker flag remains for private system symbols; a host build does not prove those symbols resolve on-device. The script does not sign or install the app.
 
-By default, output goes to a new private audit directory. To select a location, pass `--out PATH`; that path must not already exist. The script never clears an existing output directory. No proprietary font or external media pack is needed to compile. The reviewed Wizard icons, owned landscape launch images and attributed `ViceCity.jpg` in `App/Resources` are bound into the source snapshot and copied into the App. Native screenshots and full media packs retain separate attribution.
+By default, output goes to a new private audit directory. To select a location, pass `--out PATH`; that path must not already exist. The script never clears an existing output directory. No proprietary font or external media pack is needed to compile. The reviewed Wizard icons, owned landscape launch images, attributed `ViceCity.jpg`, static OFL-licensed `Anton-Regular.ttf` and `Anton-OFL.txt` in `App/Resources` are bound into the source snapshot and copied into the App. Device and Simulator builds carry the same display font bytes. Native screenshots and full media packs retain separate attribution.
 
 The original private workspace has a local SDK fallback at `.local/toolchains/iPhoneOS9.3.sdk` for development only. An exported source candidate has no SDK fallback and requires `IOS_SDK`.
 

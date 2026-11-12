@@ -82,6 +82,8 @@
 !/App/Resources/Icon.svg
 !/App/Resources/Launch.svg
 !/App/Resources/ViceCity.jpg
+!/App/Resources/Anton-Regular.ttf
+!/App/Resources/Anton-OFL.txt
 
 /App/WizardPowerTweak/*
 !/App/WizardPowerTweak/README.md
@@ -121,11 +123,19 @@
 /assets/readme/*
 !/assets/readme/hero-dark.svg
 !/assets/readme/postcards-triptych.svg
-!/assets/readme/installation-routes.svg
-!/assets/readme/source-endmark.svg
 !/assets/readme/hero-mobile-dark.svg
 !/assets/readme/hero-mobile.svg
 !/assets/readme/hero.svg
+!/assets/readme/install-agent.svg
+!/assets/readme/install-direct.svg
+!/assets/readme/chapter-display.svg
+!/assets/readme/chapter-display-mobile.svg
+!/assets/readme/chapter-install.svg
+!/assets/readme/chapter-install-mobile.svg
+!/assets/readme/chapter-materials.svg
+!/assets/readme/chapter-materials-mobile.svg
+!/assets/readme/chapter-source.svg
+!/assets/readme/chapter-source-mobile.svg
 
 /docs/open-source/*
 !/docs/open-source/GTA6-MATERIALS.md

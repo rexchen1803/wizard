@@ -1,13 +1,13 @@
 # Compatibility
 
-This guide separates source/build evidence from installations and device behavior. The current source candidate is **Wizard 0.2.0 / build 20261112.38**. It has host regressions and local build evidence, but build `20261112.38` has not been installed on a physical iPad.
+This guide separates source/build evidence from installations and device behavior. The current source candidate is **Wizard 0.2.0 / build 20261112.39**. It has host regressions and local build evidence, but build `20261112.39` has not been installed on a physical iPad.
 
 ## Current evidence
 
 | Target | Evidence | Boundary |
 | --- | --- | --- |
-| iOS 9 and later | The source declares iOS 9.0 as its minimum. Candidate build `20261112.38` built locally and from a clean source export with an iPhoneOS 9.3 SDK for `armv7` and `arm64`. | A deployment target and successful compile do not establish runtime compatibility across later iOS versions. Newer SDK builds are not verified. |
-| iPad (8th generation) Simulator, iOS 18.0 | Build `20261112.38` uses the installed iPhoneSimulator 27.1 SDK. Native captures cover home, gallery, categories, menus, clock/date/calendar editing, empty state and a local synthetic weather panel. Source/resource fingerprint matches the device build. | Simulator rendering is separate from iOS 9–12 device behavior; the weather fixture does not verify live forecasts. See [capture provenance](../assets/demo/README.md). |
+| iOS 9 and later | The source declares iOS 9.0 as its minimum. Candidate build `20261112.39` built locally and from a clean source export with an iPhoneOS 9.3 SDK for `armv7` and `arm64`. | A deployment target and successful compile do not establish runtime compatibility across later iOS versions. Newer SDK builds are not verified. |
+| iPad (8th generation) Simulator, iOS 18.0 | Build `20261112.39` uses the installed iPhoneSimulator 27.1 SDK. Native captures cover home, gallery, categories, menus, clock/date/calendar editing, empty state and a local synthetic weather panel. Source/resource fingerprint matches the device build. | Simulator rendering is separate from iOS 9–12 device behavior; the weather fixture does not verify live forecasts. See [capture provenance](../assets/demo/README.md). |
 | macOS host checks | Eight host regression suites run with Apple Clang and Python 3. The CI workflow is configured for GitHub's `macos-15` runner. | They use fixtures, extracted production logic, and UI doubles. They do not install the app or prove native device behavior. The earlier source37 hosted workflow passed; current-candidate CI evidence is linked in its commit checks. |
 | iPad 2, iPad2,4, iOS 9.3.5 | Earlier build `20261111.30` was updated on an existing prepared installation for scoped launch, menu, gallery, preference, motion, calendar, editor, and photo-import checks. | Build `.37` is not installed. Fresh install, stock iOS sideloading, accessibility, and remaining interactions are unverified. |
 | iPad 4, iPad3,4, iOS 10.3.3 | Earlier build `20261111.30` was updated on an existing prepared installation for scoped UI, calendar, video, and media-resource checks. | Build `.37` is not installed. Fresh install, stock iOS sideloading, accessibility, and broad daily use are unverified. |
@@ -25,6 +25,10 @@ GitHub Actions runs only host regressions on a current macOS runner. It does not
 ## Known runtime constraints
 
 The app expects external media and preference paths outside a normal application container and dynamically looks up private Apple framework symbols. The optional power tweak also uses private SpringBoard APIs. These assumptions are not evidence that the app or tweak works on an unmodified device. Review [privacy and network behavior](open-source/PRIVACY.md) and [third-party material terms](../THIRD_PARTY.md) before enabling integrations or distributing changes.
+
+## Bundled display font
+
+Build `20261112.39` includes the unmodified static `Anton-Regular.ttf` and its OFL 1.1 license in both device and Simulator App bundles. The font is declared in `UIAppFonts` and registered with Core Text; the display selector uses `Anton-Regular` before system fallbacks. Native capture evidence records the actual clock font name and confirms its file comes from the App bundle. Package checks reject missing or different font/license bytes and missing font registration. This removes dependence on the old system-font preference list; the prepared iOS 9–12 devices still require separate runtime acceptance.
 
 ## Simulator video boundary
 
