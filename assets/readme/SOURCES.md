@@ -1,6 +1,6 @@
 # README artwork sources
 
-The README is an illustrated project introduction, with separate desktop and narrow-screen compositions. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.39`, not physical-device screenshots. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
+The Chinese and English READMEs use the same illustrated composition, with separate desktop and narrow-screen panels for each language. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.39`, not physical-device screenshots. The English page retains the original mixed Chinese/English App interface text in those images. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
 
 ## Artwork
 
@@ -38,4 +38,4 @@ python3 scripts/build-showcase.py \
   --out assets/readme
 ```
 
-The generator checks capture/source/font identity, input image digests, canvas bounds and content overlap. It aligns visible glyph outlines to common content rails and writes the exact geometry and digests to `LAYOUT.json`. A passing generator still requires visual review of the complete GitHub page at desktop and phone widths. It does not build or install the App.
+The generator writes all 28 panels for both languages and checks capture/source/font identity, input image digests, canvas bounds, missing English translations and content overlap. It aligns visible glyph outlines to common content rails and writes the exact geometry and digests to `LAYOUT.json`. A passing generator still requires visual review of both complete GitHub pages at desktop and phone widths. It does not build or install the App.

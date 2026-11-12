@@ -1,29 +1,29 @@
-name: Feature request
-description: Suggest a focused improvement to Wizard.
+name: Feature request / 功能建议
+description: Suggest a focused improvement. / 提出具体的 Wizard 改进建议。
 title: "[Feature]: "
 labels: [enhancement]
 body:
   - type: markdown
     attributes:
-      value: Describe the user task and the result you need. Requests do not imply that a feature is planned or supported on every iPad.
+      value: Describe the user task and the result you need. Requests do not imply that a feature is planned or supported on every iPad. 请描述实际需求；提交建议不代表功能已进入计划或支持全部设备。
   - type: textarea
     id: problem
     attributes:
-      label: What are you trying to do?
-      description: Explain the task or obstacle in your own words.
+      label: What are you trying to do? / 你想完成什么？
+      description: Explain the task or obstacle. / 请描述任务或遇到的障碍。
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: Proposed change
-      description: Describe the smallest useful change.
+      label: Proposed change / 改进建议
+      description: Describe the smallest useful change. / 描述能够解决问题的最小改动。
     validations:
       required: true
   - type: textarea
     id: context
     attributes:
-      label: Relevant iPad and iOS version
-      description: Share the model and OS only when they affect the request. Do not post device identifiers or personal media.
+      label: Relevant iPad and iOS version / 相关型号与系统
+      description: Share relevant model/OS only. / 仅提供相关型号与系统，不附设备标识或个人媒体。
     validations:
       required: false

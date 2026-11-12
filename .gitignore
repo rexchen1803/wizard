@@ -12,6 +12,7 @@
 !/NOTICE
 !/OPEN_SOURCE_EXPORT_REPORT.json
 !/README.md
+!/README.en.md
 !/SECURITY.md
 !/THIRD_PARTY.md
 !/assets/
@@ -47,6 +48,8 @@
 !/docs/COMPATIBILITY.md
 !/docs/INSTALL.md
 !/docs/open-source/
+!/docs/en/
+!/docs/zh-CN/
 
 /licenses/*
 !/licenses/Material-Icons-Apache-2.0.txt
@@ -105,6 +108,7 @@
 
 /assets/demo/*
 !/assets/demo/README.md
+!/assets/demo/README.en.md
 !/assets/demo/home-miami.jpg
 !/assets/demo/gallery-miami.jpg
 !/assets/demo/categories-miami.jpg
@@ -123,6 +127,20 @@
 !/assets/media/MANIFEST.json
 
 /assets/readme/*
+!/assets/readme/hero-en.svg
+!/assets/readme/hero-en-mobile.svg
+!/assets/readme/showcase-en.svg
+!/assets/readme/showcase-en-mobile.svg
+!/assets/readme/collection-en.svg
+!/assets/readme/collection-en-mobile.svg
+!/assets/readme/install-en.svg
+!/assets/readme/install-en-mobile.svg
+!/assets/readme/agent-en.svg
+!/assets/readme/agent-en-mobile.svg
+!/assets/readme/source-en.svg
+!/assets/readme/source-en-mobile.svg
+!/assets/readme/footer-en.svg
+!/assets/readme/footer-en-mobile.svg
 !/assets/readme/hero-mobile.svg
 !/assets/readme/hero.svg
 !/assets/readme/LAYOUT.json
@@ -150,3 +168,19 @@
 **/.DS_Store
 **/__pycache__/
 **/*.py[cod]
+
+/docs/en/*
+!/docs/en/README.md
+!/docs/en/INSTALL.md
+!/docs/en/AGENT-INSTALL.md
+!/docs/en/GTA6-MATERIALS.md
+
+/docs/zh-CN/*
+!/docs/zh-CN/README.md
+!/docs/zh-CN/COMPATIBILITY.md
+!/docs/zh-CN/DEVELOPMENT.md
+!/docs/zh-CN/THIRD_PARTY.md
+!/docs/zh-CN/PRIVACY.md
+!/docs/zh-CN/CONTRIBUTING.md
+!/docs/zh-CN/SECURITY.md
+!/docs/zh-CN/CHANGELOG.md

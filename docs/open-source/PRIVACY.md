@@ -1,12 +1,14 @@
 # Local data and network behavior
 
+[简体中文](../zh-CN/PRIVACY.md) · **English**
+
 This describes the iPad source candidate, not an App Store privacy declaration or proof of device acceptance.
 
 ## Photos and preferences
 
 Wizard can import a photo selected through the system picker. It writes a resized JPEG and a thumbnail to `/var/mobile/Media/iPadWizard/app/assets/user`. Favorites, wallpaper framing, clock/calendar layout and settings are stored on the device. Deleting a user-imported wallpaper removes Wizard's copy; it does not delete the original from Photos. Bundled media and user-imported media are separate.
 
-The public source package contains no personal photos, media library, preferences, device snapshots, SSH keys or connection credentials. It does not contain the historical theme fonts, launch artwork, music or videos. You can run the clock and import your own photos without the optional bundled wallpaper catalog.
+The reviewed source export contains no personal photos, media library, preferences, device snapshots, SSH keys or connection credentials. It includes the licensed Anton display font, Wizard-authored launch images and an attributed Vice City fallback wallpaper; historical theme fonts, music and full video/media packs are excluded. You can run the clock and import your own photos without the optional external wallpaper catalog.
 
 ## Cast and remote playback
 

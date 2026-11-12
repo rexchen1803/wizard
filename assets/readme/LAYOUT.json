@@ -1,5 +1,9 @@
 {
-  "schema": "wizard.campaign-layout.v1",
+  "schema": "wizard.campaign-layout.v2",
+  "languages": [
+    "zh-CN",
+    "en"
+  ],
   "native_capture_build": "20261112.39",
   "native_source_fingerprint": "3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f",
   "font_sha256": {
@@ -10,6 +14,7 @@
   "panels": [
     {
       "file": "hero.svg",
+      "language": "zh-CN",
       "width": 1200,
       "height": 1120,
       "gutter": 64,
@@ -52,6 +57,7 @@
     },
     {
       "file": "showcase.svg",
+      "language": "zh-CN",
       "width": 1200,
       "height": 1900,
       "gutter": 64,
@@ -151,6 +157,7 @@
     },
     {
       "file": "collection.svg",
+      "language": "zh-CN",
       "width": 1200,
       "height": 1320,
       "gutter": 64,
@@ -209,6 +216,7 @@
     },
     {
       "file": "install.svg",
+      "language": "zh-CN",
       "width": 1200,
       "height": 246,
       "gutter": 64,
@@ -234,6 +242,7 @@
     },
     {
       "file": "agent.svg",
+      "language": "zh-CN",
       "width": 1200,
       "height": 246,
       "gutter": 64,
@@ -259,6 +268,7 @@
     },
     {
       "file": "source.svg",
+      "language": "zh-CN",
       "width": 1200,
       "height": 246,
       "gutter": 64,
@@ -284,6 +294,7 @@
     },
     {
       "file": "footer.svg",
+      "language": "zh-CN",
       "width": 1200,
       "height": 400,
       "gutter": 64,
@@ -333,6 +344,7 @@
     },
     {
       "file": "hero-mobile.svg",
+      "language": "zh-CN",
       "width": 760,
       "height": 840,
       "gutter": 40,
@@ -375,6 +387,7 @@
     },
     {
       "file": "showcase-mobile.svg",
+      "language": "zh-CN",
       "width": 760,
       "height": 1780,
       "gutter": 40,
@@ -450,6 +463,7 @@
     },
     {
       "file": "collection-mobile.svg",
+      "language": "zh-CN",
       "width": 760,
       "height": 1110,
       "gutter": 40,
@@ -508,6 +522,7 @@
     },
     {
       "file": "install-mobile.svg",
+      "language": "zh-CN",
       "width": 760,
       "height": 276,
       "gutter": 40,
@@ -533,6 +548,7 @@
     },
     {
       "file": "agent-mobile.svg",
+      "language": "zh-CN",
       "width": 760,
       "height": 276,
       "gutter": 40,
@@ -558,6 +574,7 @@
     },
     {
       "file": "source-mobile.svg",
+      "language": "zh-CN",
       "width": 760,
       "height": 276,
       "gutter": 40,
@@ -583,6 +600,7 @@
     },
     {
       "file": "footer-mobile.svg",
+      "language": "zh-CN",
       "width": 760,
       "height": 400,
       "gutter": 40,
@@ -629,6 +647,658 @@
         }
       ],
       "sha256": "d1407a2a40ca24716987b7519bbb3ae10acbd7adc6f34d265573becc9a79494f"
+    },
+    {
+      "file": "hero-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 1120,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 1200,
+          "top": 0,
+          "bottom": 675.0
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 1136.0,
+          "top": 526.0081430341654,
+          "bottom": 860.0
+        },
+        {
+          "role": "copy",
+          "text": "A second life for your iPad.",
+          "left": 64,
+          "right": 637.452,
+          "top": 914.272,
+          "bottom": 959.856
+        },
+        {
+          "role": "copy",
+          "text": "Install guide",
+          "left": 64,
+          "right": 290.66999999999996,
+          "top": 1013.182,
+          "bottom": 1053.234
+        }
+      ],
+      "sha256": "ee1d43c57d672d2767211c883a239c603081309ae2d6bba43b818255fa24a9da"
+    },
+    {
+      "file": "showcase-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 1900,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Time. Well spent.",
+          "left": 64,
+          "right": 600.64,
+          "top": 88.096,
+          "bottom": 153.76
+        },
+        {
+          "role": "copy",
+          "text": "Your favorite scenes. Always in view.",
+          "left": 64,
+          "right": 634.928,
+          "top": 182.494,
+          "bottom": 217.956
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "left": 64,
+          "right": 1136,
+          "top": 270,
+          "bottom": 1074.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.39",
+          "left": 64,
+          "right": 498.43399999999997,
+          "top": 1111.304,
+          "bottom": 1132.338
+        },
+        {
+          "role": "provenance",
+          "text": "Chinese menus · original App capture",
+          "left": 64,
+          "right": 529.998,
+          "top": 1153.304,
+          "bottom": 1180.5
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 64,
+          "right": 584.0,
+          "top": 1240,
+          "bottom": 1630.0
+        },
+        {
+          "role": "copy",
+          "text": "Make it",
+          "left": 616.0,
+          "right": 838.208,
+          "top": 1240.0,
+          "bottom": 1292.8
+        },
+        {
+          "role": "copy",
+          "text": "your own.",
+          "left": 616.0,
+          "right": 927.6800000000001,
+          "top": 1347.168,
+          "bottom": 1398.24
+        },
+        {
+          "role": "copy",
+          "text": "Move the clock and calendar.",
+          "left": 616.0,
+          "right": 1044.096,
+          "top": 1464.528,
+          "bottom": 1490.416
+        },
+        {
+          "role": "copy",
+          "text": "Resize and reframe.",
+          "left": 616.0,
+          "right": 904.1279999999999,
+          "top": 1519.112,
+          "bottom": 1545.416
+        },
+        {
+          "role": "copy",
+          "text": "Wallpaper gallery",
+          "left": 64,
+          "right": 513.072,
+          "top": 1678.504,
+          "bottom": 1732.636
+        },
+        {
+          "role": "copy",
+          "text": "Categories, favorites, your photos.",
+          "left": 64,
+          "right": 539.3499999999999,
+          "top": 1765.73,
+          "bottom": 1797.5
+        }
+      ],
+      "sha256": "04d403b8cfd9772487946bc2df699b8c1de2a29290780a7a62f81c65de25258a"
+    },
+    {
+      "file": "collection-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 1320,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 64,
+          "right": 653.10546875,
+          "top": 36.046875,
+          "bottom": 181.296875
+        },
+        {
+          "role": "copy",
+          "text": "Your own slice of Vice City.",
+          "left": 64,
+          "right": 792.5600000000001,
+          "top": 232.528,
+          "bottom": 290.544
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 64,
+          "right": 1136,
+          "top": 350,
+          "bottom": 953.0
+        },
+        {
+          "role": "copy",
+          "text": "228 images · 2 videos",
+          "left": 64,
+          "right": 418.72200000000004,
+          "top": 1008.936,
+          "bottom": 1044.5
+        },
+        {
+          "role": "copy",
+          "text": "Originals in a separate archive",
+          "left": 64,
+          "right": 537.212,
+          "top": 1072.936,
+          "bottom": 1108.5
+        },
+        {
+          "role": "copy",
+          "text": "View files & credits",
+          "left": 64,
+          "right": 507.28000000000003,
+          "top": 1195.024,
+          "bottom": 1234.672
+        }
+      ],
+      "sha256": "24318ae9ec5958f9e7d3033df3de7f7b14cd7705e57f6719753fd94592e56218"
+    },
+    {
+      "file": "install-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Install Wizard",
+          "left": 64,
+          "right": 458.02,
+          "top": 67.34,
+          "bottom": 116.84
+        },
+        {
+          "role": "copy",
+          "text": "Packages and device setup",
+          "left": 64,
+          "right": 460.096,
+          "top": 162.528,
+          "bottom": 196.0
+        }
+      ],
+      "sha256": "a68b043ec7d4d532fd4816cf2cc5057b7005b96defd2e1064f23543a79c6c8c2"
+    },
+    {
+      "file": "agent-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Ask an Agent",
+          "left": 64,
+          "right": 441.58,
+          "top": 68.12,
+          "bottom": 130.58
+        },
+        {
+          "role": "copy",
+          "text": "A ready-to-use install prompt",
+          "left": 64,
+          "right": 499.584,
+          "top": 162.528,
+          "bottom": 195.488
+        }
+      ],
+      "sha256": "1f943c71b81bfa14b3273ebb6e6c7dcadc1704a48c3f260b7875880627157e08"
+    },
+    {
+      "file": "source-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Build from source",
+          "left": 64,
+          "right": 580.12,
+          "top": 67.28,
+          "bottom": 116.84
+        },
+        {
+          "role": "copy",
+          "text": "Source, builds and contributions",
+          "left": 64,
+          "right": 547.7760000000001,
+          "top": 162.528,
+          "bottom": 194.08
+        }
+      ],
+      "sha256": "7a5f717d8071718a28fc91a4775c06e3493d6caf12ca1aa347de017391622a06"
+    },
+    {
+      "file": "footer-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 400,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 273.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "Native iPad app · Unofficial project",
+          "left": 64,
+          "right": 599.552,
+          "top": 164.112,
+          "bottom": 197.744
+        },
+        {
+          "role": "copy",
+          "text": "Code: MIT · Fonts: OFL 1.1",
+          "left": 64,
+          "right": 414.36400000000003,
+          "top": 233.712,
+          "bottom": 256.364
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI © Rockstar Games & rights holders",
+          "left": 64,
+          "right": 603.112,
+          "top": 291.712,
+          "bottom": 321.0
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 64,
+          "right": 161.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "7ef10a7c405434035dd7cdcd47804b17578c2544b103241d1ba728982eff3a91"
+    },
+    {
+      "file": "hero-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 840,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 760,
+          "top": 0,
+          "bottom": 427.5
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 720.0,
+          "top": 398.13949371570186,
+          "bottom": 610.0
+        },
+        {
+          "role": "copy",
+          "text": "A second life for your iPad.",
+          "left": 40,
+          "right": 613.452,
+          "top": 664.272,
+          "bottom": 709.856
+        },
+        {
+          "role": "copy",
+          "text": "Install guide",
+          "left": 40,
+          "right": 278.6,
+          "top": 747.56,
+          "bottom": 789.72
+        }
+      ],
+      "sha256": "3e3ad1c4446c8cfed6fead82804e38a4ba6d4c8ee8a4d52c3565722cd67097d4"
+    },
+    {
+      "file": "showcase-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 1780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Time. Well spent.",
+          "left": 40,
+          "right": 576.64,
+          "top": 68.096,
+          "bottom": 133.76
+        },
+        {
+          "role": "copy",
+          "text": "Your favorite scenes. Always in view.",
+          "left": 40,
+          "right": 678.096,
+          "top": 157.258,
+          "bottom": 196.892
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "left": 40,
+          "right": 720,
+          "top": 245,
+          "bottom": 755.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.39",
+          "left": 40,
+          "right": 608.106,
+          "top": 789.936,
+          "bottom": 817.442
+        },
+        {
+          "role": "provenance",
+          "text": "Chinese menus · original App capture",
+          "left": 40,
+          "right": 613.5360000000001,
+          "top": 841.528,
+          "bottom": 875.0
+        },
+        {
+          "role": "copy",
+          "text": "Wallpaper gallery",
+          "left": 40,
+          "right": 558.16,
+          "top": 947.12,
+          "bottom": 1009.58
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 40,
+          "right": 720,
+          "top": 1060,
+          "bottom": 1570.0
+        },
+        {
+          "role": "copy",
+          "text": "Categories, favorites, your photos.",
+          "left": 40,
+          "right": 642.11,
+          "top": 1609.258,
+          "bottom": 1649.5
+        },
+        {
+          "role": "copy",
+          "text": "Fine-tune your clock and calendar.",
+          "left": 40,
+          "right": 646.29,
+          "top": 1679.752,
+          "bottom": 1718.892
+        }
+      ],
+      "sha256": "87eab1f779c41d92feef326a3ced9a015cdfc34b46f94217e90d23673a1ac4fa"
+    },
+    {
+      "file": "collection-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 1110,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 40,
+          "right": 487.15234375,
+          "top": 40.734375,
+          "bottom": 150.984375
+        },
+        {
+          "role": "copy",
+          "text": "Your own slice of Vice City.",
+          "left": 40,
+          "right": 664.48,
+          "top": 207.024,
+          "bottom": 256.752
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 40,
+          "right": 720,
+          "top": 314,
+          "bottom": 696.5
+        },
+        {
+          "role": "copy",
+          "text": "228 images · 2 videos",
+          "left": 40,
+          "right": 436.454,
+          "top": 749.252,
+          "bottom": 789.0
+        },
+        {
+          "role": "copy",
+          "text": "Originals in a separate archive",
+          "left": 40,
+          "right": 568.884,
+          "top": 813.252,
+          "bottom": 853.0
+        },
+        {
+          "role": "copy",
+          "text": "View files & credits",
+          "left": 40,
+          "right": 483.28000000000003,
+          "top": 985.024,
+          "bottom": 1024.672
+        }
+      ],
+      "sha256": "5b84f26811276dcb34d0da77e4776087d08753bcf78c887f5b7b06f9465e3070"
+    },
+    {
+      "file": "install-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Install Wizard",
+          "left": 40,
+          "right": 420.886,
+          "top": 68.96199999999999,
+          "bottom": 116.812
+        },
+        {
+          "role": "copy",
+          "text": "Packages and device setup",
+          "left": 40,
+          "right": 485.60799999999995,
+          "top": 173.344,
+          "bottom": 211.0
+        }
+      ],
+      "sha256": "9f70cc3a21f472bd2a717d7c263b6d5d9ee6afa6b0433ed58980788ca3fcae4c"
+    },
+    {
+      "file": "agent-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Ask an Agent",
+          "left": 40,
+          "right": 404.994,
+          "top": 69.71600000000001,
+          "bottom": 130.094
+        },
+        {
+          "role": "copy",
+          "text": "A ready-to-use install prompt",
+          "left": 40,
+          "right": 530.0319999999999,
+          "top": 173.344,
+          "bottom": 210.424
+        }
+      ],
+      "sha256": "a1b5612fb5f6ced3822c650132de99ef34685d69df3b66d3e1edda223f1d8423"
+    },
+    {
+      "file": "source-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Build from source",
+          "left": 40,
+          "right": 538.916,
+          "top": 68.904,
+          "bottom": 116.812
+        },
+        {
+          "role": "copy",
+          "text": "Source, builds and contributions",
+          "left": 40,
+          "right": 584.2479999999999,
+          "top": 173.344,
+          "bottom": 208.84
+        }
+      ],
+      "sha256": "bb5b7bdcceedba399954e7bb8b3783e45c038f12100d0edebf5251dd76aa6c5f"
+    },
+    {
+      "file": "footer-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 400,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 249.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "Native iPad app · Unofficial project",
+          "left": 40,
+          "right": 609.024,
+          "top": 162.494,
+          "bottom": 198.228
+        },
+        {
+          "role": "copy",
+          "text": "Code: MIT · Fonts: OFL 1.1",
+          "left": 40,
+          "right": 440.416,
+          "top": 230.528,
+          "bottom": 256.416
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI © Rockstar Games & rights holders",
+          "left": 40,
+          "right": 579.112,
+          "top": 291.712,
+          "bottom": 321.0
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 40,
+          "right": 137.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "e7baaffddc5fa700a3e033a0be17abfa7c645453f11e203999ef4cda2ead6d8a"
     }
   ]
 }

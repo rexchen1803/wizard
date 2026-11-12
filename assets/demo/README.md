@@ -1,5 +1,7 @@
 # 演示截图来源
 
+**简体中文** · [English](README.en.md)
+
 ## 当前 Miami 预览
 
 `*-miami.jpg` 来自 build **20261112.39** 在 **iPad（第 8 代）模拟器 / iOS 18.0** 中的原生 UIKit 渲染。原始截图为 2160 × 1620 PNG；网页版本保持同样像素尺寸，使用 JPEG quality 85 编码，未合成、添加或重绘任何 App 界面。原始 PNG 的 SHA256、网页图片校验值、场景命令和源码指纹在 [CAPTURE-METADATA.json](CAPTURE-METADATA.json)。

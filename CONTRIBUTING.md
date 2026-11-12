@@ -1,5 +1,7 @@
 # Contributing
 
+[简体中文](docs/zh-CN/CONTRIBUTING.md) · **English**
+
 Thanks for helping improve Wizard. Before opening a change, review the [compatibility guide](docs/COMPATIBILITY.md), [privacy notes](docs/open-source/PRIVACY.md), and [third-party material notices](THIRD_PARTY.md).
 
 ## Report an issue
@@ -19,6 +21,7 @@ The host suites require macOS, Apple Clang, and Python 3. From the repository ro
 ```sh
 python3 scripts/check-repository.py
 python3 tests/repository-regressions.py
+python3 tests/package-regressions.py
 python3 tests/native-regressions.py
 ./App/tests/run-http-transport-regressions.sh
 ./App/tests/run-weather-service-regressions.sh

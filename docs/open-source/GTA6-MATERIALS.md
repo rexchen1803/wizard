@@ -1,37 +1,46 @@
-# GTA VI 素材来源与版权
+[English](../en/GTA6-MATERIALS.md) · 简体中文
 
-GTA VI 图片、视频及其缩略图、转码和裁切的版权属于 **Rockstar Games 及相应权利人**。Wizard 的 MIT License 适用于项目自有代码，不改变这些素材的权利归属。本项目与 Rockstar Games 无隶属或赞助关系。
+# GTA VI 素材来源与权利说明
 
-## 下载与内容
+GTA VI 图片、视频、截图及其缩略图、转码和裁切的版权属于 **Rockstar Games 与相应权利人**。这些素材与 Wizard 自有代码分开管理，不受项目 MIT License 授权。本项目与 Rockstar Games 没有隶属、赞助或认可关系。
 
-素材包已上传至 [Releases](https://github.com/rexchen1803/wizard/releases) 中的 `v0.2.0-preview.3` 草稿，尚未公开发布：
+## 分发状态与素材包
 
-| 素材包 | 内容 | 用途 |
+截至 2026-11-12，GitHub 仓库为私有状态，三个 Release 均为草稿。清单中的媒体包登记在 `v0.2.0-preview.3` 草稿中，尚无公开下载。清单所列 `download_url` 是草稿目标地址，不能当作可公开访问的下载链接。
+
+| 素材包 | 清单中的内容 | 预期用途 |
 | --- | --- | --- |
-| `wizard-gta6-gallery-20261112.zip` | 230 项目录、228 张横版图片、2 段 MP4 预告片及缩略图，共460个媒体引用 | 安装到 Wizard 的可选图库 |
-| `gta6-original-materials-20261112.zip` | 343 张原始 JPEG、2 段 MKV 和2份随文件保存的 SRT | 原始素材收藏与后续制作 |
+| `wizard-gta6-gallery-20261112.zip` | 464 个文件：230 条图库目录项、228 张横向图片、2 段 MP4 预告片、230 张缩略图，共 460 个媒体引用。 | Wizard 可选图库。 |
+| `gta6-original-materials-20261112.zip` | 350 个文件：343 张原始 JPEG、2 段 MKV 视频、2 份 SRT 字幕及包内说明文件。 | 原始素材归档与后续制作参考。 |
 
-文件大小、发布后的下载地址和 SHA-256 见 [文件清单](../../assets/media/MANIFEST.json)。每个压缩包也带有逐文件 `MANIFEST.json`、版权署名和用途说明。原始文件名保留；App 图库中的分类、简短显示名称和稳定 key 分开管理。
+两个压缩包的字节数、SHA-256 和清单记录见[素材清单](../../assets/media/MANIFEST.json)。每包均包含逐文件清单、版权署名和用途说明。原始文件名保留；App 图库的分类、简短显示名和稳定 key 分开管理。两份 SRT 的作者来源尚未独立核实，不声称它们是 Rockstar 官方字幕。
 
-## 官方来源
+素材来源核对、文件名匹配与内容分类记录不等于逐文件字节级来源证明，也不构成再分发许可。媒体包中的每个文件仍受相应权利约束。
 
-项目所有者提供的素材来自 Rockstar 的公开媒体和下载页面：
+## Rockstar 官方来源
+
+项目所有者从 Rockstar 的公开媒体与下载页面整理了素材：
 
 - [GTA VI Artwork & Wallpapers](https://www.rockstargames.com/VI/media/artwork-wallpapers)
 - [GTA VI Media](https://www.rockstargames.com/VI/media)
 - [GTA VI Videos](https://www.rockstargames.com/VI/media/videos)
 - [Rockstar Games Legal Terms](https://www.rockstargames.com/legal/)
 
-原图包括27组壁纸构图及其142种尺寸/标志版本、138张游戏截图、51张 Ultimate Edition 图片和12张 Vintage Vice City Pack 图片。图库每组壁纸选一张横版，保留全部截图与内容包图片。上游页面和目录可能变化；本预览的文件范围由文件清单固定。
+本项目整理的源文件记录包含 27 组壁纸构图及其 142 个尺寸或标志版本、138 张游戏截图、51 张 Ultimate Edition 图片和 12 张 Vintage Vice City Pack 图片。图库为每组壁纸选择一张横向图片，并保留全部截图与内容包图片。Rockstar 网站内容可能更新；此处描述的具体包范围以[素材清单](../../assets/media/MANIFEST.json)和包内逐文件清单为准。
 
-项目记录中的原图来源核对、文件名匹配和内容归类，不构成逐文件再分发许可。两个 SRT 的作者来源未独立核实，因此不声称它们是 Rockstar 官方字幕。
+## 仓库演示图与许可范围
 
-## 演示截图与许可范围
+仓库的 [assets/demo](../../assets/demo/README.md) 说明了随代码保存的 App 截图来源：当前 `*-miami.jpg` 是 build `20261112.39` 在 iPad 第 8 代、iOS 18 模拟器中的原生截图；`*-ipad2.png` 是 build `20261111.36` 的早期实体设备截图。截图里的 GTA VI 画面仍属于 Rockstar Games 与相应权利人，不适用 Wizard 的 MIT 代码许可。
 
-仓库的 [assets/demo](../../assets/demo/README.md) 包含运行中的 Wizard 原生截图，其中的 GTA VI 画面保留同样的 Rockstar 及相应权利人版权。完整原图、视频与 App 图库以 Release 附件提供；这些素材和截图不适用 Wizard 的 MIT 代码许可。
+媒体包不包含用户照片、个人偏好、设备备份、连接信息、F1 视频、历史游戏音频、字体或 Apple SDK。安装和运行时条件见[安装指南](../INSTALL.md)，统一署名见 [ATTRIBUTION.md](../../assets/media/ATTRIBUTION.md)。
 
-素材包不包含用户照片、个人偏好、设备备份、连接信息、F1 视频、历史游戏音频、字体或 Apple SDK。安装方法见 [安装指南](../INSTALL.md)，统一署名见 [ATTRIBUTION.md](../../assets/media/ATTRIBUTION.md)。
+## App 默认图与宣传素材
 
-## 构建默认图与演示
+当前 App 构建包含 `App/Resources/ViceCity.jpg`，来源文件为 `ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg`。该图为 3840 × 2160 像素，仓库中的该文件与来源字节一致；SHA-256 为 `c255874fee509eae0baa6f546861e483ec0b32efbfe8d013ec36888013d923c9`。App 只在没有外部图库目录时使用它作为默认画面。README 宣传图和原生截图也使用了经署名的 Rockstar 素材。相关图片与衍生图均不受 MIT 许可。App 内另有 SIL OFL 字体；仓库不分发 Rockstar 字体文件。
 
-当前构建还包含 `App/Resources/ViceCity.jpg`，来自 `ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg`。原始字节校验与署名见 [素材声明](../../assets/media/ATTRIBUTION.md)。该图只在未安装外部图库时作为默认画面；README 的宣传编排与原生截图也包含已提供素材。所有这些图片及衍生画面保留 Rockstar Games 与相关权利人的版权，不属于 MIT 源码许可。
+## 相关记录
+
+- [素材清单与校验值](../../assets/media/MANIFEST.json)
+- [统一素材署名](../../assets/media/ATTRIBUTION.md)
+- [演示截图来源与元数据](../../assets/demo/README.md)
+- [第三方许可与服务条款](../../THIRD_PARTY.md)

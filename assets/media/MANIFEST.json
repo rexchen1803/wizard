@@ -33,5 +33,7 @@
       "subtitle_count": 2,
       "file_mode": "0644"
     }
-  ]
+  ],
+  "distribution_status": "unpublished_draft",
+  "download_url_availability": "Pinned download URLs become available after Release publication to users authorized for the repository; a private repository still requires access permission. Drafts are maintainer-only."
 }

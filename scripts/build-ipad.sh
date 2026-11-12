@@ -247,7 +247,7 @@ SDK_NAME="$(basename "$SDK_PATH")"
     printf 'sdk_source: private-workspace fallback; do not include SDK in exports\n'
   fi
   printf 'compiler: %s\n' "$CLANG_VERSION"
-  printf 'compile_command_template: CLANG -target <ARCH>-apple-ios9.0 -miphoneos-version-min=9.0 [armv7: -mno-thumb] -fobjc-arc -isysroot <IOS_SDK> -I<APP_SOURCE> -F<SDK_FRAMEWORKS> -L<SDK_LIBS> <APP_SOURCE>/main.m <APP_SOURCE>/IWWeatherService.m -framework UIKit -framework Foundation -framework AVFoundation -framework MediaPlayer -framework CoreMotion -framework CoreMedia -framework QuartzCore -framework CoreGraphics -framework CoreLocation -framework CoreFoundation -Wl,-undefined,dynamic_lookup\n'
+  printf 'compile_command_template: CLANG -target <ARCH>-apple-ios9.0 -miphoneos-version-min=9.0 [armv7: -mno-thumb] -fobjc-arc -isysroot <IOS_SDK> -I<APP_SOURCE> -F<SDK_FRAMEWORKS> -L<SDK_LIBS> <APP_SOURCE>/main.m <APP_SOURCE>/IWWeatherService.m -framework UIKit -framework Foundation -framework AVFoundation -framework MediaPlayer -framework CoreMotion -framework CoreMedia -framework QuartzCore -framework CoreGraphics -framework CoreLocation -framework CoreFoundation -framework CoreText -Wl,-undefined,dynamic_lookup\n'
   printf 'link_command_template: LIPO -create <armv7-binary> <arm64-binary> -output WizardSystem.app/WizardSystem\n'
   printf 'source_hash_snapshot_before:\n'
   for INDEX in "${!INPUTS[@]}"; do printf '  %s: %s\n' "${INPUTS[$INDEX]}" "${INPUT_HASHES_BEFORE[$INDEX]}"; done
@@ -260,7 +260,7 @@ SDK_NAME="$(basename "$SDK_PATH")"
   printf 'compiler_warnings: %s\n' "${WARNING_COUNTS[*]}"
   printf 'linkage_policy: dynamic_lookup retained for legacy private symbols; undefined IW functions and IW Objective-C classes/metaclasses/ivars rejected per architecture; runtime system symbol resolution is not proven by this host build\n'
   printf 'code_signing: not performed\n'
-  printf 'icons: reviewed Wizard Resources copied when present; owned Wizard launch images included; no third-party media bundled\n'
+  printf 'icons: three reviewed Wizard icons and two owned launch images; attributed ViceCity.jpg and OFL Anton font/license included\n'
 } > "$WORK_DIR/BUILD-METADATA.txt"
 
 if [[ -e "$OUT_DIR" || -L "$OUT_DIR" ]]; then

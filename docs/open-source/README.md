@@ -1,44 +1,39 @@
-# iPad Wizard source candidate
+[简体中文](../zh-CN/DEVELOPMENT.md) · English
 
-**Release channel: public-source preview.** Wizard-authored code is licensed under MIT in the root `LICENSE` (`Copyright (c) 2026 Rex`). That license does not cover third-party materials. Google Material path data remains under its separate Apache 2.0 notice and license. GTA VI images, videos and derived edits are attributed to Rockstar Games and applicable rights holders. Selected attributed captures are included for demonstration; full media packs are separate Release attachments. The weather card has a localized provider-credit control, with native synthetic-fixture and visual checks accepted on iPad 2 and iPad 4. Live-provider compatibility and remaining device/runtime gates remain open.
+# Wizard source and contributor guide
 
-This tree contains the complete Wizard app source, owned icon resources, public packaging/install tools, optional power-addon source, regression tests and documentation. The repository includes attributed native demonstration captures. App binaries and separate GTA VI media packs are provided as Release attachments; Apple SDKs, private device state, credentials and user photos are excluded.
+This repository contains Wizard, a legacy native Objective-C/UIKit iPad App, its host regression checks, packaging and installation tools, and an optional power tweak. The core App and the tweak are separate components.
+
+The App source candidate is **0.2.0 / build 20261112.39** with source/resource fingerprint `3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f`. As checked on 2026-11-12, this build had not been installed on a physical iPad. The GitHub repository was private and all three Releases were drafts; the media manifest records prepared draft assets, not public download availability.
+
+Wizard-authored code is licensed under the root [MIT License](../../LICENSE). That license does not cover third-party artwork, fonts, user imports or other assets. See [third-party notices](../../THIRD_PARTY.md) and the [GTA VI materials guide](../en/GTA6-MATERIALS.md).
 
 ## Build
 
-The current local source candidate is **0.2.0 / 20261112.39**. Mini-games and their audio, menu, lifecycle and test integration have been removed. This candidate has not been installed on a device; the prior device records describe earlier builds.
-
-Build on macOS with Xcode Command Line Tools and an iPhoneOS SDK you obtained through Apple’s development tools. The SDK is not bundled. From the repository root:
+Build on macOS with Apple Clang, Xcode command-line tools and an iPhoneOS SDK obtained through Apple's development tools. The SDK is not included in this repository or in a source export.
 
 ```sh
 IOS_SDK="/path/to/iPhoneOS9.3.sdk" ./scripts/build-ipad.sh
 ```
 
-The verified SDK is iPhoneOS 9.3. Newer SDK compatibility is unverified, particularly the retired MediaPlayer interfaces and armv7 support.
+The verified SDK is iPhoneOS 9.3. The script creates an **unsigned** `WizardSystem.app` for `armv7` and `arm64`, with a minimum deployment target of iOS 9.0. These settings describe the build target; they do not prove runtime compatibility on every iOS 9–12 device. Newer SDK builds, including legacy `armv7` and MediaPlayer behavior, remain unverified.
 
-The script creates an unsigned `WizardSystem.app` for `armv7` and `arm64`, with a minimum deployment target of iOS 9.0. It records the compiler, SDK name, compile command template, warnings, source snapshot hashes, a combined fingerprint injected into the built plist, output hashes, and architectures in `BUILD-METADATA.txt`. The script fails if any allowlisted build input changes while compiling. It also uses `nm -u -j` to reject undefined app-owned `IW` functions and Objective-C classes, metaclasses and ivars in each architecture. `NM` may select a compatible executable supporting those flags and symbol-names-only output. Symbol inspection or matching errors stop the build. The legacy `dynamic_lookup` linker flag remains for private system symbols; a host build does not prove those symbols resolve on-device. The script does not sign or install the app.
+The build writes compiler and SDK details, a compile-command template, source-input hashes, a combined fingerprint in the App plist, output hashes, architectures and warnings to `BUILD-METADATA.txt`. It checks that allowlisted source and resource inputs do not change during compilation. It inspects undefined symbols with `nm -u -j` and stops on inspection errors or unresolved App-owned `IW` symbols. The legacy `dynamic_lookup` linker option remains for private system symbols; a successful host build cannot establish their presence or behavior on a device. The script does not sign or install the App.
 
-By default, output goes to a new private audit directory. To select a location, pass `--out PATH`; that path must not already exist. The script never clears an existing output directory. No proprietary font or external media pack is needed to compile. The reviewed Wizard icons, owned landscape launch images, attributed `ViceCity.jpg`, static OFL-licensed `Anton-Regular.ttf` and `Anton-OFL.txt` in `App/Resources` are bound into the source snapshot and copied into the App. Device and Simulator builds carry the same display font bytes. Native screenshots and full media packs retain separate attribution.
+The historical build 20261112.39 metadata template omitted `CoreText` from its recorded framework list, although the build script linked it. The script’s template has been corrected; this description error did not change the App source fingerprint, packaged App or bundled font.
 
-The original private workspace has a local SDK fallback at `.local/toolchains/iPhoneOS9.3.sdk` for development only. An exported source candidate has no SDK fallback and requires `IOS_SDK`.
+By default, output goes to a new directory under `.private-audit`. To choose a destination, pass `--out PATH`; the path must not exist. The script never clears an existing output directory. The build includes the reviewed App icons and launch images, the attributed `ViceCity.jpg` fallback image, and the static OFL-licensed `Anton-Regular.ttf` with its license. The App therefore includes third-party material; compiling it does not require a separate GTA VI media pack or a proprietary font. Rockstar artwork remains outside the MIT license; see the [materials guide](../en/GTA6-MATERIALS.md).
 
-## Device setup
+## Run the host checks
 
-See [device setup and runtime files](INSTALL.md) for the verified existing-install update scope, rollback sequence, required filesystem access, optional catalog schema and imported-photo layout. Fresh installation and stock-iOS sideloading remain unverified. Historical installers do not install this candidate.
-
-## Legacy runtime assumptions
-
-The source reflects a historical jailbroken or unsandboxed iPad deployment model. This is an inference from the code, not a property granted by the plist. `App/main.m` uses `/var/mobile/Media/iPadWizard/app` for app assets, user media, and state files, and reads/writes power preferences under `/var/mobile/Library/Preferences`. Those paths are outside an ordinary app container.
-
-The app dynamically opens Apple private `BackBoardServices`, `GraphicsServices`, and `SpringBoardServices` frameworks and resolves symbols used for display and lock operations. A successful host compile does not show that the symbols exist or work at runtime. The optional tweak also uses private SpringBoard APIs.
-
-`App/Info.plist` identifies an iPad-only app (`UIDeviceFamily` 2), sets a minimum OS of 9.0 and a development build channel, and sets `NSAllowsArbitraryLoads=true` for App Transport Security. This configuration does not demonstrate stock-device sideload compatibility. The guarded rootful installer does not establish entitlement or private-API behavior for stock devices. **Stock iOS sideloading has not been validated.**
-
-## Regression check
-
-Run the source regression checks with:
+The CI workflow runs on GitHub's `macos-15` runner. From the repository root, the same checks are:
 
 ```sh
+python3 scripts/check-repository.py
+python3 tests/repository-regressions.py
+python3 tests/package-regressions.py
+/bin/sh -n scripts/install-wizard.sh
+bash -n scripts/build-ipad.sh scripts/build-power.sh
 python3 tests/native-regressions.py
 ./App/tests/run-http-transport-regressions.sh
 ./App/tests/run-weather-service-regressions.sh
@@ -49,54 +44,54 @@ python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
 ```
 
-The checks execute extracted production methods with controlled dependencies; they do not replace physical-device testing. Calendar cases cover Gregorian year rollover, reduced spatial motion, transition cleanup and the unchanged return-to-today dissolve using UIKit view/animation doubles. Menu checks execute extracted production main/theme/settings menu geometry and background input guards using host UIKit doubles; they cover retained actions, ordering, touch-target sizes, overlap and landscape panel bounds, not native rendering. Gallery checks also exercise the production deletion-confirmation method with controlled UIKit doubles: trash taps do not delete, Cancel retains mixed selections, and a changed selection or reloaded gallery invalidates a stale confirmation. No installation, signing, or device operation is performed by the build or export scripts. Device and private-symbol runtime acceptance remains outstanding.
-
-## Privacy and limitations
-
-Read [PRIVACY.md](PRIVACY.md) before building or distributing. The app imports user-selected photos, exposes a local-network media control service, and can play URLs supplied to it. This candidate is not a claim of independent privacy, security, or runtime acceptance.
-
-`App/WizardPowerTweak/` is an optional experimental component. `scripts/build-power.sh` builds its source directly with clang for both architectures; see [its guide](../../App/WizardPowerTweak/README.md). It uses private SpringBoard APIs and can change lock, wake and display behavior. The App installer does not install it; runtime compatibility and safe configuration remain separate review work.
-
-## Licensing
-
-Wizard-authored code uses the MIT License in root `LICENSE`. Its scope excludes Rockstar media, user imports, and other third-party assets. Google Material path data has a separate Apache 2.0 license and attribution in root `NOTICE`. GTA VI owner-supplied attribution, official source pages, and per-file matching limits are documented in [GTA6-MATERIALS.md](GTA6-MATERIALS.md). The weather-credit control passed native synthetic-fixture and visual checks on iPad 2 and iPad 4; no live weather connection or legal clearance is claimed. The Open-Meteo free hosted API terms restrict use to non-commercial purposes; see [Third-party materials and build requirements](../../THIRD_PARTY.md) for the provider terms, CC BY 4.0 link, and live TLS limitation. The export remains `do_not_publish` pending runtime and other release gates.
-
-## Prepare a local export candidate
-
-From the original workspace, run:
-
-```sh
-python3 scripts/prepare-open-source.py
-```
-
-Or select a new destination with `--out PATH`. The destination must not already exist. The exporter copies a reviewed allowlist into `App/`, adds the build and documentation files, writes `OPEN_SOURCE_EXPORT_REPORT.json`, and checks workstation home paths, private-key/common credential patterns, email addresses, and nonprotocol IPv4 literals. This is not a full security or privacy review. It does not initialize Git, access the network, sign, install, or publish anything.
-
-## Performance diagnostics
-
-The opt-in frame probe records main-run-loop display-link delivery, interval p95 and delays. It checks the fixed global marker `/tmp/wizardsystem-performance-debug` on both iPad families. Reports, screenshots, and state files go under `NSTemporaryDirectory()`; on iPad 4 those outputs use the app container's temporary directory, separate from the global marker. Reports include version/build and source fingerprint. Check that `applicationState` is 0 and `windowHidden` is false when interpreting foreground samples. These samples do not measure compositor-presented frame rate; native interaction, displayed video and long-running stability require separate checks. Remove temporary diagnostics after testing.
-
-The power-edge harness uses a virtual scheduler and fake lock manager. It does not build/inject a SpringBoard tweak or establish private-API compatibility.
-
-The marker-gated local-video audit can use an owned fixture. Its optional `wizardsystem-local-video-fixture` file lives in `NSTemporaryDirectory()` and contains exactly 20 lowercase hexadecimal bytes, with UID 501 ownership and mode `0600`. It selects `/var/mobile/Media/iPadWizard/.wizard-local-video-audit-<nonce>/fixture.mp4`: the private root must have UID 501 ownership and mode `0700`, and the regular UID 501 file must be nonempty, at most 2 MiB, and on the parent's filesystem. The marker, private root and fixture file must not be symbolic links. Invalid inputs stop the diagnostic. Without the nonce marker, the diagnostic retains its original local-video input. The terminal report records actual monotonic sample intervals and read-only output-volume values. Remove the owned fixture and any markers created for the test after capture.
+The last eight commands are the host source-regression suites. The earlier commands check tracked repository contents, repository-checker regressions, package and installer fixtures, and shell syntax. The suites use fixtures, extracted production methods and UI doubles. CI does not build a device-target App or download/redistribute an Apple SDK. The checks do not sign or install the App, validate native rendering, resolve private system APIs on a device, or replace physical-device acceptance.
 
 ## Native simulator preview
 
-Build a separate native iPad preview using the Simulator SDK already installed with Xcode:
+The preview is a separate iPad App for the Simulator SDK already installed with Xcode:
 
 ```sh
 python3 scripts/build-preview.py --out build-preview
 ```
 
-This produces an ad-hoc-signed `WizardPreview.app` with the separate identifier `com.rex.wizard.preview`, target iOS 18 or later, and a source/resource fingerprint in `PREVIEW-METADATA.json`. It does not install or boot a simulator. The simulator-only media directory is `Documents/WizardMedia` inside this preview App's container. Actual device builds retain `/var/mobile/Media/iPadWizard/app`. With no catalog, the reviewed bundled Vice City image appears automatically. Optional catalog rows use the same relative-path format as device builds.
+It creates an ad-hoc-signed `WizardPreview.app` with identifier `com.rex.wizard.preview`, target iOS 18 or later, and a source/resource fingerprint in `PREVIEW-METADATA.json`. The script does not install the App or boot a Simulator. Preview media lives in `Documents/WizardMedia` inside the preview App's container; device builds continue to use `/var/mobile/Media/iPadWizard/app`.
 
-Install and launch only on a dedicated simulator you have selected for this project; use `xcrun simctl io <UDID> screenshot <path.png>` to capture genuine UIKit output. Simulator rendering is useful for layout inspection and promotional captures; it does not establish iOS 9–12 runtime or physical-device acceptance.
+Use a dedicated Simulator selected for this project to inspect native UIKit rendering and make captures. The eight `*-miami.jpg` captures in [demo provenance](../../assets/demo/README.en.md) come from an iPad (8th generation) Simulator running iOS 18. The three `*-ipad2.png` images there are earlier physical screenshots from build `20261111.36`; they do not show the current candidate. Neither capture set proves compatibility across older iOS versions. See [Compatibility](../COMPATIBILITY.md) for the evidence matrix.
 
-For repeatable scene captures, launch the preview with a Simulator-only argument after installing it on your selected test simulator:
+The preview accepts up to eight allowlisted scene commands through `WizardPreviewCommands`. For example:
 
 ```sh
-xcrun simctl launch --terminate-running-process SIMULATOR_UDID com.rex.wizard.preview \
+xcrun simctl launch --terminate-running-process SIMULATOR_UDID com.rex.wizard.preview \\
   -WizardPreviewCommands "main,settingsmenu"
 xcrun simctl io SIMULATOR_UDID screenshot settings.png
 ```
 
-Wait for the requested transition before taking the screenshot. `WizardPreviewCommands` accepts up to eight comma-separated, allowlisted scene commands. Examples include `main,menu`, `main,themesmenu`, `main,gallery,gallerycategories` and `main,clockedit`. This entry exists only in Simulator builds, avoids external URL confirmation dialogs, and calls the actual App actions. It does not change device builds or grant device installation authority.
+Wait for each requested transition before capturing. Example command sequences include `main,menu`, `main,themesmenu`, `main,gallery,gallerycategories` and `main,clockedit`. This Simulator-only entry invokes real App actions and avoids external URL confirmation dialogs. It does not change the device build or authorize device installation.
+
+## Runtime and installation boundaries
+
+The App expects external media and preference paths outside a normal application container. `App/main.m` uses `/var/mobile/Media/iPadWizard/app` for media and state and reads or writes power preferences under `/var/mobile/Library/Preferences`. It dynamically resolves symbols from Apple private BackBoardServices, GraphicsServices and SpringBoardServices frameworks.
+
+This legacy layout is inferred from the source, not granted by the plist. Fresh installation and stock-iOS sideloading have not been validated. Review [device setup and runtime files](INSTALL.md) for the limited prepared-device update scope and prerequisites before any device work. A successful compile, host test or Simulator capture is not installation or physical acceptance.
+
+The separate `App/WizardPowerTweak/` component uses private SpringBoard APIs and can change lock, wake and display behavior. `scripts/build-power.sh` builds it for `armv7` and `arm64`; it does not sign, install or establish runtime compatibility. The core App installer does not install the tweak. See its [component guide](../../App/WizardPowerTweak/README.md).
+
+## Privacy and service integrations
+
+Read [privacy and network behavior](PRIVACY.md) before building or distributing. The App imports user-selected photos, exposes a local-network media-control service and can play supplied URLs. `App/Info.plist` sets `NSAllowsArbitraryLoads=true`; that setting is not a security review or a claim that every network path works.
+
+The weather card includes a provider-credit control. Native checks with a synthetic fixture do not establish live-provider compatibility. Open-Meteo transport and legal clearance remain unverified; review [third-party terms](../../THIRD_PARTY.md) before changing or describing the integration.
+
+## Prepare a local source export
+
+From the original workspace:
+
+```sh
+python3 scripts/prepare-open-source.py
+```
+
+Use `--out PATH` to choose a destination that does not exist. The exporter copies a reviewed allowlist, writes `OPEN_SOURCE_EXPORT_REPORT.json` and checks for common workstation paths and credential patterns. These checks are not a complete privacy or security review. The exporter does not initialize Git, access the network, sign, install or publish. The iPhoneOS SDK, private device state, credentials and user photos are not part of the source export.
+
+## Licensing and attribution
+
+Wizard-authored code uses the root MIT License. Google Material path data retains its separate Apache 2.0 notice in root `NOTICE`. The bundled display font and its SIL OFL 1.1 license are included as separate files in `App/Resources`. GTA VI images, videos, screenshots and derived media remain the property of Rockstar Games and applicable rights holders; they are not licensed under MIT. See the [GTA VI materials guide](../en/GTA6-MATERIALS.md), [demo capture provenance](../../assets/demo/README.en.md) and [third-party notices](../../THIRD_PARTY.md).

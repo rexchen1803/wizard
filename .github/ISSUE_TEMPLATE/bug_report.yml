@@ -1,5 +1,5 @@
-name: Bug report
-description: Report a reproducible problem in Wizard.
+name: Bug report / 问题报告
+description: Report a reproducible problem. / 报告可复现的 Wizard 问题。
 title: "[Bug]: "
 labels: [bug]
 body:
@@ -8,37 +8,38 @@ body:
       value: >-
         Check the compatibility guide first. Do not attach device identifiers,
         personal photos, credentials, private filesystem dumps, or unredacted logs.
+        请先核对兼容性；不要附设备标识、个人照片、凭据、私有文件转储或未脱敏日志。
   - type: input
     id: version
     attributes:
-      label: Wizard version and build
-      placeholder: "0.2.0 / 20261111.37"
+      label: Wizard version and build / 版本与构建号
+      placeholder: "0.2.0 / 20261112.39"
     validations:
       required: true
   - type: input
     id: device
     attributes:
-      label: iPad model and iOS version
-      description: Use the model number shown in Settings. Do not include a serial number or UDID.
+      label: iPad model and iOS version / 型号与系统
+      description: Share model and OS only. / 仅填写型号与系统，不含序列号或 UDID。
       placeholder: "iPad3,4 / iOS 10.3.3"
     validations:
       required: true
   - type: dropdown
     id: environment
     attributes:
-      label: Installation environment
+      label: Installation environment / 安装环境
       options:
-        - Existing prepared installation
-        - Fresh installation
-        - Stock iOS
-        - Other or unknown
+        - Existing prepared installation / 现有准备环境
+        - Fresh installation / 首次安装
+        - Stock iOS / 原版未越狱
+        - Other or unknown / 其他或不确定
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Steps to reproduce
-      description: Include the shortest sequence that reproduces the issue.
+      label: Steps to reproduce / 复现步骤
+      description: Include the shortest sequence. / 请提供最短复现步骤。
       placeholder: |
         1. Open …
         2. Select …
@@ -48,14 +49,14 @@ body:
   - type: textarea
     id: expected
     attributes:
-      label: Expected and actual result
+      label: Expected and actual result / 预期与实际结果
     validations:
       required: true
   - type: textarea
     id: evidence
     attributes:
-      label: Redacted evidence
-      description: Remove usernames, home paths, network addresses, tokens, serials, UDIDs, imported media, and private installation details before posting.
+      label: Redacted evidence / 已脱敏的证据
+      description: Remove personal, network and device details. / 移除个人、网络、凭据、设备标识和私有安装信息。
       render: text
     validations:
       required: false

@@ -21,6 +21,44 @@ from fontTools.ttLib import TTFont
 
 CREAM, PINK, MUTED = '#FFF9CB', '#F7A6BE', '#DFB9D0'
 GROUND, PLUM = '#10101C', '#21152D'
+ENGLISH = {
+    'Wizard · 查看安装指南': 'Wizard · Installation guide',
+    'Wizard · 翻页时钟、壁纸图库与本地影像': 'Wizard · Clock, wallpapers and local media',
+    'Vice City 素材合集 · 图片、视频与原始素材': 'Vice City collection · Images, videos and original files',
+    'Wizard · 项目与第三方素材许可': 'Wizard · Project and third-party licenses',
+    '让闲置的 iPad，再次发光。': 'A second life for your iPad.',
+    '安装指南': 'Install guide',
+    '时钟与画面。': 'Time. Well spent.',
+    '把喜欢的画面，留在屏幕上。': 'Your favorite scenes. Always in view.',
+    '壁纸图库': 'Wallpaper gallery',
+    '分类、收藏与照片导入。': 'Categories, favorites, your photos.',
+    '也能调整时钟与日历的布局。': 'Fine-tune your clock and calendar.',
+    '布局，': 'Make it',
+    '随你心意。': 'your own.',
+    '移动时钟与日历，': 'Move the clock and calendar.',
+    '调整尺寸与壁纸裁切。': 'Resize and reframe.',
+    '把喜欢的画面，留在图库。': 'Your own slice of Vice City.',
+    '228 张图片 · 2 段视频': '228 images · 2 videos',
+    '另含原始素材包': 'Originals in a separate archive',
+    '查看素材与说明': 'View files & credits',
+    '安装 Wizard': 'Install Wizard',
+    '交给 Agent': 'Ask an Agent',
+    '从源码构建': 'Build from source',
+    '预览安装包与设备指南': 'Packages and device setup',
+    '一次性安装提示词': 'A ready-to-use install prompt',
+    '构建说明、源码与贡献方式': 'Source, builds and contributions',
+    '原生 iPad 应用 · 非官方开源项目': 'Native iPad app · Unofficial project',
+    '代码 MIT · 字体 OFL 1.1': 'Code: MIT · Fonts: OFL 1.1',
+    'GTA VI 素材 © Rockstar Games 及相关权利人': 'GTA VI © Rockstar Games & rights holders',
+}
+
+
+def translated(value, language):
+    if language == 'en':
+        value = ENGLISH.get(value, value)
+        if any('\u4e00' <= char <= '\u9fff' for char in value):
+            raise ValueError(f'Missing English campaign copy: {value}')
+    return value
 
 
 class Face:
@@ -53,13 +91,15 @@ class Face:
 
 
 class Panel:
-    def __init__(self, width, height, gutter, title, faces, mobile, ground=GROUND):
+    def __init__(self, width, height, gutter, title, faces, mobile, ground=GROUND, language='zh-CN'):
         self.width, self.height, self.gutter = width, height, gutter
-        self.title, self.faces, self.mobile = title, faces, mobile
+        self.title, self.faces, self.mobile = translated(title, language), faces, mobile
+        self.language = language
         self.parts = [f'<rect width="{width}" height="{height}" fill="{ground}"/>']
         self.elements = []
 
     def text(self, value, baseline, size, face='bold', color=CREAM, x=None, limit=None, role='copy'):
+        value = translated(value, self.language)
         x = self.gutter if x is None else x
         limit = self.width - self.gutter - x if limit is None else limit
         font = self.faces[face]
@@ -111,14 +151,14 @@ class Panel:
         doc += f'viewBox="0 0 {self.width} {self.height}" role="img"><title>{escape(self.title)}</title>'
         doc += ''.join(self.parts) + '</svg>\n'
         path.write_text(doc)
-        return {'file': path.name, 'width': self.width, 'height': self.height,
+        return {'file': path.name, 'language': self.language, 'width': self.width, 'height': self.height,
                 'gutter': self.gutter, 'elements': self.elements,
                 'sha256': hashlib.sha256(doc.encode()).hexdigest()}
 
 
-def hero(artwork, faces, mobile):
+def hero(artwork, faces, mobile, language):
     w, g, hero_h = (760, 40, 840) if mobile else (1200, 64, 1120)
-    p = Panel(w, hero_h, g, 'Wizard · 查看安装指南', faces, mobile)
+    p = Panel(w, hero_h, g, 'Wizard · 查看安装指南', faces, mobile, language=language)
     p.image(artwork, 0, 0, w, w * 9 / 16, 'artwork')
     fade_y = 320 if mobile else 510
     fade_h = 160 if mobile else 220
@@ -136,9 +176,9 @@ def hero(artwork, faces, mobile):
     return p
 
 
-def showcase(root, faces, mobile, capture):
+def showcase(root, faces, mobile, capture, language):
     w, g, total = (760, 40, 1780) if mobile else (1200, 64, 1900)
-    p = Panel(w, total, g, 'Wizard · 翻页时钟、壁纸图库与本地影像', faces, mobile)
+    p = Panel(w, total, g, 'Wizard · 翻页时钟、壁纸图库与本地影像', faces, mobile, language=language)
     y = 0
     p.text('时钟与画面。', y + 120 if mobile else y + 140, 64)
     p.text('把喜欢的画面，留在屏幕上。', y + 188 if mobile else y + 210, 38 if mobile else 34, 'regular', MUTED)
@@ -146,8 +186,14 @@ def showcase(root, faces, mobile, capture):
     image_w = w - 2 * g
     p.image(root/'assets/demo/home-miami.jpg', g, image_y, image_w, image_w * .75, 'native-capture')
     caption_y = image_y + image_w * .75 + (62 if mobile else 58)
-    label = 'iPad 实机截图' if capture['physical_device'] else 'iPad 模拟器实截'
-    p.text(f"{label} · build {capture['build']}", caption_y, 34 if mobile else 26, 'regular', MUTED, role='provenance')
+    if language == 'en':
+        label = 'Physical iPad' if capture['physical_device'] else 'iPad Simulator'
+        p.text(f"{label} · build {capture['build']}", caption_y, 34 if mobile else 26, 'regular', MUTED, role='provenance')
+        p.text('Chinese menus · original App capture', caption_y + (50 if mobile else 42),
+               32 if mobile else 26, 'regular', MUTED, role='provenance')
+    else:
+        label = 'iPad 实机截图' if capture['physical_device'] else 'iPad 模拟器实截'
+        p.text(f"{label} · build {capture['build']}", caption_y, 34 if mobile else 26, 'regular', MUTED, role='provenance')
     if mobile:
         p.text('壁纸图库', y + 995, 60)
         p.image(root/'assets/demo/gallery-miami.jpg', g, y + 1060, image_w, image_w * .75, 'native-capture')
@@ -158,7 +204,7 @@ def showcase(root, faces, mobile, capture):
         row_y = y + 1240
         p.image(root/'assets/demo/gallery-miami.jpg', g, row_y, cw, cw*.75, 'native-capture')
         right = g + cw + gap
-        title_top = faces['bold'].layout('布局，')[1][3] * 64 / faces['bold'].upem
+        title_top = faces['bold'].layout(translated('布局，', language))[1][3] * 64 / faces['bold'].upem
         p.text('布局，', row_y + title_top, 64, x=right, limit=cw)
         p.text('随你心意。', row_y + title_top + 92, 64, x=right, limit=cw)
         p.text('移动时钟与日历，', row_y + 250, 32, 'regular', MUTED, x=right, limit=cw)
@@ -168,9 +214,9 @@ def showcase(root, faces, mobile, capture):
     return p
 
 
-def collection(city, faces, mobile):
+def collection(city, faces, mobile, language):
     w, g, h = (760, 40, 1110) if mobile else (1200, 64, 1320)
-    p = Panel(w, h, g, 'Vice City 素材合集 · 图片、视频与原始素材', faces, mobile, PLUM)
+    p = Panel(w, h, g, 'Vice City 素材合集 · 图片、视频与原始素材', faces, mobile, PLUM, language)
     p.text('VICE CITY.', 150 if mobile else 180, 126 if mobile else 166, 'display')
     p.text('把喜欢的画面，留在图库。', 246 if mobile else 278, 48 if mobile else 56)
     iw, iy = w-2*g, 314 if mobile else 350
@@ -183,20 +229,20 @@ def collection(city, faces, mobile):
     return p
 
 
-def action(faces, mobile, kind):
+def action(faces, mobile, kind, language):
     w, g, h = (760, 40, 276) if mobile else (1200, 64, 246)
     titles = {'install':'安装 Wizard', 'agent':'交给 Agent', 'source':'从源码构建'}
     details = {'install':'预览安装包与设备指南', 'agent':'一次性安装提示词', 'source':'构建说明、源码与贡献方式'}
-    p = Panel(w, h, g, titles[kind], faces, mobile, PLUM if kind!='source' else GROUND)
+    p = Panel(w, h, g, titles[kind], faces, mobile, PLUM if kind!='source' else GROUND, language)
     p.text(titles[kind], 116, 58 if mobile else 60, limit=w-2*g-100)
     p.text(details[kind], 202 if mobile else 188, 36 if mobile else 32, 'regular', MUTED)
     p.arrow(106)
     return p
 
 
-def footer(faces, mobile):
+def footer(faces, mobile, language):
     w, g, h = (760, 40, 400) if mobile else (1200, 64, 400)
-    p = Panel(w, h, g, 'Wizard · 项目与第三方素材许可', faces, mobile)
+    p = Panel(w, h, g, 'Wizard · 项目与第三方素材许可', faces, mobile, language=language)
     p.text('WIZARD', 114, 76, 'display')
     p.text('原生 iPad 应用 · 非官方开源项目', 190, 34 if mobile else 32, 'regular', MUTED)
     p.text('代码 MIT · 字体 OFL 1.1', 256, 32 if mobile else 28, 'regular', MUTED)
@@ -232,16 +278,18 @@ def main():
     faces = {'display':Face(a.root/'App/Resources/Anton-Regular.ttf'),
              'regular':Face(a.cjk_regular), 'bold':Face(a.cjk_bold)}
     records = []
-    for mobile in (False, True):
-        suffix = '-mobile' if mobile else ''
-        panels = {'hero':hero(a.hero_art,faces,mobile),
-                  'showcase':showcase(a.root,faces,mobile,capture),
-                  'collection':collection(a.city_art,faces,mobile),
-                  **{n:action(faces,mobile,n) for n in ('install','agent','source')},
-                  'footer':footer(faces,mobile)}
-        for name, panel in panels.items():
-            records.append(panel.save(a.out/f'{name}{suffix}.svg'))
-    manifest = {'schema':'wizard.campaign-layout.v1', 'native_capture_build':capture['build'],
+    for language in ('zh-CN', 'en'):
+        for mobile in (False, True):
+            suffix = ('-en' if language == 'en' else '') + ('-mobile' if mobile else '')
+            panels = {'hero':hero(a.hero_art,faces,mobile,language),
+                      'showcase':showcase(a.root,faces,mobile,capture,language),
+                      'collection':collection(a.city_art,faces,mobile,language),
+                      **{n:action(faces,mobile,n,language) for n in ('install','agent','source')},
+                      'footer':footer(faces,mobile,language)}
+            for name, panel in panels.items():
+                records.append(panel.save(a.out/f'{name}{suffix}.svg'))
+    manifest = {'schema':'wizard.campaign-layout.v2', 'languages':['zh-CN','en'],
+                'native_capture_build':capture['build'],
                 'native_source_fingerprint':capture['source_fingerprint'],
                 'font_sha256':{label:hashlib.sha256(path.read_bytes()).hexdigest()
                                for label,path in [('Anton-Regular.ttf',app_font),
