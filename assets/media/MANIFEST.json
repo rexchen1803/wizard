@@ -34,6 +34,6 @@
       "file_mode": "0644"
     }
   ],
-  "distribution_status": "unpublished_draft",
-  "download_url_availability": "Pinned download URLs become available after Release publication to users authorized for the repository; a private repository still requires access permission. Drafts are maintainer-only."
+  "distribution_status": "public_preview",
+  "download_url_availability": "Public HTTPS downloads for v0.2.0-preview.5; no GitHub sign-in required. Verify the pinned sizes and SHA-256 values."
 }

@@ -6,14 +6,14 @@
 
 ## 目前下載狀態
 
-原始碼儲存庫已公開，所有 GitHub Release 均為草稿。`v0.2.0-preview.5` 也尚未發佈，因此現在沒有公開的 `releases/download/...` 下載端點。獲准的維護者可登入後從 [Releases 頁面](https://github.com/rexchen1803/wizard/releases)查看草稿；該頁面是維護入口，不代表公開下載已開放，也不保證附件可用。若你沒有權限讀取所需附件，或固定檔案不可用，請停止；不要發佈 Release、改變儲存庫可見性或改用 `latest`。儲存庫公開不會自動發佈草稿或開放其附件下載。
+預覽版 **v0.2.0-preview.5 / build 20261112.41** 已公開發佈。[下載頁面](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5)提供安裝套件、配套清單和可選素材包。以下網址固定到此版本，安裝前請核對配套清單中的 SHA-256。
 
-v0.2.0-preview.5 發佈後，build 41 安裝套件和清單的固定檔名及預期路徑為：
+build 41 安裝套件和清單的固定檔名及下載網址：
 
-| 檔案 | 固定檔名 | 發佈後的固定下載網址（目前尚不可用） |
+| 檔案 | 固定檔名 | 固定下載網址 |
 | --- | --- | --- |
-| Wizard Debian 套件 | `wizard_0.2.0-20261112.41_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb` |
-| 套件清單 | `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` |
+| Wizard Debian 套件 | `wizard_0.2.0-20261112.41_iphoneos-arm.deb` | [下載](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb) |
+| 套件清單 | `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` | [下載](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json) |
 
 只有在固定版本的 `.deb` 和同一版本清單均可從獲准來源取得時才繼續。使用清單中的 `artifact_sha256` 核對 `.deb`：macOS 可執行 `shasum -a 256 wizard_0.2.0-20261112.41_iphoneos-arm.deb`。版本、檔名或雜湊值不一致時停止，不混用其他版本的套件與清單。打包腳本會為每次輸出產生對應清單和雜湊；本儲存庫沒有硬編碼可替代下載清單的 build 41 `.deb` 雜湊。
 
@@ -35,7 +35,7 @@ v0.2.0-preview.5 發佈後，build 41 安裝套件和清單的固定檔名及預
 
 確認上文所列固定檔案在你的獲准來源中可用後：
 
-1. 下載 `wizard_0.2.0-20261112.41_iphoneos-arm.deb` 及其同名 `.manifest.json` 清單。草稿未公開時，不要把上述未來下載網址當作可用連結；維護者可從 [Releases 頁面](https://github.com/rexchen1803/wizard/releases)開啟草稿。若附件無法獲取，停止。
+1. 從上表或[預覽版下載頁面](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5)下載 `wizard_0.2.0-20261112.41_iphoneos-arm.deb` 及其同名 `.manifest.json` 清單。若任一檔案無法取得，停止。
 2. 按清單中的 `artifact_sha256` 驗證 `.deb`。只使用與該包配套的清單；不要改用 `latest`、別的 Release 或重新命名的包。
 3. 在已授權的目標 iPad 上，通過 Filza 或 Cydia、Sileo、Zebra 支援的本機 `.deb` 安裝流程安裝。已獲准的裝置 root 終端也可執行：
 
@@ -64,14 +64,14 @@ python3 scripts/package-release.py \
 
 ## 可選 GTA VI 圖庫
 
-圖庫和原始素材套件也屬於尚未公開的 `v0.2.0-preview.5` 草稿附件。目前沒有公開下載端點。只有維護者或已獲准的使用者能從草稿取得附件時才可使用；無法獲取時停止，不要發佈 Release 或改變儲存庫可見性。
+可選圖庫和原始素材包隨 [v0.2.0-preview.5](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5)一併公開提供。圖庫套件用於裝置匯入；原始素材包用於收藏與製作。
 
 | 檔案 | 內容 | 大小 | SHA-256 |
 | --- | --- | ---: | --- |
-| `wizard-gta6-gallery-20261112.zip` | 230 項圖庫目錄、228 張圖片、2 段影片及縮略圖 | 258,253,713 bytes | `b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba` |
-| `gta6-original-materials-20261112.zip` | 343 張原始 JPEG、2 段 MKV、2 份 SRT | 755,809,316 bytes | `182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b` |
+| [wizard-gta6-gallery-20261112.zip](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip) | 230 項圖庫目錄、228 張圖片、2 段影片及縮略圖 | 258,253,713 bytes | `b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba` |
+| [gta6-original-materials-20261112.zip](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/gta6-original-materials-20261112.zip) | 343 張原始 JPEG、2 段 MKV、2 份 SRT | 755,809,316 bytes | `182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b` |
 
-這些固定檔案的[本機清單](../../assets/media/MANIFEST.json)記錄預期大小與 SHA-256。發佈後的固定路徑如下，**目前尚不可用**：
+這些固定檔案的[本機清單](../../assets/media/MANIFEST.json)記錄預期大小與 SHA-256。固定下載網址：
 
 ```text
 https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip

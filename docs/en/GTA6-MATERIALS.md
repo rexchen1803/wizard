@@ -6,7 +6,7 @@ Copyright in GTA VI images, videos, screenshots and their thumbnails, transcodes
 
 ## Distribution status and media packs
 
-As checked on 2026-11-12, the source repository is public and all Releases remain drafts. The media packs listed below are recorded in the `v0.2.0-preview.5` draft and are not publicly downloadable. The `download_url` fields in the manifest identify draft target URLs; they are not public-access links.
+As checked on 2026-11-13, [v0.2.0-preview.5](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5) is public and both media packs below can be downloaded without signing in. The manifest's `download_url` fields are pinned to this version; verify their sizes and SHA-256 values after downloading.
 
 | Media pack | Contents recorded in the manifest | Intended use |
 | --- | --- | --- |

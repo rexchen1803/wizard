@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/README.md) · **繁體中文** · [English](../en/README.md) · [日本語](../ja/README.md)
 
-目前候選：**0.2.0 / build 20261112.41**。GitHub 原始碼儲存庫已公開，所有 Release 均為草稿。
+目前候選：**0.2.0 / build 20261112.41**。原始碼及[預覽安裝套件與素材](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5)均已公開。
 
 | 目標 | 指南 |
 | --- | --- |

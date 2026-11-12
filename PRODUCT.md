@@ -28,4 +28,4 @@ App source, nine host regression suites, local iPhoneOS 9.3 SDK, same-source bui
 - Keep code licensing distinct from Rockstar material rights.
 
 ## Publication
-The source repository is public following Rex's approval on 2026-11-12. Binary and media Releases remain drafts; publish them only with explicit release authorization.
+The source repository and the reviewed v0.2.0-preview.5 installer and media attachments are public. This remains a preview; current physical-device evidence is recorded separately in docs/COMPATIBILITY.md.

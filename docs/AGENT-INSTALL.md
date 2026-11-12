@@ -4,16 +4,16 @@
 
 将下面的完整提示词交给 Codex 或其他 Agent，表示你授权在当前连接、已准备且明确指定的一台 iPad 上尝试安装一次 Wizard 预览包。授权仅限 build `20261112.41`、该设备和本次安装；授权覆盖只读检查、获取并校验固定安装包、安装一次、更新时最多停止 Wizard 一次，以及保留安装器生成的完整回滚 bundle。它不授权越狱、改密码、配置连接、安装电源插件、启动 App、respring、重启或修改仓库发布状态。
 
-源码仓库已公开，所有 Release 均为草稿。`v0.2.0-preview.5` 没有公开下载端点。下面的固定下载地址标为**发布后才可用**；Agent 必须先确认固定 `.deb` 与配套清单能通过已获准的现有仓库访问方式取得。如果文件不可用，必须在联系设备前停止报告，不能发布 Release、改变仓库可见性、改用 `latest` 或其他版本。
+预览版 `v0.2.0-preview.5` 已公开发布。以下提示词使用固定版本的公开下载地址；Agent 必须先取得并校验 `.deb` 与配套清单，再连接设备。下载、版本或哈希检查失败时停止，不改用 `latest` 或其他版本。
 
 ## 提示词
 
 ```text
 我授权你仅在当前已连接、已准备、且我明确指定的那一台 iPad 上，尝试安装 Wizard 0.2.0 / build 20261112.41 一次。授权只覆盖本提示中列出的只读检查、获取和校验固定安装包、一次安装、更新时由安装器最多停止 Wizard 一次，以及保留完整旧 App 回滚 bundle。不要重复询问这些已授权步骤；目标设备不明确时只询问目标设备。不要超出下面的设备、版本和操作范围。
 
-源码仓库已公开，所有 GitHub Release 都是草稿。v0.2.0-preview.5 尚未发布，以下 GitHub 下载路径是未来固定地址，目前没有公开下载端点。先用当前已获准的仓库访问方式确认固定 .deb 和对应 manifest 文件实际可取得；如果任一文件不可用，立即停止并报告，不要连接或操作设备。不得发布 Release、改变仓库可见性、创建下载端点、使用 latest、改用其他版本或从非指定来源取得替代包。维护者 Release 页面仅作获准账户查看草稿的入口：https://github.com/rexchen1803/wizard/releases
+从以下 v0.2.0-preview.5 公开固定地址获取指定 .deb 和对应 manifest。先确认两个文件实际可取得；若任一文件不可用，立即停止并报告，不要连接或操作设备。不得发布或修改 Release、改变仓库可见性、创建替代下载端点、使用 latest、改用其他版本或从非指定来源取得替代包。下载页面：https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5
 
-发布后唯一接受的 build41 文件及固定路径：
+唯一接受的 build41 文件及固定路径：
 - wizard_0.2.0-20261112.41_iphoneos-arm.deb
   https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb
 - wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json
@@ -28,7 +28,7 @@
 
 除非我在另一个明确请求中要求卸载，否则不要卸载 Debian 包。获准卸载时，包管理器的卸载钩子只注销 build 与包匹配的 Wizard App，并把完整 bundle 保留为 WizardSystem.uninstalled-<build>-<UTC>.app；媒体、偏好设置和既有回滚 bundle 保留。若需恢复，重新安装同一固定 .deb 取回 helper，再按 docs/INSTALL.md 的 rollback 说明使用真实的 WizardSystem.uninstalled-* 路径。不得让 dpkg 或手动命令清理恢复 bundle。
 
-本授权不包含下载或安装 Rockstar 媒体。只有我另行明确要求图库安装时才可处理图库。图库也在未发布的 v0.2.0-preview.5 草稿中；如果附件无法通过获准方式取得，停止，不得发布 Release 或改变仓库可见性。发布后唯一接受的图库文件为 wizard-gta6-gallery-20261112.zip，SHA-256 必须是 b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba；固定未来地址为：
+本授权不包含下载或安装 Rockstar 媒体。只有我另行明确要求图库安装时才可处理图库。图库随 v0.2.0-preview.5 公开提供；如果附件无法获取，停止，不得发布或修改 Release 或改变仓库可见性。唯一接受的图库文件为 wizard-gta6-gallery-20261112.zip，SHA-256 必须是 b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba；固定下载地址为：
 https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip
 若我明确授权安装该图库，先完整备份 /var/mobile/Media/iPadWizard/app，再核对哈希，把 ZIP 中 app/ 的内容合并到此目录。绝不替换整个 app/，保留 assets/user、用户导入照片和偏好设置。原始素材包不是设备图库安装包。Rockstar 素材来源标注不等于获得再分发许可。
 ```

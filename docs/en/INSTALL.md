@@ -6,14 +6,14 @@ This guide covers the Wizard 0.2.0 / build `20261112.41` preview package, source
 
 ## Download status
 
-The source repository is public; all GitHub Releases remain drafts. `v0.2.0-preview.5` has not been published, so there is currently no public `releases/download/...` endpoint. An authorized maintainer can sign in and inspect drafts from the [Releases page](https://github.com/rexchen1803/wizard/releases); that page is a maintainer entry point, not a public download, and does not guarantee that an attachment is available. If you cannot access a required attachment, stop. Do not publish a Release, change repository visibility, or substitute `latest`. Making the repository public does not publish draft Releases or their attachments.
+Preview **v0.2.0-preview.5 / build 20261112.41** is publicly available. The [download page](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5) provides the installer, matching manifest and optional media packs. The URLs below are pinned to this version; verify the package SHA-256 against its matching manifest before installation.
 
-After `v0.2.0-preview.5` is published, the build41 package and manifest will use these fixed filenames and paths:
+The build41 package and manifest use these fixed filenames and download URLs:
 
-| File | Fixed filename | Fixed URL after publication (not available now) |
+| File | Fixed filename | Fixed download URL |
 | --- | --- | --- |
-| Wizard Debian package | `wizard_0.2.0-20261112.41_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb` |
-| Package manifest | `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` |
+| Wizard Debian package | `wizard_0.2.0-20261112.41_iphoneos-arm.deb` | [Download](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb) |
+| Package manifest | `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` | [Download](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json) |
 
 Proceed only when both the exact `.deb` and its matching manifest are available through an authorized source. Verify the `.deb` against `artifact_sha256` in the manifest. On macOS, run `shasum -a 256 wizard_0.2.0-20261112.41_iphoneos-arm.deb`. Stop if the version, filename, or hash differs; do not mix a package and manifest from different releases. The packaging script generates the manifest and artifact hash for each output; this repository does not hard-code a build41 `.deb` hash that can replace the downloaded manifest.
 
@@ -35,7 +35,7 @@ Package-structure checks and the installer's local fixture checks do not establi
 
 After the exact files above are available from an authorized source:
 
-1. Download `wizard_0.2.0-20261112.41_iphoneos-arm.deb` and its matching `.manifest.json`. The future URL shown above is not currently usable while the Release is a draft. Maintainers can open the draft from the [Releases page](https://github.com/rexchen1803/wizard/releases). Stop if the attachment cannot be obtained.
+1. Download `wizard_0.2.0-20261112.41_iphoneos-arm.deb` and its matching `.manifest.json` from the table above or the [preview download page](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5). Stop if either file cannot be obtained.
 2. Verify the `.deb` against `artifact_sha256` in its manifest. Use only the manifest for that package; do not use `latest`, another Release, or a renamed package.
 3. On the authorized target iPad, install the package using Filza or the local `.deb` workflow supported by Cydia, Sileo, or Zebra. An already authorized root terminal on the device can also run:
 
@@ -64,14 +64,14 @@ The output app directory, `.deb`, and adjacent manifest must not already exist. 
 
 ## Optional GTA VI gallery
 
-The gallery and original-media packages are also draft attachments for the unpublished `v0.2.0-preview.5` Release. There is currently no public download endpoint. Use them only if a maintainer or authorized user can obtain the exact draft attachments; stop if they are unavailable. Do not publish a Release or change repository visibility.
+The optional gallery and original-media packages are publicly available with [v0.2.0-preview.5](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5). Use the gallery package for device import; the originals archive is for reference and production work.
 
 | File | Contents | Size | SHA-256 |
 | --- | --- | ---: | --- |
-| `wizard-gta6-gallery-20261112.zip` | 230 gallery catalog items, 228 images, 2 videos, and thumbnails | 258,253,713 bytes | `b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba` |
-| `gta6-original-materials-20261112.zip` | 343 original JPEGs, 2 MKV videos, and 2 SRT files | 755,809,316 bytes | `182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b` |
+| [wizard-gta6-gallery-20261112.zip](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip) | 230 gallery catalog items, 228 images, 2 videos, and thumbnails | 258,253,713 bytes | `b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba` |
+| [gta6-original-materials-20261112.zip](https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/gta6-original-materials-20261112.zip) | 343 original JPEGs, 2 MKV videos, and 2 SRT files | 755,809,316 bytes | `182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b` |
 
-The [local manifest](../../assets/media/MANIFEST.json) records the expected sizes and SHA-256 values for these exact files. Their fixed paths after publication are below; **they are not available now**:
+The [local manifest](../../assets/media/MANIFEST.json) records the expected sizes and SHA-256 values for these exact files. Fixed download URLs:
 
 ```text
 https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip

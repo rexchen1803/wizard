@@ -24,7 +24,7 @@ The optional `WizardPowerTweak` source is included, but Theos, Logos, vendored h
 
 ## Excluded materials
 
-The source export intentionally excludes the local iOS SDK and vendored build tools; private/device installers, SSH material, connection logs, known-host data, and device-state files; compiled historical apps; the original/full media collections from Git source; fonts and artwork with unverified rights; and unrelated workspace content. Selected native demonstration captures in `assets/demo` are included with Rockstar attribution, and the full media packs are separate GitHub Release-draft attachments. The export report records the MIT license scope for Wizard-authored code, separately records third-party media exclusions, and records the source/export scope separately from release publication. The preview release does not claim fresh-install, live-weather or complete physical-device acceptance.
+The source export intentionally excludes the local iOS SDK and vendored build tools; private/device installers, SSH material, connection logs, known-host data, and device-state files; compiled historical apps; the original/full media collections from Git source; fonts and artwork with unverified rights; and unrelated workspace content. Selected native demonstration captures in `assets/demo` are included with Rockstar attribution, and the full media packs are separate GitHub Release attachments. The export report records the MIT license scope for Wizard-authored code, separately records third-party media exclusions, and records the source/export scope separately from release publication. The preview release does not claim fresh-install, live-weather or complete physical-device acceptance.
 
 ## Weather provider
 
@@ -38,7 +38,7 @@ All GTA VI-labelled images and videos, including crops, transcodes, cutouts, and
 
 Consult Rockstar's [Legal Terms](https://www.rockstargames.com/legal/) and [copyright posting policy](https://support.rockstargames.com/articles/7bNaeoMFTV0iUDGhStTXvz/policy-on-posting-copyrighted-rockstar-games-material) for its content requirements. Attribution is not redistribution permission or official endorsement; no legal clearance is claimed here.
 
-The optional gallery package contains 228 images, 2 retained GTA VI trailers and their thumbnails; full artwork and original files remain separate Release-draft media packs. Exact inventory and provenance limits are in [GTA6-MATERIALS.md](docs/en/GTA6-MATERIALS.md) and the [media manifest](assets/media/MANIFEST.json). The two SRT files in the originals pack have independently unverified authorship and are not claimed as official Rockstar subtitles. User imports are outside this Rockstar attribution.
+The optional gallery package contains 228 images, 2 retained GTA VI trailers and their thumbnails; full artwork and original files remain separate Release media packs. Exact inventory and provenance limits are in [GTA6-MATERIALS.md](docs/en/GTA6-MATERIALS.md) and the [media manifest](assets/media/MANIFEST.json). The two SRT files in the originals pack have independently unverified authorship and are not claimed as official Rockstar subtitles. User imports are outside this Rockstar attribution.
 
 ## Anton display font
 

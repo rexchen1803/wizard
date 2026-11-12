@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/README.md) · [繁體中文](../zh-TW/README.md) · **English** · [日本語](../ja/README.md)
 
-Current candidate: **0.2.0 / build 20261112.41**. The source repository is public; Releases remain drafts.
+Current candidate: **0.2.0 / build 20261112.41**. The source and [preview installer and media packs](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5) are public.
 
 Long-press the time, then choose **Clock font → Poster / System**. Done saves the selection; Cancel restores the previous font.
 

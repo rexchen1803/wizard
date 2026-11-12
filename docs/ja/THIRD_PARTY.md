@@ -24,7 +24,7 @@ iPad App のソースには Google Material icon 由来のベクター描画パ�
 
 ## 除外素材
 
-ソースの書き出しでは意図的に、ローカル iOS SDK と同梱ビルドツール、非公開／端末用 installer、SSH 素材、接続ログ、known-host data、端末状態ファイル、過去のコンパイル済み App、Git source に含める元データ／全メディア集、権利未確認の font と artwork、無関係な workspace 内容を除外します。`assets/demo` の選定済みネイティブデモキャプチャは Rockstar の帰属表示付きで含まれます。フルメディアパックは GitHub Releases の下書きへの添付として別管理です。書き出しレポートには Wizard 作成コードの MIT 範囲、第三者メディアの除外、ソース／export 範囲と Release 公開状態をそれぞれ記録します。プレビューは新規インストール、稼働中の天気サービス、物理端末全般の受け入れを主張しません。
+ソースの書き出しでは意図的に、ローカル iOS SDK と同梱ビルドツール、非公開／端末用 installer、SSH 素材、接続ログ、known-host data、端末状態ファイル、過去のコンパイル済み App、Git source に含める元データ／全メディア集、権利未確認の font と artwork、無関係な workspace 内容を除外します。`assets/demo` の選定済みネイティブデモキャプチャは Rockstar の帰属表示付きで含まれます。フルメディアパックは GitHub Releases の添付として別管理です。書き出しレポートには Wizard 作成コードの MIT 範囲、第三者メディアの除外、ソース／export 範囲と Release 公開状態をそれぞれ記録します。プレビューは新規インストール、稼働中の天気サービス、物理端末全般の受け入れを主張しません。
 
 ## 天気プロバイダー
 
@@ -38,7 +38,7 @@ GTA VI と表示されるすべての画像・動画と、切り抜き、形式�
 
 Rockstar の[法的条件](https://www.rockstargames.com/legal/)と[著作権コンテンツ掲載ポリシー](https://support.rockstargames.com/articles/7bNaeoMFTV0iUDGhStTXvz/policy-on-posting-copyrighted-rockstar-games-material)を確認してください。帰属表示は再配布許可でも公式推奨でもありません。ここでは法的許可を主張しません。
 
-任意ギャラリーパッケージには画像228枚、保持した GTA VI trailer 2本とそのサムネイルが含まれます。全 artwork と原本は別の Release ドラフトメディアパックです。正確な一覧と出所確認の限界は [GTA6-MATERIALS.md](GTA6-MATERIALS.md) と[メディア manifest](../../assets/media/MANIFEST.json)を参照してください。原素材パック内の SRT 2本は作者が独立確認されておらず、Rockstar 公式字幕とは主張しません。ユーザー取り込み素材は Rockstar 帰属の対象外です。
+任意ギャラリーパッケージには画像228枚、保持した GTA VI trailer 2本とそのサムネイルが含まれます。全 artwork と原本は別の Release メディアパックです。正確な一覧と出所確認の限界は [GTA6-MATERIALS.md](GTA6-MATERIALS.md) と[メディア manifest](../../assets/media/MANIFEST.json)を参照してください。原素材パック内の SRT 2本は作者が独立確認されておらず、Rockstar 公式字幕とは主張しません。ユーザー取り込み素材は Rockstar 帰属の対象外です。
 
 ## Anton ディスプレイフォント
 
