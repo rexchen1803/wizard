@@ -1,6 +1,6 @@
 # README artwork sources
 
-The Simplified Chinese, Traditional Chinese, English and Japanese READMEs use the same illustrated composition, with separate desktop and narrow-screen panels for each language. Each panel is an SVG with outlined lettering and embedded source JPEG/PNG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.41`, not physical-device screenshots. Localized pages retain the original mixed Chinese/English App interface text in those images. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
+The Simplified Chinese, Traditional Chinese, English and Japanese READMEs use the same illustrated composition, with separate desktop and narrow-screen panels for each language. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.41`, not physical-device screenshots. Localized pages retain the original mixed Chinese/English App interface text in those images. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
 
 ## Artwork
 
@@ -46,13 +46,11 @@ python3 scripts/build-showcase.py \
   --out assets/readme
 ```
 
-The generator writes all 72 panels for four languages and checks capture/source/font identity, input image digests, canvas bounds, missing localized translations and content overlap. It aligns visible glyph outlines to common content rails and writes the exact geometry and digests to `LAYOUT.json`. A passing generator still requires visual review of all four complete GitHub pages at desktop and phone widths. It does not build or install the App.
+The generator writes all 56 panels for four languages and checks capture/source/font identity, input image digests, canvas bounds, missing localized translations and content overlap. It aligns visible glyph outlines to common content rails and writes the exact geometry and digests to `LAYOUT.json`. A passing generator still requires visual review of all four complete GitHub pages at desktop and phone widths. It does not build or install the App.
 
 Localized campaign text is maintained in [COPY.json](COPY.json). Native date-language IDs remain independent of the README display order.
 
 
-## Additional scene and wallpaper photography
+## Original website illustration
 
-Two responsive sections add four lifestyle compositions and six wallpaper/clock layouts in every README language. The raw captures, their JPEG derivatives and hashes are in [the native scene manifest](../demo/screens/CAPTURE-METADATA.json). The environment section is explicitly captioned as a composition with native App screens; its plates, Apple hardware-reference links, four-corner mappings, final hashes and built-in imagegen prompt set are recorded in [the scene sources](../demo/environments/SOURCES.md). Screen content remains a complete native capture; illustrative rooms and hardware forms do not establish physical-device acceptance.
-
-The existing seven-panel composition, typography and gutters are retained. The additional desktop photos use equal columns; narrow layouts stack the environment images and use a two-column capture contact sheet. The scene and capture panels both link to the localized capture guide, where full-resolution files can be opened.
+The owner requested reuse of `assets/demo/website-original.jpg` exactly as it appears in the personal website’s existing Wizard illustration. SHA-256: `01ea17a3bb25078f8adf13dba8904ffbd548ab52f4890456b581e199a023958f`. Its original screen, framing and lettering are unchanged. It is an illustrative website image, separate from the current-build native App captures. The four READMEs display this same file without a generated replacement.

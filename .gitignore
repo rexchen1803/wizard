@@ -249,51 +249,5 @@
 
 !/App/tests/security-regressions.py
 
-# Reviewed native scene captures and illustrative placement photos.
-!/assets/demo/screens/
-/assets/demo/screens/*
-!/assets/demo/environments/
-/assets/demo/environments/*
-!/assets/demo/environments/plates/
-/assets/demo/environments/plates/*
-!/assets/demo/environments/PROMPTS.md
-!/assets/demo/environments/SCENES.json
-!/assets/demo/environments/SOURCES.md
-!/assets/demo/environments/daylight-desk.jpg
-!/assets/demo/environments/dusk-console.jpg
-!/assets/demo/environments/linen-bedside.jpg
-!/assets/demo/environments/plates/daylight-desk.jpg
-!/assets/demo/environments/plates/dusk-console.jpg
-!/assets/demo/environments/plates/linen-bedside.jpg
-!/assets/demo/environments/plates/website-study.jpg
-!/assets/demo/environments/website-study.jpg
-!/assets/demo/screens/CAPTURE-METADATA.json
-!/assets/demo/screens/city-calendar.jpg
-!/assets/demo/screens/city-calendar.png
-!/assets/demo/screens/green-retreat.jpg
-!/assets/demo/screens/green-retreat.png
-!/assets/demo/screens/island-minimal.jpg
-!/assets/demo/screens/island-minimal.png
-!/assets/demo/screens/night-city.jpg
-!/assets/demo/screens/night-city.png
-!/assets/demo/screens/palm-drive.jpg
-!/assets/demo/screens/palm-drive.png
-!/assets/demo/screens/sunset-poster.jpg
-!/assets/demo/screens/sunset-poster.png
-!/assets/readme/lifestyle-en-mobile.svg
-!/assets/readme/lifestyle-en.svg
-!/assets/readme/lifestyle-ja-mobile.svg
-!/assets/readme/lifestyle-ja.svg
-!/assets/readme/lifestyle-mobile.svg
-!/assets/readme/lifestyle-zh-tw-mobile.svg
-!/assets/readme/lifestyle-zh-tw.svg
-!/assets/readme/lifestyle.svg
-!/assets/readme/variations-en-mobile.svg
-!/assets/readme/variations-en.svg
-!/assets/readme/variations-ja-mobile.svg
-!/assets/readme/variations-ja.svg
-!/assets/readme/variations-mobile.svg
-!/assets/readme/variations-zh-tw-mobile.svg
-!/assets/readme/variations-zh-tw.svg
-!/assets/readme/variations.svg
-!/scripts/build-lifestyle.py
+# Original personal-website illustration, reused without alteration.
+!/assets/demo/website-original.jpg

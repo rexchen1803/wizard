@@ -14,12 +14,6 @@
 
 模擬器截圖與 `armv7 + arm64` 裝置建置使用相同的原始碼與資源指紋；模擬器使用獨立 App 識別碼和沙盒媒體路徑。建置入口及重現步驟見[原生模擬器預覽](DEVELOPMENT.md#建置原生模擬器預覽)。模擬器檢查不替代舊款實體 iPad 的執行驗收。
 
-## 更多版面與生活場景
-
-以下六張未修改的 PNG，是 build **20261112.41** 在 **iPad（第 8 代）模擬器 / iOS 18.0** 擷取的原生畫面：[落日海報](../../assets/demo/screens/sunset-poster.png)、[島嶼極簡](../../assets/demo/screens/island-minimal.png)、[夜城](../../assets/demo/screens/night-city.png)、[城市行事曆](../../assets/demo/screens/city-calendar.png)、[綠意靜居](../../assets/demo/screens/green-retreat.png)、[棕櫚車道](../../assets/demo/screens/palm-drive.png)。尺寸、雜湊和模擬器來源見[截圖中繼資料](../../assets/demo/screens/CAPTURE-METADATA.json)。
-
-生活場景：[網站書房](../../assets/demo/environments/website-study.jpg)、[日光書桌](../../assets/demo/environments/daylight-desk.jpg)、[亞麻床頭](../../assets/demo/environments/linen-bedside.jpg)、[暮色邊櫃](../../assets/demo/environments/dusk-console.jpg)。網站書房沿用使用者提供的場景，並以目前 App 截圖完整取代原有螢幕；其餘三幅為生成的環境插畫。各場景中的 App 畫面均按固定位置直接投影自上述原始截圖，未虛構或重繪介面。場景裡 iPad 2、iPad 4 與初代 iPad Air 的外形僅供示意，不代表這些實體裝置執行了 build 41，也不構成相容性或實機驗收證據。構圖與來源見[場景記錄](../../assets/demo/environments/SCENES.json)。
-
 ## 字型來源
 
 build 41 候選沿用 App 已打包的靜態開源字型 `Anton-Regular.ttf` 與 OFL 1.1 授權。時鐘編輯面板新增「海報」與「系統」兩種字型選項；「海報」預設使用 Anton-Regular。截圖中繼資料記錄實際解析的字型名稱、字型檔案 SHA-256 與字型是否來自 App 套件；系統選項畫面見上方 [系統字型](../../assets/demo/clock-font-system.jpg) 截圖。中文控制項使用系統字型。build `20261111.36` 的實體裝置截圖保留當時外觀，不作為 build 41 的驗收證據。
@@ -38,3 +32,7 @@ build 41 候選沿用 App 已打包的靜態開源字型 `Anton-Regular.ttf` 與
 ## 署名
 
 GTA VI 圖片和截圖中的相應素材著作權屬於 Rockstar Games 與相關權利人；這些示範圖片不適用 Wizard 的 MIT 原始碼授權。具體原圖和權利範圍見[素材署名](../../assets/media/ATTRIBUTION.md)。
+
+## 網站演示原圖
+
+[個人網站原始演示圖](../../assets/demo/website-original.jpg)依原檔保留，未更換螢幕、裁切或重繪。它保留網站原有示意畫面，獨立作為環境展示，不計入目前建置的原生擷取。

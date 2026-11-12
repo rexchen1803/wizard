@@ -165,10 +165,6 @@ with tempfile.TemporaryDirectory(prefix="wizard-repository-checks-") as temporar
     assert result.returncode == 0, result.stdout + result.stderr
 
 scanner = runpy.run_path(str(ROOT / "scripts/prepare-open-source.py"))["scan_bytes"]
-# Real, unchanged capture: its compressed pixels contain a six-byte sequence
-# resembling a contact address. Metadata and decoded visual content are separate.
-capture = ROOT / "assets/demo/screens/city-calendar.png"
-assert scanner(capture.read_bytes()) == {}
 address = b"sample" + bytes([64]) + b"example.invalid"
 assert scanner(address).get("email_address") == 1
 
@@ -179,6 +175,12 @@ def png_chunk(kind: bytes, payload: bytes) -> bytes:
 
 prefix = b"\x89PNG\r\n\x1a\n" + png_chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
 suffix = png_chunk(b"IDAT", zlib.compress(b"\0\0\0\0")) + png_chunk(b"IEND", b"")
+# A valid two-pixel RGB PNG can contain apparent contact text in an
+# uncompressed DEFLATE block. Those bytes are colors, not text metadata.
+pixel_prefix = b"\x89PNG\r\n\x1a\n" + png_chunk(b"IHDR", struct.pack(">IIBBBBB", 2, 1, 8, 2, 0, 0, 0))
+pixel_values = b"a" + bytes([64]) + b"b.cd"
+assert scanner(pixel_values).get("email_address") == 1
+assert scanner(pixel_prefix + png_chunk(b"IDAT", zlib.compress(b"\0" + pixel_values, 0)) + png_chunk(b"IEND", b"")) == {}
 for kind, payload in (
     (b"tEXt", b"Comment\0" + address),
     (b"zTXt", b"Comment\0\0" + zlib.compress(address)),
