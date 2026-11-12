@@ -6,7 +6,7 @@
 
 ## ダウンロード状況
 
-リポジトリは非公開で、GitHub Releases はすべて下書き状態です。`v0.2.0-preview.5` は未公開の下書きのため、現在使える公開 `releases/download/...` URL はありません。許可されたメンテナーは[リリースページ](https://github.com/rexchen1803/wizard/releases)で下書きを確認できます。このページはメンテナー用の入口で、公開ダウンロード先ではありません。また、添付ファイルを取得できる保証もありません。必要な添付ファイルを取得できなければ中止してください。リリースの公開、リポジトリの公開設定変更、`latest` への置き換えはしないでください。後日リリースが公開されても、リポジトリが非公開の間は添付ファイルの取得に認証が必要です。
+ソースリポジトリは公開されていますが、GitHub Releases はすべて下書き状態です。`v0.2.0-preview.5` は未公開の下書きのため、現在使える公開 `releases/download/...` URL はありません。許可されたメンテナーは[リリースページ](https://github.com/rexchen1803/wizard/releases)で下書きを確認できます。このページはメンテナー用の入口で、公開ダウンロード先ではありません。また、添付ファイルを取得できる保証もありません。必要な添付ファイルを取得できなければ中止してください。リリースの公開、リポジトリの公開設定変更、`latest` への置き換えはしないでください。リポジトリを公開しても、下書きのリリースや添付ファイルは公開されません。
 
 公開後に使う build 41 の固定ファイル名と URL は次のとおりです。リリースは下書きのため、URL は現在利用できません。
 
@@ -41,7 +41,7 @@ shasum -a 256 wizard_0.2.0-20261112.41_iphoneos-arm.deb
 
 固定されたファイルを許可済みの取得元から入手し、ハッシュを確認してから進んでください。
 
-1. `wizard_0.2.0-20261112.41_iphoneos-arm.deb` と `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` を取得します。上記の URL はリリースが未公開のため現在利用できません。[リリースページ](https://github.com/rexchen1803/wizard/releases)を開けるのは、許可されたメンテナーに限られます。添付を取得できなければ中止してください。
+1. `wizard_0.2.0-20261112.41_iphoneos-arm.deb` と `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` を取得します。上記の URL はリリースが未公開のため現在利用できません。[リリースページ](https://github.com/rexchen1803/wizard/releases)で下書きの添付ファイルを確認できるのは、許可されたメンテナーに限られます。添付を取得できなければ中止してください。
 2. その `.deb` の `artifact_sha256` を対応 manifest と照合します。`latest`、別 Release、名前を変更したパッケージは使わないでください。
 3. 許可された対象 iPad で Filza、または Cydia、Sileo、Zebra が対応するローカル `.deb` 手順を使います。すでに許可された端末 root ターミナルから実行する場合:
 
@@ -55,7 +55,7 @@ shasum -a 256 wizard_0.2.0-20261112.41_iphoneos-arm.deb
 
 ## ソースからビルド
 
-リポジトリは非公開のため、clone には許可された GitHub アクセスが必要です。ソースビルドには macOS、Apple Clang、Apple の開発ツールから取得した iPhoneOS SDK が必要です。Apple SDK はこのリポジトリに含まれません。確認済み SDK は iPhoneOS 9.3 です。新しい SDK と armv7、旧 MediaPlayer の互換性は未検証です。
+ソースリポジトリは公開されており、サインインせずに HTTPS で clone できます。ソースビルドには macOS、Apple Clang、Apple の開発ツールから取得した iPhoneOS SDK が必要です。Apple SDK はこのリポジトリに含まれません。確認済み SDK は iPhoneOS 9.3 です。新しい SDK と armv7、旧 MediaPlayer の互換性は未検証です。
 
 ```sh
 git clone https://github.com/rexchen1803/wizard.git
@@ -77,7 +77,7 @@ python3 scripts/package-release.py \
 | `wizard-gta6-gallery-20261112.zip` | カタログ230項目、画像228枚、動画2本とサムネイル | 258,253,713 bytes | `b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba` |
 | `gta6-original-materials-20261112.zip` | 原本 JPEG 343枚、MKV 2本、SRT 2本 | 755,809,316 bytes | `182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b` |
 
-[ローカル manifest](../../assets/media/MANIFEST.json)には、これらのファイルの期待サイズと SHA-256 が記録されています。公開後の固定パスは以下ですが、現時点で利用できません。リポジトリが非公開の間は、公開後も許可されたアクセスが必要です。
+[ローカル manifest](../../assets/media/MANIFEST.json)には、これらのファイルの期待サイズと SHA-256 が記録されています。公開後の固定パスは以下ですが、現時点で利用できません。リポジトリの公開と、下書きの添付ファイルの公開は別です。
 
 ```text
 https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip

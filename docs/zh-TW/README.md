@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/README.md) · **繁體中文** · [English](../en/README.md) · [日本語](../ja/README.md)
 
-目前候選：**0.2.0 / build 20261112.41**。GitHub 儲存庫維持私有，所有 Release 均為草稿。
+目前候選：**0.2.0 / build 20261112.41**。GitHub 原始碼儲存庫已公開，所有 Release 均為草稿。
 
 | 目標 | 指南 |
 | --- | --- |

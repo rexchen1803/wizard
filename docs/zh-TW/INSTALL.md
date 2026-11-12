@@ -6,7 +6,7 @@
 
 ## 目前下載狀態
 
-儲存庫目前是私有儲存庫，所有 GitHub Release 均為草稿。`v0.2.0-preview.5` 也尚未發佈，因此現在沒有公開的 `releases/download/...` 下載端點。獲准的維護者可登入後從 [Releases 頁面](https://github.com/rexchen1803/wizard/releases)查看草稿；該頁面是維護入口，不代表公開下載已開放，也不保證附件可用。若你沒有權限讀取所需附件，或固定檔案不可用，請停止；不要發佈 Release、改變儲存庫可見性或改用 `latest`。即使日後發佈 Release，只要儲存庫仍為私有，附件存取仍受儲存庫權限控制。
+原始碼儲存庫已公開，所有 GitHub Release 均為草稿。`v0.2.0-preview.5` 也尚未發佈，因此現在沒有公開的 `releases/download/...` 下載端點。獲准的維護者可登入後從 [Releases 頁面](https://github.com/rexchen1803/wizard/releases)查看草稿；該頁面是維護入口，不代表公開下載已開放，也不保證附件可用。若你沒有權限讀取所需附件，或固定檔案不可用，請停止；不要發佈 Release、改變儲存庫可見性或改用 `latest`。儲存庫公開不會自動發佈草稿或開放其附件下載。
 
 v0.2.0-preview.5 發佈後，build 41 安裝套件和清單的固定檔名及預期路徑為：
 
@@ -49,7 +49,7 @@ v0.2.0-preview.5 發佈後，build 41 安裝套件和清單的固定檔名及預
 
 ## 從原始碼建置
 
-儲存庫目前為私有儲存庫，克隆需要獲准的 GitHub 存取權限。建置需要 macOS、Apple Clang 和自行從 Apple 開發工具中取得的 iPhoneOS SDK；Apple SDK 不包含在儲存庫中。目前驗證過的 SDK 是 iPhoneOS 9.3；較新 SDK 的 armv7 與舊 MediaPlayer 介面相容性尚未驗證。
+原始碼儲存庫已公開，可直接透過 HTTPS 複製。建置需要 macOS、Apple Clang 和自行從 Apple 開發工具中取得的 iPhoneOS SDK；Apple SDK 不包含在儲存庫中。目前驗證過的 SDK 是 iPhoneOS 9.3；較新 SDK 的 armv7 與舊 MediaPlayer 介面相容性尚未驗證。
 
 ```sh
 git clone https://github.com/rexchen1803/wizard.git
@@ -71,7 +71,7 @@ python3 scripts/package-release.py \
 | `wizard-gta6-gallery-20261112.zip` | 230 項圖庫目錄、228 張圖片、2 段影片及縮略圖 | 258,253,713 bytes | `b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba` |
 | `gta6-original-materials-20261112.zip` | 343 張原始 JPEG、2 段 MKV、2 份 SRT | 755,809,316 bytes | `182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b` |
 
-這些固定檔案的[本機清單](../../assets/media/MANIFEST.json)記錄預期大小與 SHA-256。發佈後的固定路徑如下，**目前尚不可用**；儲存庫保持私有時仍需獲准的儲存庫存取權限：
+這些固定檔案的[本機清單](../../assets/media/MANIFEST.json)記錄預期大小與 SHA-256。發佈後的固定路徑如下，**目前尚不可用**：
 
 ```text
 https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip

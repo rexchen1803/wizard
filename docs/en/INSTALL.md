@@ -6,7 +6,7 @@ This guide covers the Wizard 0.2.0 / build `20261112.41` preview package, source
 
 ## Download status
 
-The repository is private, and all GitHub Releases are drafts. `v0.2.0-preview.5` has not been published, so there is currently no public `releases/download/...` endpoint. An authorized maintainer can sign in and inspect drafts from the [Releases page](https://github.com/rexchen1803/wizard/releases); that page is a maintainer entry point, not a public download, and does not guarantee that an attachment is available. If you cannot access a required attachment, stop. Do not publish a Release, change repository visibility, or substitute `latest`. Even if a Release is published later, attachment access remains restricted while the repository is private.
+The source repository is public; all GitHub Releases remain drafts. `v0.2.0-preview.5` has not been published, so there is currently no public `releases/download/...` endpoint. An authorized maintainer can sign in and inspect drafts from the [Releases page](https://github.com/rexchen1803/wizard/releases); that page is a maintainer entry point, not a public download, and does not guarantee that an attachment is available. If you cannot access a required attachment, stop. Do not publish a Release, change repository visibility, or substitute `latest`. Making the repository public does not publish draft Releases or their attachments.
 
 After `v0.2.0-preview.5` is published, the build41 package and manifest will use these fixed filenames and paths:
 
@@ -49,7 +49,7 @@ The package does not replace `/var/mobile/Media/iPadWizard/app`, Wizard preferen
 
 ## Build from source
 
-The repository is private, so cloning requires authorized GitHub access. A source build requires macOS, Apple Clang, and an iPhoneOS SDK obtained through Apple's developer tools. The Apple SDK is not included in this repository. The validated SDK is iPhoneOS 9.3; armv7 and legacy MediaPlayer compatibility with newer SDKs has not been verified.
+The source repository is public and can be cloned over HTTPS without signing in. A source build requires macOS, Apple Clang, and an iPhoneOS SDK obtained through Apple's developer tools. The Apple SDK is not included in this repository. The validated SDK is iPhoneOS 9.3; armv7 and legacy MediaPlayer compatibility with newer SDKs has not been verified.
 
 ```sh
 git clone https://github.com/rexchen1803/wizard.git
@@ -71,7 +71,7 @@ The gallery and original-media packages are also draft attachments for the unpub
 | `wizard-gta6-gallery-20261112.zip` | 230 gallery catalog items, 228 images, 2 videos, and thumbnails | 258,253,713 bytes | `b8bd883b81a0a76086217ce3c27091d83b0b8261dcbabae49c88abb67aef3eba` |
 | `gta6-original-materials-20261112.zip` | 343 original JPEGs, 2 MKV videos, and 2 SRT files | 755,809,316 bytes | `182cb83aaf463dc22004f750a4e51a2419ef50eb2da851aba9c6d456d89aea0b` |
 
-The [local manifest](../../assets/media/MANIFEST.json) records the expected sizes and SHA-256 values for these exact files. Their fixed paths after publication are below; **they are not available now**. They will still require authorized repository access while the repository remains private:
+The [local manifest](../../assets/media/MANIFEST.json) records the expected sizes and SHA-256 values for these exact files. Their fixed paths after publication are below; **they are not available now**:
 
 ```text
 https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip
