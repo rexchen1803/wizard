@@ -78,7 +78,7 @@ GTA VI 素材版权归 Rockstar Games 及相关权利人，与 Wizard 的 MIT �
 
 <p align="center">也可<a href="docs/open-source/README.md#build">从源码构建</a> · <a href="https://github.com/rexchen1803/wizard/releases">查看预览构建与安装包</a></p>
 
-<p align="center"><sub>需要已准备好的 rootful 越狱环境。<a href="docs/COMPATIBILITY.md">查看设备、系统与验证范围</a></sub></p>
+<p align="center"><sub>需要已准备好的 rootful 越狱环境。<br><a href="docs/COMPATIBILITY.md">设备与系统范围</a></sub></p>
 
 <p id="source" align="center">
 <picture><source media="(max-width: 767px)" srcset="assets/readme/chapter-source-mobile.svg"><img src="assets/readme/chapter-source.svg" alt="开放源码" width="100%"></picture>
