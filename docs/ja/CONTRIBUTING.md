@@ -30,6 +30,7 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
 これらの検査はホスト上のテスト用データと代替オブジェクトを使って、ソースの動作を確認します。アプリをインストールせず、ネイティブ描画、Apple 非公開システムシンボル、署名、通常の iOS 端末、新規インストールも検証しません。任意の 複数アーキテクチャ向けの端末用ビルド は[ビルドガイド](../open-source/README.md#build)に記載されています。Apple の開発ツールから取得した iPhoneOS SDK が必要です。

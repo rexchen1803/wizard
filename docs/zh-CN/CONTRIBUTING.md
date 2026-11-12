@@ -30,6 +30,7 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
 这些检查通过夹具与替身执行源码逻辑，不会安装 App，也不证明原生显示、私有系统符号、签名、原版 iOS 或首次安装兼容。可选的双架构设备构建见[开发指南](DEVELOPMENT.md#构建)，需要你自行提供 `IOS_SDK`。

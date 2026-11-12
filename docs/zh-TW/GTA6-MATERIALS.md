@@ -6,7 +6,7 @@ GTA VI 圖片、影片、截圖及其縮圖、轉碼和裁切的著作權屬於 
 
 ## 散佈狀態與素材包
 
-截至 2026-11-12，GitHub 儲存庫為私有狀態，所有 Release 均為草稿。清單中的媒體包登記在 `v0.2.0-preview.4` 草稿中，尚無公開下載。清單所列 `download_url` 是草稿目標網址，不能當作可公開存取的下載連結。
+截至 2026-11-12，GitHub 儲存庫為私有狀態，所有 Release 均為草稿。清單中的媒體包登記在 `v0.2.0-preview.5` 草稿中，尚無公開下載。清單所列 `download_url` 是草稿目標網址，不能當作可公開存取的下載連結。
 
 | 素材包 | 清單中的內容 | 預期用途 |
 | --- | --- | --- |
@@ -30,13 +30,13 @@ GTA VI 圖片、影片、截圖及其縮圖、轉碼和裁切的著作權屬於 
 
 ## 儲存庫示範圖與授權範圍
 
-儲存庫的 [assets/demo](CAPTURES.md) 說明隨程式碼保存的 App 截圖來源：目前八張 `*-miami.jpg` 和 `clock-font-system.jpg` 是 build `20261112.40` 在 iPad 第 8 代、iOS 18 模擬器中的原生截圖；`*-ipad2.png` 是 build `20261111.36` 的早期實體裝置截圖。截圖中的 GTA VI 畫面仍屬於 Rockstar Games 與相關權利人，不適用 Wizard 的 MIT 程式碼授權。
+儲存庫的 [assets/demo](CAPTURES.md) 說明隨程式碼保存的 App 截圖來源：目前八張 `*-miami.jpg` 和 `clock-font-system.jpg` 是 build `20261112.41` 在 iPad 第 8 代、iOS 18 模擬器中的原生截圖；`*-ipad2.png` 是 build `20261111.36` 的早期實體裝置截圖。截圖中的 GTA VI 畫面仍屬於 Rockstar Games 與相關權利人，不適用 Wizard 的 MIT 程式碼授權。
 
 媒體包不包含使用者照片、個人偏好設定、裝置備份、連接資訊、F1 影片、歷史遊戲音訊、字型或 Apple SDK。安裝和執行階段條件見[安裝指南](INSTALL.md)，統一署名見 [ATTRIBUTION.md](../../assets/media/ATTRIBUTION.md)。
 
 ## App 預設圖與宣傳素材
 
-build 40 App 候選包含 `App/Resources/ViceCity.jpg`，來源檔案為 `ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg`。該圖為 3840 × 2160 像素，儲存庫中的該檔案與來源位元組一致；SHA-256 為 `c255874fee509eae0baa6f546861e483ec0b32efbfe8d013ec36888013d923c9`。App 只在沒有外部圖庫目錄時使用它作為預設畫面。README 宣傳圖和原生截圖也使用了經署名的 Rockstar 素材。相關圖片與衍生圖均不受 MIT 授權。App 內另有 SIL OFL 字型；儲存庫不分發 Rockstar 字型檔案。
+build 41 App 候選包含 `App/Resources/ViceCity.jpg`，來源檔案為 `ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg`。該圖為 3840 × 2160 像素，儲存庫中的該檔案與來源位元組一致；SHA-256 為 `c255874fee509eae0baa6f546861e483ec0b32efbfe8d013ec36888013d923c9`。App 只在沒有外部圖庫目錄時使用它作為預設畫面。README 宣傳圖和原生截圖也使用了經署名的 Rockstar 素材。相關圖片與衍生圖均不受 MIT 授權。App 內另有 SIL OFL 字型；儲存庫不分發 Rockstar 字型檔案。
 
 ## 相關記錄
 

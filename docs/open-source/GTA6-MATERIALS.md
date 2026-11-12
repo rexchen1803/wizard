@@ -6,7 +6,7 @@ GTA VI 图片、视频、截图及其缩略图、转码和裁切的版权属于 
 
 ## 分发状态与素材包
 
-截至 2026-11-12，GitHub 仓库为私有状态，所有 Release 均为草稿。清单中的媒体包登记在 `v0.2.0-preview.4` 草稿中，尚无公开下载。清单所列 `download_url` 是草稿目标地址，不能当作可公开访问的下载链接。
+截至 2026-11-12，GitHub 仓库为私有状态，所有 Release 均为草稿。清单中的媒体包登记在 `v0.2.0-preview.5` 草稿中，尚无公开下载。清单所列 `download_url` 是草稿目标地址，不能当作可公开访问的下载链接。
 
 | 素材包 | 清单中的内容 | 预期用途 |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ GTA VI 图片、视频、截图及其缩略图、转码和裁切的版权属于 
 
 ## 仓库演示图与许可范围
 
-仓库的 [assets/demo](../../assets/demo/README.md) 说明了随代码保存的 App 截图来源：当前八张 `*-miami.jpg` 与 `clock-font-system.jpg` 是 build `20261112.40` 在 iPad 第 8 代、iOS 18 模拟器中的原生截图；`*-ipad2.png` 是 build `20261111.36` 的早期实体设备截图。截图里的 GTA VI 画面仍属于 Rockstar Games 与相应权利人，不适用 Wizard 的 MIT 代码许可。
+仓库的 [assets/demo](../../assets/demo/README.md) 说明了随代码保存的 App 截图来源：当前八张 `*-miami.jpg` 与 `clock-font-system.jpg` 是 build `20261112.41` 在 iPad 第 8 代、iOS 18 模拟器中的原生截图；`*-ipad2.png` 是 build `20261111.36` 的早期实体设备截图。截图里的 GTA VI 画面仍属于 Rockstar Games 与相应权利人，不适用 Wizard 的 MIT 代码许可。
 
 媒体包不包含用户照片、个人偏好、设备备份、连接信息、F1 视频、历史游戏音频、字体或 Apple SDK。安装和运行时条件见[安装指南](../INSTALL.md)，统一署名见 [ATTRIBUTION.md](../../assets/media/ATTRIBUTION.md)。
 

@@ -226,7 +226,7 @@ def footer(faces, mobile, language):
     p.text('原生 iPad 应用 · 非官方开源项目', 190, 34 if mobile else 32, 'regular', MUTED)
     p.text('代码 MIT · 字体 OFL 1.1', 256, 32 if mobile else 28, 'regular', MUTED)
     p.text('GTA VI 素材 © Rockstar Games 及相关权利人', 314, 28, 'regular', MUTED)
-    p.text('MADE BY REX', h-28, 20, 'display', MUTED)
+    p.text('Made by Rex Chen', h-28, 20, 'display', MUTED)
     return p
 
 

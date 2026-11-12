@@ -36,9 +36,6 @@
 
 static NSString * const kWizardPowerPrefsPath = @"/var/mobile/Library/Preferences/com.rex.wizardpower.plist";
 static NSString * const kWizardPowerLogPath = @"/tmp/wizardpower.log";
-static CFStringRef const kWizardPowerLockRequestNotification = CFSTR("com.rex.wizardpower.request-lock");
-static CFStringRef const kWizardPowerWakeRequestNotification = CFSTR("com.rex.wizardpower.request-wake");
-static CFStringRef const kWizardPowerStatusRequestNotification = CFSTR("com.rex.wizardpower.request-status");
 static UIDeviceBatteryState gLastBatteryState = UIDeviceBatteryStateUnknown;
 static BOOL gLastPowerConnected = NO;
 static BOOL gLastPowerConnectedKnown = NO;
@@ -78,6 +75,7 @@ static BOOL WPSleepEnabled(void) {
 }
 
 static void WPLog(NSString *format, ...) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/wizardpower-debug"]) return;
     va_list args;
     va_start(args, format);
     NSString *body = [[NSString alloc] initWithFormat:format arguments:args];
@@ -528,44 +526,6 @@ static void WPLockScreen(NSString *reason, BOOL respectAutomationPrefs) {
     });
 }
 
-static void WPHandleLockRequest(__unused CFNotificationCenterRef center,
-                                __unused void *observer,
-                                __unused CFStringRef name,
-                                __unused const void *object,
-                                __unused CFDictionaryRef userInfo) {
-    // A wizardsystem:// lock command first activates Wizard.  On iOS 12 that
-    // URL activation can finish after an immediate SpringBoard lock and undo
-    // it without emitting a wake notification.  Let the activation transaction
-    // settle, then perform the real lock.  Physical power-loss events still
-    // call WPLockScreen directly and remain immediate.
-    WPLog(@"remote lock request scheduled");
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        WPLog(@"remote lock request executing");
-        WPLockScreen(@"remote lock", NO);
-    });
-}
-
-static void WPHandleWakeRequest(__unused CFNotificationCenterRef center,
-                                __unused void *observer,
-                                __unused CFStringRef name,
-                                __unused const void *object,
-                                __unused CFDictionaryRef userInfo) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        WPLog(@"remote wake request");
-        WPUnlockAndOpenWizard(@"remote wake request", NO);
-    });
-}
-
-static void WPHandleStatusRequest(__unused CFNotificationCenterRef center,
-                                  __unused void *observer,
-                                  __unused CFStringRef name,
-                                  __unused const void *object,
-                                  __unused CFDictionaryRef userInfo) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        WPLogFinalLockState(@"remote status");
-    });
-}
-
 static void WPHandleBatteryState(UIDeviceBatteryState state) {
     if (state == gLastBatteryState) return;
 
@@ -651,23 +611,5 @@ static void WPInit(void) {
                                        selector:@selector(tick:)
                                        userInfo:nil
                                         repeats:YES];
-        CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
-                                        NULL,
-                                        WPHandleLockRequest,
-                                        kWizardPowerLockRequestNotification,
-                                        NULL,
-                                        CFNotificationSuspensionBehaviorDeliverImmediately);
-        CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
-                                        NULL,
-                                        WPHandleWakeRequest,
-                                        kWizardPowerWakeRequestNotification,
-                                        NULL,
-                                        CFNotificationSuspensionBehaviorDeliverImmediately);
-        CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
-                                        NULL,
-                                        WPHandleStatusRequest,
-                                        kWizardPowerStatusRequestNotification,
-                                        NULL,
-                                        CFNotificationSuspensionBehaviorDeliverImmediately);
     }
 }

@@ -10,6 +10,10 @@ Please use [GitHub's private vulnerability reporting](https://github.com/rexchen
 
 If private reporting is unavailable, do not publish exploit details in an issue; wait until a private reporting route is available. No response-time or support commitment is made.
 
+## Security review scope
+
+Review the core App, optional power add-on, installer and release exporter together. Removing a UI or URL route does not disable a background listener or privileged IPC receiver. Require explicit opt-in for network controls and diagnostics, and retain the source/build/device evidence boundaries.
+
 ## Supported versions
 
 There is no supported device release at this time. The current source candidate is documented in the [compatibility guide](docs/COMPATIBILITY.md); host regression results do not establish device security or runtime support.

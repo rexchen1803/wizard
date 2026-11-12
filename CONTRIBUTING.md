@@ -30,6 +30,7 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
 These checks exercise source logic with host-side fixtures and doubles. They do not install the app or verify native rendering, private system symbols, signing, stock iOS, or a fresh installation. The optional universal device build is documented in the [build guide](docs/open-source/README.md#build) and requires an iPhoneOS SDK you obtained through Apple's development tools.

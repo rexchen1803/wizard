@@ -9,6 +9,16 @@ Notable changes to Wizard are listed here. Build and device evidence are describ
 - Add a macOS host CI workflow and repository-content checks.
 - Add contributor, security, and compatibility guidance.
 
+## 0.2.0 preview 5 — 20261112.41
+
+- Remove unauthenticated remote Darwin power handlers from the optional add-on; power logs now require explicit diagnostic opt-in.
+- Make Cast an explicit foreground opt-in. Require approval before fetching each submitted URL, close on decline/home/background, and advertise a random session identifier.
+- Restrict device control URLs to the optional power add-on's launch-only main route; reject external settings and power mutations.
+- Reject media catalog symlink escapes while preserving stable paths and missing-media behavior.
+- Gate device diagnostic output, remove playback URL/body details from Cast logs, and disclose weather/location services in the permission prompt.
+- Add security regression coverage and retain four-language guides and the editable Poster/System clock font. Credit: Made by Rex Chen.
+- This remains a private draft; no physical-device acceptance is claimed.
+
 ## 0.2.0 preview 4 — 20261112.40
 
 - Add Poster / System font selection to clock editing, with saved preferences, cancellation and reset.

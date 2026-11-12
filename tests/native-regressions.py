@@ -454,6 +454,84 @@ static NSArray *digits(NSInteger count) {
 static void writeStatus(NSString *name, NSString *json) {
     [json writeToFile:[IWAppPath stringByAppendingPathComponent:name] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
+static void testCatalogPathSafety(void) {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *fixtureRoot = [IWAppPath stringByAppendingPathComponent:@"catalog-path-security-fixture"];
+    NSString *mediaRoot = [fixtureRoot stringByAppendingPathComponent:@"media"];
+    NSString *outsideRoot = [fixtureRoot stringByAppendingPathComponent:@"outside"];
+    NSError *error = nil;
+    BOOL created = [fileManager createDirectoryAtPath:mediaRoot withIntermediateDirectories:YES attributes:nil error:&error] &&
+                   [fileManager createDirectoryAtPath:outsideRoot withIntermediateDirectories:YES attributes:nil error:&error];
+    check(created, @"catalog path fixtures create media and outside roots");
+    if (!created) return;
+
+    NSString *regularPath = [mediaRoot stringByAppendingPathComponent:@"regular.jpg"];
+    BOOL wroteRegular = [@"fixture" writeToFile:regularPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    check(wroteRegular, @"regular catalog media fixture is written");
+    if (!wroteRegular) return;
+    check([IWCatalogMediaPath(@"regular.jpg", mediaRoot) isEqualToString:regularPath],
+          @"regular media stays available at its lexical path");
+    check([IWCatalogMediaPath(@"optional/missing.jpg", mediaRoot) isEqualToString:
+           [mediaRoot stringByAppendingPathComponent:@"optional/missing.jpg"]],
+          @"missing optional media keeps its lexical path");
+
+    NSString *outsidePath = [outsideRoot stringByAppendingPathComponent:@"target.jpg"];
+    BOOL wroteOutside = [@"outside" writeToFile:outsidePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    check(wroteOutside, @"outside catalog target fixture is written");
+    if (!wroteOutside) return;
+
+    NSString *directLink = [mediaRoot stringByAppendingPathComponent:@"direct-link.jpg"];
+    error = nil;
+    BOOL directLinked = [fileManager createSymbolicLinkAtPath:directLink withDestinationPath:outsidePath error:&error];
+    check(directLinked, @"direct media symlink fixture is created");
+    if (directLinked) check(IWCatalogMediaPath(@"direct-link.jpg", mediaRoot) == nil,
+                            @"direct symlink media is rejected");
+
+    NSString *nestedRoot = [mediaRoot stringByAppendingPathComponent:@"nested"];
+    BOOL nestedCreated = [fileManager createDirectoryAtPath:nestedRoot withIntermediateDirectories:YES attributes:nil error:&error];
+    check(nestedCreated, @"nested media directory fixture is created");
+    if (nestedCreated) {
+        NSString *nestedLink = [nestedRoot stringByAppendingPathComponent:@"nested-link.jpg"];
+        error = nil;
+        BOOL nestedLinked = [fileManager createSymbolicLinkAtPath:nestedLink withDestinationPath:outsidePath error:&error];
+        check(nestedLinked, @"nested media symlink fixture is created");
+        if (nestedLinked) check(IWCatalogMediaPath(@"nested/nested-link.jpg", mediaRoot) == nil,
+                                @"nested symlink media is rejected");
+    }
+
+    NSString *directoryLink = [mediaRoot stringByAppendingPathComponent:@"nested-directory-link"];
+    error = nil;
+    BOOL directoryLinked = [fileManager createSymbolicLinkAtPath:directoryLink withDestinationPath:outsideRoot error:&error];
+    check(directoryLinked, @"nested directory symlink fixture is created");
+    if (directoryLinked) check(IWCatalogMediaPath(@"nested-directory-link/target.jpg", mediaRoot) == nil,
+                               @"symlink directory descendants are rejected");
+
+    NSString *danglingLink = [mediaRoot stringByAppendingPathComponent:@"dangling-link.jpg"];
+    error = nil;
+    BOOL danglingLinked = [fileManager createSymbolicLinkAtPath:danglingLink
+                                            withDestinationPath:[mediaRoot stringByAppendingPathComponent:@"missing-target.jpg"]
+                                                          error:&error];
+    check(danglingLinked, @"dangling symlink fixture is created");
+    if (danglingLinked) check(IWCatalogMediaPath(@"dangling-link.jpg", mediaRoot) == nil,
+                               @"dangling symlink media is rejected");
+
+    char canonicalAppPath[PATH_MAX];
+    NSString *canonicalAppRoot = realpath([IWAppPath fileSystemRepresentation], canonicalAppPath)
+        ? [[NSFileManager defaultManager] stringWithFileSystemRepresentation:canonicalAppPath length:strlen(canonicalAppPath)]
+        : nil;
+    NSString *privateVarPrefix = @"/private/var";
+    if ([canonicalAppRoot hasPrefix:@"/private/var/"]) {
+        NSString *varAliasAppRoot = [@"/var" stringByAppendingString:
+                                     [canonicalAppRoot substringFromIndex:[privateVarPrefix length]]];
+        NSString *varAliasMediaRoot = [[varAliasAppRoot stringByAppendingPathComponent:@"catalog-path-security-fixture"]
+                                       stringByAppendingPathComponent:@"media"];
+        NSString *varAliasRegularPath = [varAliasMediaRoot stringByAppendingPathComponent:@"regular.jpg"];
+        check([IWCatalogMediaPath(@"regular.jpg", varAliasMediaRoot) isEqualToString:varAliasRegularPath],
+              @"/var root alias remains valid when it resolves to /private/var");
+    } else {
+        check(NO, @"native regression fixture root resolves below /private/var for /var alias coverage");
+    }
+}
 int main(int argc, const char *argv[]) { @autoreleasepool {
     IWAppPath = [NSString stringWithUTF8String:argv[1]];
     ClockHarness *clock = [ClockHarness new];
@@ -534,6 +612,7 @@ int main(int argc, const char *argv[]) { @autoreleasepool {
     for (NSString *path in @[@"../outside.jpg", @"/tmp/outside.jpg", @"file:///tmp/outside.jpg", @"../../app-neighbor/outside.jpg"]) {
         check(IWCatalogMediaPath(path, IWAppPath) == nil, @"catalog cannot reference outside media root");
     }
+    testCatalogPathSafety();
     NSArray *video = IWMediaCatalogItems(@"[{\"type\":\"video\",\"src\":\"poster.jpg\",\"video\":\"movie.mp4\"}]", IWAppPath, NULL);
     check(video.count == 1 && [video[0][@"type"] isEqual:@"video"], @"existing video interface retained");
     NSArray *categorized = IWMediaCatalogItems(@"[{\"src\":\"person.jpg\",\"category\":\"people\",\"label\":\"杰森 01\"},{\"src\":\"legacy.jpg\",\"category\":42}]", IWAppPath, NULL);

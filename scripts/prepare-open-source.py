@@ -198,6 +198,7 @@ ROOT_ALLOWLIST = (
 )
 
 APP_TEST_ALLOWLIST = (
+    ("tests/security-regressions.py", "App/tests/security-regressions.py"),
     ("tests/power-edge-regressions.py", "App/tests/power-edge-regressions.py"),
     ("tests/media-lifecycle-regressions.py", "App/tests/media-lifecycle-regressions.py"),
     ("tests/gallery-media-regressions.py", "App/tests/gallery-media-regressions.py"),

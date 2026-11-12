@@ -4,7 +4,7 @@
 
 This repository contains Wizard, a legacy native Objective-C/UIKit iPad App, its host regression checks, packaging and installation tools, and an optional power tweak. The core App and the tweak are separate components.
 
-The App source candidate is **0.2.0 / build 20261112.40** with source/resource fingerprint `7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802`. As checked on 2026-11-12, this build had not been installed on a physical iPad. The GitHub repository was private and all Releases were drafts; the media manifest records prepared draft assets, not public download availability.
+The App source candidate is **0.2.0 / build 20261112.41** with source/resource fingerprint `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`. As checked on 2026-11-12, this build had not been installed on a physical iPad. The GitHub repository was private and all Releases were drafts; the media manifest records prepared draft assets, not public download availability.
 
 Wizard-authored code is licensed under the root [MIT License](../../LICENSE). That license does not cover third-party artwork, fonts, user imports or other assets. See [third-party notices](../../THIRD_PARTY.md) and the [GTA VI materials guide](../en/GTA6-MATERIALS.md).
 
@@ -42,9 +42,10 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
-The last eight commands are the host source-regression suites. The earlier commands check tracked repository contents, repository-checker regressions, package and installer fixtures, and shell syntax. The suites use fixtures, extracted production methods and UI doubles. CI does not build a device-target App or download/redistribute an Apple SDK. The checks do not sign or install the App, validate native rendering, resolve private system APIs on a device, or replace physical-device acceptance.
+The last nine commands are the host source-regression suites. The earlier commands check tracked repository contents, repository-checker regressions, package and installer fixtures, and shell syntax. The suites use fixtures, extracted production methods and UI doubles. CI does not build a device-target App or download/redistribute an Apple SDK. The checks do not sign or install the App, validate native rendering, resolve private system APIs on a device, or replace physical-device acceptance.
 
 ## Native simulator preview
 

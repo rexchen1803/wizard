@@ -64,12 +64,32 @@ functions = [
     extract_function(source, "static void WPUnlockAndOpenWizard(NSString *reason, BOOL respectAutomationPrefs) {"),
     extract_function(source, "static void WPSchedulePowerConnectedFallback(void) {"),
     extract_function(source, "static void WPCheckPowerState(NSString *source) {"),
+    extract_function(source, "static void WPLog(NSString *format, ...) {"),
+    extract_function(source, "static void WPInit(void) {"),
 ]
 
 generated = r'''
 #import <Foundation/Foundation.h>
 #import <dispatch/dispatch.h>
 #include <stdio.h>
+#include <stdarg.h>
+#include <math.h>
+
+#define NSBundle WPTestBundle
+#define NSNotificationCenter WPTestNotificationCenter
+#define NSTimer WPTestTimer
+#define NSFileManager WPTestFileManager
+#define NSFileHandle WPTestFileHandle
+#define CFNotificationCenterAddObserver(...) (gDarwinObserverRegistrationCount += 1)
+#define dispatch_async(queue, block) ((void)0)
+
+typedef NS_ENUM(NSInteger, UIDeviceBatteryState) {
+    UIDeviceBatteryStateUnknown,
+    UIDeviceBatteryStateUnplugged,
+    UIDeviceBatteryStateCharging,
+    UIDeviceBatteryStateFull
+};
+static NSString * const UIDeviceBatteryStateDidChangeNotification = @"UIDeviceBatteryStateDidChangeNotification";
 
 static NSUInteger gPowerEdgeGeneration;
 static BOOL gLastPowerConnected;
@@ -77,6 +97,7 @@ static BOOL gLastPowerConnectedKnown;
 static NSTimeInterval gLastLockActionAt;
 static BOOL gControlledLockActive;
 static BOOL gFakePowerConnected;
+static UIDeviceBatteryState gLastBatteryState;
 static NSMutableDictionary *gFakePrefs;
 static NSMutableArray *gScheduledCalls;
 static int64_t gFakeNowNanos;
@@ -85,6 +106,106 @@ static NSUInteger gForceDisplayCount;
 static NSUInteger gLockRequestCount;
 static NSUInteger gCheckCount;
 static NSUInteger gFailureCount;
+static NSUInteger gBatteryMonitoringEnableCount;
+static NSUInteger gBatteryObserverCount;
+static NSUInteger gPollTimerCount;
+static NSUInteger gGuardInstallCount;
+static NSUInteger gDarwinObserverRegistrationCount;
+static NSUInteger gDebugMarkerCheckCount;
+static NSUInteger gLogFileOpenCount;
+static NSString * const kWizardPowerLogPath = @"/tmp/wizardpower.log";
+static NSString *gObservedBatteryNotification;
+static NSString *gObservedDebugMarkerPath;
+static NSString *gObservedLogFilePath;
+static NSString *gFakeBundleIdentifier;
+static BOOL gFakeDebugMarkerExists;
+static NSTimeInterval gObservedPollInterval;
+static BOOL gObservedPollRepeats;
+
+@interface WPTestBundle : NSObject
+@property (nonatomic, copy) NSString *bundleIdentifier;
++ (instancetype)mainBundle;
+@end
+@implementation WPTestBundle
++ (instancetype)mainBundle {
+    static WPTestBundle *bundle;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ bundle = [[self alloc] init]; });
+    bundle.bundleIdentifier = gFakeBundleIdentifier;
+    return bundle;
+}
+@end
+
+@interface UIDevice : NSObject
+@property (nonatomic, assign) UIDeviceBatteryState batteryState;
++ (instancetype)currentDevice;
+- (void)setBatteryMonitoringEnabled:(BOOL)enabled;
+@end
+@implementation UIDevice
++ (instancetype)currentDevice {
+    static UIDevice *device;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ device = [[self alloc] init]; device.batteryState = UIDeviceBatteryStateUnplugged; });
+    return device;
+}
+- (void)setBatteryMonitoringEnabled:(BOOL)enabled { if (enabled) gBatteryMonitoringEnableCount += 1; }
+@end
+
+@interface WPTestNotificationCenter : NSObject
++ (instancetype)defaultCenter;
+- (id)addObserverForName:(NSString *)name object:(id)object queue:(NSOperationQueue *)queue usingBlock:(void (^)(NSNotification *notification))block;
+@end
+@implementation WPTestNotificationCenter
++ (instancetype)defaultCenter { static WPTestNotificationCenter *center; static dispatch_once_t onceToken; dispatch_once(&onceToken, ^{ center = [[self alloc] init]; }); return center; }
+- (id)addObserverForName:(NSString *)name object:(id)object queue:(NSOperationQueue *)queue usingBlock:(void (^)(NSNotification *))block {
+    (void)object; (void)queue; (void)block;
+    gBatteryObserverCount += 1;
+    gObservedBatteryNotification = [name copy];
+    return self;
+}
+@end
+
+@interface WPTestTimer : NSObject
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)target selector:(SEL)selector userInfo:(id)userInfo repeats:(BOOL)repeats;
+@end
+@implementation WPTestTimer
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)target selector:(SEL)selector userInfo:(id)userInfo repeats:(BOOL)repeats {
+    (void)target; (void)selector; (void)userInfo;
+    gPollTimerCount += 1;
+    gObservedPollInterval = interval;
+    gObservedPollRepeats = repeats;
+    return [self new];
+}
+@end
+
+@interface WPTestFileManager : NSObject
++ (instancetype)defaultManager;
+- (BOOL)fileExistsAtPath:(NSString *)path;
+@end
+@implementation WPTestFileManager
++ (instancetype)defaultManager { static WPTestFileManager *manager; static dispatch_once_t onceToken; dispatch_once(&onceToken, ^{ manager = [[self alloc] init]; }); return manager; }
+- (BOOL)fileExistsAtPath:(NSString *)path { gDebugMarkerCheckCount += 1; gObservedDebugMarkerPath = [path copy]; return gFakeDebugMarkerExists; }
+@end
+
+@interface WPTestFileHandle : NSObject
++ (instancetype)fileHandleForWritingAtPath:(NSString *)path;
+- (void)seekToEndOfFile;
+- (void)writeData:(NSData *)data;
+- (void)closeFile;
+@end
+@implementation WPTestFileHandle
++ (instancetype)fileHandleForWritingAtPath:(NSString *)path { gLogFileOpenCount += 1; gObservedLogFilePath = [path copy]; return [self new]; }
+- (void)seekToEndOfFile {}
+- (void)writeData:(NSData *)data { (void)data; }
+- (void)closeFile {}
+@end
+
+@interface WizardPowerPoller : NSObject
++ (void)tick:(NSTimer *)timer;
+@end
+@implementation WizardPowerPoller
++ (void)tick:(NSTimer *)timer { (void)timer; }
+@end
 
 static void IWTestSchedule(int64_t deadline, dispatch_block_t block);
 static dispatch_time_t IWTestDispatchTime(dispatch_time_t when, int64_t delta) {
@@ -197,7 +318,10 @@ static void WPLockScreen(NSString *reason, BOOL respectAutomationPrefs) {
     (void)reason; (void)respectAutomationPrefs;
     gLockRequestCount += 1;
 }
-static void WPLog(NSString *format, ...) { (void)format; }
+static void WPLog(NSString *format, ...);
+static NSString *WPBatteryStateName(UIDeviceBatteryState state) { (void)state; return @"fake"; }
+static void WPHandleBatteryState(UIDeviceBatteryState state) { (void)state; }
+static void WPInstallControlledLockGuards(void) { gGuardInstallCount += 1; }
 
 static BOOL WPAutomatedWakeIsCurrent(NSUInteger generation);
 static void WPUnlockAndOpenWizard(NSString *reason, BOOL respectAutomationPrefs);
@@ -232,6 +356,58 @@ static void IWReset(BOOL initiallyPowered) {
     manager.finishCount = 0;
     manager.locked = NO;
     manager.visible = NO;
+}
+
+static void IWResetInitializationFixture(NSString *bundleIdentifier) {
+    gFakeBundleIdentifier = [bundleIdentifier copy];
+    gFakePowerConnected = YES;
+    gLastBatteryState = UIDeviceBatteryStateUnknown;
+    gLastPowerConnected = NO;
+    gLastPowerConnectedKnown = NO;
+    gBatteryMonitoringEnableCount = 0;
+    gBatteryObserverCount = 0;
+    gPollTimerCount = 0;
+    gGuardInstallCount = 0;
+    gDarwinObserverRegistrationCount = 0;
+    gDebugMarkerCheckCount = 0;
+    gLogFileOpenCount = 0;
+    gObservedBatteryNotification = nil;
+    gObservedDebugMarkerPath = nil;
+    gObservedLogFilePath = nil;
+    gObservedPollInterval = 0.0;
+    gObservedPollRepeats = NO;
+    gFakeDebugMarkerExists = NO;
+    gScheduledCalls = [NSMutableArray array];
+}
+
+static void IWTestSpringBoardInitializationAndDiagnosticLogging(void) {
+    IWResetInitializationFixture(@"com.example.other-app");
+    WPInit();
+    IWCheck(gBatteryMonitoringEnableCount == 0 && gBatteryObserverCount == 0 &&
+            gPollTimerCount == 0 && gGuardInstallCount == 0,
+            @"non-SpringBoard process does not install the power observer or poller");
+
+    IWResetInitializationFixture(@"com.apple.springboard");
+    WPInit();
+    IWCheck(gBatteryMonitoringEnableCount == 1, @"SpringBoard initialization enables local battery monitoring");
+    IWCheck(gBatteryObserverCount == 1 &&
+            [gObservedBatteryNotification isEqualToString:UIDeviceBatteryStateDidChangeNotification],
+            @"SpringBoard retains the local battery-state observer");
+    IWCheck(gPollTimerCount == 1 && fabs(gObservedPollInterval - 0.25) < 0.0001 && gObservedPollRepeats,
+            @"SpringBoard retains the quarter-second local power poller");
+    IWCheck(gGuardInstallCount == 1, @"SpringBoard still installs physical lock and wake guards");
+    IWCheck(gDarwinObserverRegistrationCount == 0,
+            @"SpringBoard initialization registers no Darwin notification controls");
+    IWCheck(gDebugMarkerCheckCount > 0 &&
+            [gObservedDebugMarkerPath isEqualToString:@"/tmp/wizardpower-debug"] && gLogFileOpenCount == 0,
+            @"default power initialization checks its diagnostic marker and writes no activity log");
+
+    WPLog(@"disabled diagnostic log probe");
+    IWCheck(gLogFileOpenCount == 0, @"WPLog remains silent when the diagnostic marker is absent");
+    gFakeDebugMarkerExists = YES;
+    WPLog(@"enabled diagnostic log probe");
+    IWCheck(gLogFileOpenCount == 1 && [gObservedLogFilePath isEqualToString:kWizardPowerLogPath],
+            @"WPLog opens the expected log only when diagnostics are enabled");
 }
 
 static void IWTestDisconnectBeforeFallback(void) {
@@ -308,6 +484,7 @@ int main(void) {
     @autoreleasepool {
         gCheckCount = 0;
         gFailureCount = 0;
+        IWTestSpringBoardInitializationAndDiagnosticLogging();
         IWTestDisconnectBeforeFallback();
         IWTestStableConnectCompletesWake();
         IWTestDisconnectAfterImmediateWake();

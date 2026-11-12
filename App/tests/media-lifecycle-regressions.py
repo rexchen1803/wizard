@@ -408,6 +408,7 @@ static void IWCastLog(NSString *format, ...) { (void)format; }
     UIView *_powerSleepOverlay;
     IWTestAudioPlayer *_player;
     NSUInteger _editCommitCount;
+    NSUInteger _castStopCount;
     NSMutableArray *_events;
     NSMutableArray *_openedURLs;
     NSDictionary *_lastLocalVideoFinish;
@@ -437,6 +438,7 @@ static void IWCastLog(NSString *format, ...) { (void)format; }
 - (void)openMoviePath:(NSString *)path;
 - (void)openCastURL:(NSURL *)url;
 - (void)returnToMainScreen;
+- (void)stopWizardCast;
 @end
 
 @implementation IWRootViewController
@@ -479,6 +481,7 @@ static void IWCastLog(NSString *format, ...) { (void)format; }
 - (void)writeDebugState:(NSString *)context { (void)context; }
 - (void)setDepthDemoEnabled:(BOOL)enabled { (void)enabled; _depthMode = NO; }
 - (void)updateMenuButtons {}
+- (void)stopWizardCast { _castStopCount += 1; }
 - (void)setVideoControlsVisible:(BOOL)visible animated:(BOOL)animated { _videoControlsVisible = visible; (void)animated; }
 - (void)startVideoTimer {}
 '''
@@ -773,6 +776,7 @@ static void IWTestHomeCancelsPendingCast(void) {
     IWCheck(controller->_pendingCastURL != nil && controller->_remoteVideoPlayer.playCount == 0,
             @"Cast request is pending while a modal is presented");
     [controller returnToMainScreen];
+    IWCheck(controller->_castStopCount == 1, @"returning home stops the receiver and invalidates consent");
     [controller completeDismissalAtIndex:0];
     IWCheck(controller->_pendingCastURL == nil && controller->_remoteVideoPlayer.playCount == 0 &&
             !controller->_castDismissingModal && IWEventCount(controller->_events, @"video-play") == 0,

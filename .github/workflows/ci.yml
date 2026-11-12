@@ -53,3 +53,4 @@ jobs:
           python3 App/tests/gallery-media-regressions.py
           python3 App/tests/menu-layout-regressions.py
           python3 App/tests/power-edge-regressions.py
+          python3 App/tests/security-regressions.py

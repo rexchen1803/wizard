@@ -4,7 +4,7 @@
 
 このリポジトリには、旧世代 iPad 向けのネイティブ Objective-C/UIKit アプリ Wizard、ホスト回帰検査、パッケージ／インストールツール、任意の電源 tweak が含まれます。アプリ本体と tweak は別コンポーネントです。
 
-現在のソース候補は **0.2.0 / build 20261112.40** で、ソースと Simulator のビルドは通過しています。ソース／リソース指紋は `7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802`です。ビルド40は実機にインストールされていません。リポジトリは非公開で、GitHub Releases はすべて下書き状態です。素材の manifest に記録された添付ファイルも、一般公開されているとは限りません。
+現在のソース候補は **0.2.0 / build 20261112.41** で、ソースと Simulator のビルドは通過しています。ソース／リソース指紋は `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`です。ビルド41は実機にインストールされていません。リポジトリは非公開で、GitHub Releases はすべて下書き状態です。素材の manifest に記録された添付ファイルも、一般公開されているとは限りません。
 
 Wizard が作成したコードにはルートの [MIT License](../../LICENSE) が適用されます。第三者のアート、フォント、ユーザー取り込み画像、その他の素材には適用されません。[第三者素材の説明](THIRD_PARTY.md)と[GTA VI 素材ガイド](GTA6-MATERIALS.md)を参照してください。
 
@@ -26,7 +26,7 @@ IOS_SDK="/path/to/iPhoneOS9.3.sdk" ./scripts/build-ipad.sh
 
 既定では `.private-audit` 内に新しい出力フォルダーを作ります。出力先は `--out PATH` で指定します。指定先は事前に存在していてはいけません。スクリプトは既存の出力を消去しません。ビルドには確認済みのアプリアイコンと起動画像、帰属表示付き `ViceCity.jpg` の代替壁紙、静的 OFL ライセンスの `Anton-Regular.ttf` とライセンスが含まれます。そのためアプリには第三者素材も含まれます。コンパイルに別の GTA VI 素材パックやプロプライエタリフォントは不要です。Rockstar アートは MIT ライセンス対象外です。[素材ガイド](GTA6-MATERIALS.md)を参照してください。
 
-ビルド40 では時計編集パネルに「ポスター／標準」の2択を追加します。既定の「ポスター」は同梱 Anton、「標準」はシステムフォントです。「Done」で保存し、「Cancel」で変更前に戻します。ソースと Simulator のビルドは通過しましたが、古い物理 iPad での描画は未確認です。
+ビルド41 では時計編集パネルに「ポスター／標準」の2択を追加します。既定の「ポスター」は同梱 Anton、「標準」はシステムフォントです。「Done」で保存し、「Cancel」で変更前に戻します。ソースと Simulator のビルドは通過しましたが、古い物理 iPad での描画は未確認です。
 
 ## ホスト側の検査
 
@@ -46,6 +46,7 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
 最後の8コマンドはホスト上のソース回帰スイートです。先行するコマンドは追跡対象ファイル、リポジトリ検査ツールの回帰、パッケージとインストーラーのテスト用データ、shell 構文を確認します。スイートはテスト用データ、抽出した本番メソッド、UI の代替オブジェクトを使います。CI は端末向け アプリをビルドせず、Apple SDK を取得・再配布しません。署名、インストール、ネイティブ表示、実機上での非公開 API 解決を確認せず、実機での受け入れに代わるものではありません。
@@ -62,7 +63,7 @@ python3 scripts/build-preview.py --out build-preview
 
 スクリプトは識別子 `com.rex.wizard.preview`、iOS 18 以降を対象とする ad-hoc 署名済み `WizardPreview.app` を作り、`PREVIEW-METADATA.json` にソース／リソース指紋を記録します。アプリをインストールしたり、Simulator を起動したりはしません。プレビュー用メディアはアプリのコンテナ内の `Documents/WizardMedia` にあります。端末版は引き続き `/var/mobile/Media/iPadWizard/app` を使います。
 
-専用の Simulator を選び、ネイティブ UIKit 表示を確認してキャプチャを作成します。[キャプチャ出典](CAPTURES.md)の8枚の `*-miami.jpg` は、iOS 18 の iPad（第8世代）Simulator で ビルド40 を動かして撮影したものです。[時計編集画面で「標準」を選んだ画像](../../assets/demo/clock-font-system.jpg)も、実際のアプリ画面をそのまま撮影しています。そこにある `*-ipad2.png` 3枚は build `20261111.36` の古い実機画像で、現行候補を示しません。どちらの画像も古い iOS との互換性を証明しません。[互換性](COMPATIBILITY.md)に証拠一覧があります。
+専用の Simulator を選び、ネイティブ UIKit 表示を確認してキャプチャを作成します。[キャプチャ出典](CAPTURES.md)の8枚の `*-miami.jpg` は、iOS 18 の iPad（第8世代）Simulator で ビルド41 を動かして撮影したものです。[時計編集画面で「標準」を選んだ画像](../../assets/demo/clock-font-system.jpg)も、実際のアプリ画面をそのまま撮影しています。そこにある `*-ipad2.png` 3枚は build `20261111.36` の古い実機画像で、現行候補を示しません。どちらの画像も古い iOS との互換性を証明しません。[互換性](COMPATIBILITY.md)に証拠一覧があります。
 
 プレビューは `WizardPreviewCommands` から許可された画面遷移コマンドを最大8つ受け取ります。例:
 

@@ -1,6 +1,6 @@
 # README artwork sources
 
-The Simplified Chinese, Traditional Chinese, English and Japanese READMEs use the same illustrated composition, with separate desktop and narrow-screen panels for each language. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.40`, not physical-device screenshots. Localized pages retain the original mixed Chinese/English App interface text in those images. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
+The Simplified Chinese, Traditional Chinese, English and Japanese READMEs use the same illustrated composition, with separate desktop and narrow-screen panels for each language. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.41`, not physical-device screenshots. Localized pages retain the original mixed Chinese/English App interface text in those images. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
 
 ## Artwork
 

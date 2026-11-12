@@ -6,8 +6,8 @@
     "en",
     "ja"
   ],
-  "native_capture_build": "20261112.40",
-  "native_source_fingerprint": "7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802",
+  "native_capture_build": "20261112.41",
+  "native_source_fingerprint": "cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91",
   "font_sha256": {
     "Anton-Regular.ttf": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
     "NotoSansCJKsc-Regular.otf": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
@@ -87,7 +87,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 64,
           "right": 1136,
           "top": 270,
@@ -95,9 +95,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad 模拟器实截 · build 20261112.40",
+          "text": "iPad 模拟器实截 · build 20261112.41",
           "left": 64,
-          "right": 508.392,
+          "right": 507.976,
           "top": 1109.978,
           "bottom": 1134.08
         },
@@ -159,7 +159,7 @@
           "bottom": 1792.55
         }
       ],
-      "sha256": "642e7384ee9c54863a0b04c76c7b95ec5af7c3295da63a1f2890c8c4366bff4c"
+      "sha256": "5adedd8ae83af24d697a73fa5aef809b0f8ae226d2c23a100f74ba68c48335cc"
     },
     {
       "file": "collection.svg",
@@ -339,14 +339,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 64,
-          "right": 161.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 208.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "321f68917c08b312cda40263a8cf378f9356d4a856e5f3249fa2d5b33a0ab189"
+      "sha256": "99cfae5bc967b1e727229ff1ad6d5dd3b5a62ff07915b4b68721e70748987f92"
     },
     {
       "file": "hero-mobile.svg",
@@ -417,7 +417,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 40,
           "right": 720,
           "top": 245,
@@ -425,9 +425,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad 模拟器实截 · build 20261112.40",
+          "text": "iPad 模拟器实截 · build 20261112.41",
           "left": 40,
-          "right": 621.128,
+          "right": 620.5840000000001,
           "top": 788.202,
           "bottom": 819.72
         },
@@ -465,7 +465,7 @@
           "bottom": 1713.078
         }
       ],
-      "sha256": "60bc04147394649dce3ee809fe7165c2aa492d3596c6399d6d19b00e916a5d66"
+      "sha256": "ef43152b562e8256e6fb6043760912c3d537aa62dce3327d54907e48d4200f81"
     },
     {
       "file": "collection-mobile.svg",
@@ -645,14 +645,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 40,
-          "right": 137.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 184.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "d1407a2a40ca24716987b7519bbb3ae10acbd7adc6f34d265573becc9a79494f"
+      "sha256": "f3c6ca52be32b0c3fdae3eee2690fe30a0e32883d99652b7fa2f990110f34e38"
     },
     {
       "file": "hero-zh-tw.svg",
@@ -723,7 +723,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 64,
           "right": 1136,
           "top": 270,
@@ -731,9 +731,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad 模擬器截圖 · build 20261112.40",
+          "text": "iPad 模擬器截圖 · build 20261112.41",
           "left": 64,
-          "right": 508.392,
+          "right": 507.976,
           "top": 1110.16,
           "bottom": 1134.132
         },
@@ -795,7 +795,7 @@
           "bottom": 1792.55
         }
       ],
-      "sha256": "b255615fdda66ac97e7454a799ca986ce31d1e61fe538950276ebfdcd95bbb6c"
+      "sha256": "80e2bb0072dffce27138d2986bbccdfb1958b997df2bb87b1f01ef102320db35"
     },
     {
       "file": "collection-zh-tw.svg",
@@ -975,14 +975,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 64,
-          "right": 161.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 208.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "7634703c0fba2d12c491cb23e3b684be8b5db2551e4df13549519ab1027ca577"
+      "sha256": "fb23d524a1ae3727f0a6dd660fed8e1fa83eb82c680ff6caa90681f6a82e50cc"
     },
     {
       "file": "hero-zh-tw-mobile.svg",
@@ -1053,7 +1053,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 40,
           "right": 720,
           "top": 245,
@@ -1061,9 +1061,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad 模擬器截圖 · build 20261112.40",
+          "text": "iPad 模擬器截圖 · build 20261112.41",
           "left": 40,
-          "right": 621.128,
+          "right": 620.5840000000001,
           "top": 788.44,
           "bottom": 819.788
         },
@@ -1101,7 +1101,7 @@
           "bottom": 1713.306
         }
       ],
-      "sha256": "0a656775a1874f5be4c2dbfe3c7705f14b146548fa6aca05762329536c24ef36"
+      "sha256": "310b1ceccc38c208ecdd24ff5de6b898826c3506bc7587e8dfa32e33a2ef87c2"
     },
     {
       "file": "collection-zh-tw-mobile.svg",
@@ -1281,14 +1281,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 40,
-          "right": 137.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 184.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "b12b3b2cd53676489371cdc67b1f6b2e5ab252a351f774dc426de473601f8160"
+      "sha256": "56ef9a8a50d44e7e5ae79fc2bd07309fd613a861d09e2e6feb57eee5c33fd9bf"
     },
     {
       "file": "hero-en.svg",
@@ -1359,7 +1359,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 64,
           "right": 1136,
           "top": 270,
@@ -1367,9 +1367,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad Simulator · build 20261112.40",
+          "text": "iPad Simulator · build 20261112.41",
           "left": 64,
-          "right": 498.56399999999996,
+          "right": 498.14799999999997,
           "top": 1111.304,
           "bottom": 1132.338
         },
@@ -1439,7 +1439,7 @@
           "bottom": 1797.5
         }
       ],
-      "sha256": "f936d0010993a87dd25d3596a4def328df050e0b3eabd3922247b87c7a77ed9e"
+      "sha256": "d368b3de512ab9e0366bce33b8fc85f7aeb69602456e7c8ba88ed3f2f1f59be4"
     },
     {
       "file": "collection-en.svg",
@@ -1619,14 +1619,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 64,
-          "right": 161.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 208.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "7ef10a7c405434035dd7cdcd47804b17578c2544b103241d1ba728982eff3a91"
+      "sha256": "a6fd5037cbc0b1de166ad6711b713cba1118f4d66481308361cac33a5bca2a29"
     },
     {
       "file": "hero-en-mobile.svg",
@@ -1697,7 +1697,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 40,
           "right": 720,
           "top": 245,
@@ -1705,9 +1705,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad Simulator · build 20261112.40",
+          "text": "iPad Simulator · build 20261112.41",
           "left": 40,
-          "right": 608.2760000000001,
+          "right": 607.7320000000001,
           "top": 789.936,
           "bottom": 817.442
         },
@@ -1753,7 +1753,7 @@
           "bottom": 1719.196
         }
       ],
-      "sha256": "d3907a534a9d6509c3eaa3847f1e852c669b507f910b97540ab1e28beb0783c9"
+      "sha256": "bdc898b750bb065623d37756f839eb1c57fccacfa64c2863c29ab418e6dacd48"
     },
     {
       "file": "collection-en-mobile.svg",
@@ -1933,14 +1933,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 40,
-          "right": 137.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 184.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "e7baaffddc5fa700a3e033a0be17abfa7c645453f11e203999ef4cda2ead6d8a"
+      "sha256": "3bdc1bcbf13863282956e5d7dd92bf7991c74444a36fca89d78119ea4a8dcf37"
     },
     {
       "file": "hero-ja.svg",
@@ -2011,7 +2011,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 64,
           "right": 1136,
           "top": 270,
@@ -2019,9 +2019,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad シミュレータ · build 20261112.40",
+          "text": "iPad シミュレータ · build 20261112.41",
           "left": 64,
-          "right": 522.978,
+          "right": 522.5619999999999,
           "top": 1110.836,
           "bottom": 1133.144
         },
@@ -2091,7 +2091,7 @@
           "bottom": 1792.64
         }
       ],
-      "sha256": "543764f32c7929bc475c65b2031f46dc214533f89fb42781adaf76a1ab3a6b6a"
+      "sha256": "d9b92d58a78940c1fdb17f3793add6ff3cad422d1bbcaf3b54f9df5ba48f8842"
     },
     {
       "file": "collection-ja.svg",
@@ -2271,14 +2271,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 64,
-          "right": 161.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 208.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "b331e20c1b8f2821fba99bee901a30c946f67f51a56d52b8825d638808c37898"
+      "sha256": "5907623875de524a794e4f7fc0c18cf01f61df41314836d8cca7a7fdff9e26c1"
     },
     {
       "file": "hero-ja-mobile.svg",
@@ -2349,7 +2349,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
           "left": 40,
           "right": 720,
           "top": 245,
@@ -2357,9 +2357,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad シミュレータ · build 20261112.40",
+          "text": "iPad シミュレータ · build 20261112.41",
           "left": 40,
-          "right": 640.202,
+          "right": 639.658,
           "top": 789.324,
           "bottom": 818.496
         },
@@ -2405,7 +2405,7 @@
           "bottom": 1713.268
         }
       ],
-      "sha256": "75f203e4bc30e0f1e0394350d06323708a60ee9bb869303f600238ee593229ce"
+      "sha256": "54eaccb6f632ff31b792b02ead2ed80bdd730d48916f962edb2eaeb197b50943"
     },
     {
       "file": "collection-ja-mobile.svg",
@@ -2585,14 +2585,14 @@
         },
         {
           "role": "copy",
-          "text": "MADE BY REX",
+          "text": "Made by Rex Chen",
           "left": 40,
-          "right": 137.021484375,
-          "top": 354.802734375,
-          "bottom": 372.0
+          "right": 184.00390625,
+          "top": 354.65625,
+          "bottom": 374.44140625
         }
       ],
-      "sha256": "494a92c412f5a6589923e67b839ddda6f81825b23d4c0918b129032616a05acd"
+      "sha256": "30d6dc88397d46a7e850aaa0c1e2fb069c5a001f3ae049f562ed4491281a547e"
     }
   ]
 }

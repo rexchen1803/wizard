@@ -4,7 +4,7 @@
 
 本儲存庫包含 Wizard 這款舊版 Objective-C/UIKit 原生 iPad App、主機迴歸檢查、打包與安裝工具，以及一個可選電源 tweak。核心 App 與 tweak 是獨立元件。
 
-App 原始碼候選為 **0.2.0 / build 20261112.40**，原始碼與資源指紋為 `7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802`。截至 2026-11-12，該版本尚未安裝到實體 iPad。GitHub 儲存庫維持私有，所有 Release 均為草稿；素材清單記錄的是已準備的草稿附件，不代表存在公開下載。build 40 在時鐘編輯面板新增「海報」與「系統」兩種字型選項；預設仍為使用 Anton-Regular 的「海報」。儲存與取消會保留原有狀態。這項變更尚未通過實體裝置驗收。
+App 原始碼候選為 **0.2.0 / build 20261112.41**，原始碼與資源指紋為 `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`。截至 2026-11-12，該版本尚未安裝到實體 iPad。GitHub 儲存庫維持私有，所有 Release 均為草稿；素材清單記錄的是已準備的草稿附件，不代表存在公開下載。build 41 在時鐘編輯面板新增「海報」與「系統」兩種字型選項；預設仍為使用 Anton-Regular 的「海報」。儲存與取消會保留原有狀態。這項變更尚未通過實體裝置驗收。
 
 Wizard 自有程式碼使用根目錄的 [MIT License](../../LICENSE)。該授權條款不涵蓋第三方圖片、字型、使用者匯入內容或其他素材。請參閱[第三方聲明](THIRD_PARTY.md)和 [GTA VI 素材指南](GTA6-MATERIALS.md)。貢獻前可先閱讀[貢獻指南](CONTRIBUTING.md)。
 
@@ -42,6 +42,7 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
 最後八個命令是主機原始碼迴歸測試。前面的命令檢查儲存庫內容、儲存庫檢查器迴歸、打包與安裝器 fixture，以及 Shell 語法。這些測試使用 fixture、擷取自正式程式碼的方法和 UI double。CI 不會建置裝置版 App，也不會下載或重新分發 Apple SDK。這些檢查不會簽章或安裝 App，不驗證原生渲染，也不會在裝置上解析私有系統 API，不能替代實體裝置驗收。
@@ -56,7 +57,7 @@ python3 scripts/build-preview.py --out build-preview
 
 腳本會產生識別碼為 `com.rex.wizard.preview`、目標為 iOS 18 或更新版本的臨時簽章 `WizardPreview.app`，並在 `PREVIEW-METADATA.json` 中記錄原始碼與資源指紋。它不會安裝 App 或啟動模擬器。預覽素材位於該 App 容器內的 `Documents/WizardMedia`；裝置版繼續使用 `/var/mobile/Media/iPadWizard/app`。
 
-僅在為本專案選定的專用模擬器上檢查 UIKit 渲染或截圖。[截圖來源](CAPTURES.md)中的八張 `*-miami.jpg` 和新增的 `clock-font-system.jpg` 是 build 40 在 iOS 18 的 iPad 第 8 代模擬器截圖。該頁的三張 `*-ipad2.png` 是 build `20261111.36` 的早期實體裝置截圖，不代表 build 40 的裝置驗收。兩組截圖均不能證明舊版 iOS 相容性。證據矩陣見[相容性指南](../COMPATIBILITY.md)。
+僅在為本專案選定的專用模擬器上檢查 UIKit 渲染或截圖。[截圖來源](CAPTURES.md)中的八張 `*-miami.jpg` 和新增的 `clock-font-system.jpg` 是 build 41 在 iOS 18 的 iPad 第 8 代模擬器截圖。該頁的三張 `*-ipad2.png` 是 build `20261111.36` 的早期實體裝置截圖，不代表 build 41 的裝置驗收。兩組截圖均不能證明舊版 iOS 相容性。證據矩陣見[相容性指南](../COMPATIBILITY.md)。
 
 預覽接受最多八個授權清單內的場景命令，通過 `WizardPreviewCommands` 傳入。例如：
 

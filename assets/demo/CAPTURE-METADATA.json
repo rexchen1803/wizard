@@ -1,8 +1,8 @@
 {
   "runtime": "iOS 18.0",
   "device": "iPad (8th generation) Simulator",
-  "build": "20261112.40",
-  "source_fingerprint": "7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802",
+  "build": "20261112.41",
+  "source_fingerprint": "cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91",
   "physical_device": false,
   "entry": "Simulator-only CLI commands; no external URLs",
   "display_encoding": "JPEG quality 85, original pixel dimensions; no added UI or compositing",
@@ -26,8 +26,8 @@
     {
       "file": "home-miami.jpg",
       "scene": "home-miami",
-      "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
-      "original_png_sha256": "1fdf7700f1973a6247a65b11c6c95adfb4e7f059df99a1b4e9003a6fb19d90a4",
+      "sha256": "3fafea59e11cbd88f294306a1e508e19ec0093798ff3690a671b782d0050d55a",
+      "original_png_sha256": "0d1270c2d6c3b870c37e7b4d79643d27565c8ba24b90209f52b83ac7c104d6a5",
       "pixels": [
         2160,
         1620
@@ -41,8 +41,8 @@
     {
       "file": "menu-miami.jpg",
       "scene": "menu-miami",
-      "sha256": "6c3010eac15588a18ca14d940a9a09152513fe6d7da678d2b3eca96e5b803e6b",
-      "original_png_sha256": "42b970165f68f5f56c70e0f56dc9ade6a441e6ec96555311b71906490a7fb51d",
+      "sha256": "1aa931d899004d36de5571b766ef561dfdc0d53718685dcb21620ec56e516a6a",
+      "original_png_sha256": "df58482496fb463c983f561f4b195d10f36327d3a0c9abcf294788ae9d0f9711",
       "pixels": [
         2160,
         1620
@@ -57,8 +57,8 @@
     {
       "file": "settings-miami.jpg",
       "scene": "settings-miami",
-      "sha256": "17e577699bb965cb13a7ad2505365702501d7b8536a66d595c55f802171e36bf",
-      "original_png_sha256": "1d2f025e610f034502dc997d5ea8aac0cac472d7cf8085869996a314b19246c9",
+      "sha256": "62c63095f8e85edd1215931b8efa2e55d8f23452f3c1efe19adc69f1aad04c51",
+      "original_png_sha256": "dc8f222d395ec49a3f9fb7bef9475c1e1ae9d161cf4f2d0e133a3a64b13231a8",
       "pixels": [
         2160,
         1620
@@ -73,8 +73,8 @@
     {
       "file": "themes-miami.jpg",
       "scene": "themes-miami",
-      "sha256": "ce8b47ec28d72c0a1879be7352f4c0b1514ef9acfb34d293a0bbb745e83f81c7",
-      "original_png_sha256": "3e1d3f89e726451c8df56d28ee5b778ebda7e728451f33e051e83f4cf4a56a67",
+      "sha256": "9f368154258665e105d072695cbfe24b95e3d35bf1756655261718227300d612",
+      "original_png_sha256": "a72150af78b224d2b92ec59f698e7db2348bf10499b29008277fbf1332e64122",
       "pixels": [
         2160,
         1620
@@ -122,8 +122,8 @@
     {
       "file": "clock-edit-miami.jpg",
       "scene": "clock-edit-miami",
-      "sha256": "85663b6d3bd026f41988fbc228f8a79a051d65d55610ae08616f110659fda0fe",
-      "original_png_sha256": "ed46773294d547dfb29848398372f9c31f3ecfe6db953103ad5499456ad9edc5",
+      "sha256": "cf1a6464956942864ea44d2e537cc36fc9a0a08c20078ad40983622afea1fc9b",
+      "original_png_sha256": "eff199c90ffcd512eb0ad9c1859814e7a688a366df6cf309b132dd3bc0ebb8c5",
       "pixels": [
         2160,
         1620
@@ -138,8 +138,8 @@
     {
       "file": "calendar-miami.jpg",
       "scene": "calendar-miami",
-      "sha256": "3d12004333d1e7161ee509f666f71150a5142b6ec7283913368c3ceacef8cb19",
-      "original_png_sha256": "3e935f4a0636ff27751f253fda3d2ba701468a66a83aa1e3d634323c19cd60c3",
+      "sha256": "b450249e35178acb963c4bdc0272e2f458b12f4149c257eeb61eece5c9e8cb2a",
+      "original_png_sha256": "3f38512d4afd61d148b4a1cc4e2ba0f73b57e1f4db750961faa25358e88bfc83",
       "pixels": [
         2160,
         1620
@@ -154,8 +154,8 @@
     {
       "file": "clock-font-system.jpg",
       "scene": "system-editor",
-      "sha256": "ac14d4ce0f1555a621b98949c0ca878a72abff4d8b906395ecd428af2a41b6b2",
-      "original_png_sha256": "de16f35aec1db12e7ffa7f45afc81baea911520fd55804b748b201edff1a4d08",
+      "sha256": "0e4f4e1396941b1a1968f68afc6dfc30662dcd4c73ef46fe83278beaf36c8372",
+      "original_png_sha256": "4fdf88da72893c2ef9cb6d3135a7b348d1940faa9e1646acf5bc2ae351f9dd4f",
       "pixels": [
         2160,
         1620
@@ -173,5 +173,6 @@
       },
       "selection_action": "clockfont sends UISegmentedControl valueChanged to select System"
     }
-  ]
+  ],
+  "cast_receiver_on_launch": false
 }

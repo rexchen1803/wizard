@@ -2,9 +2,9 @@
 
 [简体中文](../../assets/demo/README.md) · **繁體中文** · [English](../../assets/demo/README.en.md) · [日本語](../ja/CAPTURES.md)
 
-## Build 40 Miami 預覽
+## Build 41 Miami 預覽
 
-`*-miami.jpg` 來自 build **20261112.40** 在 **iPad（第 8 代）模擬器 / iOS 18.0** 中的原生 UIKit 畫面。原始截圖為 2160 × 1620 PNG；網頁圖片維持相同像素尺寸，以 JPEG quality 85 編碼，未合成、新增或重繪 App 介面。原始 PNG 的 SHA-256、網頁圖片雜湊值、場景命令和原始碼指紋記錄在 [CAPTURE-METADATA.json](../../assets/demo/CAPTURE-METADATA.json)；build 40 的原始碼與資源指紋為 `7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802`。
+`*-miami.jpg` 來自 build **20261112.41** 在 **iPad（第 8 代）模擬器 / iOS 18.0** 中的原生 UIKit 畫面。原始截圖為 2160 × 1620 PNG；網頁圖片維持相同像素尺寸，以 JPEG quality 85 編碼，未合成、新增或重繪 App 介面。原始 PNG 的 SHA-256、網頁圖片雜湊值、場景命令和原始碼指紋記錄在 [CAPTURE-METADATA.json](../../assets/demo/CAPTURE-METADATA.json)；build 41 的原始碼與資源指紋為 `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`。
 
 - [主畫面](../../assets/demo/home-miami.jpg)：未安裝外部圖庫時顯示內建 Vice City 預設圖。
 - [圖庫](../../assets/demo/gallery-miami.jpg)、[分類](../../assets/demo/categories-miami.jpg)：示範資料夾由 230 項素材包加上選用的預設圖組成，共 231 項；未加入使用者照片。
@@ -16,7 +16,7 @@
 
 ## 字型來源
 
-build 40 候選沿用 App 已打包的靜態開源字型 `Anton-Regular.ttf` 與 OFL 1.1 授權。時鐘編輯面板新增「海報」與「系統」兩種字型選項；「海報」預設使用 Anton-Regular。截圖中繼資料記錄實際解析的字型名稱、字型檔案 SHA-256 與字型是否來自 App 套件；系統選項畫面見上方 [系統字型](../../assets/demo/clock-font-system.jpg) 截圖。中文控制項使用系統字型。build `20261111.36` 的實體裝置截圖保留當時外觀，不作為 build 40 的驗收證據。
+build 41 候選沿用 App 已打包的靜態開源字型 `Anton-Regular.ttf` 與 OFL 1.1 授權。時鐘編輯面板新增「海報」與「系統」兩種字型選項；「海報」預設使用 Anton-Regular。截圖中繼資料記錄實際解析的字型名稱、字型檔案 SHA-256 與字型是否來自 App 套件；系統選項畫面見上方 [系統字型](../../assets/demo/clock-font-system.jpg) 截圖。中文控制項使用系統字型。build `20261111.36` 的實體裝置截圖保留當時外觀，不作為 build 41 的驗收證據。
 
 ## 保留的舊版實體裝置宣傳圖
 

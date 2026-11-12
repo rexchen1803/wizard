@@ -544,6 +544,20 @@ static UIFont *IWClockTimeFont(CGFloat size, NSInteger style) {
     return IWGTAFont(size);
 }
 
+static BOOL IWAllowsControlURL(NSURL *url, BOOL simulator) {
+    if (!url || ![[[url scheme] lowercaseString] isEqualToString:@"wizardsystem"] ||
+        ![[url host] length] || [url user] || [url password] || [url port] ||
+        [url query] || [url fragment] || [[url path] length]) return NO;
+    return simulator || [[[url host] lowercaseString] isEqualToString:@"main"];
+}
+
+static BOOL IWShouldRequestCastConsent(NSURL *url, BOOL enabled, BOOL running, BOOL active) {
+    NSString *scheme = [[url scheme] lowercaseString];
+    return enabled && running && active && [[url absoluteString] length] <= 4096 &&
+        ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]) &&
+        [[url host] length] > 0 && ![url user] && ![url password];
+}
+
 static NSString *IWLocalWiFiAddress(void) {
     struct ifaddrs *interfaces = NULL;
     NSString *address = @"0.0.0.0";
@@ -740,8 +754,7 @@ static void IWCloseOwnedCastSocket(int *descriptor) {
         _bindAddress = bindAddress;
         _joinMulticast = joinMulticast;
         NSString *deviceName = IWCastDeviceModelName();
-        NSString *deviceID = [[[[UIDevice currentDevice] identifierForVendor] UUIDString] lowercaseString];
-        if (![deviceID length]) deviceID = @"8f0f9d66-5f5a-4ef9-9f54-wizardcast0001";
+        NSString *deviceID = [[[NSUUID UUID] UUIDString] lowercaseString];
         _uuid = [@"uuid:" stringByAppendingString:deviceID];
         _friendlyName = [NSString stringWithFormat:@"Wizard Cast (%@)", deviceName];
     }
@@ -1052,16 +1065,16 @@ static void IWCloseOwnedCastSocket(int *descriptor) {
     if (![uri length]) uri = IWXMLValue(body, @"NextURI");
     if (![uri length]) uri = IWXMLFirstElementValue(body, @"res");
     if ([uri hasPrefix:@"http://"] || [uri hasPrefix:@"https://"]) {
+        NSURL *url = [NSURL URLWithString:uri];
         CGSize resolution = IWMetadataResolution(body);
         if (!IWRemoteResolutionSupported(resolution)) {
-            IWCastLog(@"reject unsupported resolution %.0fx%.0f uri %@", resolution.width, resolution.height, uri);
+            IWCastLog(@"reject unsupported resolution %.0fx%.0f host %@", resolution.width, resolution.height, [url host] ?: @"");
             return;
         }
         if (!CGSizeEqualToSize(resolution, CGSizeZero)) {
             IWCastLog(@"accept resolution %.0fx%.0f", resolution.width, resolution.height);
         }
-        IWCastLog(@"play uri %@", uri);
-        NSURL *url = [NSURL URLWithString:uri];
+        IWCastLog(@"play host %@", [url host] ?: @"");
         if (url && self.playURLHandler) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (self.playURLHandler) self.playURLHandler(url);
@@ -1076,13 +1089,10 @@ static void IWCloseOwnedCastSocket(int *descriptor) {
     NSArray *parts = [first componentsSeparatedByString:@" "];
     NSString *method = [parts count] > 0 ? [parts objectAtIndex:0] : @"";
     NSString *path = [parts count] > 1 ? [parts objectAtIndex:1] : @"/";
-    IWCastLog(@"http %@ %@ soap=%@", method, path, IWHeaderValue(request, @"SOAPAction") ?: @"");
+    IWCastLog(@"http method %@", method);
     NSRange bodyRange = [request rangeOfString:@"\r\n\r\n"];
     NSString *body = bodyRange.location == NSNotFound ? @"" : [request substringFromIndex:NSMaxRange(bodyRange)];
-    if ([body length]) {
-        NSString *shortBody = [body length] > 900 ? [[body substringToIndex:900] stringByAppendingString:@"..."] : body;
-        IWCastLog(@"body %@", shortBody);
-    }
+    if ([body length]) IWCastLog(@"request body chars=%lu", (unsigned long)[body length]);
     if ([method isEqualToString:@"SUBSCRIBE"]) {
         NSString *sid = [NSString stringWithFormat:@"uuid:%@", [[NSUUID UUID] UUIDString]];
         NSString *headers = [NSString stringWithFormat:@"SID: %@\r\nTIMEOUT: Second-1800\r\n", sid];
@@ -3231,6 +3241,8 @@ static NSString *IWGalleryCategoryForItem(NSDictionary *item) {
 - (void)returnToMainScreen;
 - (void)restoreDisplayAfterSystemLock;
 - (void)commitEditModeForLifecycle;
+- (void)stopWizardCast;
+- (void)requestCastURL:(NSURL *)url;
 - (void)persistCurrentEditValues;
 - (void)selectClockOrDateEditTargetAtPoint:(CGPoint)p;
 - (BOOL)moveEditControlsToOrigin:(CGPoint)origin persist:(BOOL)persist;
@@ -4361,6 +4373,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSTimer *_castTimer;
     NSTimer *_weatherRefreshTimer;
     IWDLNACastServer *_dlnaCastServer;
+    BOOL _castEnabled;
+    UIAlertController *_castConsentAlert;
+    NSUInteger _castConsentGeneration;
     IWWeatherService *_weatherService;
     CLLocationManager *_weatherLocationManager;
     CLGeocoder *_weatherGeocoder;
@@ -4556,7 +4571,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _dlnaCastServer = [[IWDLNACastServer alloc] init];
     __weak IWRootViewController *weakSelf = self;
     _dlnaCastServer.playURLHandler = ^(NSURL *url) {
-        [weakSelf openCastURL:url];
+        [weakSelf requestCastURL:url];
     };
     _dlnaCastServer.stateChangedHandler = ^(BOOL ready, NSError *error) {
         IWRootViewController *strongSelf = weakSelf;
@@ -4565,7 +4580,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         [strongSelf updateMenuButtons];
         [strongSelf writeDebugState:ready ? @"cast-ready" : (error ? @"cast-error" : @"cast-starting")];
     };
-    _castError = ![_dlnaCastServer start];
+    _castError = NO;
 }
 
 - (void)configureAudio {
@@ -4786,6 +4801,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 }
 
 - (void)appendPowerAutomationLog:(NSString *)message {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/wizardsystem-debug"]) return;
     NSString *line = [NSString stringWithFormat:@"%@ %@\n", [NSDate date], message ?: @""];
     NSString *path = @"/tmp/wizardsystem-power.log";
     NSFileHandle *handle = [NSFileHandle fileHandleForWritingAtPath:path];
@@ -7622,6 +7638,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 }
 
 - (void)returnToMainScreen {
+    [self stopWizardCast];
     _pendingCastURL = nil;
     if (self.presentedViewController) [self dismissViewControllerAnimated:NO completion:nil];
     [self closeVideo];
@@ -7794,7 +7811,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         else if (button.tag == IWButtonKindHome) active = _homeVisible;
         else if (button.tag == IWButtonKindWeather) active = _weatherVisible;
         else if (button.tag == IWButtonKindMusic) active = _player.playing;
-        else if (button.tag == IWButtonKindCast) active = _dlnaCastServer.running;
+        else if (button.tag == IWButtonKindCast) active = _castEnabled;
         else if (button.tag == IWButtonKindDepth) active = _depthMode;
         else if (button.tag == 2001) active = _showSeconds;
         else if (button.tag == 2002) active = _hour24;
@@ -9361,6 +9378,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 }
 
 - (void)writeDebugState:(NSString *)context {
+#if !TARGET_OS_SIMULATOR
+    if (![[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/wizardsystem-debug"]) return;
+#endif
     CGRect clipBounds = _backgroundClip ? _backgroundClip.bounds : CGRectZero;
     CGRect bgFrame = _background ? _background.frame : CGRectZero;
     CGRect viewBounds = self.view ? self.view.bounds : CGRectZero;
@@ -9442,6 +9462,8 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         @"musicPlaying": [NSNumber numberWithBool:_player.playing],
         @"musicError": [NSNumber numberWithBool:_musicError],
         @"castReady": [NSNumber numberWithBool:([_castSrc length] > 0)],
+        @"castEnabled": @(_castEnabled),
+        @"castConsentVisible": @(_castConsentAlert != nil),
         @"castServerRunning": [NSNumber numberWithBool:_dlnaCastServer.running],
         @"castServerPort": [NSNumber numberWithUnsignedInteger:_dlnaCastServer.httpPort],
         @"castError": [NSNumber numberWithBool:_castError],
@@ -10598,12 +10620,12 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(remoteVideoFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:_remoteVideoPlayer.currentItem];
         [center addObserver:self selector:@selector(remoteVideoFinished:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:_remoteVideoPlayer.currentItem];
-        IWCastLog(@"remote AVPlayer open %@", [url absoluteString]);
+        IWCastLog(@"remote AVPlayer host %@", [url host] ?: @"");
     } else {
         _remoteVideoLayer.player = nil;
         _remoteVideoPlayer = nil;
         _moviePlayer.contentURL = url;
-        if (!url.isFileURL) IWCastLog(@"remote MPMoviePlayer open %@", [url absoluteString]);
+        if (!url.isFileURL) IWCastLog(@"remote MPMoviePlayer host %@", [url host] ?: @"");
     }
     [self setVideoControlsVisible:YES animated:NO];
     if (_usingRemoteVideoPlayer) [_remoteVideoPlayer play];
@@ -10663,13 +10685,68 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     [self updateMenuButtons];
 }
 
-- (void)toggleWizardCast {
-    if (!_dlnaCastServer) [self setupWizardCastServer];
-    if (!_dlnaCastServer.running) {
-        // A retry request is accepted before listener readiness is known.
-        [_dlnaCastServer start];
-    }
+- (void)stopWizardCast {
+    _castConsentGeneration += 1;
+    _castEnabled = NO;
+    _pendingCastURL = nil;
+    [_dlnaCastServer stop];
+    [_castConsentAlert dismissViewControllerAnimated:NO completion:nil];
+    _castConsentAlert = nil;
+    _castError = NO;
     [self updateMenuButtons];
+}
+
+- (void)requestCastURL:(NSURL *)url {
+    BOOL active = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+    if (!IWShouldRequestCastConsent(url, _castEnabled, _dlnaCastServer.running, active) || _castConsentAlert) return;
+    UIViewController *presenter = self;
+    while (presenter.presentedViewController) presenter = presenter.presentedViewController;
+    if ([presenter isKindOfClass:[UIAlertController class]] || presenter.isBeingDismissed) return;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"接收投屏？"
+        message:[url host] preferredStyle:UIAlertControllerStyleAlert];
+    _castConsentAlert = alert;
+    NSUInteger consentGeneration = ++_castConsentGeneration;
+    __weak IWRootViewController *weakSelf = self;
+    [alert addAction:[UIAlertAction actionWithTitle:@"关闭投屏" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        IWRootViewController *strongSelf = weakSelf;
+        if (strongSelf && consentGeneration == strongSelf->_castConsentGeneration) [strongSelf stopWizardCast];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"播放" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        IWRootViewController *strongSelf = weakSelf;
+        if (!strongSelf || consentGeneration != strongSelf->_castConsentGeneration) return;
+        strongSelf->_castConsentAlert = nil;
+        BOOL active = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+        if (IWShouldRequestCastConsent(url, strongSelf->_castEnabled, strongSelf->_dlnaCastServer.running, active)) [strongSelf openCastURL:url];
+    }]];
+    IWStyleNativeAlert(alert);
+    [presenter presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)toggleWizardCast {
+    if (_castEnabled) { [self stopWizardCast]; return; }
+    if (_castConsentAlert || self.presentedViewController) return;
+    if (!_dlnaCastServer) [self setupWizardCastServer];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"开启局域网投屏？"
+        message:@"同一网络中的设备可发现此 iPad。收到播放地址时需再次确认。" preferredStyle:UIAlertControllerStyleAlert];
+    _castConsentAlert = alert;
+    NSUInteger consentGeneration = ++_castConsentGeneration;
+    __weak IWRootViewController *weakSelf = self;
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        IWRootViewController *strongSelf = weakSelf;
+        if (strongSelf && consentGeneration == strongSelf->_castConsentGeneration) strongSelf->_castConsentAlert = nil;
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"开启" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        IWRootViewController *strongSelf = weakSelf;
+        if (!strongSelf || consentGeneration != strongSelf->_castConsentGeneration) return;
+        strongSelf->_castConsentAlert = nil;
+        if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) return;
+        strongSelf->_castEnabled = YES;
+        strongSelf->_castError = ![strongSelf->_dlnaCastServer start];
+        if (strongSelf->_castError) strongSelf->_castEnabled = NO;
+        [strongSelf updateMenuButtons];
+    }]];
+    IWStyleNativeAlert(alert);
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)closeVideo {
@@ -10886,7 +10963,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 }
 
 - (BOOL)handleOpenURL:(NSURL *)url {
-    if (!url) return NO;
+    if (!IWAllowsControlURL(url, TARGET_OS_SIMULATOR)) return NO;
     NSString *command = [url host];
     if (![command length]) command = [[url path] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
     IWRootViewController *root = [self.window.rootViewController isKindOfClass:[IWRootViewController class]] ? (IWRootViewController *)self.window.rootViewController : nil;
@@ -10934,8 +11011,10 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
                       [NSDate date], sampled, gravity.x, gravity.y, gravity.z, (long)orientation,
                       (long)[[UIDevice currentDevice] orientation],
                       (long)[[UIApplication sharedApplication] statusBarOrientation]];
-    [line writeToFile:[NSTemporaryDirectory() stringByAppendingPathComponent:@"wizard-orientation.log"]
-            atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    if (TARGET_OS_SIMULATOR || [[NSFileManager defaultManager] fileExistsAtPath:@"/tmp/wizardsystem-debug"]) {
+        [line writeToFile:[NSTemporaryDirectory() stringByAppendingPathComponent:@"wizard-orientation.log"]
+                atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
 
     NSURL *pendingURL = self.pendingLaunchURL;
     self.pendingLaunchURL = nil;
@@ -10944,7 +11023,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     // Reproducible UI captures without opening external URL confirmation UI.
     NSString *previewSequence = [[NSUserDefaults standardUserDefaults] stringForKey:@"WizardPreviewCommands"];
     NSArray *previewCommands = [previewSequence length] ? [previewSequence componentsSeparatedByString:@","] : @[];
-    NSSet *allowedPreviewCommands = [NSSet setWithArray:@[@"main", @"menu", @"settingsmenu", @"themesmenu", @"gallery", @"gallerycategories", @"gallerycategoryuser", @"clockedit", @"clockfont", @"language", @"dateedit", @"cancel", @"done", @"reset", @"calendar", @"calendaredit", @"weatherfixture", @"weatheredit", @"video", @"videovolume", @"videominimize"]];
+    NSSet *allowedPreviewCommands = [NSSet setWithArray:@[@"main", @"menu", @"settingsmenu", @"themesmenu", @"gallery", @"gallerycategories", @"gallerycategoryuser", @"clockedit", @"clockfont", @"cast", @"language", @"dateedit", @"cancel", @"done", @"reset", @"calendar", @"calendaredit", @"weatherfixture", @"weatheredit", @"video", @"videovolume", @"videominimize"]];
     BOOL previewValid = [previewCommands count] <= 8;
     for (NSString *command in previewCommands) {
         if (![allowedPreviewCommands containsObject:command]) previewValid = NO;
@@ -11019,6 +11098,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     IWRootViewController *root = [self.window.rootViewController isKindOfClass:[IWRootViewController class]] ? (IWRootViewController *)self.window.rootViewController : nil;
     [root commitEditModeForLifecycle];
+    [root stopWizardCast];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

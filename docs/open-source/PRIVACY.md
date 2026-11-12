@@ -12,11 +12,11 @@ The reviewed source export contains no personal photos, media library, preferenc
 
 ## Cast and remote playback
 
-The current implementation starts a DLNA/UPnP receiver with the app. It listens for HTTP on port 8199 and SSDP discovery on UDP port 1900, and sends local discovery announcements. The receiver advertises a device name and a vendor-derived device identifier. These endpoints are intended for a trusted local network and do not implement sender authentication. Do not expose them through a router port forward.
+Cast is off on launch. The Cast control asks before opening the local-network receiver; toggling it again or backgrounding the App closes it. While enabled, it listens for HTTP on port8199 and SSDP discovery on UDP1900. Discovery uses a random session identifier rather than the vendor device identifier. DLNA has no sender authentication; use a trusted local network and do not forward its ports.
 
-A Cast sender can provide a remote media URL. The iPad contacts that media server directly to play it; that server receives the normal connection information and any credentials or tokens embedded in the sender's URL. `NSAllowsArbitraryLoads` is currently enabled to support older devices and HTTP local media sources. This is a documented compatibility behavior, not a general guarantee that every source will play.
+Each submitted HTTP(S) playback URL requires approval on the iPad before fetching. The prompt shows only its host. Closing the request also closes the receiver. URLs with embedded usernames/passwords or more than4096 characters are rejected; inactive or stopped receivers ignore requests. After approval, the iPad connects directly to the selected media server, which receives normal connection information and any query tokens supplied by the sender. HTTP local media remains supported through `NSAllowsArbitraryLoads`.
 
-The advertised SOAP surface is partial. URL submissions reach the player, but `Play`, `Pause`, `Stop` and `Seek` actions are not connected to playback controls. `GetTransportInfo` returns a fixed `PLAYING` response; `GetPositionInfo` returns zero duration/position, and volume/mute queries also return fixed values. These interfaces remain available for future implementation. An HTTP success or status response does not establish the actual playback state.
+The SOAP surface is partial: Play/Pause/Stop/Seek do not control playback; transport and position responses are fixed placeholders. An HTTP success does not establish playback. Media catalog paths reject traversal and symlink descendants at load time while retaining stable lexical identities; this does not protect against privileged concurrent filesystem replacement.
 
 ## Weather
 
@@ -24,11 +24,14 @@ Weather is optional. When enabled, Wizard asks for location permission and sends
 
 ## Diagnostics and optional integrations
 
-Diagnostic state can be written under `/tmp`, including wallpaper, playback URLs and user interface state. Touch and Cast log writes require the temporary `wizardsystem-debug` opt-in marker; Cast logs can include private playback URLs. Performance and in-process video-control diagnostics require their temporary performance marker. Weather diagnostics use their separate opt-in marker. They can contain private information. Inspect and redact diagnostics before sharing them; the publication exporter excludes historical logs and device state.
+Physical-device diagnostic state requires the temporary `wizardsystem-debug` marker. The separate Simulator preview can record test state. Diagnostic state may include wallpaper and playback URLs; redact it before sharing. Cast logs require the marker and record hosts/status rather than full playback URLs, query tokens or request bodies. Weather and performance diagnostics retain their separate opt-in markers. Logs, user media and device records are excluded from the source export.
 
-The legacy `wizardsystem` custom URL scheme accepts app controls, settings changes and power-integration commands. Some legacy commands are available without a diagnostic marker. These are separate from the local-network Cast endpoints.
+On device, the `wizardsystem` URL scheme accepts only the exact launch route `wizardsystem://main`, retained for the optional power add-on. External settings and power-control commands are rejected. Simulator diagnostics use a separate allowlisted CLI path; they are not device IPC permissions.
 
-Home/status file interfaces and experimental controls remain in the source. Their presence does not establish that an external integration has been configured. The separately included WizardPower tweak uses privileged SpringBoard behavior and its own on-device preferences; it is optional and is not installed by building or exporting the app.
+Experimental file interfaces and the optional WizardPower tweak retain the documented rootful environment requirements. The installer does not install the tweak or enable privileged integrations.
+
+
+The optional power add-on no longer registers remote Darwin lock, wake or status requests; local hardware power-edge automation remains. Its diagnostic log requires the temporary `wizardpower-debug` marker.
 
 ## Validation limits
 

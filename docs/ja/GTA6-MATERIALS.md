@@ -6,7 +6,7 @@ GTA VI の画像、動画、スクリーンショット、サムネイル、ト�
 
 ## 配布状況とメディアパック
 
-2026-11-12 の確認時点で GitHub リポジトリは非公開で、GitHub Releases はすべてドラフトでした。以下のメディアパックはドラフトの `v0.2.0-preview.4`に記録され、公開ダウンロードできません。manifest の `download_url` はドラフト用 URL であり、一般に取得できるリンクではありません。
+2026-11-12 の確認時点で GitHub リポジトリは非公開で、GitHub Releases はすべてドラフトでした。以下のメディアパックはドラフトの `v0.2.0-preview.5`に記録され、公開ダウンロードできません。manifest の `download_url` はドラフト用 URL であり、一般に取得できるリンクではありません。
 
 | メディアパック | manifest に記録された内容 | 用途 |
 | --- | --- | --- |
@@ -30,13 +30,13 @@ GTA VI の画像、動画、スクリーンショット、サムネイル、ト�
 
 ## リポジトリ内デモとライセンス範囲
 
-リポジトリの[デモ出典ガイド](CAPTURES.md)には、同梱 App キャプチャの出典を記載しています。現行の8枚の `*-miami.jpg` と `clock-font-system.jpg` は、iOS 18 の iPad（第8世代）Simulator で build `20261112.40` を動かして撮影したネイティブ画像です。`*-ipad2.png` は build `20261111.36` の過去の実機スクリーンショットです。キャプチャ内の GTA VI 画像は引き続き Rockstar Games および該当する権利者の所有物で、Wizard の MIT コードライセンス対象外です。
+リポジトリの[デモ出典ガイド](CAPTURES.md)には、同梱 App キャプチャの出典を記載しています。現行の8枚の `*-miami.jpg` と `clock-font-system.jpg` は、iOS 18 の iPad（第8世代）Simulator で build `20261112.41` を動かして撮影したネイティブ画像です。`*-ipad2.png` は build `20261111.36` の過去の実機スクリーンショットです。キャプチャ内の GTA VI 画像は引き続き Rockstar Games および該当する権利者の所有物で、Wizard の MIT コードライセンス対象外です。
 
 メディアパックからはユーザー写真、設定、端末バックアップ、接続情報、F1 動画、過去のゲーム音声、フォント、Apple SDK を除外しています。インストールと実行条件は[インストールガイド](INSTALL.md)、統合帰属記録は[ATTRIBUTION.md](../../assets/media/ATTRIBUTION.md)を参照してください。
 
 ## App の代替画像とプロモーションアート
 
-現在の build 20261112.40 には `ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg` 由来の `App/Resources/ViceCity.jpg` が含まれます。リポジトリ内コピーは原本と byte 単位で同一です: 3840 × 2160 pixel、SHA-256 `c255874fee509eae0baa6f546861e483ec0b32efbfe8d013ec36888013d923c9`。App は外部ギャラリーカタログがない場合の代替表示画像としてのみ使用します。README のプロモーションアートとネイティブキャプチャにも帰属表示付き Rockstar 素材が含まれます。これらの画像と派生物は MIT ライセンス対象外です。App には別途 SIL OFL フォントが含まれます。Rockstar のフォントファイルは配布していません。
+現在の build 20261112.41 には `ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg` 由来の `App/Resources/ViceCity.jpg` が含まれます。リポジトリ内コピーは原本と byte 単位で同一です: 3840 × 2160 pixel、SHA-256 `c255874fee509eae0baa6f546861e483ec0b32efbfe8d013ec36888013d923c9`。App は外部ギャラリーカタログがない場合の代替表示画像としてのみ使用します。README のプロモーションアートとネイティブキャプチャにも帰属表示付き Rockstar 素材が含まれます。これらの画像と派生物は MIT ライセンス対象外です。App には別途 SIL OFL フォントが含まれます。Rockstar のフォントファイルは配布していません。
 
 ## 関連記録
 

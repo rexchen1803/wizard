@@ -246,3 +246,5 @@
 !/assets/readme/source-ja-mobile.svg
 !/assets/readme/footer-ja.svg
 !/assets/readme/footer-ja-mobile.svg
+
+!/App/tests/security-regressions.py

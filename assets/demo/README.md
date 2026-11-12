@@ -4,7 +4,7 @@
 
 ## 当前 Miami 预览
 
-`*-miami.jpg` 来自 build **20261112.40** 在 **iPad（第 8 代）模拟器 / iOS 18.0** 中的原生 UIKit 渲染。原始截图为 2160 × 1620 PNG；网页版本保持同样像素尺寸，使用 JPEG quality 85 编码，未合成、添加或重绘任何 App 界面。原始 PNG 的 SHA256、网页图片校验值、场景命令和源码指纹在 [CAPTURE-METADATA.json](CAPTURE-METADATA.json)。
+`*-miami.jpg` 来自 build **20261112.41** 在 **iPad（第 8 代）模拟器 / iOS 18.0** 中的原生 UIKit 渲染。原始截图为 2160 × 1620 PNG；网页版本保持同样像素尺寸，使用 JPEG quality 85 编码，未合成、添加或重绘任何 App 界面。原始 PNG 的 SHA256、网页图片校验值、场景命令和源码指纹在 [CAPTURE-METADATA.json](CAPTURE-METADATA.json)。
 
 - [主屏](home-miami.jpg)：未安装外部目录时的内置 Vice City 默认图。
 - [图库](gallery-miami.jpg)、[分类](categories-miami.jpg)：演示目录由 230 项素材包加上所选默认图组成，共 231 项。未加入用户照片。

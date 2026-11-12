@@ -4,7 +4,7 @@
 
 本仓库包含 Wizard 这款旧版 Objective-C/UIKit 原生 iPad App、主机回归检查、打包与安装工具，以及一个可选电源 tweak。核心 App 与 tweak 是独立组件。
 
-App 源码候选为 **0.2.0 / build 20261112.40**，源码与资源指纹为 `7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802`。截至 2026-11-12，该版本尚未安装到实体 iPad。GitHub 仓库为私有，所有 Release 均为草稿；素材清单记录的是已准备的草稿附件，不代表存在公开下载。
+App 源码候选为 **0.2.0 / build 20261112.41**，源码与资源指纹为 `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`。截至 2026-11-12，该版本尚未安装到实体 iPad。GitHub 仓库为私有，所有 Release 均为草稿；素材清单记录的是已准备的草稿附件，不代表存在公开下载。
 
 Wizard 自有代码使用根目录中的 [MIT License](../../LICENSE)。该许可证不涵盖第三方图片、字体、用户导入内容或其他素材。请参阅[第三方声明](THIRD_PARTY.md)和 [GTA VI 素材指南](../open-source/GTA6-MATERIALS.md)。贡献前可先阅读[贡献指南](CONTRIBUTING.md)。
 
@@ -42,6 +42,7 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
 最后八个命令是主机源码回归测试。前面的命令检查仓库内容、仓库检查器回归、打包与安装器 fixture，以及 Shell 语法。这些测试使用 fixture、抽取的生产方法和 UI double。CI 不会构建设备版 App，也不会下载或重新分发 Apple SDK。这些检查不会签名或安装 App，不验证原生渲染，也不会在设备上解析私有系统 API，不能替代实体设备验收。

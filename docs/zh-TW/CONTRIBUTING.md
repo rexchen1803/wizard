@@ -30,6 +30,7 @@ python3 App/tests/media-lifecycle-regressions.py
 python3 App/tests/gallery-media-regressions.py
 python3 App/tests/menu-layout-regressions.py
 python3 App/tests/power-edge-regressions.py
+python3 App/tests/security-regressions.py
 ```
 
 這些檢查透過 fixture 與測試替身執行原始碼邏輯，不會安裝 App，也不證明原生呈現、私有系統符號、簽章、原版 iOS 或首次安裝相容。可選的雙架構裝置建置見[開發指南](DEVELOPMENT.md#建置)，需要你自行提供 `IOS_SDK`。

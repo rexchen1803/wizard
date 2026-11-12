@@ -2,23 +2,23 @@
 
 # Wizard のインストール
 
-このガイドでは、Wizard 0.2.0 / build `20261112.40` の候補パッケージ、ソースからのビルド、任意のギャラリー、ロールバックを説明します。パッケージは、準備済みの rootful 脱獄 iPad だけを対象とします。脱獄の導入、電源 tweak のインストール、証明書・ネットワーク・システムの信頼設定の変更、アプリの自動起動は行いません。build 40 は実機で受け入れられていません。
+このガイドでは、Wizard 0.2.0 / build `20261112.41` の候補パッケージ、ソースからのビルド、任意のギャラリー、ロールバックを説明します。パッケージは、準備済みの rootful 脱獄 iPad だけを対象とします。脱獄の導入、電源 tweak のインストール、証明書・ネットワーク・システムの信頼設定の変更、アプリの自動起動は行いません。build 41 は実機で受け入れられていません。
 
 ## ダウンロード状況
 
-リポジトリは非公開で、GitHub Releases はすべて下書き状態です。`v0.2.0-preview.4` は未公開の下書きのため、現在使える公開 `releases/download/...` URL はありません。許可されたメンテナーは[リリースページ](https://github.com/rexchen1803/wizard/releases)で下書きを確認できます。このページはメンテナー用の入口で、公開ダウンロード先ではありません。また、添付ファイルを取得できる保証もありません。必要な添付ファイルを取得できなければ中止してください。リリースの公開、リポジトリの公開設定変更、`latest` への置き換えはしないでください。後日リリースが公開されても、リポジトリが非公開の間は添付ファイルの取得に認証が必要です。
+リポジトリは非公開で、GitHub Releases はすべて下書き状態です。`v0.2.0-preview.5` は未公開の下書きのため、現在使える公開 `releases/download/...` URL はありません。許可されたメンテナーは[リリースページ](https://github.com/rexchen1803/wizard/releases)で下書きを確認できます。このページはメンテナー用の入口で、公開ダウンロード先ではありません。また、添付ファイルを取得できる保証もありません。必要な添付ファイルを取得できなければ中止してください。リリースの公開、リポジトリの公開設定変更、`latest` への置き換えはしないでください。後日リリースが公開されても、リポジトリが非公開の間は添付ファイルの取得に認証が必要です。
 
-公開後に使う build 40 の固定ファイル名と URL は次のとおりです。リリースは下書きのため、URL は現在利用できません。
+公開後に使う build 41 の固定ファイル名と URL は次のとおりです。リリースは下書きのため、URL は現在利用できません。
 
 | ファイル | 固定ファイル名 | 公開後の固定 URL（現在は利用不可） |
 | --- | --- | --- |
-| Wizard の Debian パッケージ | `wizard_0.2.0-20261112.40_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard_0.2.0-20261112.40_iphoneos-arm.deb` |
-| パッケージ manifest | `wizard_0.2.0-20261112.40_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard_0.2.0-20261112.40_iphoneos-arm.deb.manifest.json` |
+| Wizard の Debian パッケージ | `wizard_0.2.0-20261112.41_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb` |
+| パッケージ manifest | `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` |
 
 確定した `.deb` と対応 manifest の両方を、許可された取得元から入手できるまでは進めないでください。`.deb` の SHA-256 を manifest の `artifact_sha256` と照合します。macOS では次のとおり確認します。
 
 ```sh
-shasum -a 256 wizard_0.2.0-20261112.40_iphoneos-arm.deb
+shasum -a 256 wizard_0.2.0-20261112.41_iphoneos-arm.deb
 ```
 
 バージョン、ファイル名、ハッシュが一致しない場合は中止し、異なる Release のパッケージと manifest を組み合わせないでください。パッケージ作成スクリプトは出力ごとに manifest と成果物ハッシュを作ります。
@@ -35,18 +35,18 @@ shasum -a 256 wizard_0.2.0-20261112.40_iphoneos-arm.deb
 
 さらに rootful 脱獄、root 権限、シンボリックリンクではない書き込み可能な `/Applications`、Debian パッケージ環境、および `ldid`、`uicache`、`killall`、`sysctl`、`sw_vers` が必要です。`uicache` は登録用 `-p` と登録解除用 `-u` の両方に対応している必要があります。通常の iOS、rootless 脱獄、iPhone、一覧にない機種や OS は拒否されます。報告された機種名や OS を書き換えてチェックを回避しないでください。
 
-パッケージ構造の検査とインストーラーのローカルテスト用データによる検査は、実機へのインストール、署名、登録、起動を証明しません。特定の準備済み端末での過去の証拠は[互換性表](COMPATIBILITY.md)に記載されていますが、build 40 のインストールを証明するものではありません。
+パッケージ構造の検査とインストーラーのローカルテスト用データによる検査は、実機へのインストール、署名、登録、起動を証明しません。特定の準備済み端末での過去の証拠は[互換性表](COMPATIBILITY.md)に記載されていますが、build 41 のインストールを証明するものではありません。
 
 ## プレビューパッケージのインストール
 
 固定されたファイルを許可済みの取得元から入手し、ハッシュを確認してから進んでください。
 
-1. `wizard_0.2.0-20261112.40_iphoneos-arm.deb` と `wizard_0.2.0-20261112.40_iphoneos-arm.deb.manifest.json` を取得します。上記の URL はリリースが未公開のため現在利用できません。[リリースページ](https://github.com/rexchen1803/wizard/releases)を開けるのは、許可されたメンテナーに限られます。添付を取得できなければ中止してください。
+1. `wizard_0.2.0-20261112.41_iphoneos-arm.deb` と `wizard_0.2.0-20261112.41_iphoneos-arm.deb.manifest.json` を取得します。上記の URL はリリースが未公開のため現在利用できません。[リリースページ](https://github.com/rexchen1803/wizard/releases)を開けるのは、許可されたメンテナーに限られます。添付を取得できなければ中止してください。
 2. その `.deb` の `artifact_sha256` を対応 manifest と照合します。`latest`、別 Release、名前を変更したパッケージは使わないでください。
 3. 許可された対象 iPad で Filza、または Cydia、Sileo、Zebra が対応するローカル `.deb` 手順を使います。すでに許可された端末 root ターミナルから実行する場合:
 
    ```sh
-   dpkg -i ./wizard_0.2.0-20261112.40_iphoneos-arm.deb
+   dpkg -i ./wizard_0.2.0-20261112.41_iphoneos-arm.deb
    ```
 
 パッケージの処理は、機種、OS、rootful 環境、パッケージ管理環境、必要なツール、アプリのパスを最初に確認します。インストーラーは端末に既存の `ldid` で未署名アプリに ad-hoc 署名を行い、`uicache` で登録します。更新時は Wizard に `TERM` を1回送り、候補を配置する前に既存アプリ全体を `WizardSystem.rollback-<build>-<UTC>.app` として保持します。新規インストールには保持対象の旧アプリはありません。Wizard の起動、端末再起動、respring は行いません。
@@ -63,7 +63,7 @@ cd wizard
 IOS_SDK="/path/to/iPhoneOS9.3.sdk" ./scripts/build-ipad.sh --out /tmp/WizardSystem-build
 python3 scripts/package-release.py \
   --app /tmp/WizardSystem-build/WizardSystem.app \
-  --out /tmp/wizard_0.2.0-20261112.40_iphoneos-arm.deb
+  --out /tmp/wizard_0.2.0-20261112.41_iphoneos-arm.deb
 ```
 
 出力先の App ディレクトリ、`.deb`、隣接する manifest は、まだ存在していてはいけません。パッケージ作成ツールはアプリのバージョンと build に合うファイル名を要求し、`armv7` と `arm64`、bundle ID、リソース、ソース fingerprint を検査して、新たに生成する manifest に `artifact_sha256` を書き込みます。`--dry-run` はパッケージを書き込まず、構造とハッシュを表示します。ビルドとパッケージ作成は端末に接続せず、インストールもしません。[ビルドと回帰検査ガイド](DEVELOPMENT.md#build)にソース検証の限界があります。[WizardPower のソース説明](../../App/WizardPowerTweak/README.md)には別のビルド入口があります。Wizard パッケージは tweak をインストールしません。
@@ -80,8 +80,8 @@ python3 scripts/package-release.py \
 [ローカル manifest](../../assets/media/MANIFEST.json)には、これらのファイルの期待サイズと SHA-256 が記録されています。公開後の固定パスは以下ですが、現時点で利用できません。リポジトリが非公開の間は、公開後も許可されたアクセスが必要です。
 
 ```text
-https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard-gta6-gallery-20261112.zip
-https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/gta6-original-materials-20261112.zip
+https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/wizard-gta6-gallery-20261112.zip
+https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.5/gta6-original-materials-20261112.zip
 ```
 
 アプリのギャラリーを導入する場合は、別途選択して許可してください。最初に `/var/mobile/Media/iPadWizard/app` 全体の完全なバックアップを作成し、ZIP 内の `app/` の内容をそのディレクトリにマージします。既存の `assets/user` と設定を保持し、`app` 全体を削除・置換しないでください。転送ツールが権限を変更した場合は、新しくコピーしたファイルだけを調整します。既存のユーザーディレクトリを再帰的に変更しないでください。Wizard を再度開き、元の壁紙、お気に入り、切り抜き、取り込み写真、カテゴリを確認します。原素材アーカイブは素材収集・制作向けで、端末用ギャラリーパッケージではありません。[素材ガイド](GTA6-MATERIALS.md)と[帰属記録](../../assets/media/ATTRIBUTION.md)を参照してください。Rockstar 素材は Wizard の MIT コードライセンスの対象外です。
