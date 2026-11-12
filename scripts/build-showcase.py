@@ -100,8 +100,9 @@ class Panel:
     def image(self, path, x, y, w, h, role='image'):
         raw = path.read_bytes()
         encoded = base64.b64encode(raw).decode()
+        mime = 'image/png' if path.suffix.lower() == '.png' else 'image/jpeg'
         self.parts.append(f'<image x="{x}" y="{y}" width="{w}" height="{h}" '
-                          f'preserveAspectRatio="xMidYMid meet" href="data:image/jpeg;base64,{encoded}"/>')
+                          f'preserveAspectRatio="xMidYMid meet" href="data:{mime};base64,{encoded}"/>')
         self.elements.append({'role': role, 'source': path.name, 'sha256': hashlib.sha256(raw).hexdigest(),
                               'left': x, 'right': x + w, 'top': y, 'bottom': y + h})
 
@@ -193,6 +194,52 @@ def showcase(root, faces, mobile, capture, language):
     return p
 
 
+def lifestyle(root, faces, mobile, language):
+    w, g, h = (760, 40, 2780) if mobile else (1200, 64, 1510)
+    p = Panel(w, h, g, '生活里的 Wizard。', faces, mobile, language=language)
+    p.text('生活里的 Wizard。', 120 if mobile else 140, 56 if mobile else 64)
+    p.text('书桌、床头与客厅。', 188 if mobile else 210, 34, 'regular', MUTED)
+    photos = [('website-study', '暖光书房 · 网站场景'), ('daylight-desk', '日光书桌 · iPad 2'),
+              ('linen-bedside', '床头一角 · iPad 4'), ('dusk-console', '暮色客厅 · iPad Air')]
+    cw = w-2*g if mobile else (w-2*g-32)/2
+    for index, (name, label) in enumerate(photos):
+        x = g if mobile else g+(index % 2)*(cw+32)
+        y = 245+index*(cw*2/3+120) if mobile else 270+(index//2)*490
+        p.image(root/f'assets/demo/environments/{name}.jpg', x, y, cw, cw*2/3, 'lifestyle-composite')
+        p.text(label, y+cw*2/3+(50 if mobile else 58), 32 if mobile else 30,
+               'regular', MUTED, x=x, limit=cw)
+    p.text('场景合成 · 屏幕为原生截图', 2550 if mobile else 1260,
+           28 if mobile else 28, 'regular', MUTED, role='provenance')
+    p.text('iPad Simulator · build 20261112.41', 2604 if mobile else 1316,
+           28 if mobile else 26, 'regular', MUTED, role='provenance', localize=False)
+    p.text('查看场景与截图', h-70, 36)
+    p.arrow(h-92)
+    return p
+
+
+def variations(root, faces, mobile, language):
+    w, g, h = (760, 40, 1420) if mobile else (1200, 64, 1940)
+    p = Panel(w, h, g, '每一种心情，都有画面。', faces, mobile, language=language)
+    p.text('每一种心情，都有画面。', 120 if mobile else 140, 52 if mobile else 64)
+    p.text('六种壁纸与时间布局。', 188 if mobile else 210, 34, 'regular', MUTED)
+    shots = [('sunset-poster','落日插画'), ('island-minimal','海岛留白'),
+             ('night-city','夜景与秒钟'), ('city-calendar','城市与日历'),
+             ('green-retreat','绿意角落'), ('palm-drive','棕榈日光')]
+    gap = 24 if mobile else 32
+    cw = (w-2*g-gap)/2
+    for index, (name, label) in enumerate(shots):
+        x = g+(index % 2)*(cw+gap)
+        y = (245 if mobile else 270)+(index//2)*(310 if mobile else 480)
+        p.image(root/f'assets/demo/screens/{name}.jpg', x, y, cw, cw*.75, 'native-capture')
+        p.text(label, y+cw*.75+(44 if mobile else 54), 26 if mobile else 30,
+               'regular', MUTED, x=x, limit=cw)
+    p.text('iPad Simulator · build 20261112.41', 1234 if mobile else 1760,
+           28 if mobile else 26, 'regular', MUTED, role='provenance', localize=False)
+    p.text('查看原始截图', h-70, 36)
+    p.arrow(h-92)
+    return p
+
+
 def collection(city, faces, mobile, language):
     w, g, h = (760, 40, 1110) if mobile else (1200, 64, 1320)
     p = Panel(w, h, g, 'Vice City 素材合集 · 图片、视频与原始素材', faces, mobile, PLUM, language)
@@ -258,6 +305,18 @@ def main():
         item = next(c for c in capture['captures'] if c['file'] == name)
         if hashlib.sha256((a.root/'assets/demo'/name).read_bytes()).hexdigest() != item['sha256']:
             parser.error(f'Unbound native image: {name}')
+    native_scenes = json.loads((a.root/'assets/demo/screens/CAPTURE-METADATA.json').read_text())
+    photo_scenes = json.loads((a.root/'assets/demo/environments/SCENES.json').read_text())
+    for manifest in (native_scenes, photo_scenes):
+        if manifest['source_fingerprint'] != capture['source_fingerprint'] or manifest['build'] != capture['build']:
+            parser.error('Lifestyle capture source is stale')
+    for shot in native_scenes['captures']:
+        for path_key, hash_key in (('file','sha256'), ('web_file','web_sha256')):
+            if hashlib.sha256((a.root/shot[path_key]).read_bytes()).hexdigest() != shot[hash_key]:
+                parser.error('Unbound native scene image')
+    for scene in photo_scenes['scenes']:
+        if hashlib.sha256((a.root/'assets/demo/environments'/scene['file']).read_bytes()).hexdigest() != scene['sha256']:
+            parser.error('Unbound lifestyle composite')
     display = Face(app_font)
     font_paths = {'zh-CN':(a.cjk_regular,a.cjk_bold), 'zh-TW':(a.traditional_regular,a.traditional_bold),
                   'en':(a.cjk_regular,a.cjk_bold), 'ja':(a.japanese_regular,a.japanese_bold)}
@@ -269,6 +328,8 @@ def main():
             suffix = {'zh-CN':'','zh-TW':'-zh-tw','en':'-en','ja':'-ja'}[language] + ('-mobile' if mobile else '')
             panels = {'hero':hero(a.hero_art,faces,mobile,language),
                       'showcase':showcase(a.root,faces,mobile,capture,language),
+                      'lifestyle':lifestyle(a.root,faces,mobile,language),
+                      'variations':variations(a.root,faces,mobile,language),
                       'collection':collection(a.city_art,faces,mobile,language),
                       **{n:action(faces,mobile,n,language) for n in ('install','agent','source')},
                       'footer':footer(faces,mobile,language)}

@@ -27,7 +27,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 1200,
@@ -162,6 +162,268 @@
       "sha256": "5adedd8ae83af24d697a73fa5aef809b0f8ae226d2c23a100f74ba68c48335cc"
     },
     {
+      "file": "lifestyle.svg",
+      "language": "zh-CN",
+      "width": 1200,
+      "height": 1510,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "生活里的 Wizard。",
+          "left": 64,
+          "right": 572.992,
+          "top": 85.6,
+          "bottom": 145.696
+        },
+        {
+          "role": "copy",
+          "text": "书桌、床头与客厅。",
+          "left": 64,
+          "right": 345.75800000000004,
+          "top": 181.134,
+          "bottom": 212.72
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "暖光书房 · 网站场景",
+          "left": 64.0,
+          "right": 343.42,
+          "top": 649.4366666666667,
+          "bottom": 677.1566666666668
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "日光书桌 · iPad 2",
+          "left": 616.0,
+          "right": 858.76,
+          "top": 649.4666666666667,
+          "bottom": 677.0666666666667
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "床头一角 · iPad 4",
+          "left": 64.0,
+          "right": 311.65,
+          "top": 1139.3166666666668,
+          "bottom": 1167.3066666666668
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "暮色客厅 · iPad Air",
+          "left": 616.0,
+          "right": 886.06,
+          "top": 1139.1966666666667,
+          "bottom": 1167.0966666666668
+        },
+        {
+          "role": "provenance",
+          "text": "场景合成 · 屏幕为原生截图",
+          "left": 64,
+          "right": 409.212,
+          "top": 1236.396,
+          "bottom": 1262.436
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 498.14799999999997,
+          "top": 1295.304,
+          "bottom": 1316.338
+        },
+        {
+          "role": "copy",
+          "text": "查看场景与截图",
+          "left": 64,
+          "right": 312.616,
+          "top": 1409.4,
+          "bottom": 1443.312
+        }
+      ],
+      "sha256": "c82d780025aaafe42478dfb3a0fadce0c9112a7b2d69a3f661a8c9ebcd43be5d"
+    },
+    {
+      "file": "variations.svg",
+      "language": "zh-CN",
+      "width": 1200,
+      "height": 1940,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "每一种心情，都有画面。",
+          "left": 64,
+          "right": 724.928,
+          "top": 85.21600000000001,
+          "bottom": 148.832
+        },
+        {
+          "role": "copy",
+          "text": "六种壁纸与时间布局。",
+          "left": 64,
+          "right": 380.302,
+          "top": 181.304,
+          "bottom": 212.788
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "落日插画",
+          "left": 64.0,
+          "right": 180.1,
+          "top": 688.8,
+          "bottom": 716.43
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "海岛留白",
+          "left": 616.0,
+          "right": 730.48,
+          "top": 688.68,
+          "bottom": 716.4
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "夜景与秒钟",
+          "left": 64.0,
+          "right": 211.39,
+          "top": 1168.62,
+          "bottom": 1196.46
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "城市与日历",
+          "left": 616.0,
+          "right": 763.1800000000001,
+          "top": 1168.56,
+          "bottom": 1196.49
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "绿意角落",
+          "left": 64.0,
+          "right": 182.2,
+          "top": 1648.53,
+          "bottom": 1676.64
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "棕榈日光",
+          "left": 616.0,
+          "right": 734.08,
+          "top": 1648.71,
+          "bottom": 1676.43
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 498.14799999999997,
+          "top": 1739.304,
+          "bottom": 1760.338
+        },
+        {
+          "role": "copy",
+          "text": "查看原始截图",
+          "left": 64,
+          "right": 276.616,
+          "top": 1839.4,
+          "bottom": 1873.312
+        }
+      ],
+      "sha256": "4030286a87a592a0eb4152e46025f0af6fc14f22a9f4660e8645c0ef15c0c6e1"
+    },
+    {
       "file": "collection.svg",
       "language": "zh-CN",
       "width": 1200,
@@ -186,7 +448,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 64,
           "right": 1136,
@@ -357,7 +619,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 760,
@@ -468,6 +730,268 @@
       "sha256": "ef43152b562e8256e6fb6043760912c3d537aa62dce3327d54907e48d4200f81"
     },
     {
+      "file": "lifestyle-mobile.svg",
+      "language": "zh-CN",
+      "width": 760,
+      "height": 2780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "生活里的 Wizard。",
+          "left": 40,
+          "right": 485.368,
+          "top": 72.4,
+          "bottom": 124.984
+        },
+        {
+          "role": "copy",
+          "text": "书桌、床头与客厅。",
+          "left": 40,
+          "right": 321.75800000000004,
+          "top": 159.134,
+          "bottom": 190.72
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 40,
+          "right": 720,
+          "top": 245.0,
+          "bottom": 698.3333333333333
+        },
+        {
+          "role": "copy",
+          "text": "暖光书房 · 网站场景",
+          "left": 40,
+          "right": 338.048,
+          "top": 721.4213333333332,
+          "bottom": 750.9893333333332
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 40,
+          "right": 720,
+          "top": 818.3333333333333,
+          "bottom": 1271.6666666666665
+        },
+        {
+          "role": "copy",
+          "text": "日光书桌 · iPad 2",
+          "left": 40,
+          "right": 298.944,
+          "top": 1294.7866666666664,
+          "bottom": 1324.2266666666665
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 40,
+          "right": 720,
+          "top": 1391.6666666666665,
+          "bottom": 1844.9999999999998
+        },
+        {
+          "role": "copy",
+          "text": "床头一角 · iPad 4",
+          "left": 40,
+          "right": 304.16,
+          "top": 1867.9599999999998,
+          "bottom": 1897.8159999999998
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 40,
+          "right": 720,
+          "top": 1964.9999999999998,
+          "bottom": 2418.333333333333
+        },
+        {
+          "role": "copy",
+          "text": "暮色客厅 · iPad Air",
+          "left": 40,
+          "right": 328.064,
+          "top": 2441.165333333333,
+          "bottom": 2470.925333333333
+        },
+        {
+          "role": "provenance",
+          "text": "场景合成 · 屏幕为原生截图",
+          "left": 40,
+          "right": 385.212,
+          "top": 2526.396,
+          "bottom": 2552.436
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 507.544,
+          "top": 2581.712,
+          "bottom": 2604.364
+        },
+        {
+          "role": "copy",
+          "text": "查看场景与截图",
+          "left": 40,
+          "right": 288.616,
+          "top": 2679.4,
+          "bottom": 2713.312
+        }
+      ],
+      "sha256": "cf7429ac2f16ea91bdee325018cad1ae4a115e99c8c805bcfd89f6ae70205c58"
+    },
+    {
+      "file": "variations-mobile.svg",
+      "language": "zh-CN",
+      "width": 760,
+      "height": 1420,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "每一种心情，都有画面。",
+          "left": 40,
+          "right": 577.004,
+          "top": 75.488,
+          "bottom": 127.176
+        },
+        {
+          "role": "copy",
+          "text": "六种壁纸与时间布局。",
+          "left": 40,
+          "right": 356.302,
+          "top": 159.304,
+          "bottom": 190.788
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "落日插画",
+          "left": 40.0,
+          "right": 140.62,
+          "top": 513.16,
+          "bottom": 537.106
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "海岛留白",
+          "left": 392.0,
+          "right": 491.216,
+          "top": 513.056,
+          "bottom": 537.08
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "夜景与秒钟",
+          "left": 40.0,
+          "right": 167.738,
+          "top": 823.004,
+          "bottom": 847.132
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "城市与日历",
+          "left": 392.0,
+          "right": 519.556,
+          "top": 822.952,
+          "bottom": 847.158
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "绿意角落",
+          "left": 40.0,
+          "right": 142.44,
+          "top": 1132.926,
+          "bottom": 1157.288
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "棕榈日光",
+          "left": 392.0,
+          "right": 494.336,
+          "top": 1133.082,
+          "bottom": 1157.106
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 507.544,
+          "top": 1211.712,
+          "bottom": 1234.364
+        },
+        {
+          "role": "copy",
+          "text": "查看原始截图",
+          "left": 40,
+          "right": 252.61599999999999,
+          "top": 1319.4,
+          "bottom": 1353.312
+        }
+      ],
+      "sha256": "ba3a5476217618111b9516bbba12d413f4971fd88b02c565a7fbb504d9a93b77"
+    },
+    {
       "file": "collection-mobile.svg",
       "language": "zh-CN",
       "width": 760,
@@ -492,7 +1016,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 40,
           "right": 720,
@@ -663,7 +1187,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 1200,
@@ -798,6 +1322,268 @@
       "sha256": "80e2bb0072dffce27138d2986bbccdfb1958b997df2bb87b1f01ef102320db35"
     },
     {
+      "file": "lifestyle-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 1510,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "生活裡的 Wizard。",
+          "left": 64,
+          "right": 592.832,
+          "top": 85.21600000000001,
+          "bottom": 145.696
+        },
+        {
+          "role": "copy",
+          "text": "書桌、床頭與客廳。",
+          "left": 64,
+          "right": 356.40000000000003,
+          "top": 181.134,
+          "bottom": 212.822
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "暖光書房 · 網站場景",
+          "left": 64.0,
+          "right": 343.42,
+          "top": 649.4066666666668,
+          "bottom": 677.2166666666667
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "日光書桌 · iPad 2",
+          "left": 616.0,
+          "right": 858.76,
+          "top": 649.4066666666668,
+          "bottom": 677.1566666666668
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "床頭一角 · iPad 4",
+          "left": 64.0,
+          "right": 311.65,
+          "top": 1139.3166666666668,
+          "bottom": 1167.2166666666667
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "暮色客廳 · iPad Air",
+          "left": 616.0,
+          "right": 886.06,
+          "top": 1139.1966666666667,
+          "bottom": 1167.1266666666668
+        },
+        {
+          "role": "provenance",
+          "text": "場景合成 · 螢幕為原生擷取",
+          "left": 64,
+          "right": 410.948,
+          "top": 1236.396,
+          "bottom": 1262.436
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 498.14799999999997,
+          "top": 1295.304,
+          "bottom": 1316.338
+        },
+        {
+          "role": "copy",
+          "text": "查看場景與擷取",
+          "left": 64,
+          "right": 314.524,
+          "top": 1409.4,
+          "bottom": 1443.384
+        }
+      ],
+      "sha256": "606278cd5572fbb7c8d0310947914461b0d00cbc9835d553876e9ee52053e127"
+    },
+    {
+      "file": "variations-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 1940,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "每一種心情，都有畫面。",
+          "left": 64,
+          "right": 744.768,
+          "top": 85.21600000000001,
+          "bottom": 146.336
+        },
+        {
+          "role": "copy",
+          "text": "六種桌布與時間配置。",
+          "left": 64,
+          "right": 390.774,
+          "top": 181.406,
+          "bottom": 212.754
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "落日插畫",
+          "left": 64.0,
+          "right": 181.3,
+          "top": 688.77,
+          "bottom": 716.46
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "海島留白",
+          "left": 616.0,
+          "right": 730.48,
+          "top": 688.68,
+          "bottom": 716.411816307402
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "夜景與秒鐘",
+          "left": 64.0,
+          "right": 212.32,
+          "top": 1168.62,
+          "bottom": 1196.46
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "城市與日曆",
+          "left": 616.0,
+          "right": 763.27,
+          "top": 1168.56,
+          "bottom": 1196.49
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "綠意角落",
+          "left": 64.0,
+          "right": 182.23,
+          "top": 1648.53,
+          "bottom": 1676.55
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "棕櫚日光",
+          "left": 616.0,
+          "right": 733.75,
+          "top": 1648.71,
+          "bottom": 1676.46
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 498.14799999999997,
+          "top": 1739.304,
+          "bottom": 1760.338
+        },
+        {
+          "role": "copy",
+          "text": "查看原始擷取",
+          "left": 64,
+          "right": 278.524,
+          "top": 1839.4,
+          "bottom": 1873.312
+        }
+      ],
+      "sha256": "4864ee23f4cebe33bf1300e22ac3c7fb8488bbe5ce2f48c12e2e7f567ccb400b"
+    },
+    {
       "file": "collection-zh-tw.svg",
       "language": "zh-TW",
       "width": 1200,
@@ -822,7 +1608,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 64,
           "right": 1136,
@@ -993,7 +1779,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 760,
@@ -1104,6 +1890,268 @@
       "sha256": "310b1ceccc38c208ecdd24ff5de6b898826c3506bc7587e8dfa32e33a2ef87c2"
     },
     {
+      "file": "lifestyle-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 2780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "生活裡的 Wizard。",
+          "left": 40,
+          "right": 502.728,
+          "top": 72.064,
+          "bottom": 124.984
+        },
+        {
+          "role": "copy",
+          "text": "書桌、床頭與客廳。",
+          "left": 40,
+          "right": 332.40000000000003,
+          "top": 159.134,
+          "bottom": 190.822
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 40,
+          "right": 720,
+          "top": 245.0,
+          "bottom": 698.3333333333333
+        },
+        {
+          "role": "copy",
+          "text": "暖光書房 · 網站場景",
+          "left": 40,
+          "right": 338.048,
+          "top": 721.3893333333333,
+          "bottom": 751.0533333333333
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 40,
+          "right": 720,
+          "top": 818.3333333333333,
+          "bottom": 1271.6666666666665
+        },
+        {
+          "role": "copy",
+          "text": "日光書桌 · iPad 2",
+          "left": 40,
+          "right": 298.944,
+          "top": 1294.7226666666666,
+          "bottom": 1324.3226666666665
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 40,
+          "right": 720,
+          "top": 1391.6666666666665,
+          "bottom": 1844.9999999999998
+        },
+        {
+          "role": "copy",
+          "text": "床頭一角 · iPad 4",
+          "left": 40,
+          "right": 304.16,
+          "top": 1867.9599999999998,
+          "bottom": 1897.7199999999998
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 40,
+          "right": 720,
+          "top": 1964.9999999999998,
+          "bottom": 2418.333333333333
+        },
+        {
+          "role": "copy",
+          "text": "暮色客廳 · iPad Air",
+          "left": 40,
+          "right": 328.064,
+          "top": 2441.165333333333,
+          "bottom": 2470.957333333333
+        },
+        {
+          "role": "provenance",
+          "text": "場景合成 · 螢幕為原生擷取",
+          "left": 40,
+          "right": 386.948,
+          "top": 2526.396,
+          "bottom": 2552.436
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 507.544,
+          "top": 2581.712,
+          "bottom": 2604.364
+        },
+        {
+          "role": "copy",
+          "text": "查看場景與擷取",
+          "left": 40,
+          "right": 290.524,
+          "top": 2679.4,
+          "bottom": 2713.384
+        }
+      ],
+      "sha256": "fceb65d2802488e46fffb2c91f92ce68205059fe13f1b5f1f482671abddaab87"
+    },
+    {
+      "file": "variations-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 1420,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "每一種心情，都有畫面。",
+          "left": 40,
+          "right": 593.124,
+          "top": 75.488,
+          "bottom": 125.148
+        },
+        {
+          "role": "copy",
+          "text": "六種桌布與時間配置。",
+          "left": 40,
+          "right": 366.774,
+          "top": 159.406,
+          "bottom": 190.754
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "落日插畫",
+          "left": 40.0,
+          "right": 141.66,
+          "top": 513.134,
+          "bottom": 537.132
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "海島留白",
+          "left": 392.0,
+          "right": 491.216,
+          "top": 513.056,
+          "bottom": 537.0902407997484
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "夜景與秒鐘",
+          "left": 40.0,
+          "right": 168.54399999999998,
+          "top": 823.004,
+          "bottom": 847.132
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "城市與日曆",
+          "left": 392.0,
+          "right": 519.634,
+          "top": 822.952,
+          "bottom": 847.158
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "綠意角落",
+          "left": 40.0,
+          "right": 142.466,
+          "top": 1132.926,
+          "bottom": 1157.21
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "棕櫚日光",
+          "left": 392.0,
+          "right": 494.05,
+          "top": 1133.082,
+          "bottom": 1157.132
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 507.544,
+          "top": 1211.712,
+          "bottom": 1234.364
+        },
+        {
+          "role": "copy",
+          "text": "查看原始擷取",
+          "left": 40,
+          "right": 254.52399999999997,
+          "top": 1319.4,
+          "bottom": 1353.312
+        }
+      ],
+      "sha256": "3e09dcc7d4017fcbbd5da86d60347ce2d3788a0aa383dd2810a862d9d33f99ec"
+    },
+    {
       "file": "collection-zh-tw-mobile.svg",
       "language": "zh-TW",
       "width": 760,
@@ -1128,7 +2176,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 40,
           "right": 720,
@@ -1299,7 +2347,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 1200,
@@ -1442,6 +2490,268 @@
       "sha256": "d368b3de512ab9e0366bce33b8fc85f7aeb69602456e7c8ba88ed3f2f1f59be4"
     },
     {
+      "file": "lifestyle-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 1510,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Wizard, at home.",
+          "left": 64,
+          "right": 591.232,
+          "top": 88.096,
+          "bottom": 153.696
+        },
+        {
+          "role": "copy",
+          "text": "From desk to bedside.",
+          "left": 64,
+          "right": 408.55600000000004,
+          "top": 182.936,
+          "bottom": 210.442
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "Warm study · website scene",
+          "left": 64.0,
+          "right": 469.59999999999997,
+          "top": 650.7866666666667,
+          "bottom": 681.6866666666667
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "Daylight desk · iPad 2",
+          "left": 616.0,
+          "right": 929.9200000000001,
+          "top": 650.7866666666667,
+          "bottom": 682.1666666666667
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "Bedside · iPad 4",
+          "left": 64.0,
+          "right": 302.02,
+          "top": 1140.7866666666666,
+          "bottom": 1165.0566666666668
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "Blue hour · iPad Air",
+          "left": 616.0,
+          "right": 900.0699999999999,
+          "top": 1140.7866666666666,
+          "bottom": 1165.0566666666668
+        },
+        {
+          "role": "provenance",
+          "text": "Illustrative scenes · native App screens",
+          "left": 64,
+          "right": 580.236,
+          "top": 1237.712,
+          "bottom": 1266.412
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 498.14799999999997,
+          "top": 1295.304,
+          "bottom": 1316.338
+        },
+        {
+          "role": "copy",
+          "text": "Explore scenes and captures",
+          "left": 64,
+          "right": 563.104,
+          "top": 1411.272,
+          "bottom": 1447.74
+        }
+      ],
+      "sha256": "260cfe7498b5a9361f9b3713c98a36339a9f67c48074ba8858ecfd4762e3f375"
+    },
+    {
+      "file": "variations-en.svg",
+      "language": "en",
+      "width": 1200,
+      "height": 1940,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Your screen. Your scene.",
+          "left": 64,
+          "right": 826.24,
+          "top": 92.576,
+          "bottom": 140.896
+        },
+        {
+          "role": "copy",
+          "text": "Six wallpapers. Six clock layouts.",
+          "left": 64,
+          "right": 577.5020000000001,
+          "top": 182.936,
+          "bottom": 217.956
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "Sunset artwork",
+          "left": 64.0,
+          "right": 275.62,
+          "top": 690.12,
+          "bottom": 714.39
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "Island minimal",
+          "left": 616.0,
+          "right": 819.31,
+          "top": 690.12,
+          "bottom": 714.39
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "City nights + seconds",
+          "left": 64.0,
+          "right": 354.4,
+          "top": 1170.12,
+          "bottom": 1201.5
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "City + calendar",
+          "left": 616.0,
+          "right": 821.5,
+          "top": 1170.12,
+          "bottom": 1201.02
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "Green retreat",
+          "left": 64.0,
+          "right": 248.44,
+          "top": 1651.62,
+          "bottom": 1674.39
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "Palm drive",
+          "left": 616.0,
+          "right": 761.35,
+          "top": 1650.12,
+          "bottom": 1674.39
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 498.14799999999997,
+          "top": 1739.304,
+          "bottom": 1760.338
+        },
+        {
+          "role": "copy",
+          "text": "View original captures",
+          "left": 64,
+          "right": 457.804,
+          "top": 1840.804,
+          "bottom": 1878.748
+        }
+      ],
+      "sha256": "4f42d0d35768165a653b060cadeb027edb4ab20c404720cafa169e34af89289f"
+    },
+    {
       "file": "collection-en.svg",
       "language": "en",
       "width": 1200,
@@ -1466,7 +2776,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 64,
           "right": 1136,
@@ -1637,7 +2947,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 760,
@@ -1756,6 +3066,268 @@
       "sha256": "bdc898b750bb065623d37756f839eb1c57fccacfa64c2863c29ab418e6dacd48"
     },
     {
+      "file": "lifestyle-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 2780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Wizard, at home.",
+          "left": 40,
+          "right": 501.32800000000003,
+          "top": 74.584,
+          "bottom": 131.984
+        },
+        {
+          "role": "copy",
+          "text": "From desk to bedside.",
+          "left": 40,
+          "right": 384.55600000000004,
+          "top": 160.936,
+          "bottom": 188.442
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 40,
+          "right": 720,
+          "top": 245.0,
+          "bottom": 698.3333333333333
+        },
+        {
+          "role": "copy",
+          "text": "Warm study · website scene",
+          "left": 40,
+          "right": 472.64,
+          "top": 722.8613333333333,
+          "bottom": 755.8213333333333
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 40,
+          "right": 720,
+          "top": 818.3333333333333,
+          "bottom": 1271.6666666666665
+        },
+        {
+          "role": "copy",
+          "text": "Daylight desk · iPad 2",
+          "left": 40,
+          "right": 374.848,
+          "top": 1296.1946666666665,
+          "bottom": 1329.6666666666665
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 40,
+          "right": 720,
+          "top": 1391.6666666666665,
+          "bottom": 1844.9999999999998
+        },
+        {
+          "role": "copy",
+          "text": "Bedside · iPad 4",
+          "left": 40,
+          "right": 293.88800000000003,
+          "top": 1869.5279999999998,
+          "bottom": 1895.4159999999997
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 40,
+          "right": 720,
+          "top": 1964.9999999999998,
+          "bottom": 2418.333333333333
+        },
+        {
+          "role": "copy",
+          "text": "Blue hour · iPad Air",
+          "left": 40,
+          "right": 343.008,
+          "top": 2442.861333333333,
+          "bottom": 2468.749333333333
+        },
+        {
+          "role": "provenance",
+          "text": "Illustrative scenes · native App screens",
+          "left": 40,
+          "right": 556.236,
+          "top": 2527.712,
+          "bottom": 2556.412
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 507.544,
+          "top": 2581.712,
+          "bottom": 2604.364
+        },
+        {
+          "role": "copy",
+          "text": "Explore scenes and captures",
+          "left": 40,
+          "right": 539.104,
+          "top": 2681.272,
+          "bottom": 2717.74
+        }
+      ],
+      "sha256": "46d66dc39f8fceac2530c4dddb41fb5e2b414be79c34dd9dce6fe39cb67b4c90"
+    },
+    {
+      "file": "variations-en-mobile.svg",
+      "language": "en",
+      "width": 760,
+      "height": 1420,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Your screen. Your scene.",
+          "left": 40,
+          "right": 659.3199999999999,
+          "top": 81.468,
+          "bottom": 120.728
+        },
+        {
+          "role": "copy",
+          "text": "Six wallpapers. Six clock layouts.",
+          "left": 40,
+          "right": 553.5020000000001,
+          "top": 160.936,
+          "bottom": 195.956
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "Sunset artwork",
+          "left": 40.0,
+          "right": 223.404,
+          "top": 514.304,
+          "bottom": 535.338
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "Island minimal",
+          "left": 392.0,
+          "right": 568.202,
+          "top": 514.304,
+          "bottom": 535.338
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "City nights + seconds",
+          "left": 40.0,
+          "right": 291.67999999999995,
+          "top": 824.304,
+          "bottom": 851.5
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "City + calendar",
+          "left": 392.0,
+          "right": 570.1,
+          "top": 824.304,
+          "bottom": 851.084
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "Green retreat",
+          "left": 40.0,
+          "right": 199.84799999999998,
+          "top": 1135.604,
+          "bottom": 1155.338
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "Palm drive",
+          "left": 392.0,
+          "right": 517.97,
+          "top": 1134.304,
+          "bottom": 1155.338
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 507.544,
+          "top": 1211.712,
+          "bottom": 1234.364
+        },
+        {
+          "role": "copy",
+          "text": "View original captures",
+          "left": 40,
+          "right": 433.804,
+          "top": 1320.804,
+          "bottom": 1358.748
+        }
+      ],
+      "sha256": "14ca3272fc728ae87aff705a0df58528e8ea4642f24d62ca17b66b1e8e41dc4b"
+    },
+    {
       "file": "collection-en-mobile.svg",
       "language": "en",
       "width": 760,
@@ -1780,7 +3352,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 40,
           "right": 720,
@@ -1951,7 +3523,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 1200,
@@ -2094,6 +3666,268 @@
       "sha256": "d9b92d58a78940c1fdb17f3793add6ff3cad422d1bbcaf3b54f9df5ba48f8842"
     },
     {
+      "file": "lifestyle-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 1510,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "暮らしの中に、Wizard。",
+          "left": 64,
+          "right": 750.976,
+          "top": 85.6,
+          "bottom": 145.76
+        },
+        {
+          "role": "copy",
+          "text": "デスクにも、ベッドサイドにも。",
+          "left": 64,
+          "right": 548.908,
+          "top": 181.03199999999998,
+          "bottom": 212.55
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "書斎 · サイトの既存シーン",
+          "left": 64.0,
+          "right": 420.31,
+          "top": 649.4066666666668,
+          "bottom": 677.2166666666667
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 616.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "明るいデスク · iPad 2",
+          "left": 616.0,
+          "right": 908.47,
+          "top": 649.1066666666668,
+          "bottom": 677.2766666666668
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "ベッドサイド · iPad 4",
+          "left": 64.0,
+          "right": 357.84999999999997,
+          "top": 1140.7866666666666,
+          "bottom": 1166.9166666666667
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 760,
+          "bottom": 1106.6666666666667
+        },
+        {
+          "role": "copy",
+          "text": "夕暮れ · iPad Air",
+          "left": 616.0,
+          "right": 841.6,
+          "top": 1139.4366666666667,
+          "bottom": 1167.2166666666667
+        },
+        {
+          "role": "provenance",
+          "text": "合成シーン · 画面はアプリの実キャプチャ",
+          "left": 64,
+          "right": 591.52,
+          "top": 1236.48,
+          "bottom": 1262.52
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 486.734,
+          "top": 1295.304,
+          "bottom": 1316.338
+        },
+        {
+          "role": "copy",
+          "text": "シーンとキャプチャを見る",
+          "left": 64,
+          "right": 488.65599999999995,
+          "top": 1409.292,
+          "bottom": 1443.744
+        }
+      ],
+      "sha256": "ef6f320df68a722de384b8e16d6836aec0a9c633d6bf551db0f976fba2f9b959"
+    },
+    {
+      "file": "variations-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 1940,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "気分に合わせて、画面も。",
+          "left": 64,
+          "right": 789.248,
+          "top": 85.344,
+          "bottom": 146.72
+        },
+        {
+          "role": "copy",
+          "text": "6つの壁紙と時計のレイアウト。",
+          "left": 64,
+          "right": 534.764,
+          "top": 181.406,
+          "bottom": 212.72
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "夕景イラスト",
+          "left": 64.0,
+          "right": 237.1,
+          "top": 688.77,
+          "bottom": 716.55
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 270,
+          "bottom": 660.0
+        },
+        {
+          "role": "copy",
+          "text": "海と余白",
+          "left": 616.0,
+          "right": 730.5699999999999,
+          "top": 688.68,
+          "bottom": 716.4067346938775
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "夜景と秒表示",
+          "left": 64.0,
+          "right": 241.51,
+          "top": 1168.77,
+          "bottom": 1196.46
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 750,
+          "bottom": 1140.0
+        },
+        {
+          "role": "copy",
+          "text": "街とカレンダー",
+          "left": 616.0,
+          "right": 822.43,
+          "top": 1168.62,
+          "bottom": 1196.43
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 64.0,
+          "right": 584.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "緑の風景",
+          "left": 64.0,
+          "right": 181.45,
+          "top": 1648.8,
+          "bottom": 1676.46
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 616.0,
+          "right": 1136.0,
+          "top": 1230,
+          "bottom": 1620.0
+        },
+        {
+          "role": "copy",
+          "text": "ヤシと日差し",
+          "left": 616.0,
+          "right": 791.02,
+          "top": 1648.74,
+          "bottom": 1676.43
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 64,
+          "right": 486.734,
+          "top": 1739.304,
+          "bottom": 1760.338
+        },
+        {
+          "role": "copy",
+          "text": "元のキャプチャを見る",
+          "left": 64,
+          "right": 418.49199999999996,
+          "top": 1839.292,
+          "bottom": 1873.744
+        }
+      ],
+      "sha256": "3b91a2ae957b6fcb4962ed18e082470cb577cc1a59975fb347d018fa37d38a2e"
+    },
+    {
       "file": "collection-ja.svg",
       "language": "ja",
       "width": 1200,
@@ -2118,7 +3952,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 64,
           "right": 1136,
@@ -2289,7 +4123,7 @@
       "elements": [
         {
           "role": "artwork",
-          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "source": "hero-source.jpg",
           "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
           "left": 0,
           "right": 760,
@@ -2408,6 +4242,268 @@
       "sha256": "54eaccb6f632ff31b792b02ead2ed80bdd730d48916f962edb2eaeb197b50943"
     },
     {
+      "file": "lifestyle-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 2780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "暮らしの中に、Wizard。",
+          "left": 40,
+          "right": 641.104,
+          "top": 72.4,
+          "bottom": 125.04
+        },
+        {
+          "role": "copy",
+          "text": "デスクにも、ベッドサイドにも。",
+          "left": 40,
+          "right": 524.908,
+          "top": 159.03199999999998,
+          "bottom": 190.55
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "website-study.jpg",
+          "sha256": "9500b73cc8edb7c44119ea3991d9e804518b1b185b4bb6f47d197614bf49e696",
+          "left": 40,
+          "right": 720,
+          "top": 245.0,
+          "bottom": 698.3333333333333
+        },
+        {
+          "role": "copy",
+          "text": "書斎 · サイトの既存シーン",
+          "left": 40,
+          "right": 420.064,
+          "top": 721.3893333333333,
+          "bottom": 751.0533333333333
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "daylight-desk.jpg",
+          "sha256": "8d52c9f5241b6acab5d91c3d35fc18ae9fd892acb18348b7abdb5485d43b462d",
+          "left": 40,
+          "right": 720,
+          "top": 818.3333333333333,
+          "bottom": 1271.6666666666665
+        },
+        {
+          "role": "copy",
+          "text": "明るいデスク · iPad 2",
+          "left": 40,
+          "right": 351.968,
+          "top": 1294.4026666666666,
+          "bottom": 1324.4506666666666
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "linen-bedside.jpg",
+          "sha256": "53eccac1d3c2d452d7bcb34de246c0b078a3fbe8138b97a534690239f7366019",
+          "left": 40,
+          "right": 720,
+          "top": 1391.6666666666665,
+          "bottom": 1844.9999999999998
+        },
+        {
+          "role": "copy",
+          "text": "ベッドサイド · iPad 4",
+          "left": 40,
+          "right": 353.44,
+          "top": 1869.5279999999998,
+          "bottom": 1897.3999999999999
+        },
+        {
+          "role": "lifestyle-composite",
+          "source": "dusk-console.jpg",
+          "sha256": "2666b4c5e4acd01a1f56d1998cd0ed40d4148ee9ebeaf42e1a1f98241c4bf954",
+          "left": 40,
+          "right": 720,
+          "top": 1964.9999999999998,
+          "bottom": 2418.333333333333
+        },
+        {
+          "role": "copy",
+          "text": "夕暮れ · iPad Air",
+          "left": 40,
+          "right": 280.64,
+          "top": 2441.421333333333,
+          "bottom": 2471.053333333333
+        },
+        {
+          "role": "provenance",
+          "text": "合成シーン · 画面はアプリの実キャプチャ",
+          "left": 40,
+          "right": 567.52,
+          "top": 2526.48,
+          "bottom": 2552.52
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 495.252,
+          "top": 2581.712,
+          "bottom": 2604.364
+        },
+        {
+          "role": "copy",
+          "text": "シーンとキャプチャを見る",
+          "left": 40,
+          "right": 464.65599999999995,
+          "top": 2679.292,
+          "bottom": 2713.744
+        }
+      ],
+      "sha256": "ed5b57e9ee87a413d4d025af3091494f74b63469c2e69d7969d63b30d463b6be"
+    },
+    {
+      "file": "variations-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 1420,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "気分に合わせて、画面も。",
+          "left": 40,
+          "right": 629.264,
+          "top": 75.592,
+          "bottom": 125.46
+        },
+        {
+          "role": "copy",
+          "text": "6つの壁紙と時計のレイアウト。",
+          "left": 40,
+          "right": 510.764,
+          "top": 159.406,
+          "bottom": 190.72
+        },
+        {
+          "role": "native-capture",
+          "source": "sunset-poster.jpg",
+          "sha256": "e46e432b0113c28ca432c44cb213da71d969265cd1556fddbbc563265424561a",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "夕景イラスト",
+          "left": 40.0,
+          "right": 190.01999999999998,
+          "top": 513.134,
+          "bottom": 537.21
+        },
+        {
+          "role": "native-capture",
+          "source": "island-minimal.jpg",
+          "sha256": "5e14bd2e635f25ce8b4501e34d20a5d49b9bf7f2131a6afb4dba6fa7cc1ce7ef",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 245,
+          "bottom": 491.0
+        },
+        {
+          "role": "copy",
+          "text": "海と余白",
+          "left": 392.0,
+          "right": 491.294,
+          "top": 513.056,
+          "bottom": 537.0858367346939
+        },
+        {
+          "role": "native-capture",
+          "source": "night-city.jpg",
+          "sha256": "a474cfed532ed8098c6761692ebfc9e6ce7ab35891d1290d5caf602ff1b753d2",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "夜景と秒表示",
+          "left": 40.0,
+          "right": 193.84199999999998,
+          "top": 823.134,
+          "bottom": 847.132
+        },
+        {
+          "role": "native-capture",
+          "source": "city-calendar.jpg",
+          "sha256": "82b70b3546d323738c6b238d9bf8d308c1b4c13140628d12655054b79bc951e5",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 555,
+          "bottom": 801.0
+        },
+        {
+          "role": "copy",
+          "text": "街とカレンダー",
+          "left": 392.0,
+          "right": 570.906,
+          "top": 823.004,
+          "bottom": 847.106
+        },
+        {
+          "role": "native-capture",
+          "source": "green-retreat.jpg",
+          "sha256": "51797081f44ccacdab0d79934e5bd908976edb3f517e551d38aa1b21016df12f",
+          "left": 40.0,
+          "right": 368.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "緑の風景",
+          "left": 40.0,
+          "right": 141.79,
+          "top": 1133.16,
+          "bottom": 1157.132
+        },
+        {
+          "role": "native-capture",
+          "source": "palm-drive.jpg",
+          "sha256": "4def488eb42520d1decadccd22e28d7f1e0d563c71a66f051e4c82efccf68d2d",
+          "left": 392.0,
+          "right": 720.0,
+          "top": 865,
+          "bottom": 1111.0
+        },
+        {
+          "role": "copy",
+          "text": "ヤシと日差し",
+          "left": 392.0,
+          "right": 543.684,
+          "top": 1133.108,
+          "bottom": 1157.106
+        },
+        {
+          "role": "provenance",
+          "text": "iPad Simulator · build 20261112.41",
+          "left": 40,
+          "right": 495.252,
+          "top": 1211.712,
+          "bottom": 1234.364
+        },
+        {
+          "role": "copy",
+          "text": "元のキャプチャを見る",
+          "left": 40,
+          "right": 394.49199999999996,
+          "top": 1319.292,
+          "bottom": 1353.744
+        }
+      ],
+      "sha256": "2a015481ffefbee3234d2341d21efb6a5507ff0d6861477696dfc5b0849d8a3d"
+    },
+    {
       "file": "collection-ja-mobile.svg",
       "language": "ja",
       "width": 760,
@@ -2432,7 +4528,7 @@
         },
         {
           "role": "artwork",
-          "source": "Vice_City_01.jpg",
+          "source": "city-source.jpg",
           "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
           "left": 40,
           "right": 720,

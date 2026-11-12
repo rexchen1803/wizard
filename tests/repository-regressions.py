@@ -7,9 +7,12 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import runpy
+import struct
 import subprocess
 import sys
 import tempfile
+import zlib
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -161,4 +164,28 @@ with tempfile.TemporaryDirectory(prefix="wizard-repository-checks-") as temporar
     )
     assert result.returncode == 0, result.stdout + result.stderr
 
-print("Repository checker regressions passed (8 isolated cases).")
+scanner = runpy.run_path(str(ROOT / "scripts/prepare-open-source.py"))["scan_bytes"]
+# Real, unchanged capture: its compressed pixels contain a six-byte sequence
+# resembling a contact address. Metadata and decoded visual content are separate.
+capture = ROOT / "assets/demo/screens/city-calendar.png"
+assert scanner(capture.read_bytes()) == {}
+address = b"sample" + bytes([64]) + b"example.invalid"
+assert scanner(address).get("email_address") == 1
+
+
+def png_chunk(kind: bytes, payload: bytes) -> bytes:
+    return struct.pack(">I", len(payload)) + kind + payload + struct.pack(">I", zlib.crc32(kind + payload))
+
+
+prefix = b"\x89PNG\r\n\x1a\n" + png_chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
+suffix = png_chunk(b"IDAT", zlib.compress(b"\0\0\0\0")) + png_chunk(b"IEND", b"")
+for kind, payload in (
+    (b"tEXt", b"Comment\0" + address),
+    (b"zTXt", b"Comment\0\0" + zlib.compress(address)),
+    (b"iTXt", b"Comment\0\1\0\0\0" + zlib.compress(address)),
+):
+    assert scanner(prefix + png_chunk(kind, payload) + suffix).get("email_address") == 1, kind
+assert scanner(prefix + png_chunk(b"zTXt", b"Comment\0\0invalid") + suffix).get("unreadable_png_metadata") == 1
+assert scanner(prefix + png_chunk(b"zTXt", b"Comment\0\0" + zlib.compress(b"ok") + zlib.compress(address)) + suffix).get("unreadable_png_metadata") == 1
+
+print("Repository and export scanner regressions passed (15 isolated cases).")

@@ -13,6 +13,12 @@ The `*-miami.jpg` images are native UIKit output from build **20261112.41** on a
 
 These captures and the `armv7 + arm64` device build share the same source/resource fingerprint. The Simulator has a separate App identifier and sandbox media directory. Reproduction is documented under [Native simulator preview](../../docs/open-source/README.md#native-simulator-preview). Simulator rendering does not establish operation on legacy physical iPads. The English README preserves these actual App images with their original mixture of Chinese and English UI text.
 
+## More layouts and lifestyle scenes
+
+These six unmodified PNGs are native captures of build **20261112.41** on an **iPad (8th generation) Simulator / iOS 18.0**: [Sunset poster](screens/sunset-poster.png), [island minimal](screens/island-minimal.png), [night city](screens/night-city.png), [city calendar](screens/city-calendar.png), [green retreat](screens/green-retreat.png) and [palm drive](screens/palm-drive.png). Dimensions, digests and Simulator provenance are in the [capture metadata](screens/CAPTURE-METADATA.json).
+
+Lifestyle scenes: [website study](environments/website-study.jpg), [daylight desk](environments/daylight-desk.jpg), [linen bedside](environments/linen-bedside.jpg) and [dusk console](environments/dusk-console.jpg). Website study reuses the user-supplied setting with its old screen fully replaced by a current App capture; the other three are generated environment illustrations. Each App screen is a deterministic projection of an original capture above, with no invented or redrawn UI. The iPad 2, iPad 4 and first-generation iPad Air forms are illustrative; these scenes do not show build 41 running on those physical devices or establish compatibility or device acceptance. Composition and source records are in [SCENES.json](environments/SCENES.json).
+
 ## Display font
 
 The current build bundles the static `Anton-Regular.ttf` and its OFL 1.1 license. Capture metadata records the actual clock font name, font-file SHA256 and bundled-file origin. CJK controls use system fonts. The historical source36 device images retain their original appearance.

@@ -13,6 +13,12 @@
 
 截图构建和 `armv7 + arm64` 设备构建绑定同一份源码与资源；模拟器使用独立 App 标识和沙盒媒体路径。构建入口及复现方式见[原生模拟器预览](../../docs/open-source/README.md#native-simulator-preview)。模拟器检查不替代旧款实体 iPad 的运行验收。
 
+## 更多布局与生活场景
+
+以下六张是 build **20261112.41** 在 **iPad（第 8 代）模拟器 / iOS 18.0** 中截取的原生画面，PNG 未修改：[落日海报](screens/sunset-poster.png)、[岛屿极简](screens/island-minimal.png)、[夜城](screens/night-city.png)、[城市日历](screens/city-calendar.png)、[绿意静居](screens/green-retreat.png)、[棕榈车道](screens/palm-drive.png)。尺寸、校验值和模拟器来源见[截图元数据](screens/CAPTURE-METADATA.json)。
+
+生活场景：[网站书房](environments/website-study.jpg)、[日光书桌](environments/daylight-desk.jpg)、[亚麻床头](environments/linen-bedside.jpg)、[暮色边柜](environments/dusk-console.jpg)。网站书房沿用用户提供的场景，并以当前 App 截图替换原有屏幕；其余三幅为生成的环境插画。每幅中的 App 画面均按固定位置直接投影自上述原始截图，未虚构或重绘界面。场景中的 iPad 2、iPad 4 与初代 iPad Air 外形仅作示意，不代表这些实体设备运行了 build 41，也不构成兼容性或实机验收证据。场景构图与素材来源见[场景记录](environments/SCENES.json)。
+
 ## 字体来源
 
 当前构建把静态开源字体 `Anton-Regular.ttf` 和 OFL 1.1 许可一起打入 App。截图元数据同时记录真实时钟字体名 `Anton-Regular`、字体文件 SHA256 和字体是否来自 App 包，避免把模拟器的系统字体回退当成旧系统字体一致性证据。中文控件使用系统字体。旧 source36 实机图保留其当时的外观。

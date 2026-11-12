@@ -11,6 +11,7 @@ import os
 import re
 import stat
 import sys
+import zlib
 from pathlib import Path
 from typing import Optional
 
@@ -43,6 +44,47 @@ APP_ALLOWLIST = (
 )
 
 ROOT_ALLOWLIST = (
+    ('assets/demo/environments/PROMPTS.md', 'assets/demo/environments/PROMPTS.md'),
+    ('assets/demo/environments/SCENES.json', 'assets/demo/environments/SCENES.json'),
+    ('assets/demo/environments/SOURCES.md', 'assets/demo/environments/SOURCES.md'),
+    ('assets/demo/environments/daylight-desk.jpg', 'assets/demo/environments/daylight-desk.jpg'),
+    ('assets/demo/environments/dusk-console.jpg', 'assets/demo/environments/dusk-console.jpg'),
+    ('assets/demo/environments/linen-bedside.jpg', 'assets/demo/environments/linen-bedside.jpg'),
+    ('assets/demo/environments/plates/daylight-desk.jpg', 'assets/demo/environments/plates/daylight-desk.jpg'),
+    ('assets/demo/environments/plates/dusk-console.jpg', 'assets/demo/environments/plates/dusk-console.jpg'),
+    ('assets/demo/environments/plates/linen-bedside.jpg', 'assets/demo/environments/plates/linen-bedside.jpg'),
+    ('assets/demo/environments/plates/website-study.jpg', 'assets/demo/environments/plates/website-study.jpg'),
+    ('assets/demo/environments/website-study.jpg', 'assets/demo/environments/website-study.jpg'),
+    ('assets/demo/screens/CAPTURE-METADATA.json', 'assets/demo/screens/CAPTURE-METADATA.json'),
+    ('assets/demo/screens/city-calendar.jpg', 'assets/demo/screens/city-calendar.jpg'),
+    ('assets/demo/screens/city-calendar.png', 'assets/demo/screens/city-calendar.png'),
+    ('assets/demo/screens/green-retreat.jpg', 'assets/demo/screens/green-retreat.jpg'),
+    ('assets/demo/screens/green-retreat.png', 'assets/demo/screens/green-retreat.png'),
+    ('assets/demo/screens/island-minimal.jpg', 'assets/demo/screens/island-minimal.jpg'),
+    ('assets/demo/screens/island-minimal.png', 'assets/demo/screens/island-minimal.png'),
+    ('assets/demo/screens/night-city.jpg', 'assets/demo/screens/night-city.jpg'),
+    ('assets/demo/screens/night-city.png', 'assets/demo/screens/night-city.png'),
+    ('assets/demo/screens/palm-drive.jpg', 'assets/demo/screens/palm-drive.jpg'),
+    ('assets/demo/screens/palm-drive.png', 'assets/demo/screens/palm-drive.png'),
+    ('assets/demo/screens/sunset-poster.jpg', 'assets/demo/screens/sunset-poster.jpg'),
+    ('assets/demo/screens/sunset-poster.png', 'assets/demo/screens/sunset-poster.png'),
+    ('assets/readme/lifestyle-en-mobile.svg', 'assets/readme/lifestyle-en-mobile.svg'),
+    ('assets/readme/lifestyle-en.svg', 'assets/readme/lifestyle-en.svg'),
+    ('assets/readme/lifestyle-ja-mobile.svg', 'assets/readme/lifestyle-ja-mobile.svg'),
+    ('assets/readme/lifestyle-ja.svg', 'assets/readme/lifestyle-ja.svg'),
+    ('assets/readme/lifestyle-mobile.svg', 'assets/readme/lifestyle-mobile.svg'),
+    ('assets/readme/lifestyle-zh-tw-mobile.svg', 'assets/readme/lifestyle-zh-tw-mobile.svg'),
+    ('assets/readme/lifestyle-zh-tw.svg', 'assets/readme/lifestyle-zh-tw.svg'),
+    ('assets/readme/lifestyle.svg', 'assets/readme/lifestyle.svg'),
+    ('assets/readme/variations-en-mobile.svg', 'assets/readme/variations-en-mobile.svg'),
+    ('assets/readme/variations-en.svg', 'assets/readme/variations-en.svg'),
+    ('assets/readme/variations-ja-mobile.svg', 'assets/readme/variations-ja-mobile.svg'),
+    ('assets/readme/variations-ja.svg', 'assets/readme/variations-ja.svg'),
+    ('assets/readme/variations-mobile.svg', 'assets/readme/variations-mobile.svg'),
+    ('assets/readme/variations-zh-tw-mobile.svg', 'assets/readme/variations-zh-tw-mobile.svg'),
+    ('assets/readme/variations-zh-tw.svg', 'assets/readme/variations-zh-tw.svg'),
+    ('assets/readme/variations.svg', 'assets/readme/variations.svg'),
+    ('scripts/build-lifestyle.py', 'scripts/build-lifestyle.py'),
     ("README.zh-TW.md", "README.zh-TW.md"),
     ("README.ja.md", "README.ja.md"),
     ("assets/readme/COPY.json", "assets/readme/COPY.json"),
@@ -284,8 +326,54 @@ def is_protocol_address(raw: bytes) -> bool:
     )
 
 
+def png_metadata_bytes(data: bytes) -> tuple[bytes, bool]:
+    """Scan PNG metadata, not coincidental text in compressed image samples."""
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return data, True
+    position, parts = 8, []
+    try:
+        while position + 12 <= len(data):
+            length = int.from_bytes(data[position:position+4], "big")
+            kind = data[position+4:position+8]
+            end = position + 12 + length
+            if end > len(data):
+                raise ValueError("truncated PNG metadata")
+            payload = data[position+8:end-4]
+            if kind != b"IDAT":
+                parts.append(payload)
+            compressed = None
+            if kind in (b"zTXt", b"iCCP"):
+                _, separator, remainder = payload.partition(b"\0")
+                if not separator or len(remainder) < 2 or remainder[0] != 0:
+                    raise ValueError("invalid compressed PNG metadata")
+                compressed = remainder[1:]
+            elif kind == b"iTXt":
+                _, separator, remainder = payload.partition(b"\0")
+                if not separator or len(remainder) < 2 or remainder[0] not in (0, 1) or remainder[1] != 0:
+                    raise ValueError("invalid international PNG metadata")
+                fields = remainder[2:].split(b"\0", 2)
+                if len(fields) != 3:
+                    raise ValueError("truncated international PNG metadata")
+                if remainder[0] == 1:
+                    compressed = fields[2]
+            if compressed is not None:
+                decoder = zlib.decompressobj()
+                decoded = decoder.decompress(compressed, 1_000_001)
+                if len(decoded) > 1_000_000 or not decoder.eof or decoder.unused_data:
+                    raise ValueError("unreadable or oversized PNG metadata")
+                parts.append(decoded)
+            position = end
+            if kind == b"IEND":
+                parts.append(data[position:])
+                return b"\n".join(parts), True
+    except (ValueError, zlib.error):
+        pass
+    return data, False
+
+
 def scan_bytes(data: bytes) -> dict[str, int]:
-    findings: dict[str, int] = {}
+    data, valid_metadata = png_metadata_bytes(data)
+    findings: dict[str, int] = {} if valid_metadata else {"unreadable_png_metadata": 1}
     home_paths = len(HOME_PATH_RE.findall(data))
     if home_paths:
         findings["workstation_home_path"] = home_paths
