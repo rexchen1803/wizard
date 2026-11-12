@@ -42,6 +42,10 @@ The full Rockstar artwork, screenshot and trailer collections are distributed se
 
 The unmodified static `App/Resources/Anton-Regular.ttf` is Copyright 2020 The Anton Project Authors and distributed under the SIL Open Font License 1.1, included at [App/Resources/Anton-OFL.txt](App/Resources/Anton-OFL.txt). Source: [Google Fonts, pinned revision cee74d7ca45d66d5c1878c828645c862f2788d2d](https://github.com/google/fonts/tree/cee74d7ca45d66d5c1878c828645c862f2788d2d/ofl/anton). SHA256: `a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab`. The font and license are bundled with the App; the font is separate from the MIT source license. README display lettering may be rendered from the same face.
 
+## Noto CJK promotional lettering
+
+README Chinese lettering is outlined from Noto Sans CJK SC Regular and Bold under SIL OFL 1.1. The font files are optional artwork-generation inputs and are not bundled in the App. The verbatim [upstream license](licenses/NotoSansCJK-OFL.txt), pinned source revision, input checksums and generation instructions are recorded in [README artwork sources](assets/readme/SOURCES.md).
+
 ## Bundled display and promotional images
 
 The reviewed `App/Resources/ViceCity.jpg` is included as a fallback wallpaper, and selected supplied images appear in README artwork and native captures. The original filename and checksum are recorded in [material attribution](assets/media/ATTRIBUTION.md). These images and derivatives retain Rockstar Games and applicable rights-holder copyright; they are excluded from the MIT license. Full media packs remain separate Release attachments. No proprietary Rockstar fonts are bundled.

@@ -1,0 +1,634 @@
+{
+  "schema": "wizard.campaign-layout.v1",
+  "native_capture_build": "20261112.39",
+  "native_source_fingerprint": "3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f",
+  "font_sha256": {
+    "Anton-Regular.ttf": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+    "NotoSansCJKsc-Regular.otf": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+    "NotoSansCJKsc-Bold.otf": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a"
+  },
+  "panels": [
+    {
+      "file": "hero.svg",
+      "width": 1200,
+      "height": 1120,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 1200,
+          "top": 0,
+          "bottom": 675.0
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 1136.0,
+          "top": 526.0081430341654,
+          "bottom": 860.0
+        },
+        {
+          "role": "copy",
+          "text": "让闲置的 iPad，再次发光。",
+          "left": 64,
+          "right": 581.0,
+          "top": 912.292,
+          "bottom": 956.072
+        },
+        {
+          "role": "copy",
+          "text": "安装指南",
+          "left": 64,
+          "right": 211.63,
+          "top": 1011.586,
+          "bottom": 1047.686
+        }
+      ],
+      "sha256": "ea02967eddeb6ce3598df3912809b0b8b0ded45752c4103d7f6c93f97add7fc3"
+    },
+    {
+      "file": "showcase.svg",
+      "width": 1200,
+      "height": 1900,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "时钟与画面。",
+          "left": 64,
+          "right": 402.496,
+          "top": 85.72800000000001,
+          "bottom": 145.824
+        },
+        {
+          "role": "copy",
+          "text": "把喜欢的画面，留在屏幕上。",
+          "left": 64,
+          "right": 482.574,
+          "top": 181.304,
+          "bottom": 213.638
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "left": 64,
+          "right": 1136,
+          "top": 270,
+          "bottom": 1074.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad 模拟器实截 · build 20261112.39",
+          "left": 64,
+          "right": 508.262,
+          "top": 1109.978,
+          "bottom": 1134.08
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 64,
+          "right": 584.0,
+          "top": 1240,
+          "bottom": 1630.0
+        },
+        {
+          "role": "copy",
+          "text": "布局，",
+          "left": 616.0,
+          "right": 767.936,
+          "top": 1240.0,
+          "bottom": 1303.3600000000001
+        },
+        {
+          "role": "copy",
+          "text": "随你心意。",
+          "left": 616.0,
+          "right": 890.3040000000001,
+          "top": 1331.3600000000001,
+          "bottom": 1392.288
+        },
+        {
+          "role": "copy",
+          "text": "移动时钟与日历，",
+          "left": 616.0,
+          "right": 849.504,
+          "top": 1463.12,
+          "bottom": 1493.424
+        },
+        {
+          "role": "copy",
+          "text": "调整尺寸与壁纸裁切。",
+          "left": 616.0,
+          "right": 913.7280000000001,
+          "top": 1517.992,
+          "bottom": 1547.688
+        },
+        {
+          "role": "copy",
+          "text": "壁纸图库",
+          "left": 64,
+          "right": 268.88,
+          "top": 1675.436,
+          "bottom": 1724.992
+        },
+        {
+          "role": "copy",
+          "text": "分类、收藏与照片导入。",
+          "left": 64,
+          "right": 373.09,
+          "top": 1764.8,
+          "bottom": 1792.55
+        }
+      ],
+      "sha256": "dc915394ae4a98868d24bf22412f69f4a27f7b17ae5cfc4467c156254f9573dd"
+    },
+    {
+      "file": "collection.svg",
+      "width": 1200,
+      "height": 1320,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 64,
+          "right": 653.10546875,
+          "top": 36.046875,
+          "bottom": 181.296875
+        },
+        {
+          "role": "copy",
+          "text": "把喜欢的画面，留在图库。",
+          "left": 64,
+          "right": 698.592,
+          "top": 230.064,
+          "bottom": 285.728
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 64,
+          "right": 1136,
+          "top": 350,
+          "bottom": 953.0
+        },
+        {
+          "role": "copy",
+          "text": "228 张图片 · 2 段视频",
+          "left": 64,
+          "right": 405.49600000000004,
+          "top": 1007.236,
+          "bottom": 1038.89
+        },
+        {
+          "role": "copy",
+          "text": "另含原始素材包",
+          "left": 64,
+          "right": 298.97400000000005,
+          "top": 1071.27,
+          "bottom": 1102.72
+        },
+        {
+          "role": "copy",
+          "text": "查看素材与说明",
+          "left": 64,
+          "right": 396.064,
+          "top": 1193.152,
+          "bottom": 1238.656
+        }
+      ],
+      "sha256": "1c47f8d71346f2b0c506ab51e5e725ac247e2436d823c8790d957679c7305cac"
+    },
+    {
+      "file": "install.svg",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "安装 Wizard",
+          "left": 64,
+          "right": 393.46,
+          "top": 64.82,
+          "bottom": 121.82
+        },
+        {
+          "role": "copy",
+          "text": "预览安装包与设备指南",
+          "left": 64,
+          "right": 380.896,
+          "top": 160.96,
+          "bottom": 190.72
+        }
+      ],
+      "sha256": "eda6a782efcf7652962ecd6ad8fbf806b8c01b64e424e9d9bd7f0adc797a7471"
+    },
+    {
+      "file": "agent.svg",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "交给 Agent",
+          "left": 64,
+          "right": 366.76,
+          "top": 64.28,
+          "bottom": 130.58
+        },
+        {
+          "role": "copy",
+          "text": "一次性安装提示词",
+          "left": 64,
+          "right": 316.12800000000004,
+          "top": 161.056,
+          "bottom": 190.72
+        }
+      ],
+      "sha256": "6daec42652352dfe6e51d0ebef19566889312a0537dc2b9496deaff8d43fbccd"
+    },
+    {
+      "file": "source.svg",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "从源码构建",
+          "left": 64,
+          "right": 360.76,
+          "top": 65.0,
+          "bottom": 121.4
+        },
+        {
+          "role": "copy",
+          "text": "构建说明、源码与贡献方式",
+          "left": 64,
+          "right": 445.92,
+          "top": 160.928,
+          "bottom": 190.784
+        }
+      ],
+      "sha256": "43cf5fbb1126a24fbee532de77c2c8144effe6f681707653d9bb05c24f8b6fd2"
+    },
+    {
+      "file": "footer.svg",
+      "width": 1200,
+      "height": 400,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 273.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "原生 iPad 应用 · 非官方开源项目",
+          "left": 64,
+          "right": 537.248,
+          "top": 162.864,
+          "bottom": 192.784
+        },
+        {
+          "role": "copy",
+          "text": "代码 MIT · 字体 OFL 1.1",
+          "left": 64,
+          "right": 370.964,
+          "top": 232.284,
+          "bottom": 258.2153997671728
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI 素材 © Rockstar Games 及相关权利人",
+          "left": 64,
+          "right": 628.088,
+          "top": 290.452,
+          "bottom": 316.38
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 64,
+          "right": 161.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "321f68917c08b312cda40263a8cf378f9356d4a856e5f3249fa2d5b33a0ab189"
+    },
+    {
+      "file": "hero-mobile.svg",
+      "width": 760,
+      "height": 840,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 760,
+          "top": 0,
+          "bottom": 427.5
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 720.0,
+          "top": 398.13949371570186,
+          "bottom": 610.0
+        },
+        {
+          "role": "copy",
+          "text": "让闲置的 iPad，再次发光。",
+          "left": 40,
+          "right": 557.0,
+          "top": 662.292,
+          "bottom": 706.072
+        },
+        {
+          "role": "copy",
+          "text": "安装指南",
+          "left": 40,
+          "right": 195.4,
+          "top": 745.88,
+          "bottom": 783.88
+        }
+      ],
+      "sha256": "3bc6832aa535b6b34f15b6fba9fb06ed940bb131d7c1eab1cc95842627678c73"
+    },
+    {
+      "file": "showcase-mobile.svg",
+      "width": 760,
+      "height": 1780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "时钟与画面。",
+          "left": 40,
+          "right": 378.496,
+          "top": 65.72800000000001,
+          "bottom": 125.824
+        },
+        {
+          "role": "copy",
+          "text": "把喜欢的画面，留在屏幕上。",
+          "left": 40,
+          "right": 507.818,
+          "top": 155.928,
+          "bottom": 192.066
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "left": 40,
+          "right": 720,
+          "top": 245,
+          "bottom": 755.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad 模拟器实截 · build 20261112.39",
+          "left": 40,
+          "right": 620.9580000000001,
+          "top": 788.202,
+          "bottom": 819.72
+        },
+        {
+          "role": "copy",
+          "text": "壁纸图库",
+          "left": 40,
+          "right": 276.4,
+          "top": 943.58,
+          "bottom": 1000.76
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 40,
+          "right": 720,
+          "top": 1060,
+          "bottom": 1570.0
+        },
+        {
+          "role": "copy",
+          "text": "分类、收藏与照片导入。",
+          "left": 40,
+          "right": 431.514,
+          "top": 1608.08,
+          "bottom": 1643.23
+        },
+        {
+          "role": "copy",
+          "text": "也能调整时钟与日历的布局。",
+          "left": 40,
+          "right": 508.046,
+          "top": 1677.9279999999999,
+          "bottom": 1713.078
+        }
+      ],
+      "sha256": "de6154e75b8321dfe2a43311ddba02e23a0ce9a6032a38e95ad3577591d331d1"
+    },
+    {
+      "file": "collection-mobile.svg",
+      "width": 760,
+      "height": 1110,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 40,
+          "right": 487.15234375,
+          "top": 40.734375,
+          "bottom": 150.984375
+        },
+        {
+          "role": "copy",
+          "text": "把喜欢的画面，留在图库。",
+          "left": 40,
+          "right": 583.936,
+          "top": 204.912,
+          "bottom": 252.624
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 40,
+          "right": 720,
+          "top": 314,
+          "bottom": 696.5
+        },
+        {
+          "role": "copy",
+          "text": "228 张图片 · 2 段视频",
+          "left": 40,
+          "right": 421.67199999999997,
+          "top": 747.352,
+          "bottom": 782.73
+        },
+        {
+          "role": "copy",
+          "text": "另含原始素材包",
+          "left": 40,
+          "right": 302.618,
+          "top": 811.39,
+          "bottom": 846.54
+        },
+        {
+          "role": "copy",
+          "text": "查看素材与说明",
+          "left": 40,
+          "right": 372.064,
+          "top": 983.152,
+          "bottom": 1028.656
+        }
+      ],
+      "sha256": "811c509626d1e4e51b0efdc605600580cd63ddfbdc502bf5c5dd40112b094b72"
+    },
+    {
+      "file": "install-mobile.svg",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "安装 Wizard",
+          "left": 40,
+          "right": 358.478,
+          "top": 66.526,
+          "bottom": 121.626
+        },
+        {
+          "role": "copy",
+          "text": "预览安装包与设备指南",
+          "left": 40,
+          "right": 396.508,
+          "top": 171.58,
+          "bottom": 205.06
+        }
+      ],
+      "sha256": "e12066983df5ef0091d3d781b19915c32a552fa6ec8f74d3717b3047c3d730cc"
+    },
+    {
+      "file": "agent-mobile.svg",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "交给 Agent",
+          "left": 40,
+          "right": 332.668,
+          "top": 66.00399999999999,
+          "bottom": 130.094
+        },
+        {
+          "role": "copy",
+          "text": "一次性安装提示词",
+          "left": 40,
+          "right": 323.644,
+          "top": 171.688,
+          "bottom": 205.06
+        }
+      ],
+      "sha256": "4b023d3c52380c8815e4ff6eb56676c187ef86e2476c96a99321de09183a10f0"
+    },
+    {
+      "file": "source-mobile.svg",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "从源码构建",
+          "left": 40,
+          "right": 326.868,
+          "top": 66.69999999999999,
+          "bottom": 121.22
+        },
+        {
+          "role": "copy",
+          "text": "构建说明、源码与贡献方式",
+          "left": 40,
+          "right": 469.65999999999997,
+          "top": 171.544,
+          "bottom": 205.132
+        }
+      ],
+      "sha256": "608e2f5dd1549b5d45877c79c770fef9e5217d0747c5b87f2ef9ef01cfc3a388"
+    },
+    {
+      "file": "footer-mobile.svg",
+      "width": 760,
+      "height": 400,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 249.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "原生 iPad 应用 · 非官方开源项目",
+          "left": 40,
+          "right": 542.826,
+          "top": 161.168,
+          "bottom": 192.958
+        },
+        {
+          "role": "copy",
+          "text": "代码 MIT · 字体 OFL 1.1",
+          "left": 40,
+          "right": 390.81600000000003,
+          "top": 228.89600000000002,
+          "bottom": 258.5318854481975
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI 素材 © Rockstar Games 及相关权利人",
+          "left": 40,
+          "right": 604.088,
+          "top": 290.452,
+          "bottom": 316.38
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 40,
+          "right": 137.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "d1407a2a40ca24716987b7519bbb3ae10acbd7adc6f34d265573becc9a79494f"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+# README artwork sources
+
+The README is an illustrated project introduction, with separate desktop and narrow-screen compositions. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.39`, not physical-device screenshots. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
+
+## Artwork
+
+The owner supplied these GTA VI files. Copyright remains with Rockstar Games and applicable rights holders; the images and derived panels are excluded from the MIT license. See [material attribution](../media/ATTRIBUTION.md). The collection's official-source references do not establish an independent byte-for-byte match for each supplied file.
+
+| Input | SHA256 |
+| --- | --- |
+| `GTAVI_Artwork_Wallpapers/Jason_and_Lucia_01/Jason_and_Lucia_01_landscape.jpg` | `613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab` |
+| `GTAVI_Screenshots/Places/Vice City/Vice_City_01.jpg` | `6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225` |
+
+The App's bundled `ViceCity.jpg` remains the separately attributed chair photograph selected for the native build. No App pixels or display fonts are replaced in the embedded captures.
+
+## Type
+
+Latin display lettering uses the exact [Anton-Regular.ttf](../../App/Resources/Anton-Regular.ttf) bundled in the App; see [its license](../../App/Resources/Anton-OFL.txt). Chinese promotional lettering uses Noto Sans CJK SC, separate from the App's native system CJK controls. The Noto fonts are optional artwork-generation inputs, not App resources. Both families use SIL OFL 1.1. [Noto license](../../licenses/NotoSansCJK-OFL.txt).
+
+Pinned Noto source revision: [`f8d157532fbfaeda587e826d4cd5b21a49186f7c`](https://github.com/notofonts/noto-cjk/tree/f8d157532fbfaeda587e826d4cd5b21a49186f7c).
+
+| Input within that repository | SHA256 |
+| --- | --- |
+| `Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf` | `2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b` |
+| `Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Bold.otf` | `b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a` |
+| `Sans/LICENSE` | `6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2` |
+
+## Rebuild the artwork
+
+Use Python 3 with `fonttools==4.60.2`, the pinned fonts above, and the separately supplied original artwork. Font installation is unnecessary. From the repository root:
+
+```sh
+python3 scripts/build-showcase.py \
+  --cjk-regular /path/to/NotoSansCJKsc-Regular.otf \
+  --cjk-bold /path/to/NotoSansCJKsc-Bold.otf \
+  --hero-art /path/to/Jason_and_Lucia_01_landscape.jpg \
+  --city-art /path/to/Vice_City_01.jpg \
+  --out assets/readme
+```
+
+The generator checks capture/source/font identity, input image digests, canvas bounds and content overlap. It aligns visible glyph outlines to common content rails and writes the exact geometry and digests to `LAYOUT.json`. A passing generator still requires visual review of the complete GitHub page at desktop and phone widths. It does not build or install the App.

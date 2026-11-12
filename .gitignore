@@ -50,10 +50,12 @@
 
 /licenses/*
 !/licenses/Material-Icons-Apache-2.0.txt
+!/licenses/NotoSansCJK-OFL.txt
 
 /scripts/*
 !/scripts/build-ipad.sh
 !/scripts/build-preview.py
+!/scripts/build-showcase.py
 !/scripts/build-power.sh
 !/scripts/check-repository.py
 !/scripts/install-wizard.sh
@@ -121,21 +123,22 @@
 !/assets/media/MANIFEST.json
 
 /assets/readme/*
-!/assets/readme/hero-dark.svg
-!/assets/readme/postcards-triptych.svg
-!/assets/readme/hero-mobile-dark.svg
 !/assets/readme/hero-mobile.svg
 !/assets/readme/hero.svg
-!/assets/readme/install-agent.svg
-!/assets/readme/install-direct.svg
-!/assets/readme/chapter-display.svg
-!/assets/readme/chapter-display-mobile.svg
-!/assets/readme/chapter-install.svg
-!/assets/readme/chapter-install-mobile.svg
-!/assets/readme/chapter-materials.svg
-!/assets/readme/chapter-materials-mobile.svg
-!/assets/readme/chapter-source.svg
-!/assets/readme/chapter-source-mobile.svg
+!/assets/readme/LAYOUT.json
+!/assets/readme/SOURCES.md
+!/assets/readme/agent-mobile.svg
+!/assets/readme/agent.svg
+!/assets/readme/collection-mobile.svg
+!/assets/readme/collection.svg
+!/assets/readme/footer-mobile.svg
+!/assets/readme/footer.svg
+!/assets/readme/install-mobile.svg
+!/assets/readme/install.svg
+!/assets/readme/showcase-mobile.svg
+!/assets/readme/showcase.svg
+!/assets/readme/source-mobile.svg
+!/assets/readme/source.svg
 
 /docs/open-source/*
 !/docs/open-source/GTA6-MATERIALS.md

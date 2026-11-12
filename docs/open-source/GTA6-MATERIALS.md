@@ -4,14 +4,14 @@ GTA VI 图片、视频及其缩略图、转码和裁切的版权属于 **Rocksta
 
 ## 下载与内容
 
-素材随 [v0.2.0-preview.3 Release](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.3) 提供：
+素材包已上传至 [Releases](https://github.com/rexchen1803/wizard/releases) 中的 `v0.2.0-preview.3` 草稿，尚未公开发布：
 
 | 素材包 | 内容 | 用途 |
 | --- | --- | --- |
 | `wizard-gta6-gallery-20261112.zip` | 230 项目录、228 张横版图片、2 段 MP4 预告片及缩略图，共460个媒体引用 | 安装到 Wizard 的可选图库 |
 | `gta6-original-materials-20261112.zip` | 343 张原始 JPEG、2 段 MKV 和2份随文件保存的 SRT | 原始素材收藏与后续制作 |
 
-文件大小、下载链接和 SHA-256 见 [公开清单](../../assets/media/MANIFEST.json)。每个压缩包也带有逐文件 `MANIFEST.json`、版权署名和用途说明。原始文件名保留；App 图库中的分类、简短显示名称和稳定 key 分开管理。
+文件大小、发布后的下载地址和 SHA-256 见 [文件清单](../../assets/media/MANIFEST.json)。每个压缩包也带有逐文件 `MANIFEST.json`、版权署名和用途说明。原始文件名保留；App 图库中的分类、简短显示名称和稳定 key 分开管理。
 
 ## 官方来源
 
@@ -22,7 +22,7 @@ GTA VI 图片、视频及其缩略图、转码和裁切的版权属于 **Rocksta
 - [GTA VI Videos](https://www.rockstargames.com/VI/media/videos)
 - [Rockstar Games Legal Terms](https://www.rockstargames.com/legal/)
 
-原图包括27组壁纸构图及其142种尺寸/标志版本、138张游戏截图、51张 Ultimate Edition 图片和12张 Vintage Vice City Pack 图片。图库每组壁纸选一张横版，保留全部截图与内容包图片。上游页面和目录可能变化；本 Release 的文件范围由已发布清单固定。
+原图包括27组壁纸构图及其142种尺寸/标志版本、138张游戏截图、51张 Ultimate Edition 图片和12张 Vintage Vice City Pack 图片。图库每组壁纸选一张横版，保留全部截图与内容包图片。上游页面和目录可能变化；本预览的文件范围由文件清单固定。
 
 项目记录中的原图来源核对、文件名匹配和内容归类，不构成逐文件再分发许可。两个 SRT 的作者来源未独立核实，因此不声称它们是 Rockstar 官方字幕。
 
