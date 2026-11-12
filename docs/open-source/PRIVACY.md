@@ -1,6 +1,6 @@
 # Local data and network behavior
 
-[简体中文](../zh-CN/PRIVACY.md) · **English**
+[简体中文](../zh-CN/PRIVACY.md) · [繁體中文](../zh-TW/PRIVACY.md) · **English** · [日本語](../ja/PRIVACY.md)
 
 This describes the iPad source candidate, not an App Store privacy declaration or proof of device acceptance.
 

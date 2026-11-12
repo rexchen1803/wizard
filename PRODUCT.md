@@ -19,7 +19,7 @@ iOS 9 minimum; preserve armv7 and arm64 builds, stable media keys, favorites, us
 Rex explicitly selected GTA VI / Rockstar / Miami visual language for both the App and GitHub presentation, with purple-pink sunset gradients and substantial supplied artwork. Use ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg for the new build and promotion; retain historical promotional captures.
 
 ## Evidence on Hand
-App source, eight host regression suites, local iPhoneOS 9.3 SDK, same-source build39 native Simulator captures, historical source36 physical-iPad captures and owner-supplied GTA VI media. Source/resource fingerprints and bundled font origins are recorded; historical captures are not current physical acceptance.
+App source, eight host regression suites, local iPhoneOS 9.3 SDK, same-source build40 native Simulator captures, historical source36 physical-iPad captures and owner-supplied GTA VI media. Source/resource fingerprints and bundled font origins are recorded; historical captures are not current physical acceptance.
 
 ## Product Principles
 - Preserve real capabilities and user data.

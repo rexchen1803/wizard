@@ -1,6 +1,6 @@
 # Contributing
 
-[简体中文](docs/zh-CN/CONTRIBUTING.md) · **English**
+[简体中文](docs/zh-CN/CONTRIBUTING.md) · [繁體中文](docs/zh-TW/CONTRIBUTING.md) · **English** · [日本語](docs/ja/CONTRIBUTING.md)
 
 Thanks for helping improve Wizard. Before opening a change, review the [compatibility guide](docs/COMPATIBILITY.md), [privacy notes](docs/open-source/PRIVACY.md), and [third-party material notices](THIRD_PARTY.md).
 

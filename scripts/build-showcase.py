@@ -21,43 +21,17 @@ from fontTools.ttLib import TTFont
 
 CREAM, PINK, MUTED = '#FFF9CB', '#F7A6BE', '#DFB9D0'
 GROUND, PLUM = '#10101C', '#21152D'
-ENGLISH = {
-    'Wizard · 查看安装指南': 'Wizard · Installation guide',
-    'Wizard · 翻页时钟、壁纸图库与本地影像': 'Wizard · Clock, wallpapers and local media',
-    'Vice City 素材合集 · 图片、视频与原始素材': 'Vice City collection · Images, videos and original files',
-    'Wizard · 项目与第三方素材许可': 'Wizard · Project and third-party licenses',
-    '让闲置的 iPad，再次发光。': 'A second life for your iPad.',
-    '安装指南': 'Install guide',
-    '时钟与画面。': 'Time. Well spent.',
-    '把喜欢的画面，留在屏幕上。': 'Your favorite scenes. Always in view.',
-    '壁纸图库': 'Wallpaper gallery',
-    '分类、收藏与照片导入。': 'Categories, favorites, your photos.',
-    '也能调整时钟与日历的布局。': 'Fine-tune your clock and calendar.',
-    '布局，': 'Make it',
-    '随你心意。': 'your own.',
-    '移动时钟与日历，': 'Move the clock and calendar.',
-    '调整尺寸与壁纸裁切。': 'Resize and reframe.',
-    '把喜欢的画面，留在图库。': 'Your own slice of Vice City.',
-    '228 张图片 · 2 段视频': '228 images · 2 videos',
-    '另含原始素材包': 'Originals in a separate archive',
-    '查看素材与说明': 'View files & credits',
-    '安装 Wizard': 'Install Wizard',
-    '交给 Agent': 'Ask an Agent',
-    '从源码构建': 'Build from source',
-    '预览安装包与设备指南': 'Packages and device setup',
-    '一次性安装提示词': 'A ready-to-use install prompt',
-    '构建说明、源码与贡献方式': 'Source, builds and contributions',
-    '原生 iPad 应用 · 非官方开源项目': 'Native iPad app · Unofficial project',
-    '代码 MIT · 字体 OFL 1.1': 'Code: MIT · Fonts: OFL 1.1',
-    'GTA VI 素材 © Rockstar Games 及相关权利人': 'GTA VI © Rockstar Games & rights holders',
-}
+COPY = json.loads((Path(__file__).resolve().parents[1]/'assets/readme/COPY.json').read_text())
+LANGUAGES = ('zh-CN', 'zh-TW', 'en', 'ja')
 
 
 def translated(value, language):
-    if language == 'en':
-        value = ENGLISH.get(value, value)
+    if language != 'zh-CN':
+        table = COPY['translations'][language]
+        if value in table:
+            return table[value]
         if any('\u4e00' <= char <= '\u9fff' for char in value):
-            raise ValueError(f'Missing English campaign copy: {value}')
+            raise ValueError(f'Missing {language} campaign copy: {value}')
     return value
 
 
@@ -98,8 +72,8 @@ class Panel:
         self.parts = [f'<rect width="{width}" height="{height}" fill="{ground}"/>']
         self.elements = []
 
-    def text(self, value, baseline, size, face='bold', color=CREAM, x=None, limit=None, role='copy'):
-        value = translated(value, self.language)
+    def text(self, value, baseline, size, face='bold', color=CREAM, x=None, limit=None, role='copy', localize=True):
+        value = translated(value, self.language) if localize else value
         x = self.gutter if x is None else x
         limit = self.width - self.gutter - x if limit is None else limit
         font = self.faces[face]
@@ -186,19 +160,24 @@ def showcase(root, faces, mobile, capture, language):
     image_w = w - 2 * g
     p.image(root/'assets/demo/home-miami.jpg', g, image_y, image_w, image_w * .75, 'native-capture')
     caption_y = image_y + image_w * .75 + (62 if mobile else 58)
-    if language == 'en':
-        label = 'Physical iPad' if capture['physical_device'] else 'iPad Simulator'
-        p.text(f"{label} · build {capture['build']}", caption_y, 34 if mobile else 26, 'regular', MUTED, role='provenance')
-        p.text('Chinese menus · original App capture', caption_y + (50 if mobile else 42),
-               32 if mobile else 26, 'regular', MUTED, role='provenance')
-    else:
-        label = 'iPad 实机截图' if capture['physical_device'] else 'iPad 模拟器实截'
-        p.text(f"{label} · build {capture['build']}", caption_y, 34 if mobile else 26, 'regular', MUTED, role='provenance')
+    labels = {
+        'zh-CN': ('iPad 实机截图', 'iPad 模拟器实截'),
+        'zh-TW': ('iPad 實機截圖', 'iPad 模擬器截圖'),
+        'en': ('Physical iPad', 'iPad Simulator'),
+        'ja': ('iPad 実機キャプチャ', 'iPad シミュレータ')}
+    label = labels[language][0 if capture['physical_device'] else 1]
+    p.text(f"{label} · build {capture['build']}", caption_y, 34 if mobile else 26,
+           'regular', MUTED, role='provenance', localize=False)
+    notes = {'en':'Chinese menus · original App capture',
+             'ja':'中国語メニュー · アプリの実キャプチャ'}
+    if language in notes:
+        p.text(notes[language], caption_y + (50 if mobile else 42),
+               32 if mobile else 26, 'regular', MUTED, role='provenance', localize=False)
     if mobile:
         p.text('壁纸图库', y + 995, 60)
         p.image(root/'assets/demo/gallery-miami.jpg', g, y + 1060, image_w, image_w * .75, 'native-capture')
         p.text('分类、收藏与照片导入。', y + 1640, 38, 'regular', MUTED)
-        p.text('也能调整时钟与日历的布局。', y + 1710, 38, 'regular', MUTED)
+        p.text('也能调整时钟布局与字体。', y + 1710, 38, 'regular', MUTED)
     else:
         cw, gap = (w - 2 * g - 32) / 2, 32
         row_y = y + 1240
@@ -208,7 +187,7 @@ def showcase(root, faces, mobile, capture, language):
         p.text('布局，', row_y + title_top, 64, x=right, limit=cw)
         p.text('随你心意。', row_y + title_top + 92, 64, x=right, limit=cw)
         p.text('移动时钟与日历，', row_y + 250, 32, 'regular', MUTED, x=right, limit=cw)
-        p.text('调整尺寸与壁纸裁切。', row_y + 305, 32, 'regular', MUTED, x=right, limit=cw)
+        p.text('字体与壁纸裁切，都能调整。', row_y + 305, 32, 'regular', MUTED, x=right, limit=cw)
         p.text('壁纸图库', y + 1720, 52, limit=cw)
         p.text('分类、收藏与照片导入。', y + 1790, 30, 'regular', MUTED, limit=cw)
     return p
@@ -256,6 +235,10 @@ def main():
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument('--cjk-regular', type=Path, required=True)
     parser.add_argument('--cjk-bold', type=Path, required=True)
+    parser.add_argument('--traditional-regular', type=Path, required=True)
+    parser.add_argument('--traditional-bold', type=Path, required=True)
+    parser.add_argument('--japanese-regular', type=Path, required=True)
+    parser.add_argument('--japanese-bold', type=Path, required=True)
     parser.add_argument('--hero-art', type=Path, required=True)
     parser.add_argument('--city-art', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
@@ -275,12 +258,15 @@ def main():
         item = next(c for c in capture['captures'] if c['file'] == name)
         if hashlib.sha256((a.root/'assets/demo'/name).read_bytes()).hexdigest() != item['sha256']:
             parser.error(f'Unbound native image: {name}')
-    faces = {'display':Face(a.root/'App/Resources/Anton-Regular.ttf'),
-             'regular':Face(a.cjk_regular), 'bold':Face(a.cjk_bold)}
+    display = Face(app_font)
+    font_paths = {'zh-CN':(a.cjk_regular,a.cjk_bold), 'zh-TW':(a.traditional_regular,a.traditional_bold),
+                  'en':(a.cjk_regular,a.cjk_bold), 'ja':(a.japanese_regular,a.japanese_bold)}
     records = []
-    for language in ('zh-CN', 'en'):
+    for language in LANGUAGES:
+        regular, bold = font_paths[language]
+        faces = {'display':display,'regular':Face(regular),'bold':Face(bold)}
         for mobile in (False, True):
-            suffix = ('-en' if language == 'en' else '') + ('-mobile' if mobile else '')
+            suffix = {'zh-CN':'','zh-TW':'-zh-tw','en':'-en','ja':'-ja'}[language] + ('-mobile' if mobile else '')
             panels = {'hero':hero(a.hero_art,faces,mobile,language),
                       'showcase':showcase(a.root,faces,mobile,capture,language),
                       'collection':collection(a.city_art,faces,mobile,language),
@@ -288,13 +274,17 @@ def main():
                       'footer':footer(faces,mobile,language)}
             for name, panel in panels.items():
                 records.append(panel.save(a.out/f'{name}{suffix}.svg'))
-    manifest = {'schema':'wizard.campaign-layout.v2', 'languages':['zh-CN','en'],
+    manifest = {'schema':'wizard.campaign-layout.v3', 'languages':list(LANGUAGES),
                 'native_capture_build':capture['build'],
                 'native_source_fingerprint':capture['source_fingerprint'],
                 'font_sha256':{label:hashlib.sha256(path.read_bytes()).hexdigest()
                                for label,path in [('Anton-Regular.ttf',app_font),
                                                   ('NotoSansCJKsc-Regular.otf',a.cjk_regular),
-                                                  ('NotoSansCJKsc-Bold.otf',a.cjk_bold)]},
+                                                  ('NotoSansCJKsc-Bold.otf',a.cjk_bold),
+                                                  ('NotoSansCJKtc-Regular.otf',a.traditional_regular),
+                                                  ('NotoSansCJKtc-Bold.otf',a.traditional_bold),
+                                                  ('NotoSansCJKjp-Regular.otf',a.japanese_regular),
+                                                  ('NotoSansCJKjp-Bold.otf',a.japanese_bold)]},
                 'panels':records}
     (a.out/'LAYOUT.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'panels':len(records),'all_text_outlined':True}))

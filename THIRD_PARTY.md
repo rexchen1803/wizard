@@ -1,6 +1,6 @@
 # Third-party materials and build requirements
 
-[简体中文](docs/zh-CN/THIRD_PARTY.md) · **English**
+[简体中文](docs/zh-CN/THIRD_PARTY.md) · [繁體中文](docs/zh-TW/THIRD_PARTY.md) · **English** · [日本語](docs/ja/THIRD_PARTY.md)
 
 **Wizard-authored code license: MIT.** See the root [`LICENSE`](LICENSE), which applies to Wizard-authored code only. Third-party materials remain subject to their own rights and are not relicensed by that file.
 
@@ -28,7 +28,7 @@ The source export intentionally excludes the local iOS SDK and vendored build to
 
 ## Weather provider
 
-The optional weather adapter is retained for evaluation and is not accepted as a live provider integration. The weather card now exposes a localized provider-credit control and information sheet identifying Open-Meteo, linking the [CC BY 4.0 licence](https://open-meteo.com/en/licence), and noting Wizard's modifications. Bounded synthetic-fixture runs and native card/detail captures were accepted on earlier builds on iPad 2 and iPad 4; they are not build39 physical-device evidence. Air acceptance remains pending. This control does not prove a live Open-Meteo connection: the earlier device request returned TLS error `-1202`, and no trust override was applied.
+The optional weather adapter is retained for evaluation and is not accepted as a live provider integration. The weather card now exposes a localized provider-credit control and information sheet identifying Open-Meteo, linking the [CC BY 4.0 licence](https://open-meteo.com/en/licence), and noting Wizard's modifications. Bounded synthetic-fixture runs and native card/detail captures were accepted on earlier builds on iPad 2 and iPad 4; they are not current-build physical-device evidence. Air acceptance remains pending. This control does not prove a live Open-Meteo connection: the earlier device request returned TLS error `-1202`, and no trust override was applied.
 
 Open-Meteo's current [terms](https://open-meteo.com/en/terms) say its free hosted API is for non-commercial use and require acceptance of CC BY 4.0 data terms; its [licence page](https://open-meteo.com/en/licence) requires appropriate credit, a licence link, and an indication of changes. Commercial hosted API use has separate subscription terms. These provider terms are separate from Wizard's application licence. The source candidate does not establish that a future deployment qualifies for a particular endpoint or use, and no legal clearance is claimed. Recheck the provider terms and obtain any required authorization before enabling or distributing live weather. Provider terms and licence rechecked November 12, 2026.
 
@@ -46,7 +46,7 @@ The unmodified static `App/Resources/Anton-Regular.ttf` is Copyright 2020 The An
 
 ## Noto CJK promotional lettering
 
-README reading text and Chinese lettering are outlined from Noto Sans CJK SC Regular and Bold under SIL OFL 1.1. The font files are optional artwork-generation inputs and are not bundled in the App. The verbatim [upstream license](licenses/NotoSansCJK-OFL.txt), pinned source revision, input checksums and generation instructions are recorded in [README artwork sources](assets/readme/SOURCES.md).
+README reading text and CJK lettering are outlined from locale-specific Noto Sans CJK SC, TC and JP Regular and Bold under SIL OFL 1.1. The font files are optional artwork-generation inputs and are not bundled in the App. The verbatim [upstream license](licenses/NotoSansCJK-OFL.txt), pinned source revision, input checksums and generation instructions are recorded in [README artwork sources](assets/readme/SOURCES.md).
 
 ## Bundled display and promotional images
 

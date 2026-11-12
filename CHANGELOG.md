@@ -1,6 +1,6 @@
 # Changelog
 
-[简体中文](docs/zh-CN/CHANGELOG.md) · **English**
+[简体中文](docs/zh-CN/CHANGELOG.md) · [繁體中文](docs/zh-TW/CHANGELOG.md) · **English** · [日本語](docs/ja/CHANGELOG.md)
 
 Notable changes to Wizard are listed here. Build and device evidence are described separately in the [compatibility guide](docs/COMPATIBILITY.md).
 
@@ -8,6 +8,14 @@ Notable changes to Wizard are listed here. Build and device evidence are describ
 
 - Add a macOS host CI workflow and repository-content checks.
 - Add contributor, security, and compatibility guidance.
+
+## 0.2.0 preview 4 — 20261112.40
+
+- Add Poster / System font selection to clock editing, with saved preferences, cancellation and reset.
+- Reflow editor controls when switching between time and date, including bottom-edge clamping.
+- Add Traditional Chinese and Japanese presentation and guides, ordered Simplified Chinese, Traditional Chinese, English, Japanese.
+- Refresh native Simulator captures from build40; keep historical physical-device images separately attributed.
+- Repository remains private and Releases remain drafts. No physical-device acceptance is claimed for build40.
 
 ## 0.2.0 preview 3 — 20261112.39
 

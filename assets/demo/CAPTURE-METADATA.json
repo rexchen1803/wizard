@@ -1,15 +1,18 @@
 {
   "runtime": "iOS 18.0",
   "device": "iPad (8th generation) Simulator",
-  "build": "20261112.39",
-  "source_fingerprint": "3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f",
+  "build": "20261112.40",
+  "source_fingerprint": "7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802",
   "physical_device": false,
   "entry": "Simulator-only CLI commands; no external URLs",
   "display_encoding": "JPEG quality 85, original pixel dimensions; no added UI or compositing",
   "preview_preferences": {
     "weatherVisible": false,
     "calendarVisible": false,
-    "dateVisible": true
+    "dateVisible": true,
+    "dateLanguage": 0,
+    "clockFontStyle": 0,
+    "gta6CountdownMode": false
   },
   "gallery_fixture": "230-item verified gallery plus the supplied default image",
   "font": {
@@ -23,8 +26,8 @@
     {
       "file": "home-miami.jpg",
       "scene": "home-miami",
-      "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
-      "original_png_sha256": "c5439b1a3afeee1553f8c845b59023d2e7494f48869b3f0a778e05a883f87a3d",
+      "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+      "original_png_sha256": "1fdf7700f1973a6247a65b11c6c95adfb4e7f059df99a1b4e9003a6fb19d90a4",
       "pixels": [
         2160,
         1620
@@ -38,8 +41,8 @@
     {
       "file": "menu-miami.jpg",
       "scene": "menu-miami",
-      "sha256": "c774c1c477eda89cdc95bd39feaee8c9d8e743a710feae8037d7c55797e61943",
-      "original_png_sha256": "79e8d952843dc9d9d95d1f700482ec8cc3e785904abf14346700146e13b8a73a",
+      "sha256": "6c3010eac15588a18ca14d940a9a09152513fe6d7da678d2b3eca96e5b803e6b",
+      "original_png_sha256": "42b970165f68f5f56c70e0f56dc9ade6a441e6ec96555311b71906490a7fb51d",
       "pixels": [
         2160,
         1620
@@ -54,8 +57,8 @@
     {
       "file": "settings-miami.jpg",
       "scene": "settings-miami",
-      "sha256": "fca07eced127a99c7bbb996331593016a60261e73ed41b67b4241053133f695e",
-      "original_png_sha256": "5d515372441395af30d9c57923a083a8162f5dd76d30ee1388e8ccb0923050b7",
+      "sha256": "17e577699bb965cb13a7ad2505365702501d7b8536a66d595c55f802171e36bf",
+      "original_png_sha256": "1d2f025e610f034502dc997d5ea8aac0cac472d7cf8085869996a314b19246c9",
       "pixels": [
         2160,
         1620
@@ -70,8 +73,8 @@
     {
       "file": "themes-miami.jpg",
       "scene": "themes-miami",
-      "sha256": "b839413997fa6b571d047a30fee319668918add07f14b308564d348527090ea7",
-      "original_png_sha256": "4704fa75931831a09d33a0ce42afce9f3dee8c996749a0b84aceaffa6d0a04a4",
+      "sha256": "ce8b47ec28d72c0a1879be7352f4c0b1514ef9acfb34d293a0bbb745e83f81c7",
+      "original_png_sha256": "3e1d3f89e726451c8df56d28ee5b778ebda7e728451f33e051e83f4cf4a56a67",
       "pixels": [
         2160,
         1620
@@ -119,8 +122,8 @@
     {
       "file": "clock-edit-miami.jpg",
       "scene": "clock-edit-miami",
-      "sha256": "2190d7f5b05a1fe562a2c363406c225b3bbf717d4182c3a30f4d475119cbba7d",
-      "original_png_sha256": "76dd6bdade9b3b6887cfe72865839a1b3bcd96e4591c5eaf59aae00b6d808a25",
+      "sha256": "85663b6d3bd026f41988fbc228f8a79a051d65d55610ae08616f110659fda0fe",
+      "original_png_sha256": "ed46773294d547dfb29848398372f9c31f3ecfe6db953103ad5499456ad9edc5",
       "pixels": [
         2160,
         1620
@@ -135,8 +138,8 @@
     {
       "file": "calendar-miami.jpg",
       "scene": "calendar-miami",
-      "sha256": "1f6de21ade99559f37b0ca8a3a37fb6e4916a29e69bfd9d340061168f984c829",
-      "original_png_sha256": "04d8f99a30c09e613deedb1f71aca667da702ec661f738414a7ab56332c26d7b",
+      "sha256": "3d12004333d1e7161ee509f666f71150a5142b6ec7283913368c3ceacef8cb19",
+      "original_png_sha256": "3e935f4a0636ff27751f253fda3d2ba701468a66a83aa1e3d634323c19cd60c3",
       "pixels": [
         2160,
         1620
@@ -147,6 +150,28 @@
       ],
       "display_font": "Anton-Regular",
       "display_font_bundled": true
+    },
+    {
+      "file": "clock-font-system.jpg",
+      "scene": "system-editor",
+      "sha256": "ac14d4ce0f1555a621b98949c0ca878a72abff4d8b906395ecd428af2a41b6b2",
+      "original_png_sha256": "de16f35aec1db12e7ffa7f45afc81baea911520fd55804b748b201edff1a4d08",
+      "pixels": [
+        2160,
+        1620
+      ],
+      "commands": [
+        "main",
+        "clockedit",
+        "clockfont"
+      ],
+      "display_font": ".SFUI-Bold",
+      "display_font_bundled": false,
+      "preview_preferences": {
+        "clockFontStyle": 0,
+        "dateLanguage": 1
+      },
+      "selection_action": "clockfont sends UISegmentedControl valueChanged to select System"
     }
   ]
 }

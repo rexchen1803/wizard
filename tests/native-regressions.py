@@ -88,6 +88,7 @@ static CGFloat IWControlSize(void) { return 60.0; }
 #define IW_ACCESSIBILITY_ACTIONS_WIRED __ACCESSIBILITY_ACTIONS_WIRED__
 __CALENDAR__
 __WEATHER_CACHE__
+__CLOCK_FONT__
 static NSCalendar *buddhistCalendar(id self, SEL selector) {
     return [NSCalendar calendarWithIdentifier:NSCalendarIdentifierBuddhist];
 }
@@ -165,7 +166,7 @@ static NSString * const AVPlayerItemFailedToPlayToEndTimeNotification = @"TestPl
     BOOL _gta6CountdownMode, _showSeconds, _hour24, _dateVisible;
     BOOL _videoMinimized;
     UIView *_videoOverlay;
-    NSInteger _dateLanguage, _wallpaperIndex, _userLoads;
+    NSInteger _dateLanguage, _wallpaperIndex, _userLoads, _clockFontStyle, _fontApplications;
     NSString *_savedWallpaperKey;
     TestPlayer *_remoteVideoPlayer;
     BOOL _usingRemoteVideoPlayer, _castError;
@@ -218,6 +219,7 @@ static NSString * const AVPlayerItemFailedToPlayToEndTimeNotification = @"TestPl
 - (void)updateWeatherEditAppearance;
 - (void)applyCalendarOpacity;
 - (void)applyClockTransforms;
+- (void)applyClockFontSelection;
 - (void)applyDigitCardOpacity;
 - (void)applyDigitCardBorderStyle;
 - (void)applyBackgroundTransform;
@@ -246,6 +248,7 @@ static NSString * const AVPlayerItemFailedToPlayToEndTimeNotification = @"TestPl
 - (void)updateWeatherEditAppearance {}
 - (void)applyCalendarOpacity {}
 - (void)applyClockTransforms {}
+- (void)applyClockFontSelection { _fontApplications++; }
 - (void)applyDigitCardOpacity {}
 - (void)applyDigitCardBorderStyle {}
 - (void)applyBackgroundTransform {}
@@ -254,7 +257,7 @@ static NSString * const AVPlayerItemFailedToPlayToEndTimeNotification = @"TestPl
 - (void)hideEditToolbarAnimated {}
 - (void)updateMenuButtons {}
 - (void)saveBackgroundAdjustment { _backgroundSaves++; }
-- (void)saveState { _stateSaves++; _savedValues = @{@"clockX": @(_clockOffsetX), @"dateX": @(_dateOffsetX), @"calendarScale": @(_calendarScale), @"weatherX": @(_weatherOffsetX), @"weatherY": @(_weatherOffsetY), @"weatherScale": @(_weatherScale)}; }
+- (void)saveState { _stateSaves++; _savedValues = @{@"clockX": @(_clockOffsetX), @"clockFontStyle": @(_clockFontStyle), @"dateX": @(_dateOffsetX), @"calendarScale": @(_calendarScale), @"weatherX": @(_weatherOffsetX), @"weatherY": @(_weatherOffsetY), @"weatherScale": @(_weatherScale)}; }
 - (void)persistCurrentEditValues { _persistCalls++; }
 - (void)writeDebugState:(NSString *)context { (void)context; _debugWrites++; }
 - (void)appendUserWallpapersToItems:(NSMutableArray *)items {
@@ -292,7 +295,7 @@ static void testEditControlsPan(ClockHarness *clock, IWEditTarget target, BOOL e
     pan.state = UIGestureRecognizerStateEnded;
     [clock handleEditControlsPan:pan];
     check(clock->_stateSaves == saves + (expectedMove ? 1 : 0), [name stringByAppendingString:@" end persists only accepted movement"]);
-    CGFloat expectedY = target == IWEditTargetCalendar ? 48.0 : 48.0 + 184.0;
+    CGFloat expectedY = target == IWEditTargetCalendar ? 48.0 : 48.0 + (target == IWEditTargetClock ? 256.0 : 184.0);
     check(clock->_opacityControl.frame.origin.x == (expectedMove ? 68.0 : 0.0) &&
           clock->_opacityControl.frame.origin.y == (expectedMove ? expectedY : 0.0),
           [name stringByAppendingString:@" slider frame follows move target"]);
@@ -302,6 +305,10 @@ static void testEditControlsPan(ClockHarness *clock, IWEditTarget target, BOOL e
 }
 static void testClockDateTargetSwitch(ClockHarness *clock) {
     clock->_editMode = YES;
+    clock.view = [UIView new];
+    clock.view.bounds = CGRectMake(0.0, 0.0, 1024.0, 768.0);
+    clock->_editControlsOffsetX = 0.0;
+    clock->_editControlsOffsetY = 508.0;
     clock->_dateLabel = [UILabel new];
     clock->_borderControl = [UIView new];
     clock->_opacityControl = [UIView new];
@@ -313,12 +320,17 @@ static void testClockDateTargetSwitch(ClockHarness *clock) {
     [clock selectClockOrDateEditTargetAtPoint:CGPointMake(100.0, 100.0)];
     check(clock->_editTarget == IWEditTargetClock && !clock->_borderControl.hidden && !clock->_opacityControl.hidden,
           @"Date-to-Clock target switch reveals clock border controls");
+    check(clock->_borderControl.frame.origin.y == 454.0 && clock->_opacityControl.frame.origin.y == 710.0 &&
+          clock->_editControlsOffsetY == 436.0,
+          @"Date-to-Clock target switch reflows the taller font panel within the bottom edge");
     clock->_editTarget = IWEditTargetClock;
     clock->_testClockHit = NO;
     clock->_testDateHit = YES;
     [clock selectClockOrDateEditTargetAtPoint:CGPointMake(100.0, 100.0)];
     check(clock->_editTarget == IWEditTargetDate && clock->_borderControl.hidden && !clock->_opacityControl.hidden,
           @"Clock-to-Date target switch hides border controls and keeps opacity control");
+    check(clock->_borderControl.frame.origin.y == 454.0 && clock->_opacityControl.frame.origin.y == 638.0,
+          @"Clock-to-Date target switch removes the font row spacing without persisting a preference");
 }
 static void testEditControlsAccessibility(ClockHarness *clock) {
     check(IW_ACCESSIBILITY_ACTIONS_WIRED, @"move button publishes four directional accessibility actions");
@@ -343,6 +355,7 @@ static void testEditControlsAccessibility(ClockHarness *clock) {
         check([clock accessibilityMoveEditControlsDown:nil] && clock->_editControlsOffsetY == 0.0,
               @"down accessibility move returns controls to original y");
         CGFloat expectedOpacityY = 202.0;
+        if (target == IWEditTargetClock) expectedOpacityY = 274.0;
         if (target == IWEditTargetCalendar) expectedOpacityY = 18.0;
         check(clock->_opacityControl.frame.origin.x == 20.0 && clock->_opacityControl.frame.origin.y == expectedOpacityY,
               @"accessibility movement preserves per-target panel placement");
@@ -364,7 +377,7 @@ static void testEditControlsAccessibility(ClockHarness *clock) {
     check([clock accessibilityMoveEditControlsRight:nil] && clock->_editControlsOffsetX == 670.0,
           @"accessibility movement clamps horizontal edge to viewport");
     clock->_editControlsOffsetY = 4000.0;
-    check([clock accessibilityMoveEditControlsDown:nil] && clock->_editControlsOffsetY == 508.0,
+    check([clock accessibilityMoveEditControlsDown:nil] && clock->_editControlsOffsetY == 436.0,
           @"accessibility movement clamps vertical edge to viewport");
 }
 static void testEditControlsPanCancelled(ClockHarness *clock, IWEditTarget target, NSString *name) {
@@ -583,15 +596,19 @@ int main(int argc, const char *argv[]) { @autoreleasepool {
     check(![clock canDeleteWallpaperAtIndex:1], @"neighbor directory cannot be deleted as user media");
     check(![clock canDeleteWallpaperAtIndex:2], @"non-user file remains protected");
     check(![clock canDeleteWallpaperAtIndex:-1] && ![clock canDeleteWallpaperAtIndex:3], @"out of range deletion remains protected");
+    for (NSNumber *invalidStyle in @[@(-1), @2, @999]) check(IWValidatedClockFontStyle(invalidStyle.integerValue) == 0, @"unknown font identifiers preserve the poster default");
+    check(IWValidatedClockFontStyle(0) == 0 && IWValidatedClockFontStyle(1) == 1, @"stable poster and system font identifiers remain distinct");
     clock->_menuButton = [UILabel new]; clock->_calendarPanel = [UILabel new];
-    NSDictionary *snapshot = @{@"clockX": @10, @"clockY": @20, @"clockZoom": @1, @"dateX": @30, @"dateY": @40, @"dateZoom": @1, @"digitCardOpacity": @0.7, @"digitCardBorderColor": @"original", @"digitCardBorderWidth": @2};
+    NSDictionary *snapshot = @{@"clockX": @10, @"clockY": @20, @"clockZoom": @1, @"dateX": @30, @"dateY": @40, @"dateZoom": @1, @"digitCardOpacity": @0.7, @"digitCardBorderColor": @"original", @"digitCardBorderWidth": @2, @"clockFontStyle": @1};
     for (NSNumber *target in @[@(IWEditTargetClock), @(IWEditTargetDate)]) {
         clock->_editMode = YES; clock->_editTarget = target.integerValue; clock->_editSnapshot = snapshot;
-        clock->_clockOffsetX = 999; clock->_dateOffsetX = 999; clock->_digitCardBorderColor = @"changed";
+        clock->_clockOffsetX = 999; clock->_dateOffsetX = 999; clock->_clockFontStyle = 0; clock->_digitCardBorderColor = @"changed";
         clock->_calendarHiddenForClockEdit = YES; clock->_calendarPanel.hidden = YES;
         NSInteger saves = clock->_stateSaves;
         [clock cancelEditMode];
         check(clock->_clockOffsetX == 10 && clock->_dateOffsetX == 30, @"cancel restores both clock and date layout");
+        check(clock->_clockFontStyle == 1 && [clock->_savedValues[@"clockFontStyle"] integerValue] == 1, @"cancel restores and persists the original font for clock and date edits");
+        check(clock->_fontApplications > 0, @"cancel refreshes the displayed clock font");
         check([clock->_digitCardBorderColor isEqual:@"original"] && clock->_digitCardBorderWidth == 2, @"cancel restores border after changing edit target");
         check(clock->_stateSaves == saves + 1 && [clock->_savedValues[@"clockX"] integerValue] == 10, @"cancel persists restored layout after gesture saves");
         check(!clock->_calendarPanel.hidden && !clock->_calendarHiddenForClockEdit, @"cancel restores temporarily hidden calendar for either edit target");
@@ -1199,7 +1216,9 @@ with tempfile.TemporaryDirectory(prefix="wizard-native-regressions-") as directo
     toolbar = method("buildEditToolbar")
     action_selectors = ["accessibilityMoveEditControls" + direction + ":" for direction in ("Left", "Right", "Up", "Down")]
     accessibility_actions_wired = "accessibilityCustomActions" in toolbar and all(selector in toolbar for selector in action_selectors)
-    harness.write_text(HARNESS.replace("__CALENDAR__", calendar_helper()).replace("__WEATHER_CACHE__", weather_cache_helper()).replace("__TARGET_SELECTION_WIRED__", "YES" if target_selection_wired else "NO").replace("__ACCESSIBILITY_ACTIONS_WIRED__", "YES" if accessibility_actions_wired else "NO").replace("__METHODS__", "\n".join(methods)))
+    font_start = text.index("static NSInteger IWValidatedClockFontStyle(NSInteger style) {")
+    font_helper = text[font_start:text.index("\n}", font_start) + 2]
+    harness.write_text(HARNESS.replace("__CLOCK_FONT__", font_helper).replace("__CALENDAR__", calendar_helper()).replace("__WEATHER_CACHE__", weather_cache_helper()).replace("__TARGET_SELECTION_WIRED__", "YES" if target_selection_wired else "NO").replace("__ACCESSIBILITY_ACTIONS_WIRED__", "YES" if accessibility_actions_wired else "NO").replace("__METHODS__", "\n".join(methods)))
     binary = output / "regressions"
     compile_argv = ["xcrun", "clang", "-fobjc-arc", "-Werror", "-Wno-deprecated-declarations", "-framework", "Foundation", "-I", str(SOURCE), str(harness), "-o", str(binary)]
     proof_root = args.cancellation_proof_dir.resolve() if args.cancellation_proof_dir else None

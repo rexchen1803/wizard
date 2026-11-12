@@ -1,10 +1,10 @@
 # Demonstration capture provenance
 
-[简体中文](README.md) · **English**
+[简体中文](README.md) · [繁體中文](../../docs/zh-TW/CAPTURES.md) · **English** · [日本語](../../docs/ja/CAPTURES.md)
 
 ## Current Miami preview
 
-The `*-miami.jpg` images are native UIKit output from build **20261112.39** on an **iPad (8th generation) Simulator / iOS 18.0**. Original PNGs are 2160×1620; web JPEGs preserve those dimensions with quality 85 encoding. No App controls were composited, added or redrawn. Original PNG and web-image digests, scene commands and the source fingerprint are in [CAPTURE-METADATA.json](CAPTURE-METADATA.json).
+The `*-miami.jpg` images are native UIKit output from build **20261112.40** on an **iPad (8th generation) Simulator / iOS 18.0**. Original PNGs are 2160×1620; web JPEGs preserve those dimensions with quality 85 encoding. No App controls were composited, added or redrawn. Original PNG and web-image digests, scene commands and the source fingerprint are in [CAPTURE-METADATA.json](CAPTURE-METADATA.json).
 
 - [Home](home-miami.jpg): the built-in Vice City image with no external catalog.
 - [Gallery](gallery-miami.jpg) and [categories](categories-miami.jpg): a demonstration catalog with the 230 media-pack entries plus the selected fallback image, 231 items total. No user photos were included.
@@ -16,6 +16,8 @@ These captures and the `armv7 + arm64` device build share the same source/resour
 ## Display font
 
 The current build bundles the static `Anton-Regular.ttf` and its OFL 1.1 license. Capture metadata records the actual clock font name, font-file SHA256 and bundled-file origin. CJK controls use system fonts. The historical source36 device images retain their original appearance.
+
+Long-press the time and choose **Clock font → Poster / System**. Poster uses bundled Anton; System uses iOS monospaced digits. Done saves; Cancel restores the previous selection. The [System font editor capture](clock-font-system.jpg) shows the actual selector.
 
 ## Historical physical-device images
 

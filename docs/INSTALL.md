@@ -1,21 +1,21 @@
 # 安装 Wizard
 
-语言 / Language: [简体中文](INSTALL.md) | [English](en/INSTALL.md)
+**简体中文** · [繁體中文](zh-TW/INSTALL.md) · [English](en/INSTALL.md) · [日本語](ja/INSTALL.md)
 
-本文介绍 Wizard 0.2.0 / build `20261112.39` 的预览安装包、源码构建、可选图库和回滚方式。安装包仅面向已准备好的 **rootful 越狱 iPad**；它不会安装越狱、安装电源插件、修改证书、网络或系统信任设置，也不会自动启动 App。
+本文介绍 Wizard 0.2.0 / build `20261112.40` 的预览安装包、源码构建、可选图库和回滚方式。安装包仅面向已准备好的 **rootful 越狱 iPad**；它不会安装越狱、安装电源插件、修改证书、网络或系统信任设置，也不会自动启动 App。
 
 ## 当前下载状态
 
-仓库目前是私有仓库，三条 GitHub Release 均为草稿。`v0.2.0-preview.3` 也尚未发布，因此现在没有公开的 `releases/download/...` 下载端点。获准的维护者可登录后从 [Releases 页面](https://github.com/rexchen1803/wizard/releases)查看草稿；该页面是维护入口，不代表公开下载已开放，也不保证附件可用。若你没有权限读取所需附件，或固定文件不可用，请停止；不要发布 Release、改变仓库可见性或改用 `latest`。即使日后发布 Release，只要仓库仍为私有，附件访问仍受仓库权限控制。
+仓库目前是私有仓库，所有 GitHub Release 均为草稿。`v0.2.0-preview.4` 也尚未发布，因此现在没有公开的 `releases/download/...` 下载端点。获准的维护者可登录后从 [Releases 页面](https://github.com/rexchen1803/wizard/releases)查看草稿；该页面是维护入口，不代表公开下载已开放，也不保证附件可用。若你没有权限读取所需附件，或固定文件不可用，请停止；不要发布 Release、改变仓库可见性或改用 `latest`。即使日后发布 Release，只要仓库仍为私有，附件访问仍受仓库权限控制。
 
-v0.2.0-preview.3 发布后，build39 安装包和清单的固定文件名及预期路径为：
+v0.2.0-preview.4 发布后，build40 安装包和清单的固定文件名及预期路径为：
 
 | 文件 | 固定文件名 | 发布后的固定下载地址（当前尚不可用） |
 | --- | --- | --- |
-| Wizard Debian 包 | `wizard_0.2.0-20261112.39_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/wizard_0.2.0-20261112.39_iphoneos-arm.deb` |
-| 包清单 | `wizard_0.2.0-20261112.39_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/wizard_0.2.0-20261112.39_iphoneos-arm.deb.manifest.json` |
+| Wizard Debian 包 | `wizard_0.2.0-20261112.40_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard_0.2.0-20261112.40_iphoneos-arm.deb` |
+| 包清单 | `wizard_0.2.0-20261112.40_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard_0.2.0-20261112.40_iphoneos-arm.deb.manifest.json` |
 
-只有在固定版本的 `.deb` 和同一版本清单均可从获准来源取得时才继续。使用清单中的 `artifact_sha256` 核对 `.deb`：macOS 可运行 `shasum -a 256 wizard_0.2.0-20261112.39_iphoneos-arm.deb`。版本、文件名或哈希不一致时停止，不混用其他版本的包与清单。打包脚本会为每次输出生成对应清单和哈希；本仓库没有硬编码可替代下载清单的 build39 `.deb` 哈希。
+只有在固定版本的 `.deb` 和同一版本清单均可从获准来源取得时才继续。使用清单中的 `artifact_sha256` 核对 `.deb`：macOS 可运行 `shasum -a 256 wizard_0.2.0-20261112.40_iphoneos-arm.deb`。版本、文件名或哈希不一致时停止，不混用其他版本的包与清单。打包脚本会为每次输出生成对应清单和哈希；本仓库没有硬编码可替代下载清单的 build40 `.deb` 哈希。
 
 ## 设备范围与前置条件
 
@@ -29,18 +29,18 @@ v0.2.0-preview.3 发布后，build39 安装包和清单的固定文件名及预�
 
 还必须具备 rootful 越狱环境、root 权限、可写且不是符号链接的 `/Applications`、Debian 包管理环境，以及 `ldid`、`uicache`、`killall`、`sysctl` 和 `sw_vers`。`uicache` 必须支持 `-p` 注册和 `-u` 取消注册。原版未越狱 iOS、rootless 越狱、iPhone，以及未列出的设备或系统版本都会被拒绝。不得通过改型号或系统版本绕过检查。
 
-包结构与安装器的本机夹具预检不等于设备上的安装、签名、注册或启动验收。较早 build 在个别已准备设备上的记录见[兼容性表](COMPATIBILITY.md)；它们不证明 build39 的首次安装。当前 build39 的设备验收仍未完成。
+包结构与安装器的本机夹具预检不等于设备上的安装、签名、注册或启动验收。较早 build 在个别已准备设备上的记录见[兼容性表](COMPATIBILITY.md)；它们不证明 build40 的首次安装。当前 build40 的设备验收仍未完成。
 
 ## 安装预览包
 
 确认上文所列固定文件在你的获准来源中可用后：
 
-1. 下载 `wizard_0.2.0-20261112.39_iphoneos-arm.deb` 及其同名 `.manifest.json` 清单。草稿未公开时，不要把上述未来下载地址当作可用链接；维护者可从 [Releases 页面](https://github.com/rexchen1803/wizard/releases)打开草稿。若附件无法获取，停止。
+1. 下载 `wizard_0.2.0-20261112.40_iphoneos-arm.deb` 及其同名 `.manifest.json` 清单。草稿未公开时，不要把上述未来下载地址当作可用链接；维护者可从 [Releases 页面](https://github.com/rexchen1803/wizard/releases)打开草稿。若附件无法获取，停止。
 2. 按清单中的 `artifact_sha256` 校验 `.deb`。只使用与该包配套的清单；不要改用 `latest`、别的 Release 或重新命名的包。
 3. 在已授权的目标 iPad 上，通过 Filza 或 Cydia、Sileo、Zebra 支持的本地 `.deb` 安装流程安装。已获准的设备 root 终端也可运行：
 
    ```sh
-   dpkg -i ./wizard_0.2.0-20261112.39_iphoneos-arm.deb
+   dpkg -i ./wizard_0.2.0-20261112.40_iphoneos-arm.deb
    ```
 
 安装钩子先验证设备型号、系统、rootful 环境、包管理器、所需工具和 App 路径。安装器在设备上使用已有的 `ldid` 为未签名 App 执行 ad-hoc 签名，并用 `uicache` 注册 App。更新时它最多向 Wizard 发送一次 `TERM`，把原有 App 完整保留为 `WizardSystem.rollback-<build>-<UTC>.app`，再放入候选 App。首次安装没有旧 App 可作为回滚包。安装器不会启动 Wizard、重启设备或执行 respring。
@@ -57,14 +57,14 @@ cd wizard
 IOS_SDK="/path/to/iPhoneOS9.3.sdk" ./scripts/build-ipad.sh --out /tmp/WizardSystem-build
 python3 scripts/package-release.py \
   --app /tmp/WizardSystem-build/WizardSystem.app \
-  --out /tmp/wizard_0.2.0-20261112.39_iphoneos-arm.deb
+  --out /tmp/wizard_0.2.0-20261112.40_iphoneos-arm.deb
 ```
 
 输出 App 目录、`.deb` 和相邻 manifest 必须尚不存在。打包器要求版本文件名与 App build 一致，核对 `armv7`、`arm64` 架构、bundle ID、资源和源指纹，并在本次生成的清单中写入 `artifact_sha256`。`--dry-run` 只输出包结构和哈希，不写包文件。构建和打包命令不会连接设备或执行安装。完整的[源码与开发指南](zh-CN/DEVELOPMENT.md#构建)说明了源码验证范围；[WizardPower 源码说明](../App/WizardPowerTweak/README.md)有独立构建入口，Wizard 安装包不会自动安装该插件。
 
 ## 可选 GTA VI 图库
 
-图库和原始素材包也属于尚未公开的 `v0.2.0-preview.3` 草稿附件。当前没有公开下载端点。只有维护者或已获准的用户能从草稿取得附件时才可使用；无法获取时停止，不要发布 Release 或改变仓库可见性。
+图库和原始素材包也属于尚未公开的 `v0.2.0-preview.4` 草稿附件。当前没有公开下载端点。只有维护者或已获准的用户能从草稿取得附件时才可使用；无法获取时停止，不要发布 Release 或改变仓库可见性。
 
 | 文件 | 内容 | 大小 | SHA-256 |
 | --- | --- | ---: | --- |
@@ -74,8 +74,8 @@ python3 scripts/package-release.py \
 这些固定文件的[本地清单](../assets/media/MANIFEST.json)记录预期大小与 SHA-256。发布后的固定路径如下，**当前尚不可用**；仓库保持私有时仍需获准的仓库访问权限：
 
 ```text
-https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/wizard-gta6-gallery-20261112.zip
-https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/gta6-original-materials-20261112.zip
+https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard-gta6-gallery-20261112.zip
+https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/gta6-original-materials-20261112.zip
 ```
 
 App 图库包仅在你另行选择并授权安装后使用。先完整备份设备上的 `/var/mobile/Media/iPadWizard/app`，再将 ZIP 中 `app/` 的内容合并到该目录；保留现有 `assets/user` 和偏好设置，不删除或替换整个 `app` 目录。若传输工具改写了新复制文件的权限，只修正这些新文件，不递归更改已有用户目录。重新打开 Wizard 后检查原壁纸、收藏、裁切、用户导入照片和分类。原始素材包用于收藏与制作，不是设备图库安装包。素材版权与署名见[素材说明](open-source/GTA6-MATERIALS.md)及[署名清单](../assets/media/ATTRIBUTION.md)；Rockstar 素材不适用 Wizard 的 MIT 代码许可。

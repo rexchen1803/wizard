@@ -1,10 +1,10 @@
-[简体中文](../zh-CN/DEVELOPMENT.md) · English
+[简体中文](../zh-CN/DEVELOPMENT.md) · [繁體中文](../zh-TW/DEVELOPMENT.md) · **English** · [日本語](../ja/DEVELOPMENT.md)
 
 # Wizard source and contributor guide
 
 This repository contains Wizard, a legacy native Objective-C/UIKit iPad App, its host regression checks, packaging and installation tools, and an optional power tweak. The core App and the tweak are separate components.
 
-The App source candidate is **0.2.0 / build 20261112.39** with source/resource fingerprint `3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f`. As checked on 2026-11-12, this build had not been installed on a physical iPad. The GitHub repository was private and all three Releases were drafts; the media manifest records prepared draft assets, not public download availability.
+The App source candidate is **0.2.0 / build 20261112.40** with source/resource fingerprint `7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802`. As checked on 2026-11-12, this build had not been installed on a physical iPad. The GitHub repository was private and all Releases were drafts; the media manifest records prepared draft assets, not public download availability.
 
 Wizard-authored code is licensed under the root [MIT License](../../LICENSE). That license does not cover third-party artwork, fonts, user imports or other assets. See [third-party notices](../../THIRD_PARTY.md) and the [GTA VI materials guide](../en/GTA6-MATERIALS.md).
 
@@ -56,7 +56,7 @@ python3 scripts/build-preview.py --out build-preview
 
 It creates an ad-hoc-signed `WizardPreview.app` with identifier `com.rex.wizard.preview`, target iOS 18 or later, and a source/resource fingerprint in `PREVIEW-METADATA.json`. The script does not install the App or boot a Simulator. Preview media lives in `Documents/WizardMedia` inside the preview App's container; device builds continue to use `/var/mobile/Media/iPadWizard/app`.
 
-Use a dedicated Simulator selected for this project to inspect native UIKit rendering and make captures. The eight `*-miami.jpg` captures in [demo provenance](../../assets/demo/README.en.md) come from an iPad (8th generation) Simulator running iOS 18. The three `*-ipad2.png` images there are earlier physical screenshots from build `20261111.36`; they do not show the current candidate. Neither capture set proves compatibility across older iOS versions. See [Compatibility](../COMPATIBILITY.md) for the evidence matrix.
+Use a dedicated Simulator selected for this project to inspect native UIKit rendering and make captures. The eight `*-miami.jpg` and the System-font editor capture captures in [demo provenance](../../assets/demo/README.en.md) come from an iPad (8th generation) Simulator running iOS 18. The three `*-ipad2.png` images there are earlier physical screenshots from build `20261111.36`; they do not show the current candidate. Neither capture set proves compatibility across older iOS versions. See [Compatibility](../COMPATIBILITY.md) for the evidence matrix.
 
 The preview accepts up to eight allowlisted scene commands through `WizardPreviewCommands`. For example:
 
@@ -95,3 +95,5 @@ Use `--out PATH` to choose a destination that does not exist. The exporter copie
 ## Licensing and attribution
 
 Wizard-authored code uses the root MIT License. Google Material path data retains its separate Apache 2.0 notice in root `NOTICE`. The bundled display font and its SIL OFL 1.1 license are included as separate files in `App/Resources`. GTA VI images, videos, screenshots and derived media remain the property of Rockstar Games and applicable rights holders; they are not licensed under MIT. See the [GTA VI materials guide](../en/GTA6-MATERIALS.md), [demo capture provenance](../../assets/demo/README.en.md) and [third-party notices](../../THIRD_PARTY.md).
+
+Clock editing offers Poster (bundled Anton) and System (iOS monospaced digits). The stable `clockFontStyle` preference uses 0/1; missing or invalid values retain Poster. The font selector follows the existing Done, Cancel and Reset behavior. The date/calendar/weather language IDs remain 0 English, 1 Simplified Chinese, 2 Traditional Chinese and 3 Japanese.

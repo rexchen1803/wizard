@@ -1,6 +1,6 @@
 # 参与贡献
 
-**简体中文** · [English](../../CONTRIBUTING.md)
+**简体中文** · [繁體中文](../zh-TW/CONTRIBUTING.md) · [English](../../CONTRIBUTING.md) · [日本語](../ja/CONTRIBUTING.md)
 
 提交改动前，请阅读[兼容性范围](COMPATIBILITY.md)、[隐私与网络说明](PRIVACY.md)和[第三方素材声明](THIRD_PARTY.md)。
 

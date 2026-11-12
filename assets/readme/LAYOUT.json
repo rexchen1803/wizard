@@ -1,15 +1,21 @@
 {
-  "schema": "wizard.campaign-layout.v2",
+  "schema": "wizard.campaign-layout.v3",
   "languages": [
     "zh-CN",
-    "en"
+    "zh-TW",
+    "en",
+    "ja"
   ],
-  "native_capture_build": "20261112.39",
-  "native_source_fingerprint": "3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f",
+  "native_capture_build": "20261112.40",
+  "native_source_fingerprint": "7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802",
   "font_sha256": {
     "Anton-Regular.ttf": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
     "NotoSansCJKsc-Regular.otf": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
-    "NotoSansCJKsc-Bold.otf": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a"
+    "NotoSansCJKsc-Bold.otf": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a",
+    "NotoSansCJKtc-Regular.otf": "dce08bd4fd91aa8aa76ed8fea4b694c2dfb8550f67871e326843212ddbeb88b4",
+    "NotoSansCJKtc-Bold.otf": "3ee160e5015106e3ec1a394301df54fa9bbbf8a251519984aec5c0abc50840c0",
+    "NotoSansCJKjp-Regular.otf": "68a3fc98800b2a27b371f2fb79991daf3633bd89309d4ffaa6946fd587f375b5",
+    "NotoSansCJKjp-Bold.otf": "e53dcb0dcb2922e45d01aae1ebd2f382bb81d4229b18b6b883bd170678af1f76"
   },
   "panels": [
     {
@@ -81,7 +87,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
           "left": 64,
           "right": 1136,
           "top": 270,
@@ -89,9 +95,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad 模拟器实截 · build 20261112.39",
+          "text": "iPad 模拟器实截 · build 20261112.40",
           "left": 64,
-          "right": 508.262,
+          "right": 508.392,
           "top": 1109.978,
           "bottom": 1134.08
         },
@@ -130,11 +136,11 @@
         },
         {
           "role": "copy",
-          "text": "调整尺寸与壁纸裁切。",
+          "text": "字体与壁纸裁切，都能调整。",
           "left": 616.0,
-          "right": 913.7280000000001,
-          "top": 1517.992,
-          "bottom": 1547.688
+          "right": 1008.896,
+          "top": 1517.896,
+          "bottom": 1548.424
         },
         {
           "role": "copy",
@@ -153,7 +159,7 @@
           "bottom": 1792.55
         }
       ],
-      "sha256": "dc915394ae4a98868d24bf22412f69f4a27f7b17ae5cfc4467c156254f9573dd"
+      "sha256": "642e7384ee9c54863a0b04c76c7b95ec5af7c3295da63a1f2890c8c4366bff4c"
     },
     {
       "file": "collection.svg",
@@ -411,7 +417,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
           "left": 40,
           "right": 720,
           "top": 245,
@@ -419,9 +425,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad 模拟器实截 · build 20261112.39",
+          "text": "iPad 模拟器实截 · build 20261112.40",
           "left": 40,
-          "right": 620.9580000000001,
+          "right": 621.128,
           "top": 788.202,
           "bottom": 819.72
         },
@@ -452,14 +458,14 @@
         },
         {
           "role": "copy",
-          "text": "也能调整时钟与日历的布局。",
+          "text": "也能调整时钟布局与字体。",
           "left": 40,
-          "right": 508.046,
-          "top": 1677.9279999999999,
+          "right": 470.046,
+          "top": 1677.814,
           "bottom": 1713.078
         }
       ],
-      "sha256": "de6154e75b8321dfe2a43311ddba02e23a0ce9a6032a38e95ad3577591d331d1"
+      "sha256": "60bc04147394649dce3ee809fe7165c2aa492d3596c6399d6d19b00e916a5d66"
     },
     {
       "file": "collection-mobile.svg",
@@ -649,6 +655,642 @@
       "sha256": "d1407a2a40ca24716987b7519bbb3ae10acbd7adc6f34d265573becc9a79494f"
     },
     {
+      "file": "hero-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 1120,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 1200,
+          "top": 0,
+          "bottom": 675.0
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 1136.0,
+          "top": 526.0081430341654,
+          "bottom": 860.0
+        },
+        {
+          "role": "copy",
+          "text": "讓閒置的 iPad，再次發光。",
+          "left": 64,
+          "right": 594.992,
+          "top": 911.896,
+          "bottom": 954.18
+        },
+        {
+          "role": "copy",
+          "text": "安裝指南",
+          "left": 64,
+          "right": 211.63,
+          "top": 1011.32,
+          "bottom": 1047.686
+        }
+      ],
+      "sha256": "40fe1c74cdfe8dd919840f28d10bfbc15fd6e4d49c9bca352ebb7cc2155d22e4"
+    },
+    {
+      "file": "showcase-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 1900,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "時鐘與畫面。",
+          "left": 64,
+          "right": 422.528,
+          "top": 85.21600000000001,
+          "bottom": 145.76
+        },
+        {
+          "role": "copy",
+          "text": "把喜歡的畫面，留在螢幕上。",
+          "left": 64,
+          "right": 493.04600000000005,
+          "top": 181.304,
+          "bottom": 212.924
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "left": 64,
+          "right": 1136,
+          "top": 270,
+          "bottom": 1074.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad 模擬器截圖 · build 20261112.40",
+          "left": 64,
+          "right": 508.392,
+          "top": 1110.16,
+          "bottom": 1134.132
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 64,
+          "right": 584.0,
+          "top": 1240,
+          "bottom": 1630.0
+        },
+        {
+          "role": "copy",
+          "text": "版面，",
+          "left": 616.0,
+          "right": 781.696,
+          "top": 1240.0,
+          "bottom": 1300.096
+        },
+        {
+          "role": "copy",
+          "text": "隨你心意。",
+          "left": 616.0,
+          "right": 910.4000000000001,
+          "top": 1330.6560000000002,
+          "bottom": 1391.776
+        },
+        {
+          "role": "copy",
+          "text": "移動時鐘與行事曆，",
+          "left": 616.0,
+          "right": 890.0160000000001,
+          "top": 1462.928,
+          "bottom": 1492.72
+        },
+        {
+          "role": "copy",
+          "text": "字型與桌布裁切，都能調整。",
+          "left": 616.0,
+          "right": 1018.752,
+          "top": 1517.896,
+          "bottom": 1547.624
+        },
+        {
+          "role": "copy",
+          "text": "桌布圖庫",
+          "left": 64,
+          "right": 268.672,
+          "top": 1675.696,
+          "bottom": 1724.628
+        },
+        {
+          "role": "copy",
+          "text": "分類、收藏與匯入照片。",
+          "left": 64,
+          "right": 382.59999999999997,
+          "top": 1764.77,
+          "bottom": 1792.55
+        }
+      ],
+      "sha256": "b255615fdda66ac97e7454a799ca986ce31d1e61fe538950276ebfdcd95bbb6c"
+    },
+    {
+      "file": "collection-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 1320,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 64,
+          "right": 653.10546875,
+          "top": 36.046875,
+          "bottom": 181.296875
+        },
+        {
+          "role": "copy",
+          "text": "把喜歡的畫面，收進圖庫。",
+          "left": 64,
+          "right": 715.952,
+          "top": 230.288,
+          "bottom": 283.432
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 64,
+          "right": 1136,
+          "top": 350,
+          "bottom": 953.0
+        },
+        {
+          "role": "copy",
+          "text": "228 張圖片 · 2 段影片",
+          "left": 64,
+          "right": 398.764,
+          "top": 1007.236,
+          "bottom": 1038.856
+        },
+        {
+          "role": "copy",
+          "text": "另附原始素材包",
+          "left": 64,
+          "right": 298.97400000000005,
+          "top": 1071.27,
+          "bottom": 1102.72
+        },
+        {
+          "role": "copy",
+          "text": "查看素材與說明",
+          "left": 64,
+          "right": 395.968,
+          "top": 1193.152,
+          "bottom": 1238.656
+        }
+      ],
+      "sha256": "2b76384b8a43ec0cca95ca6f91f6b865d5ddf0398cb6762159ea98cee4bd415a"
+    },
+    {
+      "file": "install-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "安裝 Wizard",
+          "left": 64,
+          "right": 393.46,
+          "top": 64.4,
+          "bottom": 121.82
+        },
+        {
+          "role": "copy",
+          "text": "預覽安裝套件與裝置指南",
+          "left": 64,
+          "right": 412.896,
+          "top": 160.928,
+          "bottom": 190.72
+        }
+      ],
+      "sha256": "a80f4a2681c4ef9f10b13f6a73ae11ab193876d3673a6e556b2a127067300b65"
+    },
+    {
+      "file": "agent-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "交給 Agent",
+          "left": 64,
+          "right": 366.76,
+          "top": 64.28,
+          "bottom": 130.58
+        },
+        {
+          "role": "copy",
+          "text": "一次性安裝提示詞",
+          "left": 64,
+          "right": 316.192,
+          "top": 160.928,
+          "bottom": 190.72
+        }
+      ],
+      "sha256": "9b3939fa573132d85b7a9fba567cdc3826dca1e5d5895799c0ffe050ab99163a"
+    },
+    {
+      "file": "source-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "從原始碼建置",
+          "left": 64,
+          "right": 420.21999999999997,
+          "top": 65.0,
+          "bottom": 121.49333333333334
+        },
+        {
+          "role": "copy",
+          "text": "建置說明、原始碼與貢獻方式",
+          "left": 64,
+          "right": 477.76,
+          "top": 160.928,
+          "bottom": 190.784
+        }
+      ],
+      "sha256": "020c94ea98e61d1f5c58a3db250448d1fd488b271cb11cfbf161559f6e7a1dd3"
+    },
+    {
+      "file": "footer-zh-tw.svg",
+      "language": "zh-TW",
+      "width": 1200,
+      "height": 400,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 273.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "原生 iPad App · 非官方開源專案",
+          "left": 64,
+          "right": 535.9680000000001,
+          "top": 162.928,
+          "bottom": 197.328
+        },
+        {
+          "role": "copy",
+          "text": "程式碼 MIT · 字型 OFL 1.1",
+          "left": 64,
+          "right": 398.76800000000003,
+          "top": 232.284,
+          "bottom": 258.296
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI 素材 © Rockstar Games 及相關權利人",
+          "left": 64,
+          "right": 628.088,
+          "top": 290.452,
+          "bottom": 316.464
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 64,
+          "right": 161.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "7634703c0fba2d12c491cb23e3b684be8b5db2551e4df13549519ab1027ca577"
+    },
+    {
+      "file": "hero-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 840,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 760,
+          "top": 0,
+          "bottom": 427.5
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 720.0,
+          "top": 398.13949371570186,
+          "bottom": 610.0
+        },
+        {
+          "role": "copy",
+          "text": "讓閒置的 iPad，再次發光。",
+          "left": 40,
+          "right": 570.992,
+          "top": 661.896,
+          "bottom": 704.18
+        },
+        {
+          "role": "copy",
+          "text": "安裝指南",
+          "left": 40,
+          "right": 195.4,
+          "top": 745.6,
+          "bottom": 783.88
+        }
+      ],
+      "sha256": "63b9b2dd8038b958c1947242cb3a9fb43e974c0c802d47093a84980ee10b008e"
+    },
+    {
+      "file": "showcase-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 1780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "時鐘與畫面。",
+          "left": 40,
+          "right": 398.528,
+          "top": 65.21600000000001,
+          "bottom": 125.76
+        },
+        {
+          "role": "copy",
+          "text": "把喜歡的畫面，留在螢幕上。",
+          "left": 40,
+          "right": 519.5219999999999,
+          "top": 155.928,
+          "bottom": 191.268
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "left": 40,
+          "right": 720,
+          "top": 245,
+          "bottom": 755.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad 模擬器截圖 · build 20261112.40",
+          "left": 40,
+          "right": 621.128,
+          "top": 788.44,
+          "bottom": 819.788
+        },
+        {
+          "role": "copy",
+          "text": "桌布圖庫",
+          "left": 40,
+          "right": 276.15999999999997,
+          "top": 943.88,
+          "bottom": 1000.34
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 40,
+          "right": 720,
+          "top": 1060,
+          "bottom": 1570.0
+        },
+        {
+          "role": "copy",
+          "text": "分類、收藏與匯入照片。",
+          "left": 40,
+          "right": 443.56,
+          "top": 1608.042,
+          "bottom": 1643.23
+        },
+        {
+          "role": "copy",
+          "text": "也能調整時鐘版面與字型。",
+          "left": 40,
+          "right": 481.75,
+          "top": 1677.814,
+          "bottom": 1713.306
+        }
+      ],
+      "sha256": "0a656775a1874f5be4c2dbfe3c7705f14b146548fa6aca05762329536c24ef36"
+    },
+    {
+      "file": "collection-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 1110,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 40,
+          "right": 487.15234375,
+          "top": 40.734375,
+          "bottom": 150.984375
+        },
+        {
+          "role": "copy",
+          "text": "把喜歡的畫面，收進圖庫。",
+          "left": 40,
+          "right": 598.816,
+          "top": 205.10399999999998,
+          "bottom": 250.656
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 40,
+          "right": 720,
+          "top": 314,
+          "bottom": 696.5
+        },
+        {
+          "role": "copy",
+          "text": "228 張圖片 · 2 段影片",
+          "left": 40,
+          "right": 414.14799999999997,
+          "top": 747.352,
+          "bottom": 782.692
+        },
+        {
+          "role": "copy",
+          "text": "另附原始素材包",
+          "left": 40,
+          "right": 302.618,
+          "top": 811.39,
+          "bottom": 846.54
+        },
+        {
+          "role": "copy",
+          "text": "查看素材與說明",
+          "left": 40,
+          "right": 371.968,
+          "top": 983.152,
+          "bottom": 1028.656
+        }
+      ],
+      "sha256": "e6105ef99770377e2cbb23b74239dd207576f5fa7a07cd9d54ced74987c9aa44"
+    },
+    {
+      "file": "install-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "安裝 Wizard",
+          "left": 40,
+          "right": 358.478,
+          "top": 66.12,
+          "bottom": 121.626
+        },
+        {
+          "role": "copy",
+          "text": "預覽安裝套件與裝置指南",
+          "left": 40,
+          "right": 432.508,
+          "top": 171.544,
+          "bottom": 205.06
+        }
+      ],
+      "sha256": "7dba1cb2efd3d2840dd881e1744463e9d8f929bc53710e38272a14723f67a95f"
+    },
+    {
+      "file": "agent-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "交給 Agent",
+          "left": 40,
+          "right": 332.668,
+          "top": 66.00399999999999,
+          "bottom": 130.094
+        },
+        {
+          "role": "copy",
+          "text": "一次性安裝提示詞",
+          "left": 40,
+          "right": 323.71599999999995,
+          "top": 171.544,
+          "bottom": 205.06
+        }
+      ],
+      "sha256": "db5517d4507b426c49e9c3759bf2dbd34a63d637f6d77abf7a83caf7e26a4811"
+    },
+    {
+      "file": "source-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "從原始碼建置",
+          "left": 40,
+          "right": 384.346,
+          "top": 66.69999999999999,
+          "bottom": 121.31022222222222
+        },
+        {
+          "role": "copy",
+          "text": "建置說明、原始碼與貢獻方式",
+          "left": 40,
+          "right": 505.47999999999996,
+          "top": 171.544,
+          "bottom": 205.132
+        }
+      ],
+      "sha256": "fa639b59bf60a3660caaabaa739b5e39670163590134c37e05347fea8480e44c"
+    },
+    {
+      "file": "footer-zh-tw-mobile.svg",
+      "language": "zh-TW",
+      "width": 760,
+      "height": 400,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 249.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "原生 iPad App · 非官方開源專案",
+          "left": 40,
+          "right": 541.466,
+          "top": 161.236,
+          "bottom": 197.786
+        },
+        {
+          "role": "copy",
+          "text": "程式碼 MIT · 字型 OFL 1.1",
+          "left": 40,
+          "right": 422.592,
+          "top": 228.89600000000002,
+          "bottom": 258.624
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI 素材 © Rockstar Games 及相關權利人",
+          "left": 40,
+          "right": 604.088,
+          "top": 290.452,
+          "bottom": 316.464
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 40,
+          "right": 137.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "b12b3b2cd53676489371cdc67b1f6b2e5ab252a351f774dc426de473601f8160"
+    },
+    {
       "file": "hero-en.svg",
       "language": "en",
       "width": 1200,
@@ -717,7 +1359,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
           "left": 64,
           "right": 1136,
           "top": 270,
@@ -725,9 +1367,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad Simulator · build 20261112.39",
+          "text": "iPad Simulator · build 20261112.40",
           "left": 64,
-          "right": 498.43399999999997,
+          "right": 498.56399999999996,
           "top": 1111.304,
           "bottom": 1132.338
         },
@@ -774,11 +1416,11 @@
         },
         {
           "role": "copy",
-          "text": "Resize and reframe.",
+          "text": "Fine-tune fonts and wallpaper.",
           "left": 616.0,
-          "right": 904.1279999999999,
+          "right": 1067.808,
           "top": 1519.112,
-          "bottom": 1545.416
+          "bottom": 1552.328
         },
         {
           "role": "copy",
@@ -797,7 +1439,7 @@
           "bottom": 1797.5
         }
       ],
-      "sha256": "04d403b8cfd9772487946bc2df699b8c1de2a29290780a7a62f81c65de25258a"
+      "sha256": "f936d0010993a87dd25d3596a4def328df050e0b3eabd3922247b87c7a77ed9e"
     },
     {
       "file": "collection-en.svg",
@@ -1055,7 +1697,7 @@
         {
           "role": "native-capture",
           "source": "home-miami.jpg",
-          "sha256": "59c8229416c3d08fe3e54cee304039fa9e3c5798a2f9b6b9bc0f98b7b91fb583",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
           "left": 40,
           "right": 720,
           "top": 245,
@@ -1063,9 +1705,9 @@
         },
         {
           "role": "provenance",
-          "text": "iPad Simulator · build 20261112.39",
+          "text": "iPad Simulator · build 20261112.40",
           "left": 40,
-          "right": 608.106,
+          "right": 608.2760000000001,
           "top": 789.936,
           "bottom": 817.442
         },
@@ -1104,14 +1746,14 @@
         },
         {
           "role": "copy",
-          "text": "Fine-tune your clock and calendar.",
+          "text": "Adjust your clock layout and type.",
           "left": 40,
-          "right": 646.29,
+          "right": 635.954,
           "top": 1679.752,
-          "bottom": 1718.892
+          "bottom": 1719.196
         }
       ],
-      "sha256": "87eab1f779c41d92feef326a3ced9a015cdfc34b46f94217e90d23673a1ac4fa"
+      "sha256": "d3907a534a9d6509c3eaa3847f1e852c669b507f910b97540ab1e28beb0783c9"
     },
     {
       "file": "collection-en-mobile.svg",
@@ -1299,6 +1941,658 @@
         }
       ],
       "sha256": "e7baaffddc5fa700a3e033a0be17abfa7c645453f11e203999ef4cda2ead6d8a"
+    },
+    {
+      "file": "hero-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 1120,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 1200,
+          "top": 0,
+          "bottom": 675.0
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 1136.0,
+          "top": 526.0081430341654,
+          "bottom": 860.0
+        },
+        {
+          "role": "copy",
+          "text": "iPad に、もう一度輝きを。",
+          "left": 64,
+          "right": 579.68,
+          "top": 912.6,
+          "bottom": 954.092
+        },
+        {
+          "role": "copy",
+          "text": "インストール",
+          "left": 64,
+          "right": 288.466,
+          "top": 1013.182,
+          "bottom": 1045.786
+        }
+      ],
+      "sha256": "4075f8b1130266a5cf3abb9462a1a9c3f9840b6730a1804a2950a8c8d2218fb7"
+    },
+    {
+      "file": "showcase-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 1900,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "時計と、画面。",
+          "left": 64,
+          "right": 466.688,
+          "top": 85.6,
+          "bottom": 145.76
+        },
+        {
+          "role": "copy",
+          "text": "好きな景色を、画面に。",
+          "left": 64,
+          "right": 414.336,
+          "top": 181.338,
+          "bottom": 212.788
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "left": 64,
+          "right": 1136,
+          "top": 270,
+          "bottom": 1074.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad シミュレータ · build 20261112.40",
+          "left": 64,
+          "right": 522.978,
+          "top": 1110.836,
+          "bottom": 1133.144
+        },
+        {
+          "role": "provenance",
+          "text": "中国語メニュー · アプリの実キャプチャ",
+          "left": 64,
+          "right": 526.228,
+          "top": 1152.16,
+          "bottom": 1176.34
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 64,
+          "right": 584.0,
+          "top": 1240,
+          "bottom": 1630.0
+        },
+        {
+          "role": "copy",
+          "text": "レイアウトは、",
+          "left": 616.0,
+          "right": 1010.688,
+          "top": 1240.0,
+          "bottom": 1296.704
+        },
+        {
+          "role": "copy",
+          "text": "思いのまま。",
+          "left": 616.0,
+          "right": 956.4159999999999,
+          "top": 1332.512,
+          "bottom": 1389.152
+        },
+        {
+          "role": "copy",
+          "text": "時計とカレンダーを動かし、",
+          "left": 616.0,
+          "right": 1008.48,
+          "top": 1462.928,
+          "bottom": 1492.72
+        },
+        {
+          "role": "copy",
+          "text": "フォントと壁紙の切り抜きも調整。",
+          "left": 616.0,
+          "right": 1102.464,
+          "top": 1518.088,
+          "bottom": 1547.752
+        },
+        {
+          "role": "copy",
+          "text": "壁紙ギャラリー",
+          "left": 64,
+          "right": 422.28,
+          "top": 1674.812,
+          "bottom": 1725.408
+        },
+        {
+          "role": "copy",
+          "text": "分類・お気に入り・写真の取り込み。",
+          "left": 64,
+          "right": 553.72,
+          "top": 1764.74,
+          "bottom": 1792.64
+        }
+      ],
+      "sha256": "543764f32c7929bc475c65b2031f46dc214533f89fb42781adaf76a1ab3a6b6a"
+    },
+    {
+      "file": "collection-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 1320,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 64,
+          "right": 653.10546875,
+          "top": 36.046875,
+          "bottom": 181.296875
+        },
+        {
+          "role": "copy",
+          "text": "好きな景色を、ギャラリーに。",
+          "left": 64,
+          "right": 809.808,
+          "top": 229.336,
+          "bottom": 283.824
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 64,
+          "right": 1136,
+          "top": 350,
+          "bottom": 953.0
+        },
+        {
+          "role": "copy",
+          "text": "画像228枚 · 動画2本",
+          "left": 64,
+          "right": 374.862,
+          "top": 1007.406,
+          "bottom": 1038.89
+        },
+        {
+          "role": "copy",
+          "text": "原素材は別アーカイブで提供",
+          "left": 64,
+          "right": 503.45000000000005,
+          "top": 1070.862,
+          "bottom": 1102.788
+        },
+        {
+          "role": "copy",
+          "text": "素材と出典を見る",
+          "left": 64,
+          "right": 440.416,
+          "top": 1193.056,
+          "bottom": 1238.512
+        }
+      ],
+      "sha256": "dca43c8e8c95409eb330f5589ed3a1483705896312d274cc8224dc78b36f577d"
+    },
+    {
+      "file": "install-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "インストール",
+          "left": 64,
+          "right": 418.41999999999996,
+          "top": 67.34,
+          "bottom": 118.82
+        },
+        {
+          "role": "copy",
+          "text": "パッケージと端末設定",
+          "left": 64,
+          "right": 380.608,
+          "top": 161.12,
+          "bottom": 190.72
+        }
+      ],
+      "sha256": "359c1db7aebd0e9375d83293d92300cb3a90eaf250f6c6a3bd528c08473315b5"
+    },
+    {
+      "file": "agent-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Agent に依頼",
+          "left": 64,
+          "right": 430.0,
+          "top": 65.12,
+          "bottom": 130.58
+        },
+        {
+          "role": "copy",
+          "text": "1回限りのインストール依頼文",
+          "left": 64,
+          "right": 493.824,
+          "top": 161.12,
+          "bottom": 190.688
+        }
+      ],
+      "sha256": "0167a0e1a57c81fe33072eb2d2fc2e7c1edcffe483c6d22fd5b871f853240bd2"
+    },
+    {
+      "file": "source-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 246,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "ソースからビルド",
+          "left": 64,
+          "right": 532.72,
+          "top": 64.7,
+          "bottom": 119.48
+        },
+        {
+          "role": "copy",
+          "text": "ビルド・ソース・貢献方法",
+          "left": 64,
+          "right": 440.992,
+          "top": 161.024,
+          "bottom": 190.688
+        }
+      ],
+      "sha256": "65923f004e686fe2c513682a4cd928608336250c1fb394f6f4ca0d94b43db85a"
+    },
+    {
+      "file": "footer-ja.svg",
+      "language": "ja",
+      "width": 1200,
+      "height": 400,
+      "gutter": 64,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 64,
+          "right": 273.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "iPad ネイティブアプリ · 非公式 OSS",
+          "left": 64,
+          "right": 587.552,
+          "top": 162.576,
+          "bottom": 192.912
+        },
+        {
+          "role": "copy",
+          "text": "コード MIT · フォント OFL 1.1",
+          "left": 64,
+          "right": 438.808,
+          "top": 234.328,
+          "bottom": 257.736
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI 素材 © Rockstar Games ほか権利者",
+          "left": 64,
+          "right": 599.556,
+          "top": 290.34,
+          "bottom": 316.268
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 64,
+          "right": 161.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "b331e20c1b8f2821fba99bee901a30c946f67f51a56d52b8825d638808c37898"
+    },
+    {
+      "file": "hero-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 840,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "artwork",
+          "source": "Jason_and_Lucia_01_landscape.jpg",
+          "sha256": "613da4597a6c63da703fd3bc5c82a4ba606d4dc03739ed77fe0b7317d6adc4ab",
+          "left": 0,
+          "right": 760,
+          "top": 0,
+          "bottom": 427.5
+        },
+        {
+          "role": "wordmark",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 720.0,
+          "top": 398.13949371570186,
+          "bottom": 610.0
+        },
+        {
+          "role": "copy",
+          "text": "iPad に、もう一度輝きを。",
+          "left": 40,
+          "right": 555.68,
+          "top": 662.6,
+          "bottom": 704.092
+        },
+        {
+          "role": "copy",
+          "text": "インストール",
+          "left": 40,
+          "right": 276.28,
+          "top": 747.56,
+          "bottom": 781.88
+        }
+      ],
+      "sha256": "b4bbb4004fc0b5ac416d461d640050135423319eed94dde23c08b8f3b5a18ff5"
+    },
+    {
+      "file": "showcase-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 1780,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "時計と、画面。",
+          "left": 40,
+          "right": 442.688,
+          "top": 65.6,
+          "bottom": 125.76
+        },
+        {
+          "role": "copy",
+          "text": "好きな景色を、画面に。",
+          "left": 40,
+          "right": 431.55199999999996,
+          "top": 155.966,
+          "bottom": 191.116
+        },
+        {
+          "role": "native-capture",
+          "source": "home-miami.jpg",
+          "sha256": "7a8e2afc100f75da33e3c4ea69e6c6f2c64b37f326e51d5c2d500fe09e351692",
+          "left": 40,
+          "right": 720,
+          "top": 245,
+          "bottom": 755.0
+        },
+        {
+          "role": "provenance",
+          "text": "iPad シミュレータ · build 20261112.40",
+          "left": 40,
+          "right": 640.202,
+          "top": 789.324,
+          "bottom": 818.496
+        },
+        {
+          "role": "provenance",
+          "text": "中国語メニュー · アプリの実キャプチャ",
+          "left": 40,
+          "right": 608.896,
+          "top": 840.12,
+          "bottom": 869.88
+        },
+        {
+          "role": "copy",
+          "text": "壁紙ギャラリー",
+          "left": 40,
+          "right": 453.4,
+          "top": 942.86,
+          "bottom": 1001.24
+        },
+        {
+          "role": "native-capture",
+          "source": "gallery-miami.jpg",
+          "sha256": "b6013c0e825370da26a7300974dedc1fcdd5b0e0df5369dc2504befef9cf67fb",
+          "left": 40,
+          "right": 720,
+          "top": 1060,
+          "bottom": 1570.0
+        },
+        {
+          "role": "copy",
+          "text": "分類・お気に入り・写真の取り込み。",
+          "left": 40,
+          "right": 660.312,
+          "top": 1608.004,
+          "bottom": 1643.344
+        },
+        {
+          "role": "copy",
+          "text": "時計の配置とフォントも調整。",
+          "left": 40,
+          "right": 544.298,
+          "top": 1678.042,
+          "bottom": 1713.268
+        }
+      ],
+      "sha256": "75f203e4bc30e0f1e0394350d06323708a60ee9bb869303f600238ee593229ce"
+    },
+    {
+      "file": "collection-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 1110,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "VICE CITY.",
+          "left": 40,
+          "right": 487.15234375,
+          "top": 40.734375,
+          "bottom": 150.984375
+        },
+        {
+          "role": "copy",
+          "text": "好きな景色を、ギャラリーに。",
+          "left": 40,
+          "right": 679.264,
+          "top": 204.288,
+          "bottom": 250.992
+        },
+        {
+          "role": "artwork",
+          "source": "Vice_City_01.jpg",
+          "sha256": "6cf14b23ae2c205799067464904f8c9dc99f87935632ef6924b87f59af7a6225",
+          "left": 40,
+          "right": 720,
+          "top": 314,
+          "bottom": 696.5
+        },
+        {
+          "role": "copy",
+          "text": "画像228枚 · 動画2本",
+          "left": 40,
+          "right": 387.43399999999997,
+          "top": 747.542,
+          "bottom": 782.73
+        },
+        {
+          "role": "copy",
+          "text": "原素材は別アーカイブで提供",
+          "left": 40,
+          "right": 531.15,
+          "top": 810.934,
+          "bottom": 846.616
+        },
+        {
+          "role": "copy",
+          "text": "素材と出典を見る",
+          "left": 40,
+          "right": 416.416,
+          "top": 983.056,
+          "bottom": 1028.512
+        }
+      ],
+      "sha256": "09428fe9068a7860418a335d3602db5c82cfc3f99500ba7f1fa2b9f9c0df8821"
+    },
+    {
+      "file": "install-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "インストール",
+          "left": 40,
+          "right": 382.606,
+          "top": 68.96199999999999,
+          "bottom": 118.726
+        },
+        {
+          "role": "copy",
+          "text": "パッケージと端末設定",
+          "left": 40,
+          "right": 396.18399999999997,
+          "top": 171.76,
+          "bottom": 205.06
+        }
+      ],
+      "sha256": "fd723d55ba9454cc5ddfb917af9a60fdf2df41007b454794e647a62720b9434b"
+    },
+    {
+      "file": "agent-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "Agent に依頼",
+          "left": 40,
+          "right": 393.8,
+          "top": 66.816,
+          "bottom": 130.094
+        },
+        {
+          "role": "copy",
+          "text": "1回限りのインストール依頼文",
+          "left": 40,
+          "right": 523.5519999999999,
+          "top": 171.76,
+          "bottom": 205.024
+        }
+      ],
+      "sha256": "bff4095a486776da69c6e15f59a6510c0c368e560c0fc7dfc20a076e03a6f5a4"
+    },
+    {
+      "file": "source-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 276,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "ソースからビルド",
+          "left": 40,
+          "right": 493.096,
+          "top": 66.41,
+          "bottom": 119.364
+        },
+        {
+          "role": "copy",
+          "text": "ビルド・ソース・貢献方法",
+          "left": 40,
+          "right": 464.116,
+          "top": 171.652,
+          "bottom": 205.024
+        }
+      ],
+      "sha256": "e37a705c85c4d86332392c21535d08b0a1d8a299a03e7283ba18ee596b247f7c"
+    },
+    {
+      "file": "footer-ja-mobile.svg",
+      "language": "ja",
+      "width": 760,
+      "height": 400,
+      "gutter": 40,
+      "elements": [
+        {
+          "role": "copy",
+          "text": "WIZARD",
+          "left": 40,
+          "right": 249.630859375,
+          "top": 48.6875,
+          "bottom": 114.0
+        },
+        {
+          "role": "copy",
+          "text": "iPad ネイティブアプリ · 非公式 OSS",
+          "left": 40,
+          "right": 596.274,
+          "top": 160.862,
+          "bottom": 193.094
+        },
+        {
+          "role": "copy",
+          "text": "コード MIT · フォント OFL 1.1",
+          "left": 40,
+          "right": 468.35200000000003,
+          "top": 231.232,
+          "bottom": 257.984
+        },
+        {
+          "role": "copy",
+          "text": "GTA VI 素材 © Rockstar Games ほか権利者",
+          "left": 40,
+          "right": 575.556,
+          "top": 290.34,
+          "bottom": 316.268
+        },
+        {
+          "role": "copy",
+          "text": "MADE BY REX",
+          "left": 40,
+          "right": 137.021484375,
+          "top": 354.802734375,
+          "bottom": 372.0
+        }
+      ],
+      "sha256": "494a92c412f5a6589923e67b839ddda6f81825b23d4c0918b129032616a05acd"
     }
   ]
 }

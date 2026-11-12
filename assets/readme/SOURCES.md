@@ -1,6 +1,6 @@
 # README artwork sources
 
-The Chinese and English READMEs use the same illustrated composition, with separate desktop and narrow-screen panels for each language. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.39`, not physical-device screenshots. The English page retains the original mixed Chinese/English App interface text in those images. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
+The Simplified Chinese, Traditional Chinese, English and Japanese READMEs use the same illustrated composition, with separate desktop and narrow-screen panels for each language. Each panel is an SVG with outlined lettering and embedded, unmodified JPEG inputs. The surrounding layout is promotional artwork; the embedded App views are actual iPad Simulator captures from build `20261112.40`, not physical-device screenshots. Localized pages retain the original mixed Chinese/English App interface text in those images. Their provenance is recorded in [CAPTURE-METADATA.json](../demo/CAPTURE-METADATA.json).
 
 ## Artwork
 
@@ -15,7 +15,7 @@ The App's bundled `ViceCity.jpg` remains the separately attributed chair photogr
 
 ## Type
 
-Latin display lettering uses the exact [Anton-Regular.ttf](../../App/Resources/Anton-Regular.ttf) bundled in the App; see [its license](../../App/Resources/Anton-OFL.txt). Chinese promotional lettering uses Noto Sans CJK SC, separate from the App's native system CJK controls. The Noto fonts are optional artwork-generation inputs, not App resources. Both families use SIL OFL 1.1. [Noto license](../../licenses/NotoSansCJK-OFL.txt).
+Latin display lettering uses the exact [Anton-Regular.ttf](../../App/Resources/Anton-Regular.ttf) bundled in the App; see [its license](../../App/Resources/Anton-OFL.txt). Promotional CJK lettering uses locale-specific Noto Sans CJK SC, TC and JP, separate from the App's native system CJK controls. The Noto fonts are optional artwork-generation inputs, not App resources. Both families use SIL OFL 1.1. [Noto license](../../licenses/NotoSansCJK-OFL.txt).
 
 Pinned Noto source revision: [`f8d157532fbfaeda587e826d4cd5b21a49186f7c`](https://github.com/notofonts/noto-cjk/tree/f8d157532fbfaeda587e826d4cd5b21a49186f7c).
 
@@ -23,6 +23,10 @@ Pinned Noto source revision: [`f8d157532fbfaeda587e826d4cd5b21a49186f7c`](https:
 | --- | --- |
 | `Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf` | `2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b` |
 | `Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Bold.otf` | `b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a` |
+| `Sans/OTF/TraditionalChinese/NotoSansCJKtc-Regular.otf` | `dce08bd4fd91aa8aa76ed8fea4b694c2dfb8550f67871e326843212ddbeb88b4` |
+| `Sans/OTF/TraditionalChinese/NotoSansCJKtc-Bold.otf` | `3ee160e5015106e3ec1a394301df54fa9bbbf8a251519984aec5c0abc50840c0` |
+| `Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf` | `68a3fc98800b2a27b371f2fb79991daf3633bd89309d4ffaa6946fd587f375b5` |
+| `Sans/OTF/Japanese/NotoSansCJKjp-Bold.otf` | `e53dcb0dcb2922e45d01aae1ebd2f382bb81d4229b18b6b883bd170678af1f76` |
 | `Sans/LICENSE` | `6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2` |
 
 ## Rebuild the artwork
@@ -33,9 +37,15 @@ Use Python 3 with `fonttools==4.60.2`, the pinned fonts above, and the separatel
 python3 scripts/build-showcase.py \
   --cjk-regular /path/to/NotoSansCJKsc-Regular.otf \
   --cjk-bold /path/to/NotoSansCJKsc-Bold.otf \
+  --traditional-regular /path/to/NotoSansCJKtc-Regular.otf \
+  --traditional-bold /path/to/NotoSansCJKtc-Bold.otf \
+  --japanese-regular /path/to/NotoSansCJKjp-Regular.otf \
+  --japanese-bold /path/to/NotoSansCJKjp-Bold.otf \
   --hero-art /path/to/Jason_and_Lucia_01_landscape.jpg \
   --city-art /path/to/Vice_City_01.jpg \
   --out assets/readme
 ```
 
-The generator writes all 28 panels for both languages and checks capture/source/font identity, input image digests, canvas bounds, missing English translations and content overlap. It aligns visible glyph outlines to common content rails and writes the exact geometry and digests to `LAYOUT.json`. A passing generator still requires visual review of both complete GitHub pages at desktop and phone widths. It does not build or install the App.
+The generator writes all 56 panels for four languages and checks capture/source/font identity, input image digests, canvas bounds, missing localized translations and content overlap. It aligns visible glyph outlines to common content rails and writes the exact geometry and digests to `LAYOUT.json`. A passing generator still requires visual review of all four complete GitHub pages at desktop and phone widths. It does not build or install the App.
+
+Localized campaign text is maintained in [COPY.json](COPY.json). Native date-language IDs remain independent of the README display order.

@@ -533,6 +533,17 @@ static UIFont *IWGTATextFont(CGFloat size) {
     return [UIFont systemFontOfSize:size weight:UIFontWeightSemibold];
 }
 
+static NSInteger IWValidatedClockFontStyle(NSInteger style) {
+    return style == 1 ? 1 : 0;
+}
+
+static UIFont *IWClockTimeFont(CGFloat size, NSInteger style) {
+    if (IWValidatedClockFontStyle(style) == 1) {
+        return [UIFont monospacedDigitSystemFontOfSize:size weight:UIFontWeightBold];
+    }
+    return IWGTAFont(size);
+}
+
 static NSString *IWLocalWiFiAddress(void) {
     struct ifaddrs *interfaces = NULL;
     NSString *address = @"0.0.0.0";
@@ -4307,6 +4318,8 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     UIView *_opacityControl;
     UISlider *_opacitySlider;
     UIView *_borderControl;
+    UILabel *_clockFontLabel;
+    UISegmentedControl *_clockFontControl;
     NSMutableArray *_borderThemeButtons;
     UISlider *_borderWidthSlider;
     IWBorderColorPalette *_borderColorPalette;
@@ -4371,6 +4384,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     NSInteger _calendarSelectedDay;
     BOOL _gta6CountdownMode;
     NSInteger _dateLanguage;
+    NSInteger _clockFontStyle;
     BOOL _cleanMode;
     BOOL _menuOpen;
     BOOL _settingsOpen;
@@ -4681,6 +4695,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     if ([d objectForKey:@"dateLanguage"]) _dateLanguage = [d integerForKey:@"dateLanguage"];
     else _dateLanguage = [d boolForKey:@"dateChinese"] ? 1 : 0;
     if (_dateLanguage < 0 || _dateLanguage > 3) _dateLanguage = 0;
+    _clockFontStyle = IWValidatedClockFontStyle([d integerForKey:@"clockFontStyle"]);
     _cleanMode = [d boolForKey:@"cleanMode"];
     _weatherVisible = [d boolForKey:@"weatherVisible"];
     _weatherSnapshot = IWValidatedWeatherCache([d dictionaryForKey:@"weatherSnapshot"]);
@@ -4899,6 +4914,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         [d setObject:_savedWallpaperKey forKey:@"wallpaperKey"];
     }
     [d setInteger:_dateLanguage forKey:@"dateLanguage"];
+    [d setInteger:_clockFontStyle forKey:@"clockFontStyle"];
     [d setBool:_hour24 forKey:@"hour24"];
     [d setBool:_showSeconds forKey:@"showSeconds"];
     [d setBool:_dateVisible forKey:@"dateVisible"];
@@ -5409,6 +5425,9 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     if (visible && _editTarget == IWEditTargetCalendar) [self applyCalendarOpacity];
     else if (visible) [self applyDigitCardOpacity];
     [self updateBorderControlVisibility];
+    if (visible) {
+        [self moveEditControlsToOrigin:CGPointMake(20.0 + _editControlsOffsetX, 18.0 + _editControlsOffsetY) persist:NO];
+    }
 }
 
 - (void)applyDepthLayout {
@@ -5458,7 +5477,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         for (UILabel *digit in _countdownDayLabels) {
             digit.frame = CGRectMake(x, top, cardWidth, cardHeight);
             digit.layer.cornerRadius = 12.0;
-            digit.font = IWGTAFont(cssCardHeight * 0.82);
+            digit.font = IWClockTimeFont(cssCardHeight * 0.82, _clockFontStyle);
             x += cardWidth + cardGap;
         }
         UIView *dayColon = [_colonViews objectAtIndex:0];
@@ -5493,7 +5512,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         digit.hidden = !secondsVisible && i >= 4;
         if (!digit.hidden) digit.frame = CGRectMake(x, top, cardWidth, cardHeight);
         digit.layer.cornerRadius = 12.0;
-        digit.font = IWGTAFont(cssCardHeight * 0.82);
+        digit.font = IWClockTimeFont(cssCardHeight * 0.82, _clockFontStyle);
         if (!digit.hidden) x += cardWidth + cardGap;
     }
     NSInteger dateTargetIndex = secondsVisible ? 5 : 3;
@@ -5579,14 +5598,15 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _editDoneButton.frame = CGRectMake((IWControlSize() + IWControlGap()) * 2.0, 0, IWControlSize(), IWControlSize());
     CGFloat opacityWidth = 262.0;
     CGFloat editControlsX = MAX(0.0, MIN(self.view.bounds.size.width - (opacityWidth + IWControlGap() + IWControlSize()), 20.0 + _editControlsOffsetX));
-    CGFloat editControlsY = MAX(0.0, MIN(self.view.bounds.size.height - 242.0, 18.0 + _editControlsOffsetY));
+    CGFloat editControlsHeight = _editTarget == IWEditTargetClock ? 314.0 : 242.0;
+    CGFloat editControlsY = MAX(0.0, MIN(self.view.bounds.size.height - editControlsHeight, 18.0 + _editControlsOffsetY));
     _editControlsOffsetX = editControlsX - 20.0;
     _editControlsOffsetY = editControlsY - 18.0;
-    CGFloat opacityY = _editTarget == IWEditTargetCalendar ? editControlsY : editControlsY + 184.0;
+    CGFloat opacityY = _editTarget == IWEditTargetCalendar ? editControlsY : editControlsY + (_editTarget == IWEditTargetClock ? 256.0 : 184.0);
     _opacityControl.frame = CGRectMake(editControlsX, opacityY, opacityWidth + IWControlGap() + IWControlSize(), 40.0);
     _opacitySlider.frame = CGRectMake(0, 0, opacityWidth, 31.0);
     CGFloat borderWidth = opacityWidth;
-    _borderControl.frame = CGRectMake(editControlsX, editControlsY, borderWidth, 180.0);
+    _borderControl.frame = CGRectMake(editControlsX, editControlsY, borderWidth, 252.0);
     NSInteger borderThemeIndex;
     for (borderThemeIndex = 0; borderThemeIndex < [_borderThemeButtons count]; borderThemeIndex += 1) {
         UIButton *button = [_borderThemeButtons objectAtIndex:borderThemeIndex];
@@ -5594,6 +5614,8 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     }
     _borderColorPalette.frame = CGRectMake(0, 54.0, borderWidth, 75.0);
     _borderWidthSlider.frame = CGRectMake(0, 137.0, borderWidth, 31.0);
+    _clockFontLabel.frame = CGRectMake(12.0, 176.0, borderWidth - 24.0, 18.0);
+    _clockFontControl.frame = CGRectMake(8.0, 200.0, borderWidth - 16.0, 44.0);
     _editControlsMoveButton.frame = CGRectMake(opacityWidth + IWControlGap(), -8.0, IWControlSize(), IWControlSize());
     _videoOverlay.frame = self.view.bounds;
     UIView *playerView = [_videoOverlay viewWithTag:501];
@@ -5639,7 +5661,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     UILabel *label = [[IWFlipDigitLabel alloc] initWithFrame:CGRectZero];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor colorWithRed:17.0/255.0 green:17.0/255.0 blue:26.0/255.0 alpha:1.0];
-    label.font = IWGTAFont(118.0);
+    label.font = IWClockTimeFont(118.0, _clockFontStyle);
     label.adjustsFontSizeToFitWidth = YES;
     label.minimumScaleFactor = 0.72;
     label.clipsToBounds = NO;
@@ -6181,6 +6203,47 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     _borderColorPalette.layer.borderColor = [IWThemePink(0.94) CGColor];
     [_borderColorPalette addTarget:self action:@selector(borderColorPaletteChanged:) forControlEvents:UIControlEventValueChanged];
     [_borderControl addSubview:_borderColorPalette];
+
+    _clockFontLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _clockFontLabel.font = IWGTATextFont(13.0);
+    _clockFontLabel.textColor = IWThemeCream(1.0);
+    [_borderControl addSubview:_clockFontLabel];
+    _clockFontControl = [[UISegmentedControl alloc] initWithItems:@[@"Poster", @"System"]];
+    _clockFontControl.tintColor = IWThemePink(1.0);
+    _clockFontControl.backgroundColor = IWThemeMidnight(0.60);
+    [_clockFontControl setTitleTextAttributes:@{NSForegroundColorAttributeName:IWThemeCream(1.0), NSFontAttributeName:IWGTATextFont(13.0)} forState:UIControlStateNormal];
+    [_clockFontControl setTitleTextAttributes:@{NSForegroundColorAttributeName:IWThemeMidnight(1.0)} forState:UIControlStateSelected];
+    [_clockFontControl addTarget:self action:@selector(clockFontChanged:) forControlEvents:UIControlEventValueChanged];
+    [_borderControl addSubview:_clockFontControl];
+    [self applyClockFontSelection];
+}
+
+- (void)applyClockFontSelection {
+    _clockFontStyle = IWValidatedClockFontStyle(_clockFontStyle);
+    for (NSArray *labels in @[_digitLabels ?: @[], _countdownDayLabels ?: @[]]) {
+        for (UILabel *digit in labels) {
+            CGFloat size = digit.font.pointSize > 0.0 ? digit.font.pointSize : 118.0;
+            digit.font = IWClockTimeFont(size, _clockFontStyle);
+            if ([digit isKindOfClass:[IWFlipDigitLabel class]]) {
+                [(IWFlipDigitLabel *)digit setDigitText:digit.text animated:NO];
+            }
+        }
+    }
+    NSArray *titles = _dateLanguage == 1 ? @[@"海报", @"系统"] :
+        (_dateLanguage == 2 ? @[@"海報", @"系統"] :
+        (_dateLanguage == 3 ? @[@"ポスター", @"標準"] : @[@"Poster", @"System"]));
+    _clockFontLabel.text = _dateLanguage == 1 ? @"时间字体" :
+        (_dateLanguage == 2 ? @"時間字體" : (_dateLanguage == 3 ? @"時刻のフォント" : @"Clock font"));
+    _clockFontControl.accessibilityLabel = _clockFontLabel.text;
+    [_clockFontControl setTitle:[titles objectAtIndex:0] forSegmentAtIndex:0];
+    [_clockFontControl setTitle:[titles objectAtIndex:1] forSegmentAtIndex:1];
+    _clockFontControl.selectedSegmentIndex = _clockFontStyle;
+}
+
+- (void)clockFontChanged:(UISegmentedControl *)control {
+    if (!_editMode || _editTarget != IWEditTargetClock) return;
+    _clockFontStyle = IWValidatedClockFontStyle(control.selectedSegmentIndex);
+    [self applyClockFontSelection];
 }
 
 - (void)animateEditToolbarDropIn {
@@ -6275,14 +6338,15 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
                        _editTarget != IWEditTargetCalendar)) return NO;
     CGFloat panelWidth = 262.0 + IWControlGap() + IWControlSize();
     CGFloat originX = MAX(0.0, MIN(self.view.bounds.size.width - panelWidth, origin.x));
-    CGFloat originY = MAX(0.0, MIN(self.view.bounds.size.height - 242.0, origin.y));
+    CGFloat panelHeight = _editTarget == IWEditTargetClock ? 314.0 : 242.0;
+    CGFloat originY = MAX(0.0, MIN(self.view.bounds.size.height - panelHeight, origin.y));
     _editControlsOffsetX = originX - 20.0;
     _editControlsOffsetY = originY - 18.0;
     CGRect borderFrame = _borderControl.frame;
     borderFrame.origin = CGPointMake(originX, originY);
     _borderControl.frame = borderFrame;
     CGRect opacityFrame = _opacityControl.frame;
-    opacityFrame.origin = CGPointMake(originX, _editTarget == IWEditTargetCalendar ? originY : originY + 184.0);
+    opacityFrame.origin = CGPointMake(originX, _editTarget == IWEditTargetCalendar ? originY : originY + (_editTarget == IWEditTargetClock ? 256.0 : 184.0));
     _opacityControl.frame = opacityFrame;
     if (persist) [self saveState];
     return YES;
@@ -8258,9 +8322,11 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         @"dateZoom": [NSNumber numberWithFloat:_dateScale],
         @"digitCardOpacity": [NSNumber numberWithFloat:_digitCardOpacity],
         @"digitCardBorderColor": _digitCardBorderColor ?: IWThemePink(1.0),
-        @"digitCardBorderWidth": [NSNumber numberWithFloat:_digitCardBorderWidth]
+        @"digitCardBorderWidth": [NSNumber numberWithFloat:_digitCardBorderWidth],
+        @"clockFontStyle": @(_clockFontStyle)
     };
     _editToolbar.hidden = NO;
+    [self applyClockFontSelection];
     [self resetEditToolbarButtonPresentation];
     [self updateOpacityControlVisibility];
     [self applyClockTransforms];
@@ -8370,6 +8436,8 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         _digitCardOpacity = IWDigitCardClampOpacity([[_editSnapshot objectForKey:@"digitCardOpacity"] floatValue]);
         _digitCardBorderColor = [_editSnapshot objectForKey:@"digitCardBorderColor"] ?: IWThemePink(1.0);
         _digitCardBorderWidth = [[_editSnapshot objectForKey:@"digitCardBorderWidth"] floatValue];
+        _clockFontStyle = IWValidatedClockFontStyle([[_editSnapshot objectForKey:@"clockFontStyle"] integerValue]);
+        [self applyClockFontSelection];
         [self applyClockTransforms];
         [self applyDigitCardOpacity];
         [self applyDigitCardBorderStyle];
@@ -8419,6 +8487,8 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         _digitCardOpacity = IWDigitCardDefaultOpacity();
         _digitCardBorderColor = IWThemePink(1.0);
         _digitCardBorderWidth = 1.5;
+        _clockFontStyle = 0;
+        [self applyClockFontSelection];
         [self applyClockTransforms];
         [self applyDigitCardOpacity];
         [self applyDigitCardBorderStyle];
@@ -9347,6 +9417,12 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         @"hour24": [NSNumber numberWithBool:_hour24],
         @"dateLanguage": [NSNumber numberWithInteger:_dateLanguage],
         @"dateLanguageLabel": [self dateLanguageLabel],
+        @"clockFontStyle": @(_clockFontStyle),
+        @"storedClockFontStyle": @([[NSUserDefaults standardUserDefaults] integerForKey:@"clockFontStyle"]),
+        @"clockFontControlVisible": @(_editMode && _editTarget == IWEditTargetClock && !_borderControl.hidden),
+        @"clockFontSelectedIndex": @(_clockFontControl.selectedSegmentIndex),
+        @"clockFontSelectedTitle": [_clockFontControl titleForSegmentAtIndex:_clockFontControl.selectedSegmentIndex] ?: @"",
+        @"clockFontControlFrame": NSStringFromCGRect([self.view convertRect:_clockFontControl.bounds fromView:_clockFontControl]),
         @"homeVisible": [NSNumber numberWithBool:_homeVisible],
         @"homePanelHidden": [NSNumber numberWithBool:(_homePanel == nil || _homePanel.hidden)],
         @"weatherVisible": [NSNumber numberWithBool:_weatherVisible],
@@ -9749,6 +9825,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         _dateLanguage = (_dateLanguage + 1) % 4;
         [self tick];
         [self refreshWeatherLanguagePresentation];
+        [self applyClockFontSelection];
         [self saveState];
     } else if ([value isEqualToString:@"calendar"]) {
         if (!_dateVisible && !_calendarVisible) _dateVisible = YES;
@@ -9771,6 +9848,13 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
         [self enterEditMode];
     } else if ([value isEqualToString:@"clockedit"]) {
         [self enterClockEditMode];
+#if TARGET_OS_SIMULATOR
+    } else if ([value isEqualToString:@"clockfont"]) {
+        if (_editMode && _editTarget == IWEditTargetClock) {
+            _clockFontControl.selectedSegmentIndex = (_clockFontStyle + 1) % 2;
+            [_clockFontControl sendActionsForControlEvents:UIControlEventValueChanged];
+        }
+#endif
     } else if ([value isEqualToString:@"dateedit"]) {
         [self enterDateEditMode];
     } else if ([value isEqualToString:@"done"]) {
@@ -10860,7 +10944,7 @@ static NSUInteger IWNextWallpaperLoadGeneration(NSUInteger *activeGeneration) {
     // Reproducible UI captures without opening external URL confirmation UI.
     NSString *previewSequence = [[NSUserDefaults standardUserDefaults] stringForKey:@"WizardPreviewCommands"];
     NSArray *previewCommands = [previewSequence length] ? [previewSequence componentsSeparatedByString:@","] : @[];
-    NSSet *allowedPreviewCommands = [NSSet setWithArray:@[@"main", @"menu", @"settingsmenu", @"themesmenu", @"gallery", @"gallerycategories", @"gallerycategoryuser", @"clockedit", @"dateedit", @"cancel", @"done", @"calendar", @"calendaredit", @"weatherfixture", @"weatheredit", @"video", @"videovolume", @"videominimize"]];
+    NSSet *allowedPreviewCommands = [NSSet setWithArray:@[@"main", @"menu", @"settingsmenu", @"themesmenu", @"gallery", @"gallerycategories", @"gallerycategoryuser", @"clockedit", @"clockfont", @"language", @"dateedit", @"cancel", @"done", @"reset", @"calendar", @"calendaredit", @"weatherfixture", @"weatheredit", @"video", @"videovolume", @"videominimize"]];
     BOOL previewValid = [previewCommands count] <= 8;
     for (NSString *command in previewCommands) {
         if (![allowedPreviewCommands containsObject:command]) previewValid = NO;

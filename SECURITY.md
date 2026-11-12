@@ -1,6 +1,6 @@
 # Security policy
 
-[简体中文](docs/zh-CN/SECURITY.md) · **English**
+[简体中文](docs/zh-CN/SECURITY.md) · [繁體中文](docs/zh-TW/SECURITY.md) · **English** · [日本語](docs/ja/SECURITY.md)
 
 Wizard is a source project for legacy iPads. The app uses external media paths, local-network media controls, and private Apple frameworks; review the [privacy notes](docs/open-source/PRIVACY.md) and [compatibility limits](docs/COMPATIBILITY.md) before use.
 

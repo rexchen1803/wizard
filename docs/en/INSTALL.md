@@ -1,21 +1,21 @@
 # Install Wizard
 
-Language: [简体中文](../INSTALL.md) | [English](INSTALL.md)
+[简体中文](../INSTALL.md) · [繁體中文](../zh-TW/INSTALL.md) · **English** · [日本語](../ja/INSTALL.md)
 
-This guide covers the Wizard 0.2.0 / build `20261112.39` preview package, source build, optional gallery, and rollback. The package is intended only for an already prepared **rootful jailbroken iPad**. It does not install a jailbreak or power tweak, change certificates, network, or system-trust settings, or launch the app automatically.
+This guide covers the Wizard 0.2.0 / build `20261112.40` preview package, source build, optional gallery, and rollback. The package is intended only for an already prepared **rootful jailbroken iPad**. It does not install a jailbreak or power tweak, change certificates, network, or system-trust settings, or launch the app automatically.
 
 ## Download status
 
-The repository is private, and all three GitHub Releases are drafts. `v0.2.0-preview.3` has not been published, so there is currently no public `releases/download/...` endpoint. An authorized maintainer can sign in and inspect drafts from the [Releases page](https://github.com/rexchen1803/wizard/releases); that page is a maintainer entry point, not a public download, and does not guarantee that an attachment is available. If you cannot access a required attachment, stop. Do not publish a Release, change repository visibility, or substitute `latest`. Even if a Release is published later, attachment access remains restricted while the repository is private.
+The repository is private, and all GitHub Releases are drafts. `v0.2.0-preview.4` has not been published, so there is currently no public `releases/download/...` endpoint. An authorized maintainer can sign in and inspect drafts from the [Releases page](https://github.com/rexchen1803/wizard/releases); that page is a maintainer entry point, not a public download, and does not guarantee that an attachment is available. If you cannot access a required attachment, stop. Do not publish a Release, change repository visibility, or substitute `latest`. Even if a Release is published later, attachment access remains restricted while the repository is private.
 
-After `v0.2.0-preview.3` is published, the build39 package and manifest will use these fixed filenames and paths:
+After `v0.2.0-preview.4` is published, the build40 package and manifest will use these fixed filenames and paths:
 
 | File | Fixed filename | Fixed URL after publication (not available now) |
 | --- | --- | --- |
-| Wizard Debian package | `wizard_0.2.0-20261112.39_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/wizard_0.2.0-20261112.39_iphoneos-arm.deb` |
-| Package manifest | `wizard_0.2.0-20261112.39_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/wizard_0.2.0-20261112.39_iphoneos-arm.deb.manifest.json` |
+| Wizard Debian package | `wizard_0.2.0-20261112.40_iphoneos-arm.deb` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard_0.2.0-20261112.40_iphoneos-arm.deb` |
+| Package manifest | `wizard_0.2.0-20261112.40_iphoneos-arm.deb.manifest.json` | `https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard_0.2.0-20261112.40_iphoneos-arm.deb.manifest.json` |
 
-Proceed only when both the exact `.deb` and its matching manifest are available through an authorized source. Verify the `.deb` against `artifact_sha256` in the manifest. On macOS, run `shasum -a 256 wizard_0.2.0-20261112.39_iphoneos-arm.deb`. Stop if the version, filename, or hash differs; do not mix a package and manifest from different releases. The packaging script generates the manifest and artifact hash for each output; this repository does not hard-code a build39 `.deb` hash that can replace the downloaded manifest.
+Proceed only when both the exact `.deb` and its matching manifest are available through an authorized source. Verify the `.deb` against `artifact_sha256` in the manifest. On macOS, run `shasum -a 256 wizard_0.2.0-20261112.40_iphoneos-arm.deb`. Stop if the version, filename, or hash differs; do not mix a package and manifest from different releases. The packaging script generates the manifest and artifact hash for each output; this repository does not hard-code a build40 `.deb` hash that can replace the downloaded manifest.
 
 ## Device scope and prerequisites
 
@@ -29,18 +29,18 @@ The installer accepts only these exact model and iOS pairs:
 
 The device must also have a rootful jailbreak, root access, a writable `/Applications` directory that is not a symlink, a Debian package environment, and `ldid`, `uicache`, `killall`, `sysctl`, and `sw_vers`. `uicache` must support both `-p` registration and `-u` unregistration. Stock iOS, rootless jailbreaks, iPhones, and unlisted device or OS versions are rejected. Do not bypass the checks by changing a reported model or OS version.
 
-Package-structure checks and the installer's local fixture checks do not establish on-device installation, signing, registration, or launch acceptance. Earlier evidence from specific prepared devices is summarized in the [compatibility table](../COMPATIBILITY.md); it does not prove a fresh build39 installation. Physical-device acceptance for build39 is still pending.
+Package-structure checks and the installer's local fixture checks do not establish on-device installation, signing, registration, or launch acceptance. Earlier evidence from specific prepared devices is summarized in the [compatibility table](../COMPATIBILITY.md); it does not prove a fresh build40 installation. Physical-device acceptance for build40 is still pending.
 
 ## Install the preview package
 
 After the exact files above are available from an authorized source:
 
-1. Download `wizard_0.2.0-20261112.39_iphoneos-arm.deb` and its matching `.manifest.json`. The future URL shown above is not currently usable while the Release is a draft. Maintainers can open the draft from the [Releases page](https://github.com/rexchen1803/wizard/releases). Stop if the attachment cannot be obtained.
+1. Download `wizard_0.2.0-20261112.40_iphoneos-arm.deb` and its matching `.manifest.json`. The future URL shown above is not currently usable while the Release is a draft. Maintainers can open the draft from the [Releases page](https://github.com/rexchen1803/wizard/releases). Stop if the attachment cannot be obtained.
 2. Verify the `.deb` against `artifact_sha256` in its manifest. Use only the manifest for that package; do not use `latest`, another Release, or a renamed package.
 3. On the authorized target iPad, install the package using Filza or the local `.deb` workflow supported by Cydia, Sileo, or Zebra. An already authorized root terminal on the device can also run:
 
    ```sh
-   dpkg -i ./wizard_0.2.0-20261112.39_iphoneos-arm.deb
+   dpkg -i ./wizard_0.2.0-20261112.40_iphoneos-arm.deb
    ```
 
 The package hooks first check the model, OS, rootful environment, package manager, required tools, and app path. The installer uses the existing device `ldid` to ad-hoc sign the unsigned app, then registers it with `uicache`. During an update, it sends Wizard one `TERM` command and retains the previous app bundle intact as `WizardSystem.rollback-<build>-<UTC>.app` before placing the candidate app. A fresh install has no previous app to retain. The installer does not launch Wizard, reboot the device, or respring.
@@ -57,14 +57,14 @@ cd wizard
 IOS_SDK="/path/to/iPhoneOS9.3.sdk" ./scripts/build-ipad.sh --out /tmp/WizardSystem-build
 python3 scripts/package-release.py \
   --app /tmp/WizardSystem-build/WizardSystem.app \
-  --out /tmp/wizard_0.2.0-20261112.39_iphoneos-arm.deb
+  --out /tmp/wizard_0.2.0-20261112.40_iphoneos-arm.deb
 ```
 
 The output app directory, `.deb`, and adjacent manifest must not already exist. The packager requires the filename to match the app version and build; it checks the `armv7` and `arm64` architectures, bundle ID, resources, and source fingerprint, then writes `artifact_sha256` into the newly generated manifest. `--dry-run` prints the package structure and hashes without writing the package files. Building and packaging do not connect to a device or install anything. The [build and regression guide](../open-source/README.md#build) describes source validation limits. [WizardPower source notes](../../App/WizardPowerTweak/README.md) have a separate build entry point; the Wizard package does not install that tweak.
 
 ## Optional GTA VI gallery
 
-The gallery and original-media packages are also draft attachments for the unpublished `v0.2.0-preview.3` Release. There is currently no public download endpoint. Use them only if a maintainer or authorized user can obtain the exact draft attachments; stop if they are unavailable. Do not publish a Release or change repository visibility.
+The gallery and original-media packages are also draft attachments for the unpublished `v0.2.0-preview.4` Release. There is currently no public download endpoint. Use them only if a maintainer or authorized user can obtain the exact draft attachments; stop if they are unavailable. Do not publish a Release or change repository visibility.
 
 | File | Contents | Size | SHA-256 |
 | --- | --- | ---: | --- |
@@ -74,8 +74,8 @@ The gallery and original-media packages are also draft attachments for the unpub
 The [local manifest](../../assets/media/MANIFEST.json) records the expected sizes and SHA-256 values for these exact files. Their fixed paths after publication are below; **they are not available now**. They will still require authorized repository access while the repository remains private:
 
 ```text
-https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/wizard-gta6-gallery-20261112.zip
-https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.3/gta6-original-materials-20261112.zip
+https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/wizard-gta6-gallery-20261112.zip
+https://github.com/rexchen1803/wizard/releases/download/v0.2.0-preview.4/gta6-original-materials-20261112.zip
 ```
 
 Install the app gallery only if you separately choose and authorize it. First make a complete backup of `/var/mobile/Media/iPadWizard/app`, then merge the ZIP's `app/` contents into that directory. Preserve the existing `assets/user` directory and preferences; do not delete or replace the entire `app` directory. If the transfer tool changes permissions, adjust only the newly copied files; do not recursively change existing user directories. Reopen Wizard and check the original wallpapers, favorites, crops, imported photos, and categories. The original-media archive is for collecting and creating material; it is not the device gallery package. See the [media notes](../open-source/GTA6-MATERIALS.md) and [attribution record](../../assets/media/ATTRIBUTION.md). Rockstar media is not covered by Wizard's MIT code license.

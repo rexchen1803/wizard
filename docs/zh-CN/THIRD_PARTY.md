@@ -1,6 +1,6 @@
 # 第三方素材与构建要求
 
-**简体中文** · [English](../../THIRD_PARTY.md)
+**简体中文** · [繁體中文](../zh-TW/THIRD_PARTY.md) · [English](../../THIRD_PARTY.md) · [日本語](../ja/THIRD_PARTY.md)
 
 Wizard 自有代码采用根目录 [MIT License](../../LICENSE)。该许可不覆盖第三方代码、字体、图片、视频或其他素材；它们保留各自权利与条款。
 
@@ -44,7 +44,7 @@ GTA VI 图片、视频、裁切、转码、缩略图与其他衍生内容归 Roc
 
 App 的静态 `Anton-Regular.ttf` 保留原始字节，Copyright 2020 The Anton Project Authors，采用 [SIL OFL 1.1](../../App/Resources/Anton-OFL.txt)。来源固定到 [Google Fonts revision `cee74d7ca45d66d5c1878c828645c862f2788d2d`](https://github.com/google/fonts/tree/cee74d7ca45d66d5c1878c828645c862f2788d2d/ofl/anton)，SHA256 为 `a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab`。字体与许可随 App 打包，独立于 MIT。README 的拉丁显示字使用同一字体。
 
-README 的阅读文字和中文标题从 Noto Sans CJK SC Regular/Bold 转为轮廓，采用 [OFL 1.1](../../licenses/NotoSansCJK-OFL.txt)。Noto 字体仅为可选宣传图生成输入，不打入 App。固定来源、校验值与复现方法见[宣传图来源](../../assets/readme/SOURCES.md)。
+README 的阅读文字和中日文标题按语言分别从 Noto Sans CJK SC、TC、JP Regular/Bold 转为轮廓，采用 [OFL 1.1](../../licenses/NotoSansCJK-OFL.txt)。Noto 字体仅为可选宣传图生成输入，不打入 App。固定来源、校验值与复现方法见[宣传图来源](../../assets/readme/SOURCES.md)。
 
 ## 默认壁纸与宣传图
 

@@ -1,10 +1,10 @@
 # 演示截图来源
 
-**简体中文** · [English](README.en.md)
+**简体中文** · [繁體中文](../../docs/zh-TW/CAPTURES.md) · [English](README.en.md) · [日本語](../../docs/ja/CAPTURES.md)
 
 ## 当前 Miami 预览
 
-`*-miami.jpg` 来自 build **20261112.39** 在 **iPad（第 8 代）模拟器 / iOS 18.0** 中的原生 UIKit 渲染。原始截图为 2160 × 1620 PNG；网页版本保持同样像素尺寸，使用 JPEG quality 85 编码，未合成、添加或重绘任何 App 界面。原始 PNG 的 SHA256、网页图片校验值、场景命令和源码指纹在 [CAPTURE-METADATA.json](CAPTURE-METADATA.json)。
+`*-miami.jpg` 来自 build **20261112.40** 在 **iPad（第 8 代）模拟器 / iOS 18.0** 中的原生 UIKit 渲染。原始截图为 2160 × 1620 PNG；网页版本保持同样像素尺寸，使用 JPEG quality 85 编码，未合成、添加或重绘任何 App 界面。原始 PNG 的 SHA256、网页图片校验值、场景命令和源码指纹在 [CAPTURE-METADATA.json](CAPTURE-METADATA.json)。
 
 - [主屏](home-miami.jpg)：未安装外部目录时的内置 Vice City 默认图。
 - [图库](gallery-miami.jpg)、[分类](categories-miami.jpg)：演示目录由 230 项素材包加上所选默认图组成，共 231 项。未加入用户照片。
@@ -16,6 +16,8 @@
 ## 字体来源
 
 当前构建把静态开源字体 `Anton-Regular.ttf` 和 OFL 1.1 许可一起打入 App。截图元数据同时记录真实时钟字体名 `Anton-Regular`、字体文件 SHA256 和字体是否来自 App 包，避免把模拟器的系统字体回退当成旧系统字体一致性证据。中文控件使用系统字体。旧 source36 实机图保留其当时的外观。
+
+长按时间，在“时间字体”中选择“海报 / 系统”。海报使用内置 Anton，系统使用 iOS 等宽数字；完成保存，取消恢复。新增[系统字体编辑实截](clock-font-system.jpg)展示真实选择器。
 
 ## 保留的旧版实机宣传图
 

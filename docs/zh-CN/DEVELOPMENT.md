@@ -1,10 +1,10 @@
-[English](../open-source/README.md) · 简体中文
+**简体中文** · [繁體中文](../zh-TW/DEVELOPMENT.md) · [English](../open-source/README.md) · [日本語](../ja/DEVELOPMENT.md)
 
 # Wizard 源码与开发指南
 
 本仓库包含 Wizard 这款旧版 Objective-C/UIKit 原生 iPad App、主机回归检查、打包与安装工具，以及一个可选电源 tweak。核心 App 与 tweak 是独立组件。
 
-App 源码候选为 **0.2.0 / build 20261112.39**，源码与资源指纹为 `3a5cc824911e76b0f4dc45a2d555136474e293b2a753f239fdd082b809a0802f`。截至 2026-11-12，该版本尚未安装到实体 iPad。GitHub 仓库为私有，三个 Release 均为草稿；素材清单记录的是已准备的草稿附件，不代表存在公开下载。
+App 源码候选为 **0.2.0 / build 20261112.40**，源码与资源指纹为 `7dd43ae900a459683affaba05f7512f4e78e29e36db672be207f32440207a802`。截至 2026-11-12，该版本尚未安装到实体 iPad。GitHub 仓库为私有，所有 Release 均为草稿；素材清单记录的是已准备的草稿附件，不代表存在公开下载。
 
 Wizard 自有代码使用根目录中的 [MIT License](../../LICENSE)。该许可证不涵盖第三方图片、字体、用户导入内容或其他素材。请参阅[第三方声明](THIRD_PARTY.md)和 [GTA VI 素材指南](../open-source/GTA6-MATERIALS.md)。贡献前可先阅读[贡献指南](CONTRIBUTING.md)。
 
@@ -95,3 +95,5 @@ python3 scripts/prepare-open-source.py
 ## 许可证与署名
 
 Wizard 自有代码使用根目录 MIT License。Google Material 路径数据另依根目录 `NOTICE` 中的 Apache 2.0 声明。App 包含的显示字体及其 SIL OFL 1.1 许可证分别作为文件保留。GTA VI 图片、视频、截图及其衍生素材的版权属于 Rockstar Games 与相应权利人，不受 MIT 许可。详见 [GTA VI 素材指南](../open-source/GTA6-MATERIALS.md)、[演示截图来源](../../assets/demo/README.md)、[第三方声明](THIRD_PARTY.md)和[贡献指南](CONTRIBUTING.md)。
+
+时间编辑新增“海报 / 系统”字体选择。`clockFontStyle` 稳定取值为 0/1，缺失或异常值保留海报字体；完成、取消和重置沿用既有编辑流程。日期、日历和天气语言 ID 仍为 0英语、1简体中文、2繁体中文、3日语，与文档展示顺序分开。

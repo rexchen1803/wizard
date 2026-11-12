@@ -1,6 +1,6 @@
 # 本地数据与网络行为
 
-**简体中文** · [English](../open-source/PRIVACY.md)
+**简体中文** · [繁體中文](../zh-TW/PRIVACY.md) · [English](../open-source/PRIVACY.md) · [日本語](../ja/PRIVACY.md)
 
 本文说明当前 iPad 源码的行为，不是 App Store 隐私申报，也不代表设备安全或运行验收。
 

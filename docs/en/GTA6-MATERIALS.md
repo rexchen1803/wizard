@@ -1,4 +1,4 @@
-[中文](../open-source/GTA6-MATERIALS.md) · English
+[简体中文](../open-source/GTA6-MATERIALS.md) · [繁體中文](../zh-TW/GTA6-MATERIALS.md) · **English** · [日本語](../ja/GTA6-MATERIALS.md)
 
 # GTA VI materials: sources and rights
 
@@ -6,7 +6,7 @@ Copyright in GTA VI images, videos, screenshots and their thumbnails, transcodes
 
 ## Distribution status and media packs
 
-As checked on 2026-11-12, the GitHub repository was private and all three Releases were drafts. The media packs listed below are recorded in the `v0.2.0-preview.3` draft and were not publicly downloadable. The `download_url` fields in the manifest identify draft target URLs; they are not public-access links.
+As checked on 2026-11-12, the GitHub repository was private and all Releases were drafts. The media packs listed below are recorded in the `v0.2.0-preview.4` draft and were not publicly downloadable. The `download_url` fields in the manifest identify draft target URLs; they are not public-access links.
 
 | Media pack | Contents recorded in the manifest | Intended use |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ The project’s source-file records include 27 wallpaper compositions and 142 si
 
 ## Repository demonstrations and license scope
 
-The repository’s [demo provenance guide](../../assets/demo/README.en.md) identifies the bundled App captures: the current `*-miami.jpg` files are native captures from build `20261112.39` in an iPad (8th generation) Simulator running iOS 18; the `*-ipad2.png` files are earlier physical-device screenshots from build `20261111.36`. GTA VI imagery in those captures remains the property of Rockstar Games and applicable rights holders; it is not covered by Wizard’s MIT code license.
+The repository’s [demo provenance guide](../../assets/demo/README.en.md) identifies the bundled App captures: the current eight `*-miami.jpg` files and `clock-font-system.jpg` are native captures from build `20261112.40` in an iPad (8th generation) Simulator running iOS 18; the `*-ipad2.png` files are earlier physical-device screenshots from build `20261111.36`. GTA VI imagery in those captures remains the property of Rockstar Games and applicable rights holders; it is not covered by Wizard’s MIT code license.
 
 The media packs exclude user photos, preferences, device backups, connection information, F1 videos, historical game audio, fonts and Apple SDKs. See the [installation guide](../open-source/INSTALL.md) for installation and runtime conditions, and [ATTRIBUTION.md](../../assets/media/ATTRIBUTION.md) for the consolidated attribution record.
 

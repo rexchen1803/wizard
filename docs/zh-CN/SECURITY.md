@@ -1,6 +1,6 @@
 # 安全政策
 
-**简体中文** · [English](../../SECURITY.md)
+**简体中文** · [繁體中文](../zh-TW/SECURITY.md) · [English](../../SECURITY.md) · [日本語](../ja/SECURITY.md)
 
 Wizard 面向旧款 iPad，使用外部媒体路径、局域网媒体控制和 Apple 私有框架。使用前请阅读[隐私与网络说明](PRIVACY.md)及[兼容性范围](COMPATIBILITY.md)。
 
