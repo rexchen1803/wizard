@@ -2,7 +2,7 @@
 
 # Wizard 原始碼與開發指南
 
-本儲存庫包含 Wizard 這款舊版 Objective-C/UIKit 原生 iPad App、主機迴歸檢查、打包與安裝工具，以及一個可選電源 tweak。核心 App 與 tweak 是獨立元件。
+Wizard 是面向經典 iPad 的 Objective-C/UIKit 原生 App。本儲存庫包含主機迴歸檢查、打包與安裝工具，以及一個可選電源 tweak。核心 App 與 tweak 是獨立元件。
 
 App 原始碼候選為 **0.2.0 / build 20261112.41**，原始碼與資源指紋為 `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`。截至 2026-11-12，該版本尚未安裝到實體 iPad。原始碼儲存庫及 [v0.2.0-preview.5](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5) 的安裝套件、素材附件均已公開；素材清單記錄固定下載網址和雜湊。build 41 在時鐘編輯面板新增「海報」與「系統」兩種字型選項；預設仍為使用 Anton-Regular 的「海報」。儲存與取消會保留原有狀態。這項變更尚未通過實體裝置驗收。
 

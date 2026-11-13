@@ -1,5 +1,7 @@
 [简体中文](../zh-CN/README.md) · [繁體中文](../zh-TW/README.md) · [English](../en/README.md) · **日本語**
 
+Wizard は、クラシック iPad で時計・カレンダー・壁紙ギャラリー・ローカルメディアを楽しむためのネイティブアプリです。
+
 # Wizard ドキュメント
 
 現在の候補は **0.2.0 / build 20261112.41** です。ソースと Simulator のビルドは通過しています。ソースと[プレビューのインストーラー・素材パック](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5)を公開しています。build 41 は物理 iPad で受け入れられていません。時計を長押しして編集画面を開き、「時刻のフォント」で「ポスター」または「標準」を選びます。既定は Anton を使う「ポスター」です。「Done」で保存し、「Cancel」で変更前の設定に戻します。

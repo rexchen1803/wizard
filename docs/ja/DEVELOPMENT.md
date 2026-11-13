@@ -2,7 +2,7 @@
 
 # Wizard ソースと貢献ガイド
 
-このリポジトリには、旧世代 iPad 向けのネイティブ Objective-C/UIKit アプリ Wizard、ホスト回帰検査、パッケージ／インストールツール、任意の電源 tweak が含まれます。アプリ本体と tweak は別コンポーネントです。
+Wizard はクラシック iPad 向けの Objective-C/UIKit ネイティブアプリです。このリポジトリには、ホスト回帰検査、パッケージ／インストールツール、任意の電源 tweak が含まれます。アプリ本体と tweak は別コンポーネントです。
 
 現在のソース候補は **0.2.0 / build 20261112.41** で、ソースと Simulator のビルドは通過しています。ソース／リソース指紋は `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`です。ビルド41は実機にインストールされていません。ソースと [v0.2.0-preview.5](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5) のインストーラー・素材パックを公開しています。素材の manifest に固定 URL とハッシュを記録しています。
 

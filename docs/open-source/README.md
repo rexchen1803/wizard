@@ -2,7 +2,7 @@
 
 # Wizard source and contributor guide
 
-This repository contains Wizard, a legacy native Objective-C/UIKit iPad App, its host regression checks, packaging and installation tools, and an optional power tweak. The core App and the tweak are separate components.
+Wizard is a native Objective-C/UIKit app for classic iPad. This repository includes its host regression checks, packaging and installation tools, and an optional power tweak. The core App and the tweak are separate components.
 
 The App source candidate is **0.2.0 / build 20261112.41** with source/resource fingerprint `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`. As checked on 2026-11-12, this build had not been installed on a physical iPad. The source repository and [v0.2.0-preview.5](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5) installer and media attachments are public; the media manifest records the pinned download URLs and hashes.
 

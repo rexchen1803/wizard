@@ -1,7 +1,7 @@
 <p align="center"><a href="README.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <strong>English</strong> · <a href="README.ja.md">日本語</a></p>
 
 <p align="center">
-<a href="docs/en/INSTALL.md"><picture><source media="(max-width: 767px)" srcset="assets/readme/hero-en-mobile.svg"><img src="assets/readme/hero-en.svg" alt="Install Wizard. Give your iPad a second life." width="100%"></picture></a>
+<a href="docs/en/INSTALL.md"><picture><source media="(max-width: 767px)" srcset="assets/readme/hero-en-mobile.svg"><img src="assets/readme/hero-en.svg" alt="Install Wizard. A new chapter for classic iPad." width="100%"></picture></a>
 <picture><source media="(max-width: 767px)" srcset="assets/readme/showcase-en-mobile.svg"><img src="assets/readme/showcase-en.svg" alt="Flip clock, calendar, wallpapers and local media. Native iPad Simulator captures from build 20261112.41; original App UI text." width="100%"></picture>
 <a href="assets/demo/website-original.jpg"><img src="assets/demo/website-original.jpg" alt="Original Wizard illustration from the personal website, preserved unchanged." width="100%"></a>
 <a href="docs/en/GTA6-MATERIALS.md"><picture><source media="(max-width: 767px)" srcset="assets/readme/collection-en-mobile.svg"><img src="assets/readme/collection-en.svg" alt="GTA VI materials: 228 images, 2 compatible videos and a separate original-material archive." width="100%"></picture></a>

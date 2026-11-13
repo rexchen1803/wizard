@@ -7,7 +7,7 @@
 ios
 
 ## Users
-People using a prepared, rootful jailbroken legacy iPad as a desk or bedside display. Contributors use GitHub to inspect the source and choose an installation method.
+People using a prepared, rootful jailbroken classic iPad as a desk or bedside display. Contributors use GitHub to inspect the source and choose an installation method.
 
 ## Product Purpose
 A native Objective-C/UIKit display for a clock, calendar, wallpaper gallery and local video.
@@ -16,6 +16,8 @@ A native Objective-C/UIKit display for a clock, calendar, wallpaper gallery and 
 iOS 9 minimum; preserve armv7 and arm64 builds, stable media keys, favorites, user imports and layout preferences. Build, simulator rendering and physical-device acceptance are separate evidence. No physical-device work is requested for this redesign.
 
 ## Brand Commitments
+Product introductions use “经典 iPad”, “經典 iPad”, “classic iPad” and “クラシック iPad”. Keep historical build descriptions and technical compatibility terminology precise.
+
 Rex explicitly selected GTA VI / Rockstar / Miami visual language for both the App and GitHub presentation, with purple-pink sunset gradients and substantial supplied artwork. Use ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg for the new build and promotion; retain historical promotional captures.
 
 ## Evidence on Hand

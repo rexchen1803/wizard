@@ -2,6 +2,8 @@
 
 [简体中文](../zh-CN/README.md) · **繁體中文** · [English](../en/README.md) · [日本語](../ja/README.md)
 
+Wizard 為經典 iPad 提供原生時鐘、日曆、桌布圖庫與本機媒體展示。
+
 目前候選：**0.2.0 / build 20261112.41**。原始碼及[預覽安裝套件與素材](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5)均已公開。
 
 | 目標 | 指南 |

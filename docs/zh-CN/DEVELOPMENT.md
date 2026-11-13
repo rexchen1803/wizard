@@ -2,7 +2,7 @@
 
 # Wizard 源码与开发指南
 
-本仓库包含 Wizard 这款旧版 Objective-C/UIKit 原生 iPad App、主机回归检查、打包与安装工具，以及一个可选电源 tweak。核心 App 与 tweak 是独立组件。
+Wizard 是面向经典 iPad 的 Objective-C/UIKit 原生应用。本仓库包含主机回归检查、打包与安装工具，以及一个可选电源 tweak。核心 App 与 tweak 是独立组件。
 
 App 源码候选为 **0.2.0 / build 20261112.41**，源码与资源指纹为 `cdcbce40e799e4277d318953b1e2cf057cbfb116f70a9c1e5228f6afaee05e91`。截至 2026-11-12，该版本尚未安装到实体 iPad。源码仓库及 [v0.2.0-preview.5](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5) 的安装包、素材附件均已公开；素材清单记录固定下载地址和哈希。
 

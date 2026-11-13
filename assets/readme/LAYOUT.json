@@ -44,9 +44,9 @@
         },
         {
           "role": "copy",
-          "text": "让闲置的 iPad，再次发光。",
+          "text": "让经典 iPad，再次发光。",
           "left": 64,
-          "right": 581.0,
+          "right": 537.0,
           "top": 912.292,
           "bottom": 956.072
         },
@@ -59,7 +59,7 @@
           "bottom": 1047.686
         }
       ],
-      "sha256": "ea02967eddeb6ce3598df3912809b0b8b0ded45752c4103d7f6c93f97add7fc3"
+      "sha256": "050ab68c8550fe2d0b2d34ccff6145d6b712c3017a15cf0ffc90a46e46117f7b"
     },
     {
       "file": "showcase.svg",
@@ -374,9 +374,9 @@
         },
         {
           "role": "copy",
-          "text": "让闲置的 iPad，再次发光。",
+          "text": "让经典 iPad，再次发光。",
           "left": 40,
-          "right": 557.0,
+          "right": 513.0,
           "top": 662.292,
           "bottom": 706.072
         },
@@ -389,7 +389,7 @@
           "bottom": 783.88
         }
       ],
-      "sha256": "3bc6832aa535b6b34f15b6fba9fb06ed940bb131d7c1eab1cc95842627678c73"
+      "sha256": "5ac0d9ecaa8d2af7c7c30eb2d742434337ae1249ddfd5bbd64447241bf5df014"
     },
     {
       "file": "showcase-mobile.svg",
@@ -680,9 +680,9 @@
         },
         {
           "role": "copy",
-          "text": "讓閒置的 iPad，再次發光。",
+          "text": "讓經典 iPad，再次發光。",
           "left": 64,
-          "right": 594.992,
+          "right": 550.992,
           "top": 911.896,
           "bottom": 954.18
         },
@@ -695,7 +695,7 @@
           "bottom": 1047.686
         }
       ],
-      "sha256": "40fe1c74cdfe8dd919840f28d10bfbc15fd6e4d49c9bca352ebb7cc2155d22e4"
+      "sha256": "d460a6a1762af94699407de2bb66f4fd07fbc222d93599f18227fdbf0efb4f1c"
     },
     {
       "file": "showcase-zh-tw.svg",
@@ -1010,9 +1010,9 @@
         },
         {
           "role": "copy",
-          "text": "讓閒置的 iPad，再次發光。",
+          "text": "讓經典 iPad，再次發光。",
           "left": 40,
-          "right": 570.992,
+          "right": 526.992,
           "top": 661.896,
           "bottom": 704.18
         },
@@ -1025,7 +1025,7 @@
           "bottom": 783.88
         }
       ],
-      "sha256": "63b9b2dd8038b958c1947242cb3a9fb43e974c0c802d47093a84980ee10b008e"
+      "sha256": "11545a8a082090edb070e54dc0b49aa170051eb282c200fc47ef835019748e66"
     },
     {
       "file": "showcase-zh-tw-mobile.svg",
@@ -1316,11 +1316,11 @@
         },
         {
           "role": "copy",
-          "text": "A second life for your iPad.",
+          "text": "A new chapter for classic iPad.",
           "left": 64,
-          "right": 637.452,
+          "right": 717.5319999999999,
           "top": 914.272,
-          "bottom": 959.856
+          "bottom": 959.46
         },
         {
           "role": "copy",
@@ -1331,7 +1331,7 @@
           "bottom": 1053.234
         }
       ],
-      "sha256": "ee1d43c57d672d2767211c883a239c603081309ae2d6bba43b818255fa24a9da"
+      "sha256": "e3294d4b9712d6c188666a95e77d77fc2aee60c782a1c0e6d9caf06d8e470891"
     },
     {
       "file": "showcase-en.svg",
@@ -1654,11 +1654,11 @@
         },
         {
           "role": "copy",
-          "text": "A second life for your iPad.",
+          "text": "A new chapter for classic iPad.",
           "left": 40,
-          "right": 613.452,
+          "right": 693.5319999999999,
           "top": 664.272,
-          "bottom": 709.856
+          "bottom": 709.46
         },
         {
           "role": "copy",
@@ -1669,7 +1669,7 @@
           "bottom": 789.72
         }
       ],
-      "sha256": "3e3ad1c4446c8cfed6fead82804e38a4ba6d4c8ee8a4d52c3565722cd67097d4"
+      "sha256": "4abd78f05cf8fc9fa4fcd88329134836d3bc4564ecddc9142648fca4f8aa185f"
     },
     {
       "file": "showcase-en-mobile.svg",
@@ -1968,10 +1968,10 @@
         },
         {
           "role": "copy",
-          "text": "iPad に、もう一度輝きを。",
+          "text": "クラシック iPad に、輝きを。",
           "left": 64,
-          "right": 579.68,
-          "top": 912.6,
+          "right": 633.5799999999999,
+          "top": 913.04,
           "bottom": 954.092
         },
         {
@@ -1983,7 +1983,7 @@
           "bottom": 1045.786
         }
       ],
-      "sha256": "4075f8b1130266a5cf3abb9462a1a9c3f9840b6730a1804a2950a8c8d2218fb7"
+      "sha256": "93fe5c7c2cf7bc48f477199f1b6aa852f2c8ebbe99be02397cd609e81bfde536"
     },
     {
       "file": "showcase-ja.svg",
@@ -2306,10 +2306,10 @@
         },
         {
           "role": "copy",
-          "text": "iPad に、もう一度輝きを。",
+          "text": "クラシック iPad に、輝きを。",
           "left": 40,
-          "right": 555.68,
-          "top": 662.6,
+          "right": 609.5799999999999,
+          "top": 663.04,
           "bottom": 704.092
         },
         {
@@ -2321,7 +2321,7 @@
           "bottom": 781.88
         }
       ],
-      "sha256": "b4bbb4004fc0b5ac416d461d640050135423319eed94dde23c08b8f3b5a18ff5"
+      "sha256": "c4568910c719d79fa78e9556e8f9178a400afa3ab51eb5e4aa3202a78312caa8"
     },
     {
       "file": "showcase-ja-mobile.svg",

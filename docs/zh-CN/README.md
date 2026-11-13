@@ -2,6 +2,8 @@
 
 **简体中文** · [繁體中文](../zh-TW/README.md) · [English](../en/README.md) · [日本語](../ja/README.md)
 
+Wizard 为经典 iPad 提供原生时钟、日历、壁纸图库与本地媒体展示。
+
 当前候选：**0.2.0 / build 20261112.41**。源码及[预览安装包与素材](https://github.com/rexchen1803/wizard/releases/tag/v0.2.0-preview.5)均已公开。
 
 长按时间，在**时间字体**中选择**海报 / 系统**。点完成保存，取消恢复编辑前的字体。

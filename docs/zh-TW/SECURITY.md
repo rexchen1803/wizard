@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/SECURITY.md) · **繁體中文** · [English](../../SECURITY.md) · [日本語](../ja/SECURITY.md)
 
-Wizard 面向舊款 iPad，使用外部媒體路徑、區域網路媒體控制和 Apple 私有框架。使用前請閱讀[隱私與網路說明](PRIVACY.md)及[相容性範圍](COMPATIBILITY.md)。
+Wizard 是面向經典 iPad 的原生 App，使用外部媒體路徑、區域網路媒體控制和 Apple 私有框架。使用前請閱讀[隱私與網路說明](PRIVACY.md)及[相容性範圍](COMPATIBILITY.md)。
 
 ## 通報弱點
 

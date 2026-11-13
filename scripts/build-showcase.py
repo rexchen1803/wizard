@@ -141,7 +141,7 @@ def hero(artwork, faces, mobile, language):
                    f'<rect y="{fade_y}" width="{w}" height="{fade_h}" fill="url(#fade)"/>'
                    f'<rect y="{fade_y+fade_h}" width="{w}" height="{hero_h-fade_y-fade_h}" fill="{GROUND}"/>')
     p.wordmark(610 if mobile else 860)
-    p.text('让闲置的 iPad，再次发光。', 700 if mobile else 950, 44, color=PINK)
+    p.text('让经典 iPad，再次发光。', 700 if mobile else 950, 44, color=PINK)
     action_y = 780 if mobile else 1044
     p.text('安装指南', action_y, 40 if mobile else 38, color=PINK)
     end = p.elements[-1]['right']
